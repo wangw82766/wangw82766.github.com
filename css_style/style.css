@@ -69,7 +69,7 @@ body{ overflow:hidden;}
 
 /*js_worker*/
 .js_worker{ position:relative; top:0; left:0; background:url(../img/bj-2.png) no-repeat; background-size:100% 100%;}
-.js_worker .js_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; }
+.js_worker .js_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; transition: 2s;}
 .js_worker .js_worker_box .js_box{  height:80%; width:90%;margin-top:80px; margin-left:10%;}
 .js_worker .js_worker_box .js_box div{ width:22%; height:45%; float:left;cursor:pointer; margin:1% 1%; position:relative; top:0; left:0; 
 opacity: 0.7;
@@ -84,7 +84,7 @@ color:#fff;}
 
 
 .js_worker .js_worker_box ol{ position:absolute; bottom:3%; left:50%; height:1.5rem; width:10%;}
-.js_worker .js_worker_box ol li{ float:left; width:20%; height:100%; background:#CCC; text-align:center; border-radius:50%; margin-right:4%; cursor:pointer; font-size:1rem; line-height:1.5rem;}
+.js_worker .js_worker_box ol li{ float:left; width:20%; height:100%; background:#CCC; text-align:center; border-radius:10px; margin-right:4%; cursor:pointer; font-size:1rem; line-height:1.5rem;}
 .js_worker .js_worker_box ol .on{ background:red; cursor:pointer;}
 
 /*H5*/
@@ -136,6 +136,10 @@ color:#fff;}
 	text-align: center;
 	line-height: 2rem;
 	color: #fff;
+}
+.H5 .H5_box .H5conction1 li img{
+	width: 100%;
+	height: 100%;
 }
 
 .H5 .H5_box ul .mt{
