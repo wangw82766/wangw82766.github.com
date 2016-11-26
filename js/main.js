@@ -1,5 +1,25 @@
-
-	
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	for(var i=0;i<aLi.length-1;i++){
+		(function(i){
+			setTimeout(function(){
+			aLi[i].style.width='20%'	
+			aLi[i].style.left=0;
+			aLi[i].style.top=0;
+			aLi[i].style.opacity=1
+			aLi[i].style.fontSize='1rem'
+			aLi[i].style.transition='2s'
+			
+			
+		},100)
+		})(i)
+		setTimeout(function(){
+			aLi[5].style.left=0;
+		},2000)
+	}
+}
 
 // JavaScript Document
 DOMReady(function(){
@@ -40,6 +60,7 @@ DOMReady(function(){
 	}
 	
 	for(var i=0;i<aLi.length-1;i++){
+		
 		aLi[i].index=i;
 		aLi[i].onclick=function (ev){
 			var oEvent = ev||event;
