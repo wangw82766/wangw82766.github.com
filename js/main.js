@@ -2,10 +2,23 @@ window.onload=function(){
 	
 	
 	var oHHH=document.getElementById('hhh');
+		var i=1;
+		var timer=null
 		oHHH.onclick=function(){
 			
-		
-			this.style.display='none'
+			timer=setInterval(function(){
+				i-=0.2;
+				if(i<=0){
+					i=0;
+				}
+				oHHH.style.opacity=i
+				if(i==0){
+					
+					oHHH.style.display='none';
+					clearInterval(timer)
+				}
+			},400)
+			
 		
 	}
 }
