@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>带框的拖拽</title>
+<style>
+#box{width:200px; height:200px; background:red; position:absolute; top:200px; left:400px;}
+</style>
+<script>
+window.onload=function(){
+	var oBox = document.getElementById('box');
+	oBox.onmousedown=function(ev){
+		var oEvent = ev||event;
+		var disX = oEvent.clientX-oBox.offsetLeft;
+		var disY = oEvent.clientY-oBox.offsetTop;
+		var oDiv = document.createElement('div');
+		oDiv.style.width=oBox.offsetWidth-20+'px';
+		oDiv.style.height=oBox.offsetHeight-20+'px';
+		oDiv.style.border='10px dashed #000';
+		oDiv.style.left=oBox.offsetLeft+'px';
+		oDiv.style.top=oBox.offsetTop+'px';
+		oDiv.style.position='absolute';
+		
+		document.body.appendChild(oDiv);
+		document.onmousemove=function(ev){
+			var oEvent = ev||event;
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		document.onmouseup=function(){
+			oBox.style.left=oDiv.offsetLeft+'px';
+			oBox.style.top=oDiv.offsetTop+'px';
+			document.body.removeChild(oDiv);
+			document.onmousemove=null;
+			document.onmouseup=null;
+			oBox.releaseCapture&&oBox.releaseCapture();
+		};
+		oBox.setCapture&&oBox.setCapture();
+		return false;
+	};
+};
+</script>
+</head>
+
+<body style="height:3000px">
+	<div id="box"></div>
+</body>
+</html>

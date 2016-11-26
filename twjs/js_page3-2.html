@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>上移下移</title>
+<style>
+ul{ margin:0; padding:0; list-style:none;} 
+</style>
+<script>
+window.onload=function(){
+	var oUl = document.getElementById('ul1');
+	var aA = oUl.getElementsByTagName('a');
+	for(var i=0;i<aA.length;i++){
+		(function(index){
+			aA[i].onclick=function(){
+				var oLi = this.parentNode;
+				if(index%2){
+					if(oUl.children[oUl.children.length-1]==oLi){
+						alert('别点了');
+						return;
+					}
+					var oNext = oLi.nextElementSibling||oLi.nextSibling;
+					oNext = oNext.nextElementSibling||oNext.nextSibling;
+					oUl.insertBefore(oLi,oNext);
+				}else{
+					if(oLi==oUl.children[0]){
+						alert('别点了。');
+						return;
+					}
+					var oPrev = oLi.previousElementSibling||oLi.previousSibing;
+					oUl.insertBefore(oLi,oPrev);
+				}
+			};
+		})(i);
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>111<a href="javascript:;">上移</a><a href="javascript:;">下移</a></li>
+	<li>222<a href="javascript:;">上移</a><a href="javascript:;">下移</a></li>
+	<li>333<a href="javascript:;">上移</a><a href="javascript:;">下移</a></li>
+	<li>444<a href="javascript:;">上移</a><a href="javascript:;">下移</a></li>
+	<li>555<a href="javascript:;">上移</a><a href="javascript:;">下移</a></li>
+</ul>
+</body>
+</html>

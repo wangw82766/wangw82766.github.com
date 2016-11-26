@@ -1,0 +1,171 @@
+@charset "utf-8";
+/* CSS Document */
+html{ font-size:12px;}
+body{ overflow:hidden;}
+.box{ width:100%; position:relative; top:0; left:0;}
+.nav{ position:fixed; left:0; top:20px; z-index:4; width:96%; margin:0 auto;left:2%; top:25px;  border-radius: 10px;
+
+}
+.nav li{ float:left; width:20%; height:1.8rem; line-height:1.8rem; text-align:center; border:1px solid #666; box-sizing:border-box; position:relative; z-index:3; cursor:pointer; font-size:1rem; font-weight:bold;  text-shadow:4px 4px 2px #fff; border-radius: 10px;
+
+box-shadow:8px 8px 6px #000;
+
+}
+
+
+.nav .active{ background:#f90; position:relative;  z-index:3;}
+.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:20%; height:1.8rem; background:rgba(127, 130, 111, 0.36);
+
+}
+
+.content{ position:absolute; top:0; left:0; z-index:1;}
+
+.home_page{ width:100%; background:url(../img/bg-4.jpg); background-size:100% 100%; position:relative; top:0; left:0;}
+
+/*.home_page img{ width:100%; height:100%;}*/
+
+
+/*css_worker*/
+.css_worker{ position:relative; top:0; left:0; background:url(../img/x.jpg) no-repeat; background-size:100% 100%;}
+.css_worker .css_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; margin:0 auto; }
+.css_worker .css_worker_box .css_main{ height:70%; width:90%;margin-top:80px; margin-left:10%;position:relative; top:0; left:0;}
+
+
+.css_main_l{ height:98px; width:44px; background:url(../img/l.png) no-repeat; position:absolute; top:40%; left:0; z-index:4;}
+.css_main_r{ height:98px; width:44px; background:url(../img/r.png) no-repeat; position:absolute; top:40%; right:0; z-index:4;}
+
+#ul1{ width:40%; height:45%; position:relative; background:#fff; margin:0 auto; top:30%;}
+#ul1 li{ width:100%; height:100%; position:absolute; top:0; left:0; -webkit-transition:1s all ease; -webkit-transform:perspective(600px) translateX(0px) rotateY(0deg);}
+#ul1 li img{ width:100%; height:100%;}
+
+#ul1 li.l2 {-webkit-transform:perspective(600px) translateX(-60%) rotateY(60deg); z-index:1; opacity:0;}
+#ul1 li.l {-webkit-transform:perspective(600px) translateX(-50%) rotateY(60deg); z-index:2; opacity:1;}
+#ul1 li.cur {z-index:3; opacity:1; cursor:pointer;}
+#ul1 li.r {-webkit-transform:perspective(600px) translateX(50%) rotateY(-60deg); z-index:2; opacity:1;}
+#ul1 li.r2 {-webkit-transform:perspective(600px) translateX(60%) rotateY(-60deg); z-index:1; opacity:0;}
+
+
+/*js_worker*/
+.js_worker{ position:relative; top:0; left:0; background:url(../img/bj-2.png) no-repeat; background-size:100% 100%;}
+.js_worker .js_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; }
+.js_worker .js_worker_box .js_box{  height:80%; width:90%;margin-top:80px; margin-left:10%;}
+.js_worker .js_worker_box .js_box div{ width:22%; height:45%; float:left;cursor:pointer; margin:1% 1%; position:relative; top:0; left:0; 
+opacity: 0.7;
+border-radius: 20px;
+overflow:hidden;}
+
+
+.js_worker .js_worker_box .js_box div img{ width:100%; height:100%;}
+.js_worker .js_worker_box .js_box div span{ position:absolute; top:0; left:-100%; width:100%; height:100%; background:rgba(0,153,255,0.5);filter:alpha(opacity:50); line-height:100%; text-align:center; font-size:30px; 
+line-height: 100px;
+color:#fff;}
+
+
+.js_worker .js_worker_box ol{ position:absolute; bottom:3%; left:50%; height:1.5rem; width:10%;}
+.js_worker .js_worker_box ol li{ float:left; width:20%; height:100%; background:#CCC; text-align:center; border-radius:50%; margin-right:4%; cursor:pointer; font-size:1rem; line-height:1.5rem;}
+.js_worker .js_worker_box ol .on{ background:red; cursor:pointer;}
+
+/*H5*/
+.H5{ position:relative; top:0; left:0; width:100%; height:100%; background:url(../img/x.jpg) no-repeat; background-size:100% 100%;}
+.H5 .H5_box{
+	position:absolute; top:0; left:0; width:200%; height:90%; 
+	transition: 1s;
+}
+
+.H5 .H5_box ul{
+	width: calc(100%/2);
+	height: 100%;
+	float: left;
+	
+}
+.H5 .H5_box ul li{
+	
+	width: 20%;
+	height: 35%;
+	float: left;
+	margin-left: 2rem;
+	margin-top: 1rem;
+	background: aqua;
+	
+	
+	
+}
+.H5 .H5_box .H5conction1 li{
+	transition: 1s;
+	position: relative;
+}
+.H5 .H5_box .H5conction1 li:hover{
+	
+	transform: scale(1.2);
+	z-index: 66666;
+}
+.H5 .H5_box .H5conction1 li span{
+	display: block;
+	width: 100%;
+	height: 2rem;
+	background: #f00;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	opacity: 0.7;
+	z-index: 333;
+	font-size:1rem;
+	text-align: center;
+	line-height: 2rem;
+	color: #fff;
+}
+
+.H5 .H5_box ul .mt{
+	margin-top: 10%;
+}
+
+.H5 .H5_box .H5conction2 li img{
+	width: 15rem;
+}
+
+.H5 .H5_box .H5conction2 li{
+	
+	width: 15rem;
+	height: 15rem;
+	margin-right: 10px;
+	left: 50%;
+	margin-top: 5rem;
+}
+.H5 .H5_box .H5conction2 .H5conction2l1{
+	margin-left: 7rem;
+}
+.H5 ol{
+	width: 100%;
+	height: 10%;
+	
+	position: absolute;
+	bottom: 0;
+	display:-webkit-box; 
+	-webkit-box-pack:center; 
+	-webkit-box-align:center; 
+	
+	
+}
+.H5 ol li{
+	width: 1rem;
+	height: 1rem;
+	background: #ccc;
+	margin-right: 0.5rem;
+	border-radius:50% ;
+	text-align: center;
+	line-height: 1rem;
+	font-size: 0.7rem;
+	
+}
+.H5 ol .ictive{
+	background: orangered;
+	color: #fff;
+}
+.myself{ position:relative; top:0; left:0;}
+.myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/369.jpg) no-repeat; background-size:100% 100%;}
+
+
+.myself .myself_box .myself_box_main{ height:80%; width:90%;margin:80px auto;}
+.myself .myself_box .myself_box_main ul li span{ width:20rem; height:1rem;line-height:1rem; display:inline-block; font-size:1rem; margin-top:0.2rem;}
+.myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:0.8rem;}
+.myself .myself_box .myself_box_main ol li{ margin-top:0.4rem;}

@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>回到顶部</title>
+<style>
+div,p{ margin:0; padding:0; list-style:none;}
+p{ font-size:30px;}
+#bt{ width:100px; height:100px; background:url(img-js_worker/aDiv3/bt.jpg) no-repeat -208px -70px; cursor:pointer; position:fixed; right:0; bottom:100px; display:none;}
+</style>
+<script>
+window.onload=function(){
+	var oBT=document.getElementById('bt');
+	var bOk=false;
+	window.onscroll=function(){
+		var scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+		if(bOk){
+			clearInterval(oBT.timer);	
+		}
+		bOk=true;
+		if(scrollT>0){
+			oBT.style.display='block';	
+		}else{
+			oBT.style.display='none';		
+		}
+	};
+	oBT.onclick=function(){
+		var start=document.documentElement.scrollTop||document.body.scrollTop;
+		var dis=0-start;
+		var count=parseInt(3000/30);
+		var n=0;
+		clearInterval(oBT.timer);
+		oBT.timer=setInterval(function(){
+			bOk=false;
+			n++;
+			var cur=start+dis*n/count;
+			document.documentElement.scrollTop=document.body.scrollTop=cur;
+			if(n==count){
+				clearInterval(oBT.timer);	
+			}	
+		},30);	
+	};
+};
+</script>
+</head>
+
+<body style="height:4000px;">
+<div id="bt"></div>
+<p>00001</p>
+<p>00002</p>
+<p>00003</p>
+<p>00004</p>
+<p>00005</p>
+<p>00006</p>
+<p>00007</p>
+<p>00008</p>
+<p>00009</p>
+<p>00010</p>
+<p>00011</p>
+<p>00012</p>
+<p>00013</p>
+<p>00014</p>
+<p>00015</p>
+<p>00016</p>
+<p>00017</p>
+<p>00018</p>
+<p>00019</p>
+<p>00020</p>
+<p>00021</p>
+<p>00022</p>
+<p>00023</p>
+<p>00024</p>
+<p>00025</p>
+<p>00026</p>
+<p>00027</p>
+<p>00028</p>
+<p>00029</p>
+<p>00030</p>
+<p>00031</p>
+<p>00032</p>
+<p>00033</p>
+<p>00034</p>
+<p>00035</p>
+<p>00036</p>
+<p>00037</p>
+<p>00038</p>
+<p>00039</p>
+<p>00040</p>
+<p>00041</p>
+<p>00042</p>
+<p>00043</p>
+<p>00044</p>
+<p>00045</p>
+<p>00046</p>
+<p>00047</p>
+<p>00048</p>
+<p>00049</p>
+<p>00050</p>
+<p>00051</p>
+<p>00052</p>
+<p>00053</p>
+<p>00054</p>
+<p>00055</p>
+<p>00056</p>
+<p>00057</p>
+<p>00058</p>
+<p>00059</p>
+<p>00060</p>
+<p>00061</p>
+<p>00062</p>
+<p>00063</p>
+<p>00064</p>
+<p>00065</p>
+<p>00066</p>
+<p>00067</p>
+<p>00068</p>
+<p>00069</p>
+<p>00070</p>
+<p>00071</p>
+<p>00072</p>
+<p>00073</p>
+<p>00074</p>
+<p>00075</p>
+<p>00076</p>
+<p>00077</p>
+<p>00078</p>
+<p>00079</p>
+<p>00080</p>
+<p>00081</p>
+<p>00082</p>
+<p>00083</p>
+<p>00084</p>
+<p>00085</p>
+<p>00086</p>
+<p>00087</p>
+<p>00088</p>
+<p>00089</p>
+<p>00090</p>
+<p>00091</p>
+<p>00092</p>
+<p>00093</p>
+<p>00094</p>
+<p>00095</p>
+<p>00096</p>
+<p>00097</p>
+<p>00098</p>
+<p>00099</p>
+<p>00100</p>
+<p>00101</p>
+<p>00102</p>
+<p>00103</p>
+<p>00104</p>
+<p>00105</p>
+<p>00106</p>
+<p>00107</p>
+<p>00108</p>
+<p>00109</p>
+<p>00110</p>
+<p>00111</p>
+<p>00112</p>
+<p>00113</p>
+<p>00114</p>
+<p>00115</p>
+<p>00116</p>
+<p>00117</p>
+<p>00118</p>
+<p>00119</p>
+<p>00120</p>
+<p>00121</p>
+<p>00122</p>
+<p>00123</p>
+<p>00124</p>
+<p>00125</p>
+<p>00126</p>
+<p>00127</p>
+<p>00128</p>
+<p>00129</p>
+<p>00130</p>
+<p>00131</p>
+<p>00132</p>
+<p>00133</p>
+<p>00134</p>
+<p>00135</p>
+<p>00136</p>
+<p>00137</p>
+<p>00138</p>
+<p>00139</p>
+<p>00140</p>
+<p>00141</p>
+<p>00142</p>
+<p>00143</p>
+<p>00144</p>
+<p>00145</p>
+<p>00146</p>
+<p>00147</p>
+<p>00148</p>
+<p>00149</p>
+<p>00150</p>
+<p>00151</p>
+<p>00152</p>
+<p>00153</p>
+<p>00154</p>
+<p>00155</p>
+<p>00156</p>
+<p>00157</p>
+<p>00158</p>
+<p>00159</p>
+<p>00160</p>
+<p>00161</p>
+<p>00162</p>
+<p>00163</p>
+<p>00164</p>
+<p>00165</p>
+<p>00166</p>
+<p>00167</p>
+<p>00168</p>
+<p>00169</p>
+<p>00170</p>
+<p>00171</p>
+<p>00172</p>
+<p>00173</p>
+<p>00174</p>
+<p>00175</p>
+<p>00176</p>
+<p>00177</p>
+<p>00178</p>
+<p>00179</p>
+<p>00180</p>
+<p>00181</p>
+<p>00182</p>
+<p>00183</p>
+<p>00184</p>
+<p>00185</p>
+<p>00186</p>
+<p>00187</p>
+<p>00188</p>
+<p>00189</p>
+<p>00190</p>
+<p>00191</p>
+<p>00192</p>
+<p>00193</p>
+<p>00194</p>
+<p>00195</p>
+<p>00196</p>
+<p>00197</p>
+<p>00198</p>
+<p>00199</p>
+<p>00200</p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>苹果菜单</title>
+<style>
+div{ text-align:center; position:absolute; bottom:0; left:0; width:100%;}
+div img{ width:64px;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var aImg=oBox.children;
+	document.onmousemove=function(ev){
+		var oEvent=ev||event;
+		for(var i=0;i<aImg.length;i++){
+			var b=aImg[i].offsetWidth/2+aImg[i].offsetLeft+oBox.offsetLeft-oEvent.clientX;
+			var a=aImg[i].offsetHeight/2+aImg[i].offsetTop+oBox.offsetTop-oEvent.clientY;
+			var c=Math.sqrt(a*a+b*b);
+			var scale=1-c/500;
+			if(scale<0.5)scale=0.5;
+			aImg[i].style.width=scale*128+'px';
+		}	
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<img src="img-js_worker/aDiv2/iPhone1.png" >
+    <img src="img-js_worker/aDiv2/iPhone2.png" >
+    <img src="img-js_worker/aDiv2/iPhone3.png" >
+    <img src="img-js_worker/aDiv2/iPhone4.png" >
+    <img src="img-js_worker/aDiv2/iPhone5.png" >
+</div>
+</body>
+</html>

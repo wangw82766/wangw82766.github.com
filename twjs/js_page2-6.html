@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>加密、解密</title>
+<style>
+textarea{width:400px;height:200px;}
+</style>
+<script>
+window.onload=function(){
+	var oTxt1 = document.getElementsByTagName('textarea')[0];
+	var oTxt2 = document.getElementsByTagName('textarea')[1];
+	var oBtn1 = document.getElementsByTagName('input')[0];
+	var oBtn2 = document.getElementsByTagName('input')[1];
+	oBtn1.onclick=function(){
+		var str = oTxt1.value;
+		var str2= '';
+		for(var i=0;i<str.length;i++){
+			str2+=String.fromCharCode(str.charCodeAt(i)+3);
+		}
+		oTxt2.value=str2;
+	};
+	oBtn2.onclick=function(){
+		var str = oTxt1.value;
+		var str2= '';
+		for(var i=0;i<str.length;i++){
+			str2+=String.fromCharCode(str.charCodeAt(i)-3);
+		}
+		oTxt2.value=str2;
+	};
+};
+</script>
+</head>
+
+<body>
+<textarea></textarea>
+<br />
+<input type="button" value="加密" />
+<input type="button" value="解密" />
+<br />
+<textarea></textarea>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>手风琴</title>
+<style>
+div,ul{ margin:0; padding:0; list-style:none;}
+#box{ width:500px; height:281px; margin:100px auto; overflow:hidden;}
+ul{ position:relative; top:0; left:0;}
+li{ width:500px; height:281px; position:absolute; top:0; left:0;}
+li img{ width:100%;}
+</style>
+<script>
+function getStyle(obj,sName){
+	return 	(obj.currentStyle||getComputedStyle(obj,false))[sName];
+}
+function startMove(obj,json,options){
+	options=options||{};
+	options.time=options.time||700;
+	options.type=options.type||'ease-out';
+	var start={};
+	var dis={};
+	for(var name in json){
+		start[name]=parseInt(getStyle(obj,name));	
+		dis[name]=json[name]-start[name];
+	}
+	var count=Math.floor(options.time/30);
+	var n=0;
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		n++;
+		for(var name in json){
+			switch(options.type){
+				case 'linear':
+					var cur=start[name]+dis[name]*n/count;
+					break;
+				case 'ease-in':
+					var a = n/count;
+					var cur = start[name]+dis[name]*Math.pow(a,3);
+					break;
+				case 'ease-out':
+					var a = 1-n/count;
+					var cur = start[name]+dis[name]*(1-Math.pow(a,3));
+				break;
+			}
+			if(name=='opacity'){
+				obj.style.opacity=cur;
+				obj.style.filter='alpha(opacity:'+cur*100+')';
+			}else{
+				obj.style[name]=cur+'px';
+			}	
+		}
+		if(count==n){
+			clearInterval(obj.timer);
+			options.end&&options.end();
+		}
+	},30);	
+}
+window.onload=function(){
+	var aLi=document.getElementsByTagName('li');
+	var oW=aLi[0].offsetWidth;
+	for(var i=1;i<aLi.length;i++){
+		aLi[i].style.left=oW-(aLi.length-i)*40+'px';
+	}
+	for(var i=0;i<aLi.length;i++){
+		(function(index){
+			aLi[i].onmouseover=function(){
+				for(var i=0;i<aLi.length;i++){
+					if(i<=index){
+						startMove(aLi[i],{left:i*40});	
+					}else{
+						startMove(aLi[i],{left:oW-(aLi.length-i)*40});	
+					}
+				}	
+			};	
+		})(i);	
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<ul>
+    	<li><img src="img-js_worker/aDiv3/cat1.jpg"></li>
+        <li><img src="img-js_worker/aDiv3/cat2.jpg"></li>
+        <li><img src="img-js_worker/aDiv3/cat3.jpg"></li>
+        <li><img src="img-js_worker/aDiv3/cat4.jpg"></li>
+        <li><img src="img-js_worker/aDiv3/cat5.jpg"></li>
+    </ul>
+</div>
+</body>
+</html>

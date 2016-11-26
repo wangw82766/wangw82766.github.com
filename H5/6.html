@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.box{ width:200px; height:200px; margin:100px auto; position:relative; 
+	transform:perspective(800px) rotateY(-60deg) rotateX(20deg); transform-style:preserve-3d;}
+	.box div{ width:100%; height:100%; position:absolute; top:0; left:0;}
+	.front{ background:#0F9; transform:translateZ(100px);}
+	.back{ background:#F09; transform:translateZ(-100px);}
+	.left{ background:#F90; transform:translateX(-100px) rotateY(-90deg);}
+	.right{ background:#9F0; transform:translateX(100px) rotateY(-90deg);}
+	.top{ background:#DDA; transform:translateY(-100px) rotateX(-90deg);}
+	.bottom{ background:#05A; transform:translateY(100px) rotateX(-90deg);}
+</style>
+<script>
+	window.onload=function(){
+		var oBox=document.querySelector('.box');
+		
+		var x=-60;
+		var y=20;
+		document.onkeydown=function(ev){
+			//ev.keyCode 37-40
+			switch(ev.keyCode){
+				case 37:
+					tL=true;
+				break;
+				case 39:
+					tR=true;
+				break;
+				case 38:
+					tT=true;
+				break;
+				case 40:
+					tB=true;
+				break;
+			}
+		};	
+		
+		
+		document.onkeyup=function(ev){
+			switch(ev.keyCode){
+				case 37:
+					tL=false;
+				break;
+				case 39:
+					tR=false;
+				break;
+				case 38:
+					tT=false;
+				break;
+				case 40:
+					tB=false;
+				break;
+			}	
+		}
+		
+		//控制方向移动的开关
+		var tL=false;
+		var tR=false;
+		var tT=false;
+		var tB=false;
+		
+		//定时器
+		setInterval(function(){
+			if(tL){
+				x-=10;
+			}
+			if(tR){
+				x+=10;
+			}
+			if(tT){
+				y+=10;
+			}
+			if(tB){
+				y-=10;
+			}
+			oBox.style.transform='perspective(800px) rotateY('+x+'deg) rotateX('+y+'deg)';
+				
+		},30);
+		
+	};
+</script>
+</head>
+
+<body>
+	<div class="box">
+    	<div class="front"></div>
+        <div class="back"></div>
+        <div class="right"></div>
+        <div class="left"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

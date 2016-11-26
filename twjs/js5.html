@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>iphone图片查看器</title>
+<style>
+div,ul,img{ margin:0; padding:0; list-style:none;}
+body{ background:#ccc;}
+#iphone{ width:900px; height:600px; background:url(img-js_worker/aDiv2/iphone_bg.jpg) no-repeat; position:absolute; top:50%; left:50%; margin:-300px 0 0 -450px;}
+#wrap{ width:238px; height:361px; position:absolute; top:121px; left:326px; overflow:hidden;}
+#iphone ul{ width:960px; height:361px; cursor:pointer; position:absolute; top:0; left:0;}
+#iphone ul li{ float:left; width:240px; height:360px; overflow:hidden;}
+</style>
+<script>
+function getStyle(obj,name){
+	return (obj.currentStyle||getComputedStyle(obj,false))[name];	
+}
+function startMove(obj,json,options){
+	clearInterval(obj.timer);
+	options=options||{};
+	options.time=options.time||700;
+	options.type=options.type||'ease-out';
+	var count=Math.floor(options.time/30);
+	var start={};
+	var dis={};
+	for(var name in json){
+		start[name]=parseInt(getStyle(obj,name));
+		dis[name]=json[name]-start[name];
+	}
+	var n=0;
+	obj.timer=setInterval(function(){
+		n++;
+		for(var name in json){
+			switch(options.type){
+				case 'linear':
+					var a=n/count;
+					var cur=start[name]+dis[name]*a;
+					break;	
+				case 'ease-in':
+					var a=n/count;
+					var cur=start[name]+dis[name]*Math.pow(a,3);
+					break;	
+				case 'ease-out':
+					var a=1-n/count;
+					var cur=start[name]+dis[name]*(1-Math.pow(a,3));
+					break;
+			}
+			if(name=='opacity'){
+				obj.style.opacity=cur;
+				obj.style.filter='alpha(opacity:'+cur*100+')';	
+			}else{
+				obj.style[name]=cur+'px';
+			}
+		}	
+		if(n==count){
+			clearInterval(obj.timer);
+			options.end && options.end.call(obj);
+		}
+	},30)
+}
+window.onload=function(){
+	var oBox=document.getElementById('wrap');
+	var oUl=oBox.children[0];
+	var aLi=oUl.children;
+	var iNow=0;
+	oUl.onmousedown=function(ev){
+		clearInterval(oUl.timer);
+		var oEvent=ev||event;
+		var downX=oEvent.clientX;
+		var disX=downX-oUl.offsetLeft;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;	
+			oUl.style.left=oEvent.clientX-disX+'px';
+		};
+		document.onmouseup=function(ev){
+			var oEvent=ev||event;	
+			document.onmousemove=null;
+			document.onmouseup=null;
+			oUl.releaseCapturn&&oUl.releaseCapturn();
+			
+			if(Math.abs(oEvent.clientX-downX)>20){
+				if(oEvent.clientX<downX){//左
+					iNow--;
+					if(iNow<-(aLi.length-1))iNow=-(aLi.length-1);
+				
+				}else{//右
+					iNow++;
+					if(iNow>0)iNow=0;
+					
+				}	
+			}
+			startMove(oUl,{left:iNow*aLi[0].offsetWidth});	
+			
+		};
+		oUl.setCapturn&&oUl.setCapturn();
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="iphone">
+	<div id="wrap">
+    	<ul>
+        	<li style="background:url(img-js_worker/aDiv2/iphone_pic1.png) no-repeat;"></li>
+            <li style="background:url(img-js_worker/aDiv2/iphone_pic2.png) no-repeat;"></li>
+            <li style="background:url(img-js_worker/aDiv2/iphone_pic3.png) no-repeat;"></li>
+            <li style="background:url(img-js_worker/aDiv2/iphone_pic4.png) no-repeat;"></li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>

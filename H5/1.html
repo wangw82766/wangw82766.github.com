@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				overflow: hidden;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				
+			}
+			.box{
+				width: 960px;
+				height: 540px;
+				
+				position: relative;
+				margin: 50px auto;
+				background: url(img2/0.jpg);
+				background-size: 100% 100%;
+				border: 1px solid #000;
+			}
+			.page{
+				width: 50%;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				transform: perspective(800px) rotateY(0deg);
+				transform-origin:left center;
+				transform-style:preserve-3d ;
+				z-index: 1;
+				transition: 1s;
+				
+			}
+			.page span{
+				position: absolute;
+			}
+			.front{
+				width: 100%;
+				height: 100%;
+				background: url(img2/0.jpg) right 0;
+				display: block;
+				transform: translateZ(1px);
+			}
+			.back{
+				width: 100%;
+				height: 100%;
+				background: url(img2/1.jpg);
+				display: block;
+				transform: scale(-1,1) translateZ(-1px);
+				
+			}
+			.right{
+					width: 50%;
+					height: 100%;
+					background: url(img2/1.jpg) right 0; position: absolute; right: 0;
+					
+				}
+			
+		</style>
+		<script>
+			window.onload=function(){
+				var oBox=document.querySelector(".box");
+				var oPage=document.querySelector(".page");
+				var oFront=oPage.children[0];
+				var oBack=oPage.children[1];
+				var oRight=document.querySelector(".right");
+				var iNow=0;
+				var bReady=true;
+			oBox.onclick=function(){
+				if(!bReady)return;
+				bReady=false;
+				iNow++;
+				
+				oPage.style.transition='1s';
+				oPage.style.transform='perspective(800px) rotateY(-180deg)';	
+			};
+			
+			//运动完毕时
+			oPage.addEventListener('transitionend',function(){
+				//将运动删除了！
+				oPage.style.transition='none';
+				oPage.style.transform='perspective(800px) rotate(0deg)';
+				
+				//变背景图
+				oBox.style.backgroundImage='url(img2/'+iNow%5+'.jpg)';
+				oFront.style.backgroundImage='url(img2/'+iNow%5+'.jpg)';
+				oBack.style.backgroundImage='url(img2/'+(iNow+1)%5+'.jpg)';
+				oRight.style.backgroundImage='url(img2/'+(iNow+1)%5+'.jpg)';
+				
+				bReady=true;
+	
+			},false);
+			
+			
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="page">
+				<span class="front"></span>
+				<span class="back"></span>
+			</div>
+			<div class="right"></div>
+		</div>
+	</body>
+</html>

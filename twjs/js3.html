@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D立体效果</title>
+<style>
+ul{ margin:0; padding:0; list-style:none;}
+body{ background:#ccc;}
+ul{ width:800px; height:500px; border:1px solid #ccc; background:#fff; overflow:hidden; position:fixed; left:50%; margin-left:-400px; margin-top:50px;}
+li{ position:absolute; list-style:none;}
+#pic1{ top:210px; left:550px;}
+#pic2{ top:290px; left:430px;}
+#pic3{ top: 215px; left: 220px;}
+#pic4{ top: 150px; left: 100px;}
+#pic6{ top: 290px; left: 80px;}
+#pic7{ top: 120px; left: 480px;}
+#pic8{ top: 60px; left: 380px;}
+#pic5{ top:-40px; left:-50px; width:1422px; height:1000px; background:url(img-js_worker/aDiv2/bg.jpg) no-repeat;}
+</style>
+<script>
+window.onload=function(){
+	var aLi=document.getElementsByTagName('li');
+	var x=0;
+	var y=0;
+	document.onmousedown=function(ev){
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-x;
+		var disY=oEvent.clientY-y;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			x=oEvent.clientX-disX;
+			y=oEvent.clientY-disY;
+			for(var i=0;i<aLi.length;i++){
+				var zIndex=aLi[i].style.zIndex;
+				aLi[i].style.marginLeft=zIndex*x/20+'px';
+				aLi[i].style.marginTop=zIndex*y/20+'px';	
+			}
+		};
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+			document.releaseCapture&&document.releaseCapture();
+		};
+		document.setCapture&&document.setCapture();
+		return false;
+	};	
+};
+</script>
+</head>
+
+<body>
+<ul id="ul_container">
+	<li id="pic1" style="z-index:3;"><img src="img-js_worker/aDiv2/3D-1.jpg"></li>
+    <li id="pic2" style="z-index:4;"><img src="img-js_worker/aDiv2/3D-2.jpg"></li>
+    <li id="pic3" style="z-index:5;"><img src="img-js_worker/aDiv2/3D-3.jpg"></li>
+    <li id="pic4" style="z-index:4;"><img src="img-js_worker/aDiv2/3D-4.jpg"></li>
+    <li id="pic6" style="z-index:3;"><img src="img-js_worker/aDiv2/3D-5.jpg"></li>
+    <li id="pic7" style="z-index:2;"><img src="img-js_worker/aDiv2/3D-6.jpg"></li>
+    <li id="pic8" style="z-index:5;"><img src="img-js_worker/aDiv2/3D-7.jpg"></li>
+    <li id="pic5" style="z-index: 1;"></li>
+</ul>
+</body>
+</html>

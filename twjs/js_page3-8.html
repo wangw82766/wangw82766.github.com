@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义滚动条</title>
+<style>
+div{margin:0; padding:0;}
+body{background:#eee;}
+#box{width:300px; height:300px; border:1px solid #000; margin:100px auto; overflow:hidden; border-radius:10px;}
+#con_box{float:left; width:280px; height:300px; position:relative; top:0; left:0;}
+#con{width:280px; position:absolute; top:0; left:0; text-indent:4px;}
+#bar_box{float:left; width:20px;height:300px; background:#ccc; position:relative; top:0; left:0; border-radius:5px; }
+#bar{width:20px; height:30px; background:#f90;position:absolute; top:0; left:0; border-radius:5px; cursor:pointer;}
+</style>
+<script>
+window.onload=function(){
+	var oBox = document.getElementById('box');
+	var oCon_box = document.getElementById('con_box');
+	var oCon = document.getElementById('con');
+	var oBar_box = document.getElementById('bar_box');
+	var oBar = document.getElementById('bar');
+	oBar.onmousedown=function(ev){
+		var oEvent = ev||event;
+		var disY = oEvent.clientY-oBar.offsetTop;
+		document.onmousemove=function(ev){
+			var oEvent = ev||event;
+			var t = oEvent.clientY-disY;
+			tab(t);
+		};
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+			oBar.releaseCapture&&oBar.releaseCapture();
+		};
+		oBar.setCapture&&oBar.setCapture();
+		return false;
+	};
+	function tab(t){
+		if(t<0){
+			t=0;
+		}else if(t>oBar_box.offsetHeight-oBar.offsetHeight){
+			t=oBar_box.offsetHeight-oBar.offsetHeight;
+		}
+		oBar.style.top=t+'px';
+		var scale = t/(oBar_box.offsetHeight-oBar.offsetHeight);
+		oCon.style.top=-(oCon.offsetHeight-oCon_box.offsetHeight)*scale+'px';
+	}
+	addWheel(oBox,function(bDown){
+		var t = oBar.offsetTop;
+		if(bDown){
+			t+=10;
+		}else{
+			t-=10;
+		}
+		tab(t);
+	});
+};
+function addEvent(obj,sEv,fn){
+	if(obj.addEventListener){
+		obj.addEventListener(sEv,fn,false);	
+	}else{
+		obj.attachEvent('on'+sEv,fn);		
+	}
+}
+function addWheel(obj,fn){
+	function fnDown(ev){
+		var bDown=false;
+		bDown=ev.wheelDelta?ev.wheelDelta<0:ev.detail>0;
+		fn&&fn(bDown);
+		obj.preventDefault&&obj.preventDefault();
+		return false;
+	}
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1){
+		addEvent(obj,'DOMMouseScroll',function(ev){
+			var oEvent=ev||event;
+			fnDown(oEvent);
+		});	
+	}else{
+		addEvent(obj,'mousewheel',function(ev){
+			var oEvent=ev||event;
+			fnDown(oEvent);
+		});		
+	}	
+}
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div id="con_box">
+    	<div id="con">
+        	 据联合国官微，中国国家主席习近平在联大一般性辩论发言。
+            中国国家主席习近平表示，历史是面镜子，以史为鉴，才能避免重蹈覆辙。对历史我们要心怀敬畏，心怀良知。历史无法改变，但是未来可以塑造。铭记历史，不是为了延续仇恨，而是要引以为戒。传承历史不是为了纠结过去，而是为了开创未来，让和平的星火代代相传。
+            习近平表示，和平、发展、公平、正义、民主、自由是全人类的共同价值也是联合国的崇高目标。目标远未完成，我们仍需努力。当今世界，各国相互依存，休戚与共，我们要继承和弘扬联合国的宗旨和原则，构建以合作共赢为核心的新型国际关系，打造人类命运共同体。
+            现场花絮
+            习近平刚刚结束在一般性辩论发表的重要演讲。粗粗的数了下，不到二十分钟的演讲，约有十次被观众席中的掌声打断。
+        </div>
+    </div>
+    <div id="bar_box">
+    	<div id="bar"></div>
+    </div>
+</div>
+</body>
+</html>

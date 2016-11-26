@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D图片轮换</title>
+<style>
+ul{ padding:0; margin:0; list-style: none;}
+body { background:#ccc; }
+img { border: none; }
+#box { width: 900px; height: 380px; margin: 80px auto 0; position: relative; background:url(img-js_worker/aDiv2/3DPIC-bg.jpg) no-repeat; overflow: hidden; }
+#box li { width: 250px; height: 340px; position: absolute; text-align: center;}
+#box li span { width: 212px; height: 90px; overflow: hidden; position: absolute; bottom: 0; left: 20px;
+	background:url(img-js_worker/aDiv2/3DPIC-shade.png) !important;
+	background:none;
+	filter:none!important;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/shade.png',sizingMethod='images');
+}
+#box img{position: relative; top:0; }
+#box .pic1{top: 20px; left: 77px; z-index:1; }
+#box .pic1 img{top:20px;}
+#box .pic2{top: 55px; left: 336px; z-index:2; }
+#box .pic3{top: 20px; left: 595px; z-index:1; }
+#box .pic3 img{top:20px;}
+#box .unactive{filter: alpha(opacity=20); opacity: 0.2;}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var oBtn2=document.getElementById('btn2');
+	var oBox=document.getElementById('box');
+	var aLi=oBox.children;
+	var aImg=oBox.getElementsByTagName('img');
+	var aA=oBox.getElementsByTagName('a');
+	aA[0].onclick=function(){
+		fnRight();
+		return false;	
+	};
+	aA[2].onclick=function(){
+		fnLeft();
+		return false;	
+	};
+	var aPos=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos.push({
+			left:aLi[i].offsetLeft,
+			top:aLi[i].offsetTop,
+			width:aImg[i].offsetWidth,
+			imgT:aImg[i].offsetTop,
+			opacity:getStyle(aImg[i],'opacity'),
+			aEv:aA[i].onclick	
+		});	
+	}
+	oBtn.onclick=fnRight;
+	function fnRight(){
+		aPos.push(aPos.shift());
+		for(var i=0;i<aLi.length;i++){
+			startMove(aLi[i],{left:aPos[i].left,top:aPos[i].top});
+			startMove(aImg[i],{width:aPos[i].width,top:aPos[i].imgT,opacity:aPos[i].opacity});
+			aA[i].onclick=aPos[i].aEv;
+		}
+	}
+	oBtn2.onclick=fnLeft;
+	function fnLeft(){
+		aPos.unshift(aPos.pop());
+		for(var i=0;i<aLi.length;i++){
+			startMove(aLi[i],{left:aPos[i].left,top:aPos[i].top});
+			startMove(aImg[i],{width:aPos[i].width,top:aPos[i].imgT,opacity:aPos[i].opacity});
+			aA[i].onclick=aPos[i].aEv;
+		}
+	}
+	
+	//startMove
+	function getStyle(obj,name){
+	return (obj.currentStyle || getComputedStyle(obj,false))[name];
+}
+function startMove(obj,json,options){
+	clearInterval(obj.timer);	
+	options=options || {};
+	options.type=options.type || 'ease-out';
+	options.time=options.time || 800;
+	
+	var count=Math.floor(options.time/30);
+	var start={};
+	var dis={};
+	
+	for(var name in json){
+		start[name]=parseFloat(getStyle(obj,name));
+		
+		dis[name]=json[name]-start[name];
+	}
+	var n=0;
+	
+	obj.timer=setInterval(function(){
+		n++;
+		
+		for(var name in json){
+			
+			switch(options.type){
+				case 'linear':
+					var a=n/count;
+					var cur=start[name]+dis[name]*a;
+					break;
+				case 'ease-in':
+					var a=n/count;
+					var cur=start[name]+dis[name]*a*a*a;
+					break;
+				case 'ease-out':
+					var a=1-n/count;
+					var cur=start[name]+dis[name]*(1-a*a*a);
+					break;
+			}
+			
+			if(name=='opacity'){
+				obj.style.opacity=cur;
+				obj.style.filter='alpha(opacity:'+cur*100+')';	
+			}else{
+				obj.style[name]=cur+'px';
+			}
+		}
+		
+		if(n==count){
+			clearInterval(obj.timer);
+			options.end && options.end.call(obj);	
+		}
+	},30);
+}
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="往右面走" id="btn1" />
+<input type="button" value="往左面走" id="btn2" />
+<ul id="box">
+	<li class="pic1">
+		<a href="http://www.baidu.com/"><img src="img-js_worker/aDiv2/3DPIC-pic1.gif" alt="pic1" class="unactive" width="187" /></a><!-- 208 -->
+		<span></span>
+	</li>
+	<li class="pic2">
+		<a href="http://google.com/"><img src="img-js_worker/aDiv2/3DPIC-pic2.gif" alt="pic2"width="208" /></a>
+		<span></span>
+	</li>
+	<li class="pic3">
+		<a href="http://www.baidu.com/"><img src="img-js_worker/aDiv2/3DPIC-pic3.gif" class="unactive" width="187" /></a>
+		<span></span>
+	</li>
+</ul>
+</body>
+</html>

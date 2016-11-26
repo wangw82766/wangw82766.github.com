@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>鼠标控制DIV不卡</title>
+<style>
+*{margin:0; padding:0;}
+#box{width:100px; height:100px; background:#f90; position:absolute; top:0; left:0;}
+</style>
+<script>
+window.onload=function(){
+	var oBox = document.getElementById('box');
+	var bUp=false,
+		bDown=false,
+		bLeft=false,
+		bRight=false;
+	
+	var oldMsg = {
+		width:oBox.offsetWidth+'px',
+		height:oBox.offsetHeight+'px',
+		left:oBox.offsetLeft+'px',
+		top:oBox.offsetTop+'px',
+		background:'#f90'
+	};
+	
+	
+	document.onkeydown=function(ev){
+		var oEvent = ev||event;
+		switch(oEvent.keyCode){
+			case 37:
+				bLeft=true;
+				break;
+			case 38:
+				bUp=true;
+				break;
+			case 39:
+				bRight=true;
+				break;
+			case 40:
+				bDown=true;
+				break;
+		}
+		if(oEvent.keyCode==38&&oEvent.ctrlKey){
+			oBox.style.width=oBox.offsetWidth+10+'px';
+			oBox.style.height=oBox.offsetHeight+10+'px';
+			oBox.style.left=oBox.offsetLeft-5+'px';
+			oBox.style.top=oBox.offsetTop-5+'px';
+			bUp=false;
+		}
+	};
+	document.onkeyup=function(){
+		bUp=false;
+		bDown=false;
+		bLeft=false;
+		bRight=false;
+	};
+	
+	
+	setInterval(function(){
+		if(bUp){
+			oBox.style.top=oBox.offsetTop-10+'px'
+		}
+		if(bDown){
+			oBox.style.top=oBox.offsetTop+10+'px';
+		}
+		if(bLeft){
+			oBox.style.left=oBox.offsetLeft-10+'px';
+		}
+		if(bRight){
+			oBox.style.left=oBox.offsetLeft+10+'px';
+		}
+	},30);
+};
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+</body>
+</html>

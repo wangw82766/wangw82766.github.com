@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* CSS Document */
+span{ display:inline-block; height:15px; width:16px; background:url(img-js_worker/aDiv2/no.gif) no-repeat;}
+span.on{ background:url(img-js_worker/aDiv2/yes.gif) no-repeat;}
+

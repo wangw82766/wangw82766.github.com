@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	body{ background:#000;}
+	*{ padding:0; margin:0; list-style:none;}
+	.list{ width:133px; height:200px; margin:100px auto; position:relative; transform-style:preserve-3d; transform:perspective(800px) rotateX(-20deg);}
+	li{ width:100%; height:100%; position:absolute; top:0; left:0; box-shadow:0 0 10px #FFF,0 0 10px #FFF,0 0 10px #FFF,0 0 10px #FFF,0 0 10px #FFF; }
+	span{ width:100%; height:100%; position:absolute; top:200px; left:0; transform:scale(1,-1); -webkit-mask:-webkit-linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,0.7));}
+</style>
+<script>
+	window.onload=function(){
+		var oUl=document.querySelector('.list');
+		
+		var N=11;
+		for(var i=0;i<N;i++){
+			var oLi=document.createElement('li');
+			oLi.style.transition='1s '+(N-i)*200+'ms';
+			oLi.style.backgroundImage='url(img3/'+(i+1)+'.jpg)';
+			
+			oLi.innerHTML='<span></span>';
+			
+			var oSpan=oLi.children[0];
+			
+			oSpan.style.backgroundImage='url(img3/'+(i+1)+'.jpg)';
+			
+			//360/N*i li旋转的角度
+			(function(i,oLi){
+				setTimeout(function(){
+					oLi.style.transform='rotateY('+(360/N*i)+'deg) translateZ(350px)';
+					
+				},0);	
+			})(i,oLi);
+			
+			oUl.appendChild(oLi);
+		}
+		
+		var aLi=oUl.children;
+		var y=0;
+		var x=20*3;
+		var speedX=0;
+		var lastSpeedX=0;
+		var speedY=0;
+		var lastSpeedY=0;
+		var timer=null;
+		
+		document.onmousedown=function(ev){
+			clearInterval(timer);
+			
+			var disY=ev.clientX-y;
+			var disX=ev.clientY-x;
+			document.onmousemove=function(ev){
+				y=ev.clientX-disY;	
+				x=ev.clientY-disX;
+				change(y/3,x/3);
+				
+				speedX=ev.clientX-lastSpeedX;
+				lastSpeedX=ev.clientX;
+				speedY=ev.clientY-lastSpeedY;
+				lastSpeedY=ev.clientY;
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				clearInterval(timer);
+				timer=setInterval(function(){
+					speedX*=0.9;
+					speedY*=0.9;
+					y+=speedX;
+					x+=speedY;
+					change(y/3,x/3);
+					if(Math.round(speedX)==0 && Math.round(speedY)==0){
+						clearInterval(timer);
+						//alert('停止了');
+					}
+				},30);
+				
+			};
+			return false;
+		};
+		
+		
+		
+		aLi[0].addEventListener('transitionend',function(){
+			change();	
+		},false);
+		
+		function change(y,x){
+			
+			oUl.style.transform='perspective(800px) rotateX('+-x+'deg)';
+			
+			for(var i=0; i<aLi.length;i++){
+				aLi[i].style.transition='none';
+				aLi[i].style.transform='rotateY('+(i*360/N+y)+'deg) translateZ(350px)';
+				
+				//比例
+				var n=Math.abs(Math.abs(i*360/N+y)%360-180)/180;
+				if(n<0.4){n=0.4}
+				aLi[i].style.opacity=n;
+
+				//aLi[i].innerHTML=n;
+			}	
+		}
+			
+	};
+</script>
+</head>
+
+<body>
+	<ul class="list">
+    	
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+	

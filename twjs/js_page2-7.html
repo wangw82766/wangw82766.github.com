@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>瀑布流</title>
+<style>
+div,ul{margin:0; padding:0; list-style:none;}
+#box{width:966px; margin:0 auto; overflow:hidden;}
+ul{float:left; width:300px; border:1px solid red; margin:0 10px;}
+ul li{width:100%; height:400px; background:#ccc; margin:10px 0;}
+</style>
+<script>
+function rnd(n,m){
+	return parseInt(n+Math.random()*(m-n));
+}
+function createLi(){
+	var oLi = document.createElement('li');
+	oLi.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+	oLi.style.height=rnd(100,400)+'px';
+	return oLi;
+}
+window.onload=function(){
+	var oBox = document.getElementById('box');
+	var aUl = oBox.children;
+	function create20(){
+		for(var i=0;i<20;i++){
+			var oLi = createLi();
+			var arr = [];
+			for(var j=0;j<aUl.length;j++){
+				arr.push(aUl[j]);
+			}
+			arr.sort(function(u1,u2){
+				return u1.scrollHeight-u2.scrollHeight;
+			});
+			
+			arr[0].appendChild(oLi);
+		}
+	}
+	create20();
+	window.onscroll=window.onresize=function(){
+		var scrollT = document.documentElement.scrollTop||document.body.scrollTop;
+		var clientHeight = document.documentElement.clientHeight;
+		if(scrollT+clientHeight>=document.body.scrollHeight-500){
+			create20();
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<ul></ul>
+	<ul></ul>
+	<ul></ul>
+</div>
+</body>
+</html>

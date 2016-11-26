@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>滚轮控制图片大小</title>
+<style>
+img{ position:absolute; top:200px; left:200px;}
+</style>
+<script>
+function addEvent(obj,sEv,fn){
+	if(obj.addEventListener){
+		obj.addEventListener(sEv,fn,true);	
+	}else{
+		obj.attachEvent('on'+sEv,fn);	
+	}
+}
+
+function addWheel(obj,fn){
+	function fnWheel(ev){
+		var bDown=false;
+		bDown=ev.wheelDelta?ev.wheelDelta<0:ev.detail>0;
+		fn&&fn(bDown,ev);
+		ev.preventDefault&&	ev.preventDefault();
+		return false;
+	}
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1){
+		addEvent(obj,'DOMMouseScroll',function(ev){
+			var oEvent=ev||event;
+			fnWheel(oEvent);
+		});	
+	}else{
+		addEvent(obj,'mousewheel',function(ev){
+			var oEvent=ev||event;
+			fnWheel(oEvent);
+		});		
+	}	
+}
+window.onload=function(){
+	var oImg=document.getElementsByTagName('img')[0];
+	addWheel(oImg,function(bDown,ev){
+		var disX = ev.clientX-oImg.offsetLeft;
+		var disY = ev.clientY-oImg.offsetTop;
+		var scaleX = disX/oImg.offsetWidth;
+		var scaleY = disY/oImg.offsetHeight;
+		if(bDown){
+			oImg.style.width=oImg.offsetWidth+10+'px';	
+			oImg.style.height=oImg.offsetHeight+10+'px';	
+		}else{
+			oImg.style.width=oImg.offsetWidth-10+'px';	
+			oImg.style.height=oImg.offsetHeight-10+'px';	
+		}
+		oImg.style.left=ev.clientX-scaleX*oImg.offsetWidth+'px';	
+		oImg.style.top=ev.clientY-scaleY*oImg.offsetHeight+'px';
+	});
+};
+</script>
+</head>
+
+<body>
+<img src="img-js_worker/aDiv3/js_page2-3.jpg">
+</body>
+</html>

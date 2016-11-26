@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无缝滚动选项卡</title>
+<style>
+body{
+	background: #000018;
+}
+div,ul,ol{ padding:0; margin:0; list-style:none;}
+#box{ width:600px; height:337px; margin:100px auto; overflow:hidden; position:relative; top:0; left:0; }
+#box a{ position:absolute; width:80px; height:60px; text-align:center; line-height:60px; text-decoration:none; color:#fff; top:50%; margin-top:-30px; background:rgba(0,0,0,0.5); z-index:1; display:none;}
+#box a:hover{background:rgba(0,51,255,0.5);}
+#prev{ left:0;}
+#next{ right:0;}
+ul{ overflow:hidden; position:absolute; top:0; left:0;}
+li{ float:left; width:600px;}
+li img{ width:100%;}
+ol{ position:absolute; width:250px; bottom:10px; left:50%; margin-left:-125px;}
+ol li{width:30px; height:30px; background:rgba(102,153,255,1); border-radius:50%; margin:10px; cursor:pointer;}
+ol li.on{ background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var oOl=oBox.getElementsByTagName('ol')[0];
+	var aBtn=oOl.children;
+	var oPrev=document.getElementById('prev');
+	var oNext=document.getElementById('next');
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+	var w=oUl.offsetWidth/2;
+	var iNow=0;
+	oBox.onmouseover=function(){
+		clearInterval(timer);
+		oPrev.style.display='block';
+		oNext.style.display='block';		
+	};
+	oBox.onmouseout=function(){
+		timer=setInterval(function(){
+			fnNext();	
+		},1000);
+		oPrev.style.display='none';
+		oNext.style.display='none';		
+	};
+	for(var i=0;i<aBtn.length;i++){
+		(function(index){
+			aBtn[i].onclick=function(){
+				if(iNow%aBtn.length==0&&index==(aBtn.length-1)){
+					iNow--;	
+				}
+				if((iNow%aBtn.length==(aBtn.length-1)||iNow%aBtn.length==-1)&&index==0){
+					iNow++;	
+				}
+				iNow=Math.floor(iNow/aBtn.length)*aBtn.length+index;
+				tab();	
+			};	
+		})(i);	
+	}
+	function tab(){
+		for(var i=0;i<aBtn.length;i++){
+			aBtn[i].className='';	
+		}
+		if(iNow>0){
+			aBtn[iNow%aBtn.length].className='on';	
+		}else{
+			aBtn[(iNow%aBtn.length+aBtn.length)%aBtn.length].className='on';	
+		}
+		startMove(oUl,-iNow*aLi[0].offsetWidth);
+	}
+	oPrev.onclick=function(){
+		iNow--;
+		tab();
+	};
+	oNext.onclick=fnNext;
+	function fnNext(){
+		iNow++;
+		tab();
+	}
+	
+	timer = setInterval(function(){
+		fnNext();
+	},1000);
+	
+	var left=0;
+	function startMove(obj,iTarget){
+		var start=left;
+		var dis=iTarget-start;
+		var count=Math.floor(700/30);
+		var n=0;
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			n++;
+			var a=1-n/count;
+			left=start+dis*(1-Math.pow(a,3));
+			if(left<0){
+				obj.style.left=left%w+'px';	
+			}else{
+				obj.style.left=(left%w-w)%w+'px';		
+			}
+			if(count==n){
+				clearInterval(obj.timer);	
+			}
+		},30);
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<a href="javascript:;" id="prev">←</a>
+    <a href="javascript:;" id="next">→</a>
+    <ul>
+   		<li><img src="img-js_worker/aDiv2/0.jpg"></li>
+        <li><img src="img-js_worker/aDiv2/1.jpg"></li> 
+        <li><img src="img-js_worker/aDiv2/2.jpg"></li> 
+        <li><img src="img-js_worker/aDiv2/3.jpg"></li> 
+        <li><img src="img-js_worker/aDiv2/4.jpg"></li> 
+    </ul>
+    <ol>
+    	<li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+</body>
+</html>
