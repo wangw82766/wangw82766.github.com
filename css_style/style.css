@@ -3,16 +3,33 @@
 html{ font-size:12px;}
 body{ overflow:hidden;}
 .box{ width:100%; position:relative; top:0; left:0;}
-.nav{ position:fixed; left:0; top:20px; z-index:4; width:96%; margin:0 auto;left:2%; top:25px;  border-radius: 10px;
+.nav{ position:fixed; left:0; top:20px; z-index:4; width:96%; margin:0 auto;left:2%; top:25px;  border-radius: 10px; opacity: 0; 
 
 }
 .nav li{ float:left; width:20%; height:1.8rem; line-height:1.8rem; text-align:center; border:1px solid #666; box-sizing:border-box; position:relative; z-index:3; cursor:pointer; font-weight:bold; font-size: 1rem; text-shadow:4px 4px 2px #fff; border-radius: 10px;
+transition: 1s;
 
 box-shadow:8px 8px 6px #000;
+}
+.nav .t{
+	left: 1000px;
+}
+.nav .b2{
+	left: -100px;
+	top:900px;
+}
+.nav .t2{
+	left: 990px;
+	top:900px;
+}
 
-
-
-
+.nav .b3{
+	left: 90px;
+	top:100px;
+}
+.nav .t3{
+	left: -2200px;
+	top:2200px;
 }
 
 

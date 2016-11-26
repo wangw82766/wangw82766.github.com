@@ -1,20 +1,28 @@
 window.onload=function(){
 	
-	
+	var oVVV=document.getElementById('nav');
+	var aLi=oVVV.children;
 	var oHHH=document.getElementById('hhh');
 		var i=1;
 		var timer=null
 		oHHH.onclick=function(){
-			
+		
 			timer=setInterval(function(){
 				i-=0.2;
 				if(i<=0){
 					i=0;
 				}
-				oHHH.style.opacity=i
+				oHHH.style.opacity=i;
 				if(i==0){
-					
+						
 					oHHH.style.display='none';
+					oVVV.style.opacity=1;
+					
+					for(var j=0;j<aLi.length-1;j++){
+						
+						aLi[j].style.left=0;
+						aLi[j].style.top=0;
+					}
 					clearInterval(timer)
 				}
 			},400)
