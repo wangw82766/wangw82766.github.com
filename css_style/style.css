@@ -6,7 +6,7 @@ body{ overflow:hidden;}
 .nav{ position:fixed; left:0; top:20px; z-index:4; width:96%; margin:0 auto;left:2%; top:25px;  border-radius: 10px;
 
 }
-.nav li{ float:left; width:0; height:1.8rem; line-height:1.8rem; text-align:center; border:1px solid #666; box-sizing:border-box; position:relative; z-index:3; cursor:pointer; font-size:0; font-weight:bold;  text-shadow:4px 4px 2px #fff; border-radius: 10px;
+.nav li{ float:left; width:20%; height:1.8rem; line-height:1.8rem; text-align:center; border:1px solid #666; box-sizing:border-box; position:relative; z-index:3; cursor:pointer; font-weight:bold; font-size: 1rem; text-shadow:4px 4px 2px #fff; border-radius: 10px;
 
 box-shadow:8px 8px 6px #000;
 
@@ -14,43 +14,10 @@ box-shadow:8px 8px 6px #000;
 
 
 }
-.nav .t{
-	left: 0%;
-	top: 20rem;
-	opacity: 0;
-}
-
-.nav .b2{
-	left: 80%;
-	top: 15rem;
-	opacity: 0;
-	
-}
-
-.nav .t2{
-	left: -80%;
-	top: 2rem;
-	opacity: 0;
-	
-}
-.nav .b3{
-	left: 60%;
-	top: 16rem;
-	opacity: 0;
-	
-}
-
-.nav .t3{
-	left: 200%;
-	top:50rem;
-	opacity: 0;
-	
-	
-}
 
 
-.nav .active{ background:#ccc; position:relative;  z-index:3;}
-.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:20%; height:1.8rem;  background:rgba(36, 171, 206, 0.36); left: -20rem;
+.nav .active{ background:rgba(36, 171, 206, 0.5);position:relative;  z-index:3;}
+.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:20%; height:1.8rem;  background:rgba(36, 171, 206, 0.36);
 
 }
 
@@ -134,6 +101,7 @@ color:#fff;}
 	
 	transform: scale(1.2);
 	z-index: 66666;
+	cursor:pointer;
 }
 .H5 .H5_box .H5conction1 li span{
 	display: block;
@@ -166,6 +134,7 @@ color:#fff;}
 	margin-right: 10px;
 	left: 50%;
 	margin-top: 5rem;
+	cursor:pointer;
 }
 .H5 .H5_box .H5conction2 .H5conction2l1{
 	margin-left: 7rem;
@@ -183,20 +152,18 @@ color:#fff;}
 	
 }
 .H5 ol li{
-	width: 1rem;
-	height: 1rem;
+	width: 3rem;
+	height: 1.5rem;
 	background: #ccc;
 	margin-right: 0.5rem;
-	border-radius:50% ;
+	border-radius:10px ;
 	text-align: center;
-	line-height: 1rem;
+	line-height: 1.5rem;
 	font-size: 0.7rem;
+	cursor:pointer;
 	
 }
-.H5 ol .ictive{
-	background: orangered;
-	color: #fff;
-}
+
 .myself{ position:relative; top:0; left:0;}
 .myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/369.jpg) no-repeat; background-size:100% 100%;}
 
