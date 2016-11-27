@@ -2,7 +2,9 @@ window.onload=function(){
 	
 	var oVVV=document.getElementById('nav');
 	var aLi=oVVV.children;
+	var oZ=document.getElementById('z');
 	var oHHH=document.getElementById('hhh');
+	var oLg=document.getElementById('lg');
 		var i=1;
 		var timer=null
 		oHHH.onclick=function(){
@@ -17,11 +19,13 @@ window.onload=function(){
 						
 					oHHH.style.display='none';
 					oVVV.style.opacity=1;
-					
+					oZ.style.right=0;
+					oLg.style.top='4rem';
 					for(var j=0;j<aLi.length-1;j++){
 						
 						aLi[j].style.left=0;
 						aLi[j].style.top=0;
+						aLi[j].style.opacity=1;
 					}
 					clearInterval(timer)
 				}

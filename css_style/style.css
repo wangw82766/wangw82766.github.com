@@ -3,48 +3,64 @@
 html{ font-size:12px;}
 body{ overflow:hidden;}
 .box{ width:100%; position:relative; top:0; left:0;}
-.nav{ position:fixed; left:0; top:20px; z-index:4; width:96%; margin:0 auto;left:2%; top:25px;  border-radius: 10px; opacity: 0; 
+.nav{ position:fixed; left:0; top:20px; z-index:4; width:85%; margin:0 auto; left: 150px; top:25px;   opacity: 0; 
 
 }
-.nav li{ float:left; width:20%; height:1.8rem; line-height:1.8rem; text-align:center; border:1px solid #666; box-sizing:border-box; position:relative; z-index:3; cursor:pointer; font-weight:bold; font-size: 1rem; text-shadow:4px 4px 2px #fff; border-radius: 10px; box-shadow:8px 8px 6px #000;
+.nav li{ float:left; width:19%; height:1.8rem; line-height:1.8rem; text-align:center;  box-sizing:margin-box; position:relative; z-index:3; cursor:pointer; font-weight:bold; font-size: 1rem; text-shadow:4px 4px 2px #fff; margin: 1px; box-shadow:8px 8px 6px #000;
+background: url(../img/991.png) no-repeat;
+background-size: 100% 100%;
 }
 .nav .t{
 	left: 1000px;
-	transition: 2s;
+	transition: 1s;
+	opacity: 0;
 }
 .nav .b2{
 	left: -100px;
 	top:900px;
-	transition: 2s;
+	transition: 1s;
+	opacity: 0;
 }
 .nav .t2{
 	left: 990px;
 	top:900px;
-	transition: 2s;
+	transition: 1s;
+	opacity: 0;
 }
 
 .nav .b3{
 	left: 90px;
 	top:100px;
-	transition: 2s;
+	transition: 1s;
+	opacity: 0;
 }
 .nav .t3{
 	left: -2200px;
 	top:2200px;
-	transition: 2s;
+	transition: 1s;
+	opacity: 0;
 }
 
 
-.nav .active{ background:rgba(36, 171, 206, 0.5);position:relative;  z-index:3;}
-.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:20%; height:1.8rem;  background:rgba(36, 171, 206, 0.36);
+.nav .active{ background: url(../img/991.png),rgba(36, 171, 206, 0.36) ;
+background-size: 100% 100%;position:relative;  z-index:3;}
+.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:19%; height:1.8rem;  background:rgba(36, 171, 206, 0.36);
 
 }
 
 .content{ position:absolute; top:0; left:0; z-index:1;}
 
 .home_page{ width:100%; background:url(../img/bg-4.jpg); background-size:100% 100%; position:relative; top:0; left:0;}
+.home_page .lg{
+	width: 7rem;
+	height: 9rem;
+	position: absolute;
+	left: 1rem;
+	top: 0rem;
+	transition: 1s;
+}
 
-.home_page img{ width:20rem; height:20rem; position: absolute; right: 0; top: 2.5rem;}
+.home_page .z{ width:20rem; height:20rem; transition:1.5s; position: absolute; right: 50rem; top: 3.5rem;}
 
 
 /*css_worker*/
@@ -188,10 +204,11 @@ color:#fff;}
 }
 
 .myself{ position:relative; top:0; left:0;}
-.myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/369.jpg) no-repeat; background-size:100% 100%;}
+.myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/6.jpg) no-repeat; background-size:100% 100%;}
 
 
 .myself .myself_box .myself_box_main{ height:80%; width:90%;margin:80px auto;}
-.myself .myself_box .myself_box_main ul li span{ width:20rem; height:1rem;line-height:1rem; display:inline-block; font-size:1rem; margin-top:0.2rem;}
-.myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:0.8rem;}
-.myself .myself_box .myself_box_main ol li{ margin-top:0.4rem;}
+.myself .myself_box .myself_box_main ul li span{ width:20rem; height:1rem;line-height:1rem; 
+color:#000; display:inline-block; font-size:1.2rem; margin-top:0.2rem;}
+.myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:1rem;}
+.myself .myself_box .myself_box_main ol li{ color:#000;margin-top:0.4rem;}
