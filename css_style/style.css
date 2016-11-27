@@ -94,7 +94,7 @@ overflow:hidden;}
 
 
 .js_worker .js_worker_box .js_box div img{ width:100%; height:100%;}
-.js_worker .js_worker_box .js_box div span{ position:absolute; top:0; left:-100%; width:100%; height:100%; background:rgba(0,153,255,0.5);filter:alpha(opacity:50); line-height:100%; text-align:center; font-size:30px; 
+.js_worker .js_worker_box .js_box div span{ position:absolute; top:0; left:-100%; width:100%; height:100%; background:rgba(0,0,0,1);filter:alpha(opacity:50); line-height:100%; text-align:center; font-size:30px; 
 line-height: 100px;
 color:#fff;}
 
@@ -209,6 +209,6 @@ color:#fff;}
 
 .myself .myself_box .myself_box_main{ height:80%; width:90%;margin:80px auto;}
 .myself .myself_box .myself_box_main ul li span{ width:20rem; height:1rem;line-height:1rem; 
-color:#000; display:inline-block; font-size:1.2rem; margin-top:0.2rem;}
-.myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:1rem;}
+color:#000; display:inline-block; font-size:1rem; margin-top:0.3rem;}
+.myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:0.8rem;}
 .myself .myself_box .myself_box_main ol li{ color:#000;margin-top:0.4rem;}
