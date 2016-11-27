@@ -7,7 +7,7 @@ body{ overflow:hidden;}
 
 }
 .nav li{ float:left; width:19%; height:1.8rem; line-height:1.8rem; text-align:center;  box-sizing:margin-box; position:relative; z-index:3; cursor:pointer; font-weight:bold; font-size: 1rem; text-shadow:4px 4px 2px #fff; margin: 1px; box-shadow:8px 8px 6px #000;
-background: url(../img/991.png) no-repeat;
+background: url(../img/991.png) no-repeat, url(../img/xb2.png) no-repeat; background-size:100% 100% ;
 background-size: 100% 100%;
 }
 .nav .t{
@@ -42,15 +42,15 @@ background-size: 100% 100%;
 }
 
 
-.nav .active{ background: url(../img/991.png),rgba(36, 171, 206, 0.36) ;
+.nav .active{ background: url(../img/991.png) no-repeat, url(../img/xb2.png) no-repeat,#ccc ;
 background-size: 100% 100%;position:relative;  z-index:3;}
-.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:19%; height:1.8rem;  background:rgba(36, 171, 206, 0.36);
+.nav .nav_box{ position:absolute; left:0; top:0; z-index:2; width:19%; height:1.8rem;  background:#ccc;
 
 }
 
 .content{ position:absolute; top:0; left:0; z-index:1;}
 
-.home_page{ width:100%; background:url(../img/bg-4.jpg); background-size:100% 100%; position:relative; top:0; left:0;}
+.home_page{ width:100%; background:url(../img/b7.png); background-size:100% 100%; position:relative; top:0; left:0;}
 .home_page .lg{
 	width: 7rem;
 	height: 9rem;
@@ -64,7 +64,7 @@ background-size: 100% 100%;position:relative;  z-index:3;}
 
 
 /*css_worker*/
-.css_worker{ position:relative; top:0; left:0; background:url(../img/x.jpg) no-repeat; background-size:100% 100%;}
+.css_worker{ position:relative; top:0; left:0; background:url(../img/b8.png) no-repeat; background-size:100% 100%;}
 .css_worker .css_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; margin:0 auto; }
 .css_worker .css_worker_box .css_main{ height:70%; width:90%;margin-top:80px; margin-left:10%;position:relative; top:0; left:0;}
 
@@ -84,16 +84,57 @@ background-size: 100% 100%;position:relative;  z-index:3;}
 
 
 /*js_worker*/
-.js_worker{ position:relative; top:0; left:0; background:url(../img/bj-2.png) no-repeat; background-size:100% 100%;}
+.js_worker{ position:relative; top:0; left:0; background:url(../img/b9.png) no-repeat; background-size:100% 100%;}
 .js_worker .js_worker_box{position:absolute; top:0; left:0; width:90%; height:100%; transition: 2s;}
 .js_worker .js_worker_box .js_box{  height:80%; width:90%;margin-top:80px; margin-left:10%;}
 .js_worker .js_worker_box .js_box div{ width:22%; height:45%; float:left;cursor:pointer; margin:1% 1%; position:relative; top:0; left:0; 
 opacity: 0.7;
+
+background-size:100% 100% ;
 border-radius: 20px;
 overflow:hidden;}
 
+.js_worker .js_worker_box .js_box .i1{
+	background: url(../img/xue.png) no-repeat,url(../img/a2.png) no-repeat;
+	background-size: 100% 100%;
+}
 
-.js_worker .js_worker_box .js_box div img{ width:100%; height:100%;}
+.js_worker .js_worker_box .js_box .i2{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-2.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.js_worker .js_worker_box .js_box .i3{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-3.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.js_worker .js_worker_box .js_box .i4{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-4.png) no-repeat;
+	background-size: 100% 100%;
+}
+.js_worker .js_worker_box .js_box .i5{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-5.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.js_worker .js_worker_box .js_box .i6{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-6.png) no-repeat;
+	background-size: 100% 100%;
+}
+.js_worker .js_worker_box .js_box .i7{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-7.png) no-repeat;
+	background-size: 100% 100%;
+}
+.js_worker .js_worker_box .js_box .i8{
+	background: url(../img/xue.png) no-repeat,url(../img/aDiv2-8.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+
+
+.js_worker .js_worker_box .js_box div img{ width:100%; float:left; height:100%;}
 .js_worker .js_worker_box .js_box div span{ position:absolute; top:0; left:-100%; width:100%; height:100%; background:rgba(0,0,0,1);filter:alpha(opacity:50); line-height:100%; text-align:center; font-size:30px; 
 line-height: 100px;
 color:#fff;}
@@ -104,7 +145,7 @@ color:#fff;}
 .js_worker .js_worker_box ol .on{ background:red; cursor:pointer;}
 
 /*H5*/
-.H5{ position:relative; top:0; left:0; width:100%; height:100%; background:url(../img/x.jpg) no-repeat; background-size:100% 100%;}
+.H5{ position:relative; top:0; left:0; width:100%; height:100%; background:url(../img/b10.png) no-repeat; background-size:100% 100%;}
 .H5 .H5_box{
 	position:absolute; top:0; left:0; width:200%; height:90%; 
 	transition: 1s;
@@ -123,7 +164,7 @@ color:#fff;}
 	float: left;
 	margin-left: 2rem;
 	margin-top: 1rem;
-	background: aqua;
+	
 	
 	
 	
@@ -160,6 +201,43 @@ color:#fff;}
 
 .H5 .H5_box ul .mt{
 	margin-top: 10%;
+}
+
+.H5 .H5_box ul .a1{
+	background: url(../img/xue.png) no-repeat,url(../img/bz.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.H5 .H5_box ul .a2{
+	background: url(../img/xue.png) no-repeat,url(../img/0.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+.H5 .H5_box ul .a3{
+	background: url(../img/xue.png) no-repeat,url(../img/lh.png) no-repeat;
+	background-size: 100% 100%;
+}
+.H5 .H5_box ul .a4{
+	background: url(../img/xue.png) no-repeat,url(../img/dz.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.H5 .H5_box ul .a5{
+	background: url(../img/xue.png) no-repeat,url(../img/dy.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.H5 .H5_box ul .a6{
+	background: url(../img/xue.png) no-repeat,url(../img/fk.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.H5 .H5_box ul .a7{
+	background: url(../img/xue.png) no-repeat,url(../img/lf.png) no-repeat;
+	background-size: 100% 100%;
+}
+.H5 .H5_box ul .a8{
+	background: url(../img/xue.png) no-repeat,url(../img/rs.png) no-repeat;
+	background-size: 100% 100%;
 }
 
 .H5 .H5_box .H5conction2 li img{
@@ -204,11 +282,11 @@ color:#fff;}
 }
 
 .myself{ position:relative; top:0; left:0;}
-.myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/6.jpg) no-repeat; background-size:100% 100%;}
+.myself .myself_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/b11.png) no-repeat; background-size:100% 100%;}
 
 
 .myself .myself_box .myself_box_main{ height:80%; width:90%;margin:80px auto;}
 .myself .myself_box .myself_box_main ul li span{ width:20rem; height:1rem;line-height:1rem; 
-color:#000; display:inline-block; font-size:1rem; margin-top:0.3rem;}
+color:#fff; display:inline-block; font-size:1rem; margin-top:0.3rem;}
 .myself .myself_box .myself_box_main ol{ margin-top:0.5rem;font-size:0.8rem;}
-.myself .myself_box .myself_box_main ol li{ color:#000;margin-top:0.4rem;}
+.myself .myself_box .myself_box_main ol li{ color:#fff;margin-top:0.4rem;}
