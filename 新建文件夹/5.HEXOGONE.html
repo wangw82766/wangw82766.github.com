@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0"/>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<style type="text/css">
+	*{
+		padding: 0; margin: 0; 
+		list-style: none;
+	}
+	.head{
+		width: 16rem; height:3rem; 
+		background:#344a61; 
+		position: relative;
+	}
+	.head a{
+		width: 3rem;height:3rem;
+		box-sizing: border-box;
+	}
+	.head a:nth-child(1){
+		border-right: 2px solid #4a6077;
+		position: absolute;left: 0;top: 0;
+		background: url(img/list.png) no-repeat center center;
+		background-size: 28% 18%;
+	}
+	.head a:nth-last-child(1){
+		border-left: 2px solid #4a6077;
+		position: absolute;right: 0;top: 0;
+		background: url(img/email1.png) no-repeat center center;
+		background-size: 30% 20%;
+	}
+	.head h1{
+		margin: 0 3rem; 
+		font-size: 1rem;
+		color: #fff;
+		line-height: 3rem; 
+		text-align: center;
+	}
+	footer{
+		width: 16rem; height:3rem;
+		background: #000; 
+		position: fixed; bottom: 0;left: 0;
+	}
+	.seven{
+		width: 16rem; height:3rem;
+	}
+	.footlist li{
+		width: 1rem; height: 1rem; 
+		margin: 0.5rem; 
+		float: left;
+	}
+	.footlist li img{
+		width:100%; height: 100%;
+	}
+	footer p{
+		width: 100%;height: 1rem;
+		font-size: 0.4rem; 
+		color: #727272;
+		text-align: center;
+	}
+	section{
+		width: 16rem;
+		padding:0 1rem;
+	}
+	section h2{
+		width: 14rem;height: 2rem; 
+		line-height: 2rem;
+		border-bottom: 2px solid #e5e5e5;
+		font-size: 0.4rem; color: #bfbfbf;
+		margin-bottom: 1rem;
+	}
+	section .one{
+		width: 14rem; height: 16.75rem;
+		border-bottom: 2px solid #e7e7e7;
+		margin-bottom: 1rem;
+	}
+	section .pic1{
+		width: 14rem; height: 9.25rem;
+		margin-bottom: 0.5rem;
+	}
+	section .pic1 img{
+		width: 100%; height: 100%;
+	}
+	.title1{
+		font-size: 0.5rem; font-weight: bold;
+		color: #242424;
+	}
+	.content1{
+		font-size: 0.45rem; color: #636363;
+		line-height: 1rem;
+	}
+	.one article h3{
+		height: 2rem; line-height: 2rem;	
+	}
+	.two{
+		width: 14rem; height: 10rem;border-bottom: 2px solid #e7e7e7;
+		margin-bottom: 0.5rem;
+	}
+	.two div{
+		position: relative;
+		width: 14rem; height: 5rem;
+	}
+	.two img{
+		width: 4rem;height: 4rem;
+	}
+	.two article{
+		width: 9rem;height: 5rem;
+		position: absolute;right: 0;top: 0;
+	}
+	.two article h3{
+		line-height: 1rem;
+	}
+
+	.three{
+		width: 14rem; height: 15.5rem;border-bottom: 2px solid #e7e7e7;
+		margin-bottom: 0.5rem;
+	}
+	.three article h3{
+		height: 2rem; line-height: 2rem;	
+	}
+	.three article p{
+		margin-bottom: 1rem;
+	}
+	.three ul li{
+		width: 4rem;height: 4rem; float: left;
+		margin-right: 1rem;
+	}
+	.three li:nth-child(3n){
+		margin-bottom: 1rem;
+		margin-right: 0;
+	}
+	.three ul li img{
+		width: 100%; height: 100%;
+	}
+	.four{
+		width: 14rem; height: 11rem;
+		border-bottom: 2px solid #e7e7e7;
+		margin-bottom: 0.5rem;
+	}
+	.four article h3{
+		height: 2rem; line-height: 2rem;	
+	}
+	.four div{
+		width: 14rem;height: 4rem;padding: 1rem 0;
+		position: relative;
+	}
+	.four div p{
+		width: 9rem;
+		position: absolute;right: 0;top: 1rem;
+	}
+	.four div p i{
+		width: 9rem;
+		font-style: italic; 
+		font-weight: bold; 
+		display: inline-block; 
+		text-align: right;
+	}
+	.four img{
+		width: 4rem;height: 4rem;
+	}
+	.five{
+		width: 13.5rem; height: 9rem;
+		border-bottom: 2px solid #e7e7e7;
+	}
+	.five article h3{
+		height: 2rem; 
+		line-height: 2rem;
+		text-align: center;	
+	}
+	.five article p{
+		text-align: center;
+	}
+	.five ul{
+		margin:0 1.5rem;
+	}
+	.five ul li{
+		width: 2.5rem;height: 2.5rem; 
+		float: left;
+		margin:1rem 0.5rem;
+	}
+	.five ul li img{
+		width: 100%; height: 100%;
+	}
+	.six{
+		width: 14rem; height: 2rem;padding: 1rem 0;
+	}
+	.six p{
+		width: 14rem; 
+		line-height: 1rem;
+		text-align: center;
+		font-size: 0.45rem; 
+		color: #636363;
+	}
+</style>
+<script type="text/javascript">
+	(function(win,doc){
+		win.addEventListener('resize',change,false);
+		change();
+		function change(){
+			doc.documentElement.style.fontSize=20/320*doc.documentElement.clientWidth+'px';}
+	})(window,document)
+	
+</script>
+</head>
+<body>
+	<!--头部-->
+	<header class="head">
+		<a href="#"></a>
+		<h1>HEXAGONE</h1>
+		<a href="#"></a>
+	</header>
+	<!--body-->
+	<section>
+		<h2>HOMEPAGE</h2>
+		<div class="one">
+			<div class="pic1">
+				<img src="img/pic.png"/>
+			</div>
+			<article>
+				<h3 class="title1">WELL,HELLO THRER!</h3>
+				<p class="content1">
+					Honeycomb provides a unique design and a flat interface to make it stand out from the crowd! The nav is swiable, by dragging any part of the page to right! Check it out yourself!
+				</p>
+			</article>
+		</div>
+		<div class="two">
+			<div>
+				<img src="img/pic2.png"/>
+				<article>
+					<h3 class="title1">WELL,HELLO THRER!</h3>
+					<p class="content1">
+						There no point to complicate Honeycomb provides a unique design and a flat interface to make it stand out from 
+					</p>
+				</article>
+			</div>
+			<div>
+				<img src="img/pic2.png"/>
+				<article>
+					<h3 class="title1">WELL,HELLO THRER!</h3>
+					<p class="content1">
+						There no point to complicate Honeycomb provides a unique design and a flat interface to make it stand out from 
+					</p>
+				</article>
+			</div>
+		</div>
+		<div class="three">
+			<article>
+				<h3 class="title1">SOME OF OUR WORKS!</h3>
+				<p class="content1">
+					There no point to complicate Honeycomb provides a unique design and a flat  
+				</p>
+			</article>
+			<ul class="clearfix">
+				<li><img src="img/pic3.png"></li>
+				<li><img src="img/pic3.png"></li>
+				<li><img src="img/pic3.png"></li>
+				<li><img src="img/pic3.png"></li>
+				<li><img src="img/pic3.png"></li>
+				<li><img src="img/pic3.png"></li>
+			</ul>
+		</div>
+		<div class="four">
+			<article>
+				<h3 class="title1">TESTIMONIALS!</h3>
+				<p class="content1">
+					There no point to complicate Honeycomb provides a unique design and a flat interface to make it stand out from
+				</p>
+			</article>
+			<div>
+				<img src="img/four.png"/>
+				<p class="content1">
+					There no point to complicate Honeycomb provides a unique design and a flat <br/><i>Jone Doe-Annoynmus Buyer</i> 
+				</p>
+				
+			</div>
+		</div>
+		<div class="five">
+			<article>
+				<h3 class="title1">GET SOCIAL WITH US!</h3>
+				<p class="content1">
+					Get news, updates,and just hang around for a chilt chat or two on our social networks!  
+				</p>
+			</article>
+			<ul class="clearfix">
+				<li><img src="img/five1.png"></li>
+				<li><img src="img/five2.png"></li>
+				<li><img src="img/five3.png"></li>
+			</ul>
+		</div>
+		<div class="six">
+			<p>COPYRIGHT 2013</p>
+			<p>ALL RIGHTS RESERVED</p>
+		</div>
+	</section>
+	<!--footer-->
+	<div class="seven"></div>
+	<footer>
+		<ul class="footlist clearfix">
+			<li>
+				<img src="img/HEXAGONE_03.png"/>
+			</li>
+			<li>
+				<img src="img/HEXAGONE_05.png"/>	
+			</li>
+			<li><img src="img/HEXAGONE_07.png"/></li>
+			<li><img src="img/HEXAGONE_09.png"/></li>
+			<li><img src="img/HEXAGONE_11.png"/></li>
+			<li><img src="img/HEXAGONE_13.png"/></li>
+			<li><img src="img/HEXAGONE_15.png"/></li>
+			<li><img src="img/HEXAGONE_17.png"/></li>
+		</ul>
+		<p>TAP THE ICONS TO CHANGE THE MENU STYLE!</p>
+	</footer>
+</body>
+</html>
