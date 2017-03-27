@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/apply.css?v=1" />
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/apply.js"></script>
+    <script type="text/javascript">
+        function IsDefine(value) {
+            if (value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+                return false;
+            } else {
+                value = value + "";
+                value = value.replace(/\s/g, "");
+                if (value == "") {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        function QueryString(val) {
+            var uri = window.location.search;
+            var re = new RegExp("" + val + "=([^&?]*)", "ig");
+            return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+        }
+
+        function IsMobile(value) {
+            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            if (!myreg.test(value)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+    <!--白卡申请弹窗-->
+    <div class="applyPop" style="display: none;">
+        <div class="applyPopconA" style="display: none;">
+            <!--文字提示----恭喜您注册成功/您已经注册请下载登录-->
+            <i class="closeA"></i>
+            <p>恭喜您注册成功</p>
+            <div class="popBtn">
+                <a href="javascript:void(0)">下载APP立即借款</a>
+            </div>
+        </div>
+        <div class="applyPopconB" style="display: none;">
+            <!--文字提示----验证码错误/请输入验证码/请稍后再获取验证码/请输入正确的手机号/请输入手机号-->
+            <p></p>
+            <div class="popBtn">
+                <a href="javascript:void(0)" class="close">确定</a>
+            </div>
+        </div>
+    </div>
+    <div class="apply">
+        <div class="applybgA">
+            <div class="applycon">
+                <div class="inputA clearfix">
+                    <i class="fl"></i><input id="phone_no" class="fl" type="tel" placeholder="请输入手机号" />
+                </div>
+                <div class="inputB clearfix">
+                    <div class="inputBcon fl">
+                        <i class="fl"></i><input id="vertify_code" class="fl" type="text" placeholder="请输入验证码" />
+                    </div>
+                    <!--60秒倒计时-->
+                    <!--<span class="fr hover">60秒</span>-->
+                    <!--重新发送-->
+                    <!--<span class="fr">重新发送</span>-->
+                    <!--获取验证码-->
+                    <span id="btnGetRegCode" class="fr">获取验证码</span>
+                </div>
+                <div class="applyBtn" id="btnSubmit">
+                    立即申请
+                </div>
+            </div>
+        </div>
+        <div class="applybgB"></div>
+        <div class="applybgC"></div>
+        <input type="hidden" id="download_url" value="" />
+    </div>
+    <script>
+        $(".closeA").bind("click", function(e) {
+            $(".applyPop").hide();
+            $(".applyPopconA").hide();
+        });
+        $(".close").bind("click", function(e) {
+            $(".applyPop").hide();
+            $(".applyPopconB").hide();
+        });
+        // var channel_id = QueryString("channel_id");
+        // var advertise_id = QueryString("advertise_id");
+        var getRegCodeTime = 60;
+        var getRegCodeInterval = null;
+        $("#btnGetRegCode").bind("click", function(e) {
+            var channel_id = QueryString("channel_id");
+            if (IsDefine(channel_id) == false) {
+                channel_id = "1";
+            }
+            var phone_no = $("#phone_no").val();
+            if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
+                $(".applyPop").show();
+                $(".applyPopconB p").html("请输入正确的手机号");
+                $(".applyPopconB").show();
+                return false;
+            }
+            if (getRegCodeInterval != null) {
+                $(".applyPop").show();
+                $(".applyPopconB p").html("请在" + getRegCodeTime + "秒后获取");
+                $(".applyPopconB").show();
+                return false;
+            } else {
+                getRegCodeTime = 60;
+                getRegCodeInterval = window.setInterval(function() {
+                    if (parseInt(getRegCodeTime) >= 1) {
+                        getRegCodeTime--;
+                        $("#btnGetRegCode").html(getRegCodeTime + "秒");
+                    } else {
+                        window.clearInterval(getRegCodeInterval);
+                        getRegCodeTime = 60;
+                        getRegCodeInterval = null;
+                        $("#btnGetRegCode").html("获取验证码");
+                    }
+                }, 1000);
+            }
+
+            var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=1&phone_no=" + phone_no + "&jsonp_cb_fun=getRegCodeCbFun";
+            $.ajax(submit_url, {
+                "method": "GET",
+                "dataType": "jsonp",
+                "success": "regGetCodeCbFun",
+            });
+        });
+        //获取验证码回调方法
+        function getRegCodeCbFun(data) {
+            if (data.code == "10000") {
+                //用户获取验证码成功
+                $(".applyPop").show();
+                $(".applyPopconB p").html("获取验证码成功");
+                $(".applyPopconB").show();
+                return false;
+            } else if (data.code == "10100") {
+                //用户已注册
+                $(".applyPop").show();
+                $(".applyPopconA p").html("您已经注册请下载登录");
+                $(".applyPopconA a").bind("click", function() {
+                    window.location = data.download_url;
+                });
+                $(".applyPopconA").show();
+                return false;
+                // window.clearInterval(getRegCodeInterval);
+                // getRegCodeTime = 60;
+                // $("#btnGetRegCode").html("获取验证码");
+
+            } else {
+                $(".applyPop").show();
+                $(".applyPopconB p").html("验证码获取失败");
+                $(".applyPopconB").show();
+                return false;
+            }
+        }
+
+        $("#btnSubmit").bind("click", function(e) {
+            var channel_id = QueryString("channel_id");
+            if (IsDefine(channel_id) == false) {
+                channel_id = "1";
+            }
+            var phone_no = $("#phone_no").val();
+            var vertify_code = $("#vertify_code").val();
+            if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
+                $(".applyPop").show();
+                $(".applyPopconA").hide();
+                $(".applyPopconB p").html("请输入正确的手机号");
+                $(".applyPopconB").show();
+                return false;
+            }
+            if (IsDefine(vertify_code) == false) {
+                $(".applyPop").show();
+                $(".applyPopconA").hide();
+                $(".applyPopconB p").html("请输入验证码");
+                $(".applyPopconB").show();
+                return false;
+            }
+
+            var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=2&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
+            $.ajax(submit_url, {
+                "method": "GET",
+                "dataType": "jsonp",
+                "success": "registerCBFun",
+            });
+        });
+
+        //用户注册回调方法
+        function registerCBFun(data) {
+            if (data.code == "10000") {
+                //用户获取验证码成功
+                $(".applyPop").show();
+                $(".applyPopconA p").html("恭喜您注册成功");
+                $(".applyPopconA a").bind("click", function() {
+                    window.location = data.download_url;
+                });
+                $(".applyPopconA").show();
+                return false;
+
+            } else if (data.code == "10100") {
+                //用户已注册
+                $(".applyPop").show();
+                $(".applyPopconA p").html("您已经注册请下载登录");
+                $(".applyPopconA a").bind("click", function() {
+                    window.location = data.download_url;
+                });
+                $(".applyPopconA").show();
+                return false;
+
+            } else {
+                $(".applyPop").show();
+                $(".applyPopconB p").html("注册失败");
+                $(".applyPopconB").show();
+                return false;
+
+            }
+        }
+    </script>
+    <script>
+        //百度统计代码
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+
+</html>
