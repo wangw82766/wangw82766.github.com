@@ -74,7 +74,7 @@ input::-ms-reveal{display: none;}
 .PerfectInfo .mui-table-view-cell {padding: 0.3rem 0.36rem;}
 .PerfectInfo .mui-table-view-cell a{margin: -0.3rem -0.36rem;}
 .PerfectInfo.mui-content>.mui-table-view:first-child { margin: 0;}
-.PerfectInfo .mui-btn {padding: 0;line-height: 0.8rem; font-size: 0.3rem; margin: 1rem auto 0.1rem; background: #21a8f3; border: none; width: 80%;height: 0.8rem; border-radius:0.1rem;}
+.PerfectInfo .mui-btn {padding: 0;line-height: 0.8rem; font-size: 0.3rem; margin: 2rem auto 0.1rem; background: #21a8f3; border: none; width: 80%;height: 0.8rem; border-radius:0.1rem;}
 .PerfectInfo .mui-btn:active{ background: #f67f1b; border: none;color: #fff;}
 .PerfectInfo .mui-table-view-cell:after {left: 0;}
 @media screen and (min-width: 320px) and (max-width: 374px) {
