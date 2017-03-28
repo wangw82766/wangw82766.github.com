@@ -47,10 +47,15 @@ html,body{
 .title1{
 	width: calc(100% - 8px);
 	font-size: 16px;
+	color: #f00;
+	line-height: 40px;
+	height: 40px;
+	border-bottom: 1px solid #000;
+	margin-bottom: 10px;
 }
 .content1{
 	font-size: 16px;
-	line-height: 20px;
+	line-height: 25px;
 	color: #64666c;
 }
 .mask1{
@@ -79,9 +84,12 @@ html,body{
 }
 .area{
 	font-size: 16px;
-	color: rgb(252, 83, 43);
+	color: #64666c;
 	margin-top: 20px;
 	line-height: 25px;
+}
+.area span{
+	color: #f00;
 }
 .qecode{
 	width: 150px;
@@ -106,12 +114,12 @@ html,body{
 	vertical-align: bottom;
 	font-size: 16px;
 	margin-left: 10px;
-	color: #5a5a5a;
+	color: #607fa6;
 	
 }
 .floor{
 	text-align: center;
-	font-size: 14px;
+	font-size: 16px;
 	margin-left: 10px;
 	color: #5a5a5a;
 	
@@ -228,4 +236,18 @@ html,body{
 	background: #005ab6;
 	color: #fff;
 	border-radius:20px ;
+	text-align: center;
+	padding-left: 2px;
+}
+.titletime{
+	margin-bottom: 10px;
+}
+.titletime span{
+	margin-right: 10px;
+	font-size: 14px;
+	color: #607fa6;
+}
+.page1{
+	display: block;
+	margin: 10px auto;
 }
