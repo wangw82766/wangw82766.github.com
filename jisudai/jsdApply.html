@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/jsdApply.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jsdApply.js"></script>
+    <script>
+        /**
+         * @description 是否是微信
+         */
+        function IsWeChatBrower() {
+            var ua = window.navigator.userAgent;
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        /**
+         * @description 是否是ipad
+         */
+        function IsIPadBrower() {
+            var ua = window.navigator.userAgent;
+            return ua.match(/(iPad).*OS\s([\d_]+)/);
+        }
+        /**
+         * @description 是否是iphone
+         */
+        function IsIPhoneBrower() {
+            var ua = window.navigator.userAgent;
+            return !IsIPadBrower() && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+        }
+
+        /**
+         * @description 是否是android
+         */
+        function IsAndroidBrower() {
+            var ua = window.navigator.userAgent;
+            return ua.match(/(Android)\s+([\d.]+)/);
+        }
+
+
+        function IsDefine(value) {
+            if (value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+                return false;
+            } else {
+                value = value + "";
+                value = value.replace(/\s/g, "");
+                if (value == "") {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        function QueryString(val) {
+            var uri = window.location.search;
+            var re = new RegExp("" + val + "=([^&?]*)", "ig");
+            return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+        }
+
+        function IsMobile(value) {
+            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            if (!myreg.test(value)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <!--白卡申请弹窗-->
+    <div class="jsdpiPopA" style="display: none;">
+		<div class="jsdpiPopconB" style="display: block;">
+			<i></i>
+			<p class="pA" style="display: block;">该手机号已注册<br/>下载无忧借款APP,了解更多</p>
+			<div class="popBtn popBtnA">
+				<a href="javascript:void(0)">立即下载</a>
+			</div>
+		</div>
+	</div>
+    <div class="jsdApplyPop" style="display: none;">
+        <div class="jsdApplyPopconB" style="display: block;">
+            <!--文字提示----验证码错误/请输入验证码/请稍后再获取验证码/请输入正确的手机号/请输入手机号-->
+            <p></p>
+            <div class="popBtn popBtnB">
+                <a href="javascript:void(0)">确定</a>
+            </div>
+        </div>
+    </div>
+    <div class="jsdApply">
+        <div class="jsdApplybgA">
+        </div>
+        <div class="jsdApplybgB">
+            <div class="jsdApplycon">
+                <div class="inputA clearfix">
+                    <input class="fl" type="tel" placeholder="请输入手机号" id="phone_no" />
+                </div>
+                <div class="inputB clearfix">
+                    <div class="inputBcon fl">
+                        <input class="fl" type="tel" placeholder="请输入验证码" id="vertify_code" name="phone_no" />
+                    </div>
+                    <!--60秒倒计时-->
+                    <!--<span class="fr hover">60秒</span>-->
+                    <!--重新发送-->
+                    <!--<span class="fr">重新发送</span>-->
+                    <!--获取验证码-->
+                    <span class="fr" id="btnGetVertifyCode">获取验证码</span>
+                </div>
+                <div class="jsdApplyBtn" id="btnRegister">
+                    <a href="javascipt:void(0);">立即申请</a>
+                </div>
+            </div>
+        </div>
+        <div class="jsdApplybgC">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    //渠道id  默认为1
+    var channel_id = "1";
+    var channel_id = QueryString("channel_id");
+    if (IsDefine(channel_id) == false) {
+        channel_id = "1";
+    }
+    //获取验证码等待时长 默认为60秒
+    var getVertifyCodeTime = 60;
+    //获取验证码轮询事件对象
+    var getVertifyCodeInterval = null;
+    //获取验证码点击
+    $("#btnGetVertifyCode").bind("click", function(e) {
+        //获取手机号
+        var phone_no = $("#phone_no").val();
+        //验证手机号
+        if (IsMobile(phone_no) == false) {
+            //手机号错误
+            $('.jsdpiPopA').hide();
+            $('.jsdApplyPop').show();
+            $('.jsdApplyPop p').html('手机号错误');
+            return false;
+        }
+
+        if (getVertifyCodeInterval == null) {
+            getVertifyCodeTime = 60;
+            getVertifyCodeInterval = window.setInterval(function() {
+                if (parseInt(getVertifyCodeTime) >= 1) {
+                    getVertifyCodeTime--;
+                    $("#btnGetVertifyCode").html(getVertifyCodeTime + "秒");
+                } else {
+                    window.clearInterval(getVertifyCodeInterval);
+                    getVertifyCodeTime = 60;
+                    getVertifyCodeInterval = null;
+                    $("#btnGetVertifyCode").html("获取验证码");
+                }
+            }, 1000);
+        } else {
+        	$('.jsdpiPopA').hide();
+            $('.jsdApplyPop').show();
+            $('.jsdApplyPop p').html('请在' + getVertifyCodeTime + '秒后再获取');
+            //alert("请在" + getVertifyCodeTime + "秒后获取");
+            return false;
+        }
+
+        var vertify_code_message_content = "您的注册验证码为{vertify_code}【极速贷】";
+        //var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=2&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&jsonp_cb_fun=getVertifyCodeCBFun";
+        var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=3&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&jsonp_cb_fun=getVertifyCodeCBFun";
+        $.ajax(submit_url, {
+            "method": "GET",
+            "dataType": "jsonp",
+            "success": "getVertifyCodeCBFun"
+        });
+    });
+    //获取验证码回调
+    function getVertifyCodeCBFun(data) {
+        if (data.code == "10100") {
+            $('.jsdApplyPop').hide();
+            $('.jsdpiPopA').show();
+            $('.jsdApplyPop p').html(data.message);
+            //alert(data.message);
+        } else {
+        	$('.jsdpiPopA').hide();
+            $('.jsdApplyPop').show();
+            $('.jsdApplyPop p').html(data.message);
+            //alert(data.message);
+        }
+
+        return false;
+    }
+
+    //注册点击
+    $("#btnRegister").bind("click", function(e) {
+        var phone_no = $("#phone_no").val();
+        var vertify_code = $("#vertify_code").val();
+        //验证手机号
+        if (IsMobile(phone_no) == false) {
+            //手机号错误
+            $('.jsdpiPopA').hide();
+            $('.jsdApplyPop').show();
+            $('.jsdApplyPop p').html('手机号错误');
+            //alert("手机号错误");
+            return false;
+        }
+        if (IsDefine(vertify_code) == false) {
+        	$('.jsdpiPopA').hide();
+            $('.jsdApplyPop').show();
+            $('.jsdApplyPop p').html('请输入验证码');
+            //alert("请输入验证码");
+        }
+        //var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=3&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
+        var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=4&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
+        $.ajax(submit_url, {
+            "method": "GET",
+            "dataType": "jsonp",
+            "success": "registerCBFun"
+        });
+    });
+    //注册回调
+    function registerCBFun(data) {
+        var phone_no = $("#phone_no").val();
+        if (data.code == "10000") {
+        	$('.jsdpiPopA').hide();
+            $('.jsdApplyPop p').html(data.message);
+            $('.jsdApplyPop').show();
+            var date = new Date();
+            window.location = "PerfectInfo.html?channel_id=" + channel_id + "&phone_no=" + phone_no + "&t=" + date.getTime();
+        } else if (data.code == "10100") {
+            $('.jsdApplyPop').hide();
+            $('.jsdpiPopA').show();
+        } else {
+        	$('.jsdpiPopA').hide();
+            $('.jsdApplyPop p').html(data.message);
+            $('.jsdApplyPop').show();
+        }
+
+        return false;
+    }
+    $('.jsdpiPopA i').click(function() {
+    	$('input').val('');
+        $(this).parent().parent().hide();
+    });
+    $('.popBtnB').click(function() {
+        $(this).parent().parent().hide();
+    });
+    $('.popBtnA').click(function() {
+        if (IsAndroidBrower()) {
+            window.location = "http://pm.qingdianwan.com/apk/jiekuandashi_v1_1.apk";
+        }
+        if (IsIPadBrower() || IsIPhoneBrower()) {
+            window.location = "https://itunes.apple.com/cn/app/id1196649886?mt=8";
+        }
+    });
+</script>
+
+</html>
