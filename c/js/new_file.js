@@ -1,0 +1,18 @@
+$(function(){
+	$('#suspension1').on('click',function(){
+		$('.popupbox').css('display','block');
+		$('#suspension1').css('display','none');
+	})
+	$('.hed').on('click',function(){
+		$('.popupbox').css('display','none');
+		$('#suspension1').css('display','block');
+	})
+	$('#popbtn').on('click',function(){
+		$('.popupbox').css('display','block');
+		$('#suspension1').css('display','none');
+	})
+	$('.hed').on('click',function(){
+		$('.#popbtn').css('display','none');
+		$('#suspension1').css('display','block');
+	})
+})
