@@ -46,24 +46,24 @@ html,body{
 }
 .title1{
 	width: calc(100% - 8px);
-	font-size: 14px;
+	font-size: 16px;
 }
 .content1{
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 20px;
 	color: #64666c;
 }
 .mask1{
 	color: #f00;
 	height: 16px;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 16px;
 	margin-top: 2px;
 	width: 100%;
 }
 .mask2{
 	color: #f00;
-	font-size: 14px;
+	font-size: 16px;
 	
 	
 	
@@ -78,7 +78,7 @@ html,body{
 	display: block;
 }
 .area{
-	font-size: 14px;
+	font-size: 16px;
 	color: rgb(252, 83, 43);
 	margin-top: 20px;
 	line-height: 25px;
@@ -96,7 +96,7 @@ html,body{
 	border-bottom:1px solid #3a76a9 ;
 	line-height: 30px;
 	color: #616161;
-	font-size: 14px;
+	font-size: 16px;
 }
 .headportrait{
 	width: 32px;
@@ -104,14 +104,14 @@ html,body{
 }
 .name{
 	vertical-align: bottom;
-	font-size: 14px;
+	font-size: 16px;
 	margin-left: 10px;
 	color: #5a5a5a;
 	
 }
 .floor{
 	text-align: center;
-	font-size: 12px;
+	font-size: 14px;
 	margin-left: 10px;
 	color: #5a5a5a;
 	
@@ -123,15 +123,15 @@ html,body{
 .reply{
 	line-height: 25px;
 	color: #5a5a5a;
-	font-size: 14px;
+	font-size: 16px;
 	margin-top: 6px;
 }
 .publicationtime{
-	font-size: 12px;
+	font-size: 14px;
 	color: #818181;
 }
 .dialogue{
-	font-size: 14px;
+	font-size: 16px;
 	color: #5a5a5a;
 	line-height: 25px;
 }
@@ -141,7 +141,7 @@ html,body{
 }
 .bottom{
 	text-align: center;
-	font-size: 12px;
+	font-size: 14px;
 	color: #ccc;
 	line-height: 20px;
 	padding-bottom: 70px;
