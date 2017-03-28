@@ -173,7 +173,7 @@ html,body{
 	
 }
 .popup .title{
-	font-size: 26px;
+	font-size: 20px;
 	margin-bottom: 20px;
 	
 }
@@ -186,13 +186,13 @@ html,body{
 }
 .popup .prompt{
 	color: #007ddd;
-	font-size: 24px;
+	font-size: 18px;
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
 .popup .prompt2{
 	color: #f00;
-	font-size: 22px;
+	font-size: 18px;
 	
 }
 .bottomdh{
