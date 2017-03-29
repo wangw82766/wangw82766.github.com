@@ -79,9 +79,9 @@
 	</head>
 
 	<body>
-		<div class="jsdApplyPop jsdpiPopA" style="display: none;">
+		<div class="jsdApplyPop jsdpiPopA jsdpiPop" style="display: none;">
 			<div class="jsdApplyPopconB" style="display: block;">
-				<p class="pA"></p>
+				<p class="pA pB"></p>
 				<div class="popBtn popBtnA">
 					<a href="javascript:void(0)">确定</a>
 				</div>
@@ -1515,7 +1515,9 @@
 				}
 				var citycont=$('#city').html();
 				if(citycont=='请选择贷款城市'|| citycont==' '){
-					alert("请选择贷款城市");
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请选择贷款城市');
+
 					return false;
 				}
 				
