@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			div{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<input class="t1" type="text" name="" id="" value="" /><br />
+		<input class="btn" type="button" name="" id="" value="按钮" />
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+		<div id="div1">
+			你我贷
+		</div>
+		<div id="div2">
+			东方融资
+		</div>
+		<script>
+			if(navigator.geolocation){
+				//验证浏览器是否支持定位
+				
+				navigator.geolocation.getCurrentPosition(function(ev){
+					//alert(ev.coords.longitude);	//116.3639755
+					alert('aaa'+ev.coords.latitude);
+				},function(){
+					alert('错了');	
+				});
+					
+			}
+		</script>
+	</body>
+	
+	<!--<script src="http://api.map.baidu.com/api?ak=nECB9yD4rIth70GTOSWG5G50HHytZhAo&v=2.0&services=false"></script>-->
+	
+</html>
