@@ -47,7 +47,14 @@
 				var ua = window.navigator.userAgent;
 				return ua.match(/(Android)\s+([\d.]+)/);
 			}
-
+			function nameverification(n){
+				var e=/^(([\u4e00-\u9fa5]{1,10})|([a-zA-Z]{1,10}))$/;
+				if(e.test(n)){
+					return true;
+				}else{
+					return false;
+				}
+			}
 			function IsDefine(value) {
 				if(value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
 					return false;
@@ -60,7 +67,7 @@
 					return true;
 				}
 			}
-
+		
 			function QueryString(val) {
 				var uri = window.location.search;
 				var re = new RegExp("" + val + "=([^&?]*)", "ig");
@@ -1471,6 +1478,12 @@
 					//alert("请输入姓名");
 					return false;
 				}
+				if(nameverification(name)==false){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入合法的姓名');
+					//alert("请输入姓名");
+					return false;
+				}
 				if(IsDefine(idcard) == false) {
 					$('.jsdpiPop').show();
 					$('.jsdpiPop .pB').html('请输入身份证');
@@ -1569,7 +1582,7 @@
 					$('.jsdpiPopA').show();
 					$('.jsdpiPopA .pA').html("您的申请已提交");
 					$('.jsdpiPopA .popBtnA').click(function() {
-						alert(1)
+						
 						window.location = "register.html";
 						return false;
 					});

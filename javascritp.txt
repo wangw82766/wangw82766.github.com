@@ -1,0 +1,3297 @@
+怎么弄出一个时间
+	var oDate = new Date();
+	
+	oDate.getHours(); // 小时
+	oDate.getMinutes(); // 分钟
+	oDate.getSeconds(); // 秒
+	oDate.getMilliseconds();// 毫秒
+	
+	oDate.getFullYear(); // 年
+	oDate.getMonth();    // 月  从 0 开始
+	oDate.getDate();    // 日
+	oDate.getDay();     // 星期  0-6  0 -> 星期7
+倒计时：
+	未来的时间：
+
+	2016-10-1
+
+	调(设置)时间：
+	oDate.setFullYear(年，月，日);
+	oDate.setHours(时，分，秒，毫秒);
+	
+字符串方法：
+	charAt() 返回指定位置的字符串
+	indexOf() 返回指定字符串的位置
+	lastIndexOf() 
+	substring() 截取字符串
+	split()  分割字符串
+	toUpperCase(); 转大写
+	toLowerCase(); 转小写
+数组的方法
+	push()  往后边添加一个
+	unshift() 往前面添加一个
+	pop()  从后边删除一个
+	shift() 从前边删除一个
+	splice(开始位置,删除个数,元素1，元素2...) 
+    reverse() 数组翻(倒序)
+    concat() 连接数组
+    join() 数组转字符串
+    sort() 排序
+           从小到大
+           sort(function(n1,n2){
+           		return n1-n2;
+           })
+           从大到小
+           sort(function(n1,n2){
+           		return n2-n1;
+           })
+           
+Math方法
+	Math.random()
+	function rnd(n,m){
+		return parseInt(Math.random()*(m-n)+n);
+	}
+	
+	-12  ->  12
+	Math.abs()
+	最大值
+	Math.max(12,5);
+	最小值
+	Math.min(12,5);
+	求2的3次方
+	Math.pow(2,3);
+	开平方
+	Math.sqrt(25);
+	四舍五入
+	Math.round
+	向上取整
+	Math.ceil
+	向下取整
+	Math.floor
+	
+DOM 
+	document object model
+	树：分支 根
+	DOM树：清晰的描述各个节点之间的关系
+		已知一个节点找其他节点;
+	获取元素的子元素
+	获取一层子元素
+		父级.children
+	获取父元素
+		子级.parentNode
+	获取兄弟节点
+		下一个兄弟节点
+		obj.nextSibling
+			chrome ff ie9+ 识别文本节点
+			ie8- 元素节点
+		obj.nextElementSibling
+			chrome ff ie9+ 元素节点
+			ie8- undefined
+
+		var oNext = obj.nextElementSibling || obj.nextSibling;
+		上一个兄弟节点
+		obj.previousSibling
+			chrome ff ie9+ 识别文本节点
+			ie8- 元素节点
+		obj.previousElementSibling
+			chrome ff ie9+ 元素节点
+			ie8- undefined
+		oPrev = obj.previousElementSibling ||
+		obj.previousSibling;
+	首节点
+		父级.firstElementChild || 父级.firstChild
+		父级.children[0];
+	尾节点
+		父级.children[父级.children.length-1]
+		父级.lastElementChild || 父级.lastChild
+	object text 文本节点 文字 换行 空格
+	
+=============================================
+BOM
+	Browser Object Model 浏览器对象模型
+	跟浏览器打交道
+	window.navigator.userAgent
+	alert()
+	完全不兼容 处理不了
+	打开一个窗口
+	window.open(地址,打开方式);
+	window.open('http://www.baidu.com','');
+		打开方式 ：_blank
+				   _self
+		chrome  打不开
+		FF      打不开
+        ie      可以
+    用户操作引发的打开新窗口行为 不阻止;
+    关闭窗口
+    window.close();
+    	chrome  好使
+		FF      不好使
+        ie      提示框
+    可以关闭自己打开的页面
+    window.open();
+    var w = window.open();
+    返回值 是一个新打开页面的window对象
+    about:blank  空白页面
+
+
+    地址栏信息
+    window.location
+    	可以获取可以赋值
+    	***window.location.href
+    		url 地址 
+    	***window.location.search
+    		http://localhost:63342/160922/window-location-search2.html?a=1&b=2
+    		可以拿到？后边的数据
+    	***window.location.hash
+
+    	window.location.port 端口号
+    	window.location.protocol 协议
+    	window.location.hostname 端口
+ ========================================
+window.history
+	前进
+		window.history.forward();
+	后退
+		window.history.back();
+
+    	window.history.go(1); //forward
+    	window.history.go(-1); //back
+    	window.history.go(2); 跳到相对于本页面的第二个页面
+=========================================
+弹窗：alert
+	  prompt
+      confirm
+=========================================
+css hack 
+_position   ie6 认识
+position    ie6+ 认识
+右下角悬浮窗
+1.滚动条的距离
+	body、html
+	body缩写: document.body
+	html缩写: document.documentElement
+
+	纵向
+		document.body.scrollTop
+		chrome
+		document.documentElement.scrollTop
+		ie ff
+		var ScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	横向
+		var ScrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+
+2.可视区的距离
+	高：
+		document.documentElement.clientHeight;
+	宽：
+		document.documentElement.clientWidth;
+3.物体的信息
+	getStyle
+
+function getStyle(obj,name){
+	return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj,false)[name];
+}
+	 obj.offsetHeight      getStyle
+类型    number				string
+       盒子模型的高         height
+none      0                 还有值
+   obj.offsetWidth   盒子模型的宽
+   obj.offsetHeight  盒子模型的高
+window.onload  
+	当页面加载完毕的时候
+window.onscroll
+	当滚动条滚动的时候
+window.onresize
+	当浏览器缩放的时候
+
+   obj.offsetTop     距离有定位的父级的上边的距离
+   obj.offsetLeft
+   距离有定位的父级的左边的距离
+   obj.offsetParent
+   有定位的父级(定位父级);
+====================================
+
+
+
+==============================================
+复习：
+DOM操作
+	var oDiv = document.createElement('div');
+	父级.appendChild(添加谁)
+	父级.insertBefore(添加谁,在谁的前面添加)
+	父级.removeChild(删除谁)
+BOM
+	window.open(地址,打开方式)
+	window.close()
+	window.open 有返回值
+	新打开页面的window对象
+	地址栏信息
+	window.location.href
+	window.location.search
+	window.location.hash
+	历史记录
+	window.history
+	window.history.forward();
+	window.history.back();
+	window.history.go(2);
+右下角悬浮窗
+之前学过的事件
+onclick  onmouseover onmouseout onchange onload onmouseup onmousedown onresize onscroll
+
+onerror oninput onpropertychange onreadystatechange onmousemove onblur onfocus
+ondblclick oncontextmenu onkeydown onkeyup
+
+纵向
+	document.documentElement.scrollTop |
+	| document.body.scrollTop;
+横向
+	
+可视区
+	document.documentElement.clientHeight;
+	document.documentElement.clientWidth;
+物体信息
+	obj.offsetHeight
+	obj.offsetWidth
+物体距离有定位的父级的左边的距离
+	obj.offsetLeft
+物体距离有定位的父级的上边的距离
+	obj.offsetTop
+关于父级
+	parentNode    html结构的父级
+	offsetParent  有定位的父级
+定位父级祖宗：body  body.offsetParent-> null;
+=============================================
+图片的延迟加载(懒加载)
+	节省资源、网站优化
+	1.开始时候图片不加载
+		img src -> _src
+	2.某个合适的时机加载
+		时机
+		scrollTop+clientHeight>= imgT(绝对距离)
+		当滚动滚动条的时候比较
+	3.图片怎么加载
+		aImg[i].src=aImg[i].getAttribute('_src');
+获取自定义属性的值
+	obj.getAttribute(属性名);
+		已有的属性可以
+设置	
+	obj.setAttribute(属性名,值);
+删除
+	obj.removeAttribute(属性名);
+
+操作属性
+	.  已有属性
+	[] 
+	getAttribute
+	setAttribute
+	removeAttribute
+		点设置 点使用 
+		setAttribute设置
+		getAttribute获取
+
+					***配对用
+		aBtn[i].index=i
+		aBtn[this.index]
+		
+		setAttribute设置
+		getAttribute获取
+
+
+undefined
+	访问了一个不存在的属性
+点 操作已有属性
+
+offsetHeight  物体高
+offsetWidth   物体宽
+offsetTop     
+offsetLeft    
+
+=============================================
+简易瀑布流
+	1.宽度相等 高度不等
+	2.拉不到头
+
+12 5 7
+a  b  c 
+body内容高
+	document.body.scrollHeight
+	|| document.documentElement.scrollHeight;
+内容高
+	当内容小于物体高的时候 scrollheight等于物体高度
+	当内容大于物体高的时候scrollheight等于
+	等于内容高
+============================================
+innerHTML赋值的时候 先清空再赋值
+
+表单
+	向后台提交数据
+表单提交
+	name
+	value
+	submit
+form  action 提交地址
+	  method 提交方式
+	  		get 不安全 32k 优点分享 有缓存的
+	  		https://www.baidu.com/?username=asdasd&password=asd
+	  		post 相对安全 1G 没有缓存
+	  		http://www.henu.edu.cn/
+get方式请求url大于32k
+414 Request-URI Too Large
+cache
+缓存：
+	同一个url地址 只访问一次
+============================================
+onfocus 当聚焦的时候
+onblur  当失去焦点的时候
+
+obj.focus() 强制获得焦点;
+obj.blur() 强制失去焦点;
+============================================
+============================================
+吸顶条
+==============================================
+图片img
+var oImg = new Image(); 图片可以new出来
+img 身上的事件
+	onload  图片加载成功
+	onerror 图片加载失败
+
+图片预加载
+	提前加载图片
+	图片偷偷的加载 看不见
+
+http://www.zhinengshe.com/works/3525/img/0-76.jpg
+
+num.toFixed(2) 保留两位小数
+=============================================
+事件：
+offsetParent ->  body
+parentNode -> document
+html简写
+	document.documentElement
+
+事件
+	onclick onmouseover onmouseout....
+事件对象
+	存储了(描述了)事件更加详细的信息
+
+	event
+		chrome IE系列
+		FF 不好使
+	传参：ev
+		chrome FF ie9 高级浏览器
+		ie8- 不好使 undefined
+	var oEvent = ev || event;
+	坐标系  相对可视区
+	oEvent.clientX  横坐标
+	oEvent.clientY  纵坐标
+	***用到的时候加上scrollTop scrollLeft
+鼠标移动
+	onmousemove 	
+事件冒泡
+	子元素身上的事件 会向父级身上寻找同样的事件
+	如果有同样的事件 会被触发
+	如果没有会继续往上找
+	一直找到document
+阻止事件冒泡
+	oEvent.cancelBubble = true;
+=================================
+键盘事件
+onkeydown 当键盘按下的时候
+oEvent.keyCode   键码
+a 65
+z 90 
+
+左 37  
+上 38
+右 39
+下 40
+键盘组合键
+	a.keycode && ctrl.keycode 不好使
+	ctrl
+		ctrlkey
+	alt
+		altkey
+	shift
+		shiftkey
+右键点击事件
+	oncontextmenu (上下文菜单);
+浏览器默认行为(默认事件)
+	阻止浏览器默认行为；
+	return false;
+
+window.location.reload();刷新页面
+=============================================
+l/(oSmall-oSpan)=?/(bigimg-big);
+? = l/(oSmall-oSpan)*(bigimg-big);
+
+拖拽
+onmousedown  当鼠标按下
+onmousemove  当鼠标移动
+onmouseup    当鼠标抬起
+====================================
+function getPos(){
+	
+}
+获取绝对位置
+obj.getBoundingclientRect()
+		left
+		top
+		*right
+		*bottom
+=============================================
+ie独有的捕获
+设置捕获
+obj.setCapture();
+把屏幕中所有的东西都抓捕过来 把所有的东西都当做了obj
+释放捕获
+obj.releaseCapture();
+
+oDiv.setCapture 
+	ie  function
+	chrome ff undefined
+oDiv.setCapture && oDiv.setCapture();
+obj.releaseCapture && obj.releaseCapture();
+限制范围拖拽
+磁性吸附
+带框的拖拽
+透明拖拽
+	鼠标按下的时候 想复制一个div
+
+obj.cloneNode(true)
+var newDiv = oDiv.cloneNode();
+oDiv.cloneNode(true)
+	是否深度克隆  -> true
+	newdiv.removeAttribute('id');
+
+给同一个元素添加同一个事件 执行不同的内容
+->  事件冲突
+
+事件绑定(事件监听)
+
+
+obj.addEventListener(事件,函数,false);
+			->  不加 on
+			chrome ff ie9+
+
+obj.attachEvent(事件,函数);
+			->  事件加 on
+			ie8-
+解除绑定
+	obj.removeEventListener(事件,函数,false)
+			->  不加 on
+			chrome ff ie9+
+	***解除必须跟绑定时候写的东西一模一样
+	解除匿名函数有问题
+		函数都是 new出来的 new出来的都是新的
+
+解除绑定 如果解除的是一个匿名函数 解除不了
+	obj.detachEvent(事件,函数);
+			->  事件加 on
+			ie8-
+以后用原生写效果，遇到给元素添加事件用绑定
+事件流
+	冒泡阶段
+	捕获阶段
+		obj.addEventListener(sEv,fn,false);
+			false ->  是否捕获
+=============================================
+拖拽
+克隆节点
+obj.cloneNode()  -> 跟obj一模一样的节点
+带着obj后代元素
+obj.cloneNode(true)
+
+事件绑定
+function addEvent(obj,sEv,fn){
+	if(obj.addEventListener){
+	   obj.addEventListener(sEv,fn,false);
+	}else{
+	   obj.attachEvent('on'+sEv,fn);
+	}
+}
+解除绑定
+function removeEvent(obj,sEv,fn){
+	if(obj.addEventListener){
+		obj.removeEventListener(sEv,fn,false);
+	}else{
+		obj.detachEvent('on'+sEv,fn);
+	}
+}
+解除绑定的时候 如果绑定的是匿名函数 解除不了
+函数是 new Function();
+=========================================
+比例
+	可变的/固定的
+
+鼠标滚轮
+	onmousewheel  当鼠标滚轮滚动的时候
+    		支持 chrome ie系列
+            不支持 FF
+            oEvent.wheelDelta 判断方向
+            	上  120
+            	下 -120
+    DOMMouseScroll
+    		DOM事件(DOM3事件)
+    		事件绑定
+    		支持 FF
+    		oEvent.detail
+    			上 -3
+    			下  3
+    return false 阻止默认事件
+    			addEventListener()
+    oEvent.preventDefault();
+======================
+onkeydown 当键盘按下的时候
+	键盘按键的事件触发的时候  文字还没有进入文本框
+onkeyup 当键盘抬起的时候
+	
+oninput 当输入的时候
+		chrome ff ie9+
+onpropertychange 当属性值改变的时候
+		ie系列
+
+		**ie9  删除的时候出问题了
+
+window.onload
+		当页面加载完毕
+			html css js 图片
+domready：html加载完了
+		dom结构(html)加载完毕
+
+		DOMContentLoaded
+			chrome ff ie9+
+			高级浏览器有DOMContentLoaded
+		
+		模拟出来一个资源的加载情况
+			ie8- 不好使
+		
+		document.onreadystatechange=function(){
+
+		}
+		document.readyState 当前的加载情况
+		document.readyState=='complete'
+============================================
+事件委托(事件代理)
+	把事情委托父母
+	把子元素的事件委托给父级
+			**父级不一定是直接的父级
+	***事件委托必须配合事件源
+事件源
+	触发事件的源头(元素)-> 在事件对象里
+	oEvent.target 事件的源头(触发事件的元素)
+			chrome ff ie9+
+			ie8- undefined
+	oEvent.srcElement
+			ie系列 chrome 
+			FF不好使 undefined
+	var oTarget = oEvent.scrElement || oEvent.target;
+	谁前谁后都行
+
+判断触发事件的元素oEvent.target.tagName标签名
+标签名必须大写
+	优点：1.节省性能
+		  2.给未来元素添加事件
+======================================
+this的问题
+1.定时器
+2.加事件函数内多套一层函数
+3.事件绑定中this有问题
+		attachEvent
+4.事件加在行间 多套一层函数
+======================================
+onmouseenter
+onmouseleave
+
+运动前奏：
+	oDiv运动  -> left
+
+关于运动的时间
+	1.人眼睛比较容易接受的时间
+	2.太小比较耗性能
+	setInterval(function(){
+        n++;
+        oBox.style.left=n+'px';
+    },30);
+    3。浏览器
+关于定时器有点问题
+	1.不能设置太小的值
+	2.值越小越不稳定
+	3.当前标签页是背景标签的时候 会变慢
+=====================================
+运动：
+	跑步  打车
+	打车
+		总时间->已知
+		总距离
+			总距离=终点-起点
+
+		总次数=总时间/30;
+			3000/30 ->100
+			1000/30 ->33.33333
+				parseInt
+				Math.floor 向下取整 √
+				Math.ceil 向上取整
+				Math.round 四舍五入
+			Math.floor(总时间/30);
+		一次走多远？
+			每次的距离 = 总距离/总次数
+		当前在哪的问题？
+			1次   1*总距离/总次数
+			2次   2*总距离/总次数
+			n     n*总距离/总次数
+
+获取宽度 -> offsetWidth
+getStyle
+	
+给多个元素添加move  共用一个timer
+每个元素都有一个自己的timer
+obj.timer=null;
+obj.timer = setInterval();
+
+链式运动
+封装函数
+	1.重用
+	2.方便
+
+//a  匀速  -> linear
+//var a = n/count;
+//var cur = start[name]+dis[name]*a;
+//a*a*a  加速 -> ease-in
+//var cur = start[name]+dis[name]*a*a*a;
+//      减速    -> ease-out
+//var a = 1-n/count;
+//var cur = start[name]+dis[name]*(1-a*a*a);
+
+toFixed(2) 保留两位小数
+
+
+
+
+
+.box{
+	.left{
+	   img{
+
+	   }
+	}
+	.right{
+		.title{
+
+		}
+		.list{
+
+		}
+	}
+}
+
+.box2{
+	.hd{
+
+	}
+	.info{
+
+	}
+	.jiage{
+
+	}
+	.message{
+
+	}
+}
+.box3{
+	.hd{
+
+	}
+	.info{
+
+	}
+	.jiage{
+
+	}
+	.message{
+
+	}
+}
+=============================================
+分块运动
+
+
+1,1  1,2  1,3  1,4
+2,1  2,2  2,3  2,4
+3,1  3,2  3,3  3,4
+
+2 3 4 5
+3 4 5 6
+4 5 6 7
+=====================================
+苹果菜单
+勾股定理：
+在直角三角形中 两条直角边的平方和等于斜边的平方
+
+求比例：
+不固定/固定的数
+
+
+var scale = 1-c/500;
+
+0.5 = 1 - 250/500
+0.5 = 1 - 400/800
+把500或者250 叫做感应距离
+
+官网作品展示
+
+
+
+ul left
+1
+oBox.offsetwidth/2-(1-0.5)*aLi[0].offsetWidth
+2
+oBox.offsetwidth/2-(2-0.5)*aLi[0].offsetWidth
+3
+oBox.offsetwidth/2-(3-0.5)*aLi[0].offsetWidth
+
+n
+oBox.offsetwidth/2-(n-0.5)*aLi[0].offsetWidth
+=============================================
+幻灯片无缝滚动
+oul.left
+实际值   %2500          
+-3000	 -500	-500
+-2500    0       0
+-2000           -2000
+-1500           -1500
+-1000           -1000
+-500            -500
+0               0
+
+	%2500		-2500  %2500	期望值
+500      500    -2000      		-2000
+1000     1000   -1500      		-1500
+1500     1500	-1000	   		-1000
+2000     2000   -500       		-500
+2500     0      -2500       	0
+3000     500
+(left%w-w)%w
+
+
+aBtn
+实际值    %5     期望值
+6                 1
+5                 0
+4                 4
+3                 3
+2                 2
+1                 1
+0                 0
+	%5       +5     %5
+-1        -1      4     4
+-2        -2      3     3
+-3        -3      2     2
+-4        -4      1     1
+-5         0      5     0
+-6        -1      4     4
+
+(iNow%5+5)%5
+
+
+
+
+
+8    ->    7
+13   ->    12
+按钮跑了几轮:(iNow/aBtn.length)
+加上  点击时候当前的索引
+就是期望的值
+	iNow = Math.floor(iNow/aBtn.length)*aBtn.length+index
+
+=========================================================================
+JS高级
+
+----------------------------------------------------
+
+- 服务端
+	cookie/模块化/ajax/jsonp/正则/jquery/MVC/性能优化/算法/高级运动/面向对象/....
+
+服务器:
+	file:	本地协议
+	https:http:
+服务器本质：电脑
+	WAMP		手动启动
+	appserv 	自动启动
+	MAMP
+---------------------------------------------------
+www里面的东西
+	1、不要用中文名
+	2、路径一定要清晰
+
+cookie:存
+	缓存：浏览器对同一个地址只读一次
+
+cookie：注意：
+	1、必须放在服务器环境下 - 域为单位
+	2、cookie不安全
+	3、cookie有过期时间 - 默认是session
+	4、非常珍贵的 - 4K左右
+	5、无论看到的是什么，都是字符串
+
+在哪里查看cookie：
+	F12功能：
+		Elements - html结构
+		Network - 查看加载痕迹
+		console - 控制台
+		新版chrome:Application - Cookies
+		老板chrome:Resources - Cookies
+	火狐：firebug - cookies
+
+写入：赋值
+查看：alert/console.log
+
+cookie特点：cookie不会覆盖/name值相同的时候会把上一个name的cookie覆盖掉
+
+写入cookie:
+	最基本：document.cookie = 'value'
+	带name值：document.cookie = 'name=value';
+	expires:session会话
+		document.cookie = 'name=value;expires='+oDate;
+	带path：
+		document.cookie = 'name=value;path=/;expires='+oDate;
+
+|-setCookie.html 	写入了cookie
+|-getCookie.html 	读取setCookie里面的cookie √
+|-getTestCookie.html 读取test_set里面的cookie ×
+|-test
+	|-test_get.html 读取setCookie里面的cookie √
+	|-test_set.html 写入cookie
+	|-test_set2.html 写入cookie带path
+
+*根目录	/
+同级可以读取同级写入的cookie,子级可以读取父级写入的cookie,父级读不到子级写入的cookie
+Path - 路径
+
+查看cookie：
+	document.cookie
+
+	数据格式：username=xiaohong; age=18; add=shanghai
+
+cookie学会：
+	1、什么时候写入cookie
+	2、什么时候应用cookie
+
+封装cookie:
+	设置cookie：setCookie(name,value,iDay);
+	获取cookie：getCookie(name); -> value
+	删除cookie：removeCookie(name)
+----------------------------------------------
+cookie:
+	1、什么时候写入cookie
+	2、什么时候应用cookie
+
+写入cookie:
+	document.cookie = 'name=value;path=/;expires='+oDate;
+
+设置cookie:setCookie(name,value,iDay)
+获取cookie:getCookie(name)
+删除cookie:removeCookie(name)
+
+网页换肤：
+	1、换link的href		√
+选项卡：
+拖拽：
+注意：有可能刚进入页面的时候没有cookie
+-------------------------------------------------
+字符串拼接：
+	1、变量在字符串的前边	
+		变量+'字符串'
+	2、变量在字符串的后边
+		'字符串'+变量
+	3、变量在字符串的中间
+		...'+变量+'....
+-------------------------------------------------
+模块化：seajs/reuqirejs
+	reuqirejs必须放在服务器环境下
+
+	一个js是一个模块
+	把一个好好的程序给拆成一个个的功能
+	*最好放在服务器环境下
+
+模块化好处：
+	1、文件不用彼此依赖
+	2、自动引入js
+	3、解决变量名冲突
+
+模块化重点：
+	1、如何定义模块
+	seajs:
+		define(function(require,exports,module){
+			// require - 引入其他模块
+			// exports - 导出模块
+			// module - 批量导出模块
+		})
+	requirejs:
+		define(function(require,exports,module){
+			// require - 引入其他模块
+			// exports - 导出模块
+			// module - 批量导出模块
+		})
+	2、如果使用模块
+	seajs：
+		seajs.use('文件名/模块名',function(mod){
+			mod.xxx
+		}) - 不用加后缀
+		seajs.use(['sea1','sea2'],function(modA,modB){
+			alert(modA.a+modB.a);
+		})
+	requirejs：
+		requirejs(['文件名/模块名'],function(mod){
+			mod.xxx
+		});
+seajs：
+	http://seajs.org/docs/
+
+运动-幻灯片
+自动播放选项卡
+
+seajs 	：CMD规范	
+	common module define
+require ：AMD规范
+	asynchronous module define
+
+------------------------------------------------
+王琦：15712815721
+--------------------------------------------------
+2016年10月11日
+--------------------------------------------------
+cookie:
+	特点：
+		cookie不覆盖,如果name名字相同了,就会把上一个相同的name那一条覆盖
+	注意：
+		1、必须放在服务器环境下
+		2、cookie不安全
+		3、cookie有过期时间 - 默认 session
+		4、非常珍贵 - 4K
+		5、无论看到的是什么，都是字符串
+	重要：
+		1、什么时候写入cookie
+		2、什么时候应用cookie
+
+	写入cookie：
+		document.cookie = 'name=value;path=/;expires='+oDate
+	读取cookie：
+		document.cookie
+			数据格式：'name=value; age=18; sex=man'
+
+	封装cookie：
+		写入cookie:setCookie(name,value,iDay)
+		读取cookie:getCookie(name)
+		删除cookie:removeCookie(name)
+
+微博：
+
+模块化：seajs/requirejs(必须在服务器环境下)
+重点：
+	1、如何定义模块
+		seajs、requirejs:
+			define(function(require,exports,module){
+				//require  引入其他模块
+				//exports  导出模块
+				//module   批量导出
+			})
+
+	2、如何使用模块
+		seajs:
+			seajs.use('文件名',function(mod){
+				mod.xxx
+			})
+			seajs.use(['文件名1,文件名2'],function(mod1,mod2){
+				mod1.xxx
+				mod2.xxx
+			})
+		require:
+			requirejs(['文件名'],function(mod){
+				mod.xxx
+			})
+----------------------------------------------------
+交互：
+前端：
+	切图 - html+css
+js:
+	效果 - 难	
+	交互 - 简单
+
+表单：form
+	1、form标签
+		a、action - 地址
+		b、method - 提交方式
+			默认get
+	2、表单标签
+		a、必须要有name值
+		b、submit
+
+提交方式：
+	GET - 分享
+		1、不安全
+		2、容量小 - 几十K
+		3、有缓存
+
+	POST
+		1、相对来说安全一些
+		2、容量大 - 1G
+		3、没有缓存
+
+	缓存：cache - 浏览器对于一个地址只读一次
+	在用户的角度：好 - 快
+	在程序员的角度：不好、恶心
+
+form缺点：
+	1、刷新页面 - 浪费资源、带宽、钱
+	2、刷新页面 - 用户体验不好
+	3、只能给后台数据,不能从后台拿数据
+
+ajax：
+	asynchronous javascript and xml
+	异步的javascript和xml
+
+ajax两个阶段：
+	用：难
+	写：简单
+
+ajax注意：
+	1、必须放在服务器环境下
+	2、后台返回来的都是字符串
+		eval()
+		new Function('return '+str)();
+	3、缓存-浏览器对同一个地址只读一次
+		t=Math.random() - 加随机因子
+		t=new Date().getTime();
+		t - 版本号
+	4、保持前端页面和后台数据的编码的一致性
+	5、不关心后缀名
+		常见的后缀：.data	.json
+
+ajax(url, fnSucc, fnError)
+	url:文件地址
+	fnSucc:成功之后的回调函数
+	fnError:失败之后的回调函数
+----------------------------------------------
+假数据：
+===============================================
+ajax注意：
+	1、必须放在服务器环境下
+	2、获取出来的都是字符串
+		eval('('+str+')')
+		new Function('return '+str)()
+	3、缓存：
+		t=Math.random()
+		t=new Date().getTime()
+	4、中文乱码 - 保持编码一致
+	5、不关心后缀名
+
+*想尽一切办法拿数据
+
+url?name=value&name=value&t=Math.random()
+
+接口文档
+
+2016年10月12日
+==================================================
+ajax注意:
+	1、服务器环境
+	2、返回的都是字符串
+	3、路径不能出现中文
+	4、缓存
+	5、编码保持一致
+	6、不关心后缀名
+
+中文：
+	转编码：encodeURIComponent()
+	编码转中文：decodeURIComponent()
+
+写ajax：
+
+	打电话：
+		1、弄个手机			ajax
+		2、拨号				建立连接
+		3、说话				发送请求
+		4、等待对方说话		等待
+
+判断浏览器：window.navigator.userAgent.indexOf('MSIE 6.0')!=-1
+不到万不得已的时候不要用
+
+1、弄ajax - oAjax
+	非IE6：new XMLHttpRequest()
+	IE6  : new ActiveXObject('Microsoft.XMLHTTP')
+2、建立连接：
+	oAjax.open(打开方式,url,是否异步)
+	日常生活：
+		异步：先做完一件，在做下一件
+		同步：一起做好几件事儿
+	程序中：
+		异步：同时加载
+		同步：一个一个的加载
+3、发送请求：
+	oAjax.send();
+
+oAjax.readyState
+	complete	dom结构加载完毕
+
+1 ->  数据发送成功
+2 ->  原始数据接收完成 - 经过加密、编码
+3 ->  解析数据
+4 ->  完成
+
+status - http状态码
+	>=200 <300 =304	成功
+
+交互：前端、后台
+
+常见的http状态码：  
+	200 - OK
+	304 - Not Modified
+
+	403 - Forbidden 禁止请求
+	404 - Not Found	找不到文件
+	405 -  Method Not Allowed 
+	414 - Request-URI Too Long url过长
+
+	500 - Internal Server Error	服务器出错
+	502 - Bad Gateway
+
+4开头的	前端的错
+5开头的 后端的问题
+
+ajax(url,data,fnSucc,fnError)
+2016年10月14日
+==================================================
+复习ajax：
+	封装的目的：
+		方便性：
+		通用性:
+
+1、请求发送成功
+2、原始数据接收完毕
+3、解析数据
+4、完成
+
+loading:
+	交互 - 前端后台、网络
+------------------------------------------------
+地址栏：
+	window.location
+		href	地址栏链接
+		search	?号以及?号后面的东西
+		hash	#号以及#号后面的东西
+		.....
+---------------------------------------------------
+用ajax怎么跨域请求数据？
+答：ajax不能跨域请求数据，谢谢！
+
+
+jsonp:
+	本质：函数的调用
+
+百度搜索：
+	https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=show128731937918739789
+360搜索：
+	https://sug.so.360.cn/suggest?callback=show&word=a
+
+
+https://www.baidu.com/s?wd=%E7%88%B1%E5%A5%87%E8%89%BA%E7%BD%91
+
+2016年10月17日
+=====================================================
+cookie/模块化/ajax/jsonp
+
+百度接口：
+	https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=show
+
+搜索结果：
+	https://www.baidu.com/s?wd=%E7%88%B1%E5%A5%87%E8%89%BA
+	下键：40
+	上键：38
+-------------------------------------------------------
+什么时候要请求ajax和jsonp
+什么时候用他返回来的数据
+-------------------------------------------------------
+正则：学的非常快、忘得也非常快
+
+字符串方法：
+	str.charAt(第几个)	
+	str.indexOf('小字符串')
+	str.lastIndexOf('小字符串')
+	str.substring(开始位置,结束位置)
+	str.split('切的方式')
+	str.replace('要替换的','替换成什么')
+	str.toUpperCase()
+	str.toLowerCase()
+
+var str = 'abc12 345 89jqk wzha3';
+// [12,345,89,3]
+-----------------------------------------------------
+正则：描述了一套规则
+	正则表达式、规则表达式
+
+abc@qb.com
+@abc.com
+13717763552@163.com
+123@qq.com.cn
+abc_123@qq.com
+
+深山的妹子,文科特别好,注册邮箱,
+描述邮箱：前面必须有个名字,紧接着有一个@,后面一串英文或者数字,后面.,后面一串拼音
+dashan@meizi.com
+
+弄一个正则：new Date()	new Image()
+	var reg = new RegExp(字符串);
+		reg ->	regular 规则
+		exp ->	expression	表达式
+
+var str = 'welcome to wc';
+找一下'l'的位置
+	var reg = new RegExp('l',规则)
+
+正则另一种写法：
+	var reg = /正则表达式/;
+
+i -> ignore 		忽略大小写
+g -> gobal			全局的
+\d 	任意数字
+
+\ 转义
+
+str.match(表达式)
+	把符合表达式的内容弄成一个数组返回来
+	如果没有符合条件的,返回来一个null
+str.replace('要被换的','换成谁')
+str.replace(正则,替换)
+str.replace(正则,function(s){
+	// s->符合正则的东西
+})
+
+正则特性:
+	1、天生懒惰、笨
+	2、勤奋、贪婪 - 量词
+
+量词：
+	+ 最少是一个,最多不限
+------------------------------------------------
+敏感词过滤：
+	| 	或者
+
+
+小说缩进：
+	^ 	行首
+	$ 	行尾
+	m 	多行匹配 - 识别字符串的换行
+
+var reg = new RegExp(字符串);
+var reg = /表达式/选项;
+
+--------------------------------------------------------
+选项：
+	i 	忽略大小写
+	g 	全局的
+	m 	多行匹配
+
+\	转义
+|	或者
+
+\d 	任意数字
++ 	量词、最少一个,最多不限
+----------------------------------------------------
+字符串的方法：
+	str.search()
+		类似于indexOf	规则
+	str.match(条件)	
+		把符合条件的匹配出来,返回来数组 - null
+	str.replace(正则/要替换的,替换成谁)
+	str.replace(正则/要替换的,function(s){
+		//s - 符合条件的
+		return 用谁替换符合条件的东西
+	})
+正则：
+	i 	忽略大小写
+	m 	多行匹配
+	g 	全局
+
+	\ 	转义
+	\d 	任意数字
+	^ 	行首
+	$ 	行尾
+	+ 	进行多个匹配 - 贪婪的
+	| 	或者
+
+[] 	下标、接收变量、定义数组
+	1、[abc]	/a|b|c/
+			a[ab]c	/aac|abc/
+
+	2、 [0-9]	\d [0123456789]		0到9的数字		
+		[a-z]	a-z的字母
+		[1-38]	1到3或者1-8
+
+	3、[^abc]	排除abc的
+	   [^0-9]	非数字
+	   [^a-z]	非小写字母
+
+{}	量词
+	[0-9]{2}	正好两个
+	[0-9]{2,3}	最少2个,最多3个
+	[0-9]{2,}	最少2个,最多不限
+
++ 	最少一个,最多不限 	{1,}
+* 	可以没有,有也不限制 {0,}
+? 	可有可无			{0,1}
+
+***量词只管前面的一个,如果想都起作用,加括号
+
+\d 	数字 	[0-9]
+\w 	单词 	[a-zA-Z0-9_]	字母或者数字或者下划线
+\s 	空白	
+\D 	非数字
+\W 	非字母或者数字或者下划线
+\S 	非空白
+.	任意东西
+\. 	单纯的.
+\\ 	单纯的\
+
+/\d\d+/	最少两个数字,最多不限
+/.*/	可以没有,有了爱啥啥
+
+座机号：
+	010-55667788
+	0314-5643678
+
+	第一个数字0,第二个不能是0,1到2个随意数字
+	-
+	第一个不能是0,后面6-7位随意数字
+
+	(0[1-9]\d{1,2}-)?[1-9]\d{6,7}
+
+正则只管写不要看
+
+正则的唯一方法：
+	reg.test(字符串)
+		匹配对了 - ture
+		匹配不对 - false
+
+18-100的数字
+	拆
+	18 19
+	20 - 99
+	100
+
+	1[89]|[2-9]\d|100
+
+用户名：\w
+域名:大小写字母、数字、-
+后缀：字母数字2-4位	最少一个,最多两个
+邮箱：
+	用户名6-12位, @ , 域名, .  , 后缀 , 字母数字2-4位
+	787997@qq.com.cn
+	/^\w{6,12}@[a-zA-Z0-9]+-?[a-zA-Z0-9]+(\.[a-z0-9]{2,4}){1,2}$/
+中文用户名：
+	中文2-6
+	\u4e00 	\u9fa5
+
+请实现一个trim?
+	过滤首尾空格
+	trimL
+	trimR
+var str = '20141225';	把日期调到这一天
+	substring -> 传统
+给一个div加上你见过的所有事件
+
+首字母大写：
+	var str = 'welcome to bei jing';
+	Welcome To Bei Jing
+
+过滤标签：
+	var str = '<div><h3>标题1111</h3><p>段落段落</p></div>';
+过滤span标签
+-----------------------------------------------------
+var reg = //;
+var reg = new RegExp(字符串);
+
+str.match()	str.search() str.replace()
+
+正则：reg.test()
+
+正则：
+	img
+	\d
+	\w
+	\s
+	\D
+	\W
+	\S
+	^
+	$
+	.
+	*
+	?
+	+
+	|
+	[abc]
+	[a-z]
+	{1,10}
+	{1,}
+	{10}
+----------------------------------------
+禁止输入框输入数字
+
+getByClass(obj.sClass)
+hasClass(obj,sClass)
+addClass(obj.sClass)
+removeClass(obj.sClass)
+
+2016年10月17日
+=====================================================
+cookie/模块化/ajax/jsonp
+
+百度接口：
+	https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=show
+
+搜索结果：
+	https://www.baidu.com/s?wd=%E7%88%B1%E5%A5%87%E8%89%BA
+	下键：40
+	上键：38
+-------------------------------------------------------
+什么时候要请求ajax和jsonp
+什么时候用他返回来的数据
+-------------------------------------------------------
+正则：学的非常快、忘得也非常快
+
+字符串方法：
+	str.charAt(第几个)	
+	str.indexOf('小字符串')
+	str.lastIndexOf('小字符串')
+	str.substring(开始位置,结束位置)
+	str.split('切的方式')
+	str.replace('要替换的','替换成什么')
+	str.toUpperCase()
+	str.toLowerCase()
+
+var str = 'abc12 345 89jqk wzha3';
+// [12,345,89,3]
+-----------------------------------------------------
+正则：描述了一套规则
+	正则表达式、规则表达式
+
+abc@qb.com
+@abc.com
+13717763552@163.com
+123@qq.com.cn
+abc_123@qq.com
+
+深山的妹子,文科特别好,注册邮箱,
+描述邮箱：前面必须有个名字,紧接着有一个@,后面一串英文或者数字,后面.,后面一串拼音
+dashan@meizi.com
+
+弄一个正则：new Date()	new Image()
+	var reg = new RegExp(字符串);
+		reg ->	regular 规则
+		exp ->	expression	表达式
+
+var str = 'welcome to wc';
+找一下'l'的位置
+	var reg = new RegExp('l',规则)
+
+正则另一种写法：
+	var reg = /正则表达式/;
+
+i -> ignore 		忽略大小写
+g -> gobal			全局的
+\d 	任意数字
+
+\ 转义
+
+str.match(表达式)
+	把符合表达式的内容弄成一个数组返回来
+	如果没有符合条件的,返回来一个null
+str.replace('要被换的','换成谁')
+str.replace(正则,替换)
+str.replace(正则,function(s){
+	// s->符合正则的东西
+})
+
+正则特性:
+	1、天生懒惰、笨
+	2、勤奋、贪婪 - 量词
+
+量词：
+	+ 最少是一个,最多不限
+------------------------------------------------
+敏感词过滤：
+	| 	或者
+
+
+小说缩进：
+	^ 	行首
+	$ 	行尾
+	m 	多行匹配 - 识别字符串的换行
+
+var reg = new RegExp(字符串);
+var reg = /表达式/选项;
+
+--------------------------------------------------------
+选项：
+	i 	忽略大小写
+	g 	全局的
+	m 	多行匹配
+
+\	转义
+|	或者
+
+\d 	任意数字
++ 	量词、最少一个,最多不限
+----------------------------------------------------
+字符串的方法：
+	str.search()
+		类似于indexOf	规则
+	str.match(条件)	
+		把符合条件的匹配出来,返回来数组 - null
+	str.replace(正则/要替换的,替换成谁)
+	str.replace(正则/要替换的,function(s){
+		//s - 符合条件的
+		return 用谁替换符合条件的东西
+	})
+正则：
+	i 	忽略大小写
+	m 	多行匹配
+	g 	全局
+
+	\ 	转义
+	\d 	任意数字
+	^ 	行首
+	$ 	行尾
+	+ 	进行多个匹配 - 贪婪的
+	| 	或者
+
+[] 	下标、接收变量、定义数组
+	1、[abc]	/a|b|c/
+			a[ab]c	/aac|abc/
+
+	2、 [0-9]	\d [0123456789]		0到9的数字		
+		[a-z]	a-z的字母
+		[1-38]	1到3或者1-8
+
+	3、[^abc]	排除abc的
+	   [^0-9]	非数字
+	   [^a-z]	非小写字母
+
+{}	量词
+	[0-9]{2}	正好两个
+	[0-9]{2,3}	最少2个,最多3个
+	[0-9]{2,}	最少2个,最多不限
+
++ 	最少一个,最多不限 	{1,}
+* 	可以没有,有也不限制 {0,}
+? 	可有可无			{0,1}
+
+***量词只管前面的一个,如果想都起作用,加括号
+
+\d 	数字 	[0-9]
+\w 	单词 	[a-zA-Z0-9_]	字母或者数字或者下划线
+\s 	空白	
+\D 	非数字
+\W 	非字母或者数字或者下划线
+\S 	非空白
+.	任意东西
+\. 	单纯的.
+\\ 	单纯的\
+
+/\d\d+/	最少两个数字,最多不限
+/.*/	可以没有,有了爱啥啥
+
+座机号：
+	010-55667788
+	0314-5643678
+
+	第一个数字0,第二个不能是0,1到2个随意数字
+	-
+	第一个不能是0,后面6-7位随意数字
+
+	(0[1-9]\d{1,2}-)?[1-9]\d{6,7}
+
+正则只管写不要看
+
+正则的唯一方法：
+	reg.test(字符串)
+		匹配对了 - ture
+		匹配不对 - false
+
+18-100的数字
+	拆
+	18 19
+	20 - 99
+	100
+
+	1[89]|[2-9]\d|100
+
+用户名：\w
+域名:大小写字母、数字、-
+后缀：字母数字2-4位	最少一个,最多两个
+邮箱：
+	用户名6-12位, @ , 域名, .  , 后缀 , 字母数字2-4位
+	787997@qq.com.cn
+	/^\w{6,12}@[a-zA-Z0-9]+-?[a-zA-Z0-9]+(\.[a-z0-9]{2,4}){1,2}$/
+中文用户名：
+	中文2-6
+	\u4e00 	\u9fa5
+
+请实现一个trim?
+	过滤首尾空格
+	trimL
+	trimR
+var str = '20141225';	把日期调到这一天
+	substring -> 传统
+给一个div加上你见过的所有事件
+
+首字母大写：
+	var str = 'welcome to bei jing';
+	Welcome To Bei Jing
+
+过滤标签：
+	var str = '<div><h3>标题1111</h3><p>段落段落</p></div>';
+过滤span标签
+-----------------------------------------------------
+var reg = //;
+var reg = new RegExp(字符串);
+
+str.match()	str.search() str.replace()
+
+正则：reg.test()
+
+正则：
+	img
+	\d
+	\w
+	\s
+	\D
+	\W
+	\S
+	^
+	$
+	.
+	*
+	?
+	+
+	|
+	[abc]
+	[a-z]
+	{1,10}
+	{1,}
+	{10}
+----------------------------------------
+禁止输入框输入数字
+
+getByClass(obj.sClass)
+hasClass(obj,sClass)
+addClass(obj.sClass)
+removeClass(obj.sClass)
+
+2016年10月19日
+====================================================
+jquery：
+	$(function(){})
+
+选择器:
+	$('#xxx')
+	$('.xxx')
+	$('element')
+	$('ul li')
+	$('ul>li')
+	$('div,p,h2')
+	$('li:first')
+	$('li:last')
+	$('li:eq(n)')
+	$('li:odd')
+	$('li:even')
+	$('input[type=button]')
+	$('div:contains("ppp")')
+	$('div:has("p")')
+方法：
+	.hide()	隐藏
+	.show()	显示
+	.slideDown()	向下
+	.slideUp()	向上
+	.fadeIn()	慢慢显示
+	.fadeOut()	慢慢隐藏
+	.toggle()	显示隐藏
+	.animate({name:value,name:value},时间)	动画
+		配合.stop()
+	.addClass()	添加class
+	.removeClass()	删除class
+	.hasClass()	有没有某个class
+	.toggleClass()	来回换class
+
+属性：
+	obj.attr(name,value)	设置属性
+	obj.attr({
+		name:value,
+		name:value
+		...
+	})
+	obj.attr(name)		获取属性
+文档：
+	obj.html()		获取某一个元素的内容
+	obj.html('xxx')	设置某一个元素的内容
+	obj.val()		获取一个元素的value
+	obj.val('')		设置一个元素的value
+
+DOM
+	获取子级		obj.chidlren()
+	获取父级		obj.parent()	结构
+					obj.offsetParent() 	定位
+	往某一个元素里面添加元素
+		子级.appendTo(父级)		内部的后面		
+		子级.prependTo(父级)	内部的前面
+		insertAfter()		外面的后面
+		insertBefore()		外面的前面
+	删除元素：
+		xxx.remove();
+
+事件绑定：
+	.bind(事件名,函数)
+	.unbind(事件名,函数名)
+	.unbind()	所有的事件都解绑
+
+事件委托：
+	1、给未来元素加事件
+
+.live(事件,函数)
+.die()
+
+
+.delegate()		可以指定父级
+obj.delegate(obj,事件,fn)
+.undelegate()
+
+事件对象：
+	ev
+
+return false	阻止浏览器默认事件、阻止冒泡
+ev.stopPropagation()	只阻止冒泡
+ev.preventDefault()		只阻止浏览器默认事件,不阻止冒泡
+
+onmouseover
+	onmouseenter
+onmouseout
+	onmouseleave
+
+物体信息：
+	width()		不计算盒模型的宽度
+	height()	不计算盒模型的高度
+	outerWidth()	盒模型的宽度
+	outerHeight()	盒模型的高度
+绝对的距离
+	obj.offset().left		getPos().left
+	obj.offset().top		getPos().top
+
+相对定义父级
+	position().left 		offsetLeft
+	position().top			offsetTop
+
+拖拽
+
+原生混合jquery
+
+原生 ->	jquery
+oDiv	->	$(oDiv)
+
+jquery -> 原生
+$('#div')	-> 	$('#div').get(0)
+
+循环：
+	obj.each(function(index,element){
+		//index ->	索引
+		//element -> 循环的每一个元素(原生)
+	})
+
+$.browser.msie	 IE
+$.trim(str)	去空格
+
+ajax
+
+$.ajax({
+	url:xxx,
+	data:{},
+	type:'post',
+	success:function(){},
+	error:function(){}
+})
+
+jsonp
+	https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=?
+---------------------------------------------------
+插件 - 别人
+http://www.jq22.com/
+
+
+2016年10月20日
+====================================================
+方法：
+	.hide()
+	.show()
+	.slideDown()
+	.slideUp()
+	.fadeIn()
+	.fadeOut()
+	.animate()
+	.toggle()
+	.toggleClass()
+	.addClass()
+	.removeClass()
+	.hasClass()
+	.width()
+	.height()
+	.offset().left
+	.offset().top
+	.position().left
+	.position().top
+
+.animate()
+
+插件：
+	用插件：
+	写插件：
+		只有写插件的时候的this才是jquery的元素
+
+$.fn.name = function(){}
+$.fn.extend({
+	name:function(){},
+	name:function(){}
+})
+
+.length - size()
+.find()
+---------------------------------------------------
+垃圾回收 - 变量
+	从java借鉴过来的	GC
+		Gabage Collection
+性能：内存
+	var a = 12;
+		c/java..程序员手动释放 - 忘记了
+		长期忘记释放内存 ->内存泄漏 -> 内存溢出
+	javascript
+		垃圾：自动释放
+	浏览器自动释放内存：评判标准
+		生存周期
+
+作用域：
+	全局变量：生存周期非常长的,占资源
+	局部变量：生存周期非常短暂的,函数执行的一瞬间,相对来说节省资源
+	闭包：子函数使用父函数的局部变量,如果子函数得不到释放,那么整条作用域链的局部变量都会保留
+
+	作用域链：先找自己的内部,如果没有,找爹要,如果爹也没有,找爷爷要...报错
+-------------------------------------------------------
+递归：函数自己调用自己
+	核心思想：把一个大问题,拆成一个一个的小问题,逐个解决
+
+斐波那契数列,Fibonacci数列,黄金分割数列,兔子数列
+	函数名：切记一定不要用自己的名字命名
+		1、不吉利
+		2、挨骂
+
+兔子的故事：
+	假设有一对小兔子,假设兔子不死,两个月长大了可以生兔子了,假设生一对,
+
+	1	1	(0)
+	2	1	(1)
+	3	2	1老 1小(0)
+	4 	3 	1老	2小(1)(0)
+	5 	5 	2老 3小(2*0)(1)
+	6 	8 	....
+	7	13
+	8	21
+	9	34
+	10	55
+	11	89
+	12	144
+
+	一年之后有多少对兔子	144
+	两年之后有对少兔子		46368
+	三年之后有多少兔子		14930352
+							4807526976
+
+	十年之后有多少兔子
+
+	递归计算非常快,慢在重复计算上
+	优化：把算过的存起来
+----------------------------------------------------
+性能优化：
+	1、稳定性
+	2、维护性
+	3、性能
+
+性能优化：
+	1、网络性能
+	2、执行性能
+
+网络性能：
+	netWork	网络加载痕迹
+		name	文件名
+		method	请求方式
+		status	状态码
+		type	请求资源的类型
+			text/html
+			text/css
+			image/jpeg
+			主类型/次类型
+		Initiator	发起人
+		size		资源大小
+		time		请求资源所耗的时间
+		timeline	时间线
+			stalled			卡
+			//blocking	堵塞	浏览器响应	
+			request send 	发送	带宽、资源过大
+			waiting			等待	服务器配置、后代代码、处理数据
+			content download:	服务器带宽,返回数据过大
+	audits	网络优化的建议
+	yslow	给网站评分
+
+****网络优化
+	1、http请求越少越好
+		a、js合并/css合并
+		b、css Spirit	雪碧图
+	2、http请求越小越好
+		a、压缩
+			手动压缩 - 淘汰
+			工具 - http://tool.oschina.net/
+			前端自动化工具 grunt
+	3、图片延迟加载
+	4、CDN加速 Content distribution netWork
+		内容分发网络
+			和前端没关系 - 财务
+	5、阻塞加载(同步加载)
+		非阻塞加载(异步)	
+		html
+		css
+		image
+
+		js 	
+			1、尽量用本地的js
+			2、尽量把js放在网站的底部
+
+****执行性能：编码习惯 - 好习惯
+	1、不用的东西尽量删除	onmouseup=null/jsonp
+	2、尽量不要去用全局变量
+	3、能用系统的东西，坚决不自己写
+	4、操作字符串的时候尽量用正则
+		正则不属于javascript语言
+
+
+DOM操作 - 非常昂贵的
+	能减少dom操作就减少
+
+如何测试一个程序的性能？
+	var s = new Date().getTime();
+	程序
+	console.log(new Date().getTime()-s);
+
+parseInt()
+Math.floor()
+----------------------------------------------
+
+2016年10月24日
+====================================================
+cookie/ajax/jsonp/模块化/正则/jquery/性能优化/...
+
+面向对象：你只管用就行,不用管里面怎么实现
+	用：
+	写：
+
+对象?
+	日常生活：电视、电脑....
+		万物皆对象	all is object
+	程序中：
+		Date/Array/String/Image/RegExp.....
+
+面向对象好处：
+	方便、提高生产率
+
+对象的组成部分：
+	属性(其实就是变量)：比较自由的
+	方法(其实就是函数)：有所属的
+
+*默认全局的都属于window
+
+this ->	当前操作的对象
+		这个方法属于谁
+
+js本身的bug：
+	布莱登.艾克
+		javascript
+
+	'use strict';	严格模式
+		1、变量声明必须var
+		2、with()	干掉了
+		3、for、if等语句中不能定义函数
+		4、修复了局部函数的this指向问题
+
+第一个面向对象的小程序：造人
+	属性：名字、年龄
+	方法：说话、走路、吃饭
+
+	构造函数：其实就是一个普通的函数,因用途得名
+		构造函数首字母大写
+
+设计模式23种
+	工厂模式：
+		原料->加工->出厂
+			原料 ->	对象
+			加工 -> 中间的程序
+			出厂 -> return
+	new:
+		1、帮你自动创建了一个空对象并且赋值给this
+		2、帮你自动出厂(return)
+		3、new后面跟的永远都是函数(构造函数)
+
+	几乎为空的对象	new Object();
+
+	类：
+	prototype	原型		类似于class
+		给某一类物体添加东西
+
+面向对象结构：
+	构造函数里面放属性
+	原型里面添加方法
+
+面向对象：构造函数/原型混合模式 思想
+		  constructor/prototype hybrid mode
+	function 构造函数(){
+		属性
+	}
+	构造函数.prototype.xxx = function(){
+
+	}
+
+js数据类型：
+	string 	number 	boolean  undefined   function  object  
+
+prototype原型作用：扩展系统对象
+-----------------------------------------------------
+面向对象：方便、提高生产效率
+	组成部分：
+		属性 - 变量
+		方法 - 函数
+	new:
+		1、帮你自动创建一个空对象,并且赋值给this
+		2、帮你自动return this
+		3、new后面跟的永远都是构造函数
+	this:
+		此方法属于谁
+	prototype 	原型
+		给类(构造函数)添加方法,此类对象都可以用同样的方法
+	给系统对象扩展方法：
+		arr.indexOf()
+		str.trim()
+		oDate.getCnDay()
+
+	名词：
+		类：构造函数
+		对象：new 构造函数得出来的结果
+
+面向对象特征：
+	1、封装 - 把一个事物的核心抽出来
+	2、继承 **** 
+	3、多态
+
+继承：自己可以继承父级的东西
+	  父级不可以继承子级的东西
+
+	  *父级添加了一个方法,子级也可以用,子级添加了方法,父级不可以用
+
+检测一个物体是否属于某个对象：
+	instanceof	检测对象是否属于某一类
+	arr instanceof Arrays
+
+检测一个物体到底是由谁构造出来的(找亲爹)
+	constructor	
+	obj.constructor == Object
+
+js诡异事件：
+	1、Function和Object互相属于、还自己属于自己
+	2、arr属于Object但不属于Function
+	3、基本类型不属于Object,如果想属于,得new出来
+		var a = 12;->var a = new Number(12); 包装类
+
+**this的问题：
+	优先级(不是绝对的)：
+		new - object
+		定时器 - window
+		事件 - 当前操作的元素
+		方法 - 当前的对象
+		其他 - window
+
+
+面向过程:
+面向对象：oop	
+
+写面向对象的过程：
+	1、构造函数		new出来
+	2、把函数变成方法、把变量变成属性
+		a)把属性挂到this
+		b)把函数挂到原型
+		c)调this
+	3、调用
+
+
+2016年10月25日
+=========================================================
+面向对象：
+	组成部分：
+		属性 - 变量
+		方法 - 函数
+	构造函数(类)：属性
+	原型prototype：方法
+
+	new:
+		1、自动创建一个空对象并赋值给this
+		2、自动把this  return出去
+
+	面向对象特征：
+		1、封装 - 把一个事物的核心给抽出来
+		2、继承 - 自己能够继承父级的方法,父级添加方法子级也能够使用,但是子级添加方法,父级不能使用
+		3、多态
+
+	方法：
+		obj instanceof Object	检测obj是否属于Object
+		obj.constructor == Object 检测obj是否由Object构造出来的,看Obejct是不是obj的亲爹
+
+		诡异事件：
+			Function和Object都彼此属于并且自己属于自己
+			arr属于Object但是不属于Function
+			基本类型都不属于Object	包装类 new Number(1)
+
+	this:  - 包一个function
+		new - object
+		定时器 - window
+		事件 - 当前操作的元素
+		方法 - 当前的对象
+		其他 - window
+
+	写面向对象过程：
+		1、搞一个构造函数
+		2、把变量变成属性挂到构造函数里面
+		3、把函数变成方法挂到构造函数原型
+		4、调试this
+
+	面向对象程序出错误：90% this
+
+继承:
+	属性：
+		强制改变this指向
+			call(指向谁,参数)		改变this属性的
+			apply(指向谁,['参数1','参数2'....])
+
+	方法：引用 - 对象才有引用的概念
+		1、Worker.prototype = Person.prototype
+			问题：引用 - Worker添加方法了,Person也能用
+		2、循环
+			问题：Worker不认Person
+		3、Worker.prototype = new Person();
+		   Worker.prototype.constructor = Worker;
+
+拖拽：
+	带限制范围的拖拽
+	透明的拖拽
+
+	构造函数/原型混合模式
+
+2016年10月26日
+====================================================
+面向对象：方便、重用、扩展
+	组成：
+		属性	变量
+		方法	函数
+	构造函数：函数(构造函数的名字首字母大写)
+	原型prototype - 扩展系统对象
+	new:
+		自动创建一个空对象并赋值给this
+		自动把this return出去
+
+	工厂模式：原料/Object属性、加工/方法、出厂/return
+	构造函数/原型混合模式	
+		constructor prototype hybrid mode
+
+	面向对象方法：
+		obj instanceof Object	看obj是否属于Object
+		obj.constructor == Object 看Object是不是obj爹
+	强制改变this指向：
+		obj.call(指向谁,参数)
+		obj.apply(指向谁,[参数1,参数2])
+	面向对象特性：
+		1、封装 - 把一个事物的核心抽出来
+		2、继承 - 
+			子级可以用父级的方法,但是父级不能用子级的
+		3、多态
+	写面向对象过程：
+		1、构造函数
+		2、属性/构造函数、方法/原型prototype
+		3、改this、调this
+
+	继承：
+		属性：
+			直接调用构造函数,并且强制改变一下this的指向
+		方法：
+			1、obj.prototype = obj1.prototype
+				问题:引用(子级发生改变,父级也跟着改)
+			2、循环
+				问题:instanceof	
+			3、obj.prototype = new Obj2()
+			   obj.prototype.constructor = obj;
+				问题:constructor
+---------------------------------------------------
+MVC	思想
+	三层模式、三层架构、三层模型
+	model		模型		数据
+	view 		视图		视图、展示
+	controller	控制器		把数据m给视图v
+
+	低耦合、高内聚  
+
+分离：代码分离、职责分开、工作效率非常高、省钱
+-------------------------------------------------
+MVP(presenter) MVVM
+
+MVC  angular.js 	vue.js
+
+点击按钮弹一个问候语
+	小例子不适用MVC
+
+ajax
+jsonp
+百度
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=1&cb=show
+360
+https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word,obdata&word=a
+
+MVC
+
+wap web	数据
+-------------------------------------------------------
+angular.js
+	MVVM
+	官网：https://angularjs.org/
+	维护者：谷歌
+
+	angular致力于解决ajax交互所带来的困扰
+		数据解析、DOM操作
+
+	1.2.x	之前的版本
+	1.3.x 	之后的版本
+	2.x.x	全新的库
+
+https://docs.angularjs.org/api
+
+基本功能：
+	angular.bind(指向谁,函数,参数,参数)	改变this指向
+	angular.bootstrap()			手动开启angular模式
+	angular.copy(被复制的，复制给谁)		复制对象
+	angular.element()	angular里面的dom元素操作
+	angular.equals(obj1,obj2)	比较
+	angular.forEach(values,function(value,key){})	循环
+
+命名空间：
+	ng-xxx
+input	天生放数据的
+
+指令：directive		 html的扩展
+	ng-app	开启angular应用模式
+		注意：一个页面只能有一个
+		建议：放在html上
+	ng-model	数据来源 大多数应用于input
+	ng-init		展示原始数据
+	ng-bind		给标签绑定数据
+	ng-hide="true/false"	隐藏
+	ng-show="true/false"	显示
+	ng-repeat=""	循环
+
+	复选框控制div显示隐藏
+		ng-click	点击
+
+	ng-controller		控制器
+		$scope - 全局的对象
+	1.3.0之后：
+	模块化开发：
+
+多个控制器之间:
+	1、可以继承：子级可以用父级的东西
+	2、父级用不了子级的
+		数据传递 - 
+			子级传递：$scope.$emit('name',value)
+			父级接收：$scope.$on('name',function(event,value){
+				//event:对象
+				//value:接收的数据
+			})
+	3、兄弟级用不了
+		父级广播：$scope.$broadcast('name',value)
+
+angular特性：
+	1、双向绑定
+	2、依赖注入
+
+angular - 数据为主
+	面向过程
+	面向对象
+	面向数据
+
+2016年10月27日
+================================================
+angular.js
+基础方法：
+	angular.bind(指向谁,函数,参数)
+	angular.copy(被复制的,复制给谁)
+	angular.element()		操作DOM元素
+	angular.equals(obj1,obj2) 	比较
+	angular.forEach(values,function(value,key){
+		//value -> 每一项数据
+		//key 	-> 索引
+	})
+
+指令：directive
+	ng-bind="name"		给标签绑定数据
+	ng-model="name" 	数据来源-表单
+	ng-init="arr=[]"	显示原始数据
+	ng-click=""			事件
+	ng-hide/ng-show 	隐藏显示
+	ng-repeat="value in arr"
+		//value 每一项
+	ng-repeat="(key,value) in arr"
+		//key 	索引
+		//value 每一项
+	ng-controller 	控制器
+
+创建一个模块
+	var app = angular.module(模块名字,[]);
+		把模块注入到ng-app 	ng-app="app"
+创建控制器
+	app.controller(控制器名字,function($scope){
+		$scope
+	})	
+多个控制器之间：
+	1、子级可以使用父级的东西
+	2、父级不能使用子级的东西
+		解决办法：传递数据
+		子级把数据传递出去：
+			$scope.$emit(名字,数据)
+		父级接收一下数据：
+			$scope.$on(名字,function(event,value){
+				//event 对象
+				//value 传递过来的数据
+			})
+    3、兄弟之间不能相互用数据：
+    	通过父级把数据广播出去:
+    		$scope.$broadcast(名字,数据)
+    	兄弟级要做一下接收：
+    		$scope.$on(名字,function(event,value){
+				//event 对象
+				//value 传递过来的数据
+			})
+-----------------------------------------------------
+脏检查：强制改变视图
+	数据变了,但是视图没有更新
+	$scope.$apply(function(){
+		代码
+	})
+
+服务	service
+	$scope
+	$timeout
+
+简易留言板：
+
+过滤器：filter
+	currency:'￥'		货币  默认$
+	date:'yyyy-MM-dd hh-mm-ss EEEE' 	时间
+	filter	过滤
+	limitTo	范围	默认0个
+	lowercase	小写
+	uppercase 	大写
+	number 	千分位
+	orderBy  排序
+
+自定义过滤器：
+	app.filter(过滤器名字,function(){
+		return function(s,a){
+			//s->原始数据
+			//a->配置参数
+			return 操作过的原始数据
+		}
+	})
+	首字母大写
+	中文星期	getCnDay
+
+自定义指令：directive
+	简写
+	app.directive(指令名字,function(){
+		return function(scope,element,attr){
+			//scope - 数据
+			//element - 元素
+			//attr - 属性
+		}
+	})
+
+	标准写法：
+	app.directive(指令名字,function(){
+		return {
+			link : function(scope,element,attr){
+				//scope - 数据
+				//element - 元素
+				//attr - 属性
+			},
+			restrict:'ECMA',
+			template : '<div ng-transclude></div><h3>标题333</h3>',
+			templateUrl : '模板地址',
+			replace : true,
+			transclude : true 	是否包裹以前代码
+		}
+	})
+
+	E 	element 	
+	C 	css  	
+	M 	comment 	注释 - 配合replace
+	A 	Attribute 	属性 	默认
+
+指令：html扩展
+	html规定了哪些东西:标签、属性
+------------------------------------------------
+angular深入：
+	定义控制器：
+		普通创建：
+			app.controller('名字',['$scope',function(a){
+
+			}])
+		模块配置函数创建：
+			var app = angular.module('app',[],function($controllerProvider){
+				$controllerProvider.register('name',['$scope',function(a){
+					a.a = 12
+				}])
+			})
+	定义过滤器：
+		普通定义：
+			app.filter('name',function(){
+				return fucntion(s){
+					return 操作过的s
+				}
+			})
+		模块配置函数里面创建：
+	定义指令：
+		普通定义：
+			app.directive('指令',function(){
+				return function(scope,element,attr){
+
+				}
+			})
+		配置函数：
+
+
+
+创建控制器：
+	普通创建：
+		app.controller(name,function(){})
+	模块配置函数创建：
+		$controllerProvider
+		$controllerProvider.register
+创建过滤器：
+	普通创建：
+		app.filter(name,function(){
+			return funtion(s){
+				return 操作过的s
+			}
+		})
+	模块的配置函数创建：
+		$filterProvider.register('名字',function(){
+			return function(s){
+				return 操作过的s
+			}
+		})
+创建指令：
+	普通创建：
+	app.directive('指令名字',function(){
+		return function(scope,element,attr){
+
+		}
+	})
+	配置函数里面创建：
+		$compileProvider
+		$compileProvider.directive('指令名',function(){
+			return function(scope,element,attr){
+				
+			}
+		})
+
+
+配置函数里面注入的是 provider
+控制器里面注入的是	service
+2016年10月28日
+======================================================
+angular
+	自定义过滤器
+		app.filter(name,function(){
+			return function(s){
+				return 操作过的s
+			}
+		})
+	自定义指令
+		app.directive(name,function(){
+			return {
+				link : function(scope,element,attr){},
+				restrict : 'ECMA',
+				replace : 是否替换,
+				template : <div ng-transclude></div>模板,
+				templateUrl : 模板地址,
+				transclude : ture 	是否包裹以前的
+			}
+		})
+
+		模板：
+			<script type="text/ng-template" id="路径名字"></script>
+
+		E - element
+		C - css
+		M - comment			必须配合replace
+		A - Attribute
+
+创建控制器：
+	普通创建：
+		app.controller(name,function(服务){
+
+		})
+	模块配置函数里面创建：
+		var app = angular.module('app',[],function($controllerProvider){
+			$controllerProvider.register(name,function(服务){
+
+			})
+		})
+
+创建过滤器：
+	普通创建：
+		app.filter(name,function(){
+			return function(s){
+
+			}
+		})
+	模块配置函数里面创建：
+		var app = angular.module('app',[],function($filterProvider){
+			$filterProvider.register(name,function(){
+				return function(s){
+
+				}
+			})
+		})
+
+创建指令：
+	普通创建：
+		app.directive(naMe,function(){
+			return function(scope,element,attr){
+
+			}
+		})
+
+	配置函数创建：
+		var app = angular.module('app',[],function($compileProvider){
+			$compileProvider.directive(name,function(){
+				return function(scope,element,attr){
+
+				}
+			})
+		})
+
+*配置函数里面注入的是Provider
+*控制器里面注入的是service
+
+自定义服务：
+	模块配置函数定义：
+		var app = angualr.module('app',[],function($provide){
+			//工厂模式
+			$provide.factory(name,function(){
+				return obj;
+			})
+
+			//构造模式
+			$provide.service(name,function(){
+				this.a = 1;
+				this.b = 2;
+			})
+
+			//观察者模式
+			$provide.provider(name,function(){
+				this.$get = function(){
+					return {}
+				}
+			})
+		})
+	普通定义：
+		app.factory(name,function(){
+			return 
+		})
+		app.service(name,function(){
+			this.a = 1;
+			this.b = 2;
+		})
+		app.provider(name,function(){
+			this.$get = function(){
+				return {};
+			}
+		})
+
+创建服务：
+	constant(name,obj)
+		常量 - 不会变
+		可以注入到任何地方
+	value(name,obj)
+		只可以注入到控制器
+
+运行配置代码：
+	app.config() - 先
+	app.run() - 可以注入value
+	在控制器之前执行代码
+-------------------------------------------------
+交互：
+	服务：$http
+		$http.get(url).success(function(s){
+
+		})
+
+		$http.get(url,{params:{
+			name : value,
+			name : value
+		}}).success(function(s){
+			
+		})
+
+	后台数据格式必须标准化
+
+	class ->	ng-class={class1:true,class2:false}
+
+微博留言：
+
+
+jsonp:
+
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=show
+
+show -> JSON_CALLBACK
+
+监听数据是否变化了
+	$scope.$watch(哪个数据,fnCb)	监听普通类型
+	$scope.$watch(哪个数据,fnCb,true)	深度监听
+
+zq - 
+算法：
+高级运动：
+node和php
+2016年11月1日
+=======================================================
+angularjs
+	指令 - directive：扩展html语法
+		ng-app 	开启angular引用
+		ng-model	表单的数据
+		ng-bind 	给非表单标签绑定数据
+		ng-init 	原始数据
+		ng-hide/ng-show 	隐藏/显示
+		ng-click/change..  事件
+		ng-repeat="item in obj" 	循环
+			{{item}} - 数据
+			{{$index}} - 索引
+			{{$first}} - 第一个
+			{{$last}} - 最后一个
+			{{$odd}} - 奇数
+			{{$even}} - 偶数
+
+	控制器 - controller：
+		app.controller(name,function(服务){})
+		压缩：app.controller(name,['服务',function(x){}])
+		多个控制器之间：	
+			1、子级可以用父级的数据
+			2、父级不能用子级的数据：
+				处理：数据传递
+				子级把数据传递出去：
+					$scope.$emit(name,数据)
+				父级要接收数据：
+					$scope.$on(name,function(event,value){
+						// value数据
+					})
+			3、兄弟级也不能互相用数据
+				通过父级把数据广播出去：
+					$scope.$broadcast(name,数据)
+				兄弟级做接收：
+					$scope.$on(name,function(event,value){
+						// value数据
+					})
+		脏检查：
+			$scope.$apply(function(){
+				代码
+			})
+
+	过滤器：
+		currency:''		货币 - 默认$
+		date:'yyyy-MM-dd hh-mm-ss'			时间 - 默认 03 月份 年
+		limitTo		限制范围 	默认0
+		lowercase 	小写
+		uppercase 	大写
+		number 		千分位
+		orderBy		排序
+
+自定义过滤器：
+	app.filter(name,function(){
+		return function(s,n){
+			//s 数据
+			//n 参数
+		}
+	})
+
+自定义指令：
+	app.directive(name,function(){
+		return {
+			link : function(scope,element,attr){
+				//scope - 数据
+				//element - 元素
+				//attr - 属性
+			},
+			restrict:'ECMA',
+			template:模板,	<div ng-transclude>xx</div>
+			templateUrl:模板地址,
+			replace:是否替换,
+			transclude:是否包含以前模板
+		}
+	})
+	E - element
+	C - css
+	M - comment			replace
+	A - attribute
+	<script type="text/ng-template" id="name"></script>
+
+自定义服务：
+	工厂模式：
+		app.factory(name,function(){
+			return obj;
+		})
+	构造函数模式
+		app.service(name,function(){
+			this.xxx = xxx;
+		})
+	观察者模式
+		app.provider(name,function(){
+			this.$get = function(){
+				return obj;
+			}
+		})
+
+在模块的构造函数里面自定义：
+	var app = angular.module('app',[],function(
+		$controllerProvider,
+		$filterProvider,
+		$compileProvider,
+		$provide
+	){
+		//控制器
+		$controllerProvider.register(name,function(){})
+		//过滤器
+		$filterProvider.register(name,function(){
+			return function(s,n){
+
+			}
+		})
+		//指令
+		$compileProvider.directive(name,function(){})
+		//服务
+		$provide.factroy......
+	})
+
+控制里面注入的是  service
+配置函数注入的是  provider
+
+app.value(name,value)
+app.constant(name,value)	常量
+
+在控制器之前运行代码
+app.config()	优先
+app.run()
+
+交互
+	ajax：
+	$http.get(url,{params:{}}).success().error()
+	$http.jsonp(url).success()
+		回调函数 ->  JSON_CALLBACK
+
+监听：
+	$scope.$watch(监听的数据,fnCb,true)	深度监听
+-----------------------------------------------------
+SPA: 	single  page  application
+	单页面应用
+
+	ng-include="'name'"
+	ng-include src="'name'"
+
+路由：
+	告诉你该去哪儿,angular本身不具备路由的功能
+
+	步骤：
+		1、引入的路由的js文件
+		2、在模块里面注入依赖模块：ngRoute
+		3、配合指令 ng-view
+		4、配置路由：
+			app.config(function($routeProvider){
+				$routeProvider.when('/index',{
+					template:模板,
+					templateUrl:模板地址
+				}).when('/list',{
+					template:模板,
+					templateUrl:模板地址
+				}).otherwise({
+					redirectTo:'/index'
+				})
+			})
+主课完事儿了
+-------------------------------------------------
+面向对象：写、用
+	属性：变量
+	方法：函数
+
+编写面向对象模式：
+	1、工厂模式
+		a、不能new
+		b、每个对象都有自己单独的方法,不能公用
+	2、构造函数/原型混合模式	√
+		new:
+			1/帮创建了一个空对象并且赋值给this
+			2/自定返回this
+		prototype	原型：
+			挂方法
+		prototype = {..}
+			覆盖了constructor
+			原型链：
+
+		建议：一条条分开加
+
+		方法：
+			instanceof	查看父级以及父级的父级
+			constructor	查看直属父级
+	3、单体模式/单例模式	json
+
+面向对象特征：
+	封装：抽
+	继承：子类用父类的一切东西
+	多态：一个东西可以继承多个东西
+
+类:构造函数 - 没有具体的功能			模子
+对象(实例化) - 有具体的功能
+
+继承：
+	属性：
+		构造函数.call(this,xx)
+		构造函数.apply(this,arguments)
+	方法：
+		子类.prototype = new 父类;
+		子类.prototype.constructor = 子类
+-------------------------------------------------
+变量名冲突：
+	1、封闭空间：(funciton(){})();
+		自执行匿名函数、闭包
+		(function(){}())
+		~function(){}()
+	2、面向对象
+	3、命名空间	json
+		进行整体的规划	缺点：名字太长
+	4、模块化
+-----------------------------------------------------
+jquery：用   写?
+	选择器：
+		$('#div')
+		$('.div')
+		$('div')
+		$('div.red')
+		$('div:first')
+		$('input[type=button]')
+
+	sizzle - 选择器引擎库
+		
+2016年11月1日
+=======================================================
+angularjs
+	指令 - directive：扩展html语法
+		ng-app 	开启angular引用
+		ng-model	表单的数据
+		ng-bind 	给非表单标签绑定数据
+		ng-init 	原始数据
+		ng-hide/ng-show 	隐藏/显示
+		ng-click/change..  事件
+		ng-repeat="item in obj" 	循环
+			{{item}} - 数据
+			{{$index}} - 索引
+			{{$first}} - 第一个
+			{{$last}} - 最后一个
+			{{$odd}} - 奇数
+			{{$even}} - 偶数
+
+	控制器 - controller：
+		app.controller(name,function(服务){})
+		压缩：app.controller(name,['服务',function(x){}])
+		多个控制器之间：	
+			1、子级可以用父级的数据
+			2、父级不能用子级的数据：
+				处理：数据传递
+				子级把数据传递出去：
+					$scope.$emit(name,数据)
+				父级要接收数据：
+					$scope.$on(name,function(event,value){
+						// value数据
+					})
+			3、兄弟级也不能互相用数据
+				通过父级把数据广播出去：
+					$scope.$broadcast(name,数据)
+				兄弟级做接收：
+					$scope.$on(name,function(event,value){
+						// value数据
+					})
+		脏检查：
+			$scope.$apply(function(){
+				代码
+			})
+
+	过滤器：
+		currency:''		货币 - 默认$
+		date:'yyyy-MM-dd hh-mm-ss'			时间 - 默认 03 月份 年
+		limitTo		限制范围 	默认0
+		lowercase 	小写
+		uppercase 	大写
+		number 		千分位
+		orderBy		排序
+
+自定义过滤器：
+	app.filter(name,function(){
+		return function(s,n){
+			//s 数据
+			//n 参数
+		}
+	})
+
+自定义指令：
+	app.directive(name,function(){
+		return {
+			link : function(scope,element,attr){
+				//scope - 数据
+				//element - 元素
+				//attr - 属性
+			},
+			restrict:'ECMA',
+			template:模板,	<div ng-transclude>xx</div>
+			templateUrl:模板地址,
+			replace:是否替换,
+			transclude:是否包含以前模板
+		}
+	})
+	E - element
+	C - css
+	M - comment			replace
+	A - attribute
+	<script type="text/ng-template" id="name"></script>
+
+自定义服务：
+	工厂模式：
+		app.factory(name,function(){
+			return obj;
+		})
+	构造函数模式
+		app.service(name,function(){
+			this.xxx = xxx;
+		})
+	观察者模式
+		app.provider(name,function(){
+			this.$get = function(){
+				return obj;
+			}
+		})
+
+在模块的构造函数里面自定义：
+	var app = angular.module('app',[],function(
+		$controllerProvider,
+		$filterProvider,
+		$compileProvider,
+		$provide
+	){
+		//控制器
+		$controllerProvider.register(name,function(){})
+		//过滤器
+		$filterProvider.register(name,function(){
+			return function(s,n){
+
+			}
+		})
+		//指令
+		$compileProvider.directive(name,function(){})
+		//服务
+		$provide.factroy......
+	})
+
+控制里面注入的是  service
+配置函数注入的是  provider
+
+app.value(name,value)
+app.constant(name,value)	常量
+
+在控制器之前运行代码
+app.config()	优先
+app.run()
+
+交互
+	ajax：
+	$http.get(url,{params:{}}).success().error()
+	$http.jsonp(url).success()
+		回调函数 ->  JSON_CALLBACK
+
+监听：
+	$scope.$watch(监听的数据,fnCb,true)	深度监听
+-----------------------------------------------------
+SPA: 	single  page  application
+	单页面应用
+
+	ng-include="'name'"
+	ng-include src="'name'"
+
+路由：
+	告诉你该去哪儿,angular本身不具备路由的功能
+
+	步骤：
+		1、引入的路由的js文件
+		2、在模块里面注入依赖模块：ngRoute
+		3、配合指令 ng-view
+		4、配置路由：
+			app.config(function($routeProvider){
+				$routeProvider.when('/index',{
+					template:模板,
+					templateUrl:模板地址
+				}).when('/list',{
+					template:模板,
+					templateUrl:模板地址
+				}).otherwise({
+					redirectTo:'/index'
+				})
+			})
+主课完事儿了
+-------------------------------------------------
+面向对象：写、用
+	属性：变量
+	方法：函数
+
+编写面向对象模式：
+	1、工厂模式
+		a、不能new
+		b、每个对象都有自己单独的方法,不能公用
+	2、构造函数/原型混合模式	√
+		new:
+			1/帮创建了一个空对象并且赋值给this
+			2/自定返回this
+		prototype	原型：
+			挂方法
+		prototype = {..}
+			覆盖了constructor
+			原型链：
+
+		建议：一条条分开加
+
+		方法：
+			instanceof	查看父级以及父级的父级
+			constructor	查看直属父级
+	3、单体模式/单例模式	json
+
+面向对象特征：
+	封装：抽
+	继承：子类用父类的一切东西
+	多态：一个东西可以继承多个东西
+
+类:构造函数 - 没有具体的功能			模子
+对象(实例化) - 有具体的功能
+
+继承：
+	属性：
+		构造函数.call(this,xx)
+		构造函数.apply(this,arguments)
+	方法：
+		子类.prototype = new 父类;
+		子类.prototype.constructor = 子类
+-------------------------------------------------
+变量名冲突：
+	1、封闭空间：(funciton(){})();
+		自执行匿名函数、闭包
+		(function(){}())
+		~function(){}()
+	2、面向对象
+	3、命名空间	json
+		进行整体的规划	缺点：名字太长
+	4、模块化
+-----------------------------------------------------
+jquery：用   写?
+	选择器：
+		$('#div')
+		$('.div')
+		$('div')
+		$('div.red')
+		$('div:first')
+		$('input[type=button]')
+
+	sizzle - 选择器引擎库
+		
+
+2016年11月2日
+=======================================================
+写：
+css:
+attr:
+
+事件从哪儿来：
+	oEvent.fromElement
+		谷歌、IE 		火狐undefined
+	oEvent.relatedTarget	
+		谷歌、火狐 		IE undefined
+
+hover(function(){},function(){})
+
+obj.contains(元素)
+
+
+window.onload - domReady
+选择器 - getEle
+css - getStyle
+attr
+事件 - addEvent
+
+DOM操作：
+	创建	$('<li></li>')
+	appendTo()		内部的后面
+	prepend()		内部的前面
+	insertBefore()	外部的前面
+	insertAfter()	外部的后面
+	remove()		删除
+
+	insertAdjacentHTML
+	obj.insertAdjacentHTML(方法,'html模板')
+		beforeEnd - appendTo
+		beforeBegin - insertBefore
+		afterBegin - prepend
+		afterEnd - insertAfter
+
+
+2016年11月4日
+======================================================
+算法：解决问题步骤、思路
+
+
+数组：有序的
+在数组里面查找某个数
+线性查找：
+二分查找：
+	1、先找中间的位置
+	2、判断中间数和n的大小
+	3、如果小于n,往右找,反之,往左找
+	4、开始位置等于结束位置了,判断是否等于n
+
+		线性查找 		二分查找
+1000 	  500 				10
+
+二分法：万能的算法
+	一分为二
+
+找最小值:
+	1、默认iMin
+	2、Math.min.apply(null,arr)
+	3、先排序,在去第0个 - 自己知道就行了
+	4、二分法
+去重：
+	1、json去重
+	2、sort排序,当前的和下一个比较
+	3、findInArray
+	4、二分法去重
+
+var arr = [59,71,20,100,54,12,40,202,78,91,178,478]
+数组排序 - 从小到大
+	1、冒泡排序
+		比较相邻的两个值,如果后面的比前面的小,就换位置
+	2、选择排序(插入排序)
+		每次找最小值,扔到数组的最前面,和当前的换位置
+	3、归并排序 - 二分
+		左边的排好,右边的排好,每次拿两个数组的第一个去比较
+	4、快排 - 快速排序
+		找中间的那个数,扔到数组，左右抓,小的放左边,大的放右边
+
+数据结构：
+	增
+	删
+	改
+	查
+
+没有完美的算法,只有合适的算法
+数据结构出来了，算法才能跟着出来
+
+衡量算法的好坏：
+	时间角度	短
+	空间角度 	小
+
+常用数据结构：数组
+
+操作：			 添加 		查找 	综合
+	有序数组	  慢 		 快      不好 
+	无序数组	  快         慢      好
+
+------------------------------------------------------
+2016年11月7日
+===========================================================
+运动？？？
+	分布运动
+	分块
+滚轮？？
+瀑布流。。。
+DOM。。。。
+	事件对象
+	委托
+兼容。。。
+插件。。。
+	
+高级运动：
+	move
+
+运动需要准备的东西：
+	count - 总次数
+	start - 开始位置
+	dis - 	运动总距离
+		运动终点 - 起点
+	duration - 总时间
+	运动的次数：Math.floor(总时间/30)
+	每次走的距离:dis/运动的次数
+	**当前物体到哪儿	当前的次数*每次走的距离
+	每次运动的时间(定时器执行的间隔时间) 30
+
+运动形式：
+	linear	easy-in easy-out - 数字的运动通过excel折线图
+	domove	Tween
+
+高级运动：运动形式	
+运动：定时器
+	弹性运动	
+		iSpeed -> 	速度
+		摩擦力：运动停止的条件
+
+		公式：/5
+			  *0.7
+
+	碰撞运动
+
+*所有的运动效果：调出来
+---------------------------------------------------
+碰撞运动：
+	漂浮 -> 重力
+500
+
+100%500=100-500=-400%500=		-400
+200%500=200-500=-300%500=		-300
+300%500=300-500=-200%500=		-200
+400%500=400-500=-100%500=		-100
+500%500=  0-500=-500%500=		   0
+600%500=100-500=-400%500=		-400
+
+(x%500-500)%500
+
+

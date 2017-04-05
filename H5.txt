@@ -1,0 +1,3504 @@
+H5 基础--------------------------------------------------------------
+	----------------------------day1---------------------------------
+	H5文档：默认严格
+		<!doctype html>
+
+	H4文档头：
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+		Transitional 过渡型
+
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+		strict 严格型 
+
+	以后不用兼容IE8 
+	-----------------------------------------------------------------
+	H5技术 chrome firefox
+
+		语义化 标签都有各自的含义
+			1. 专业
+			2. 省钱 使网站搜索排名靠前
+			优化网页的SEO（搜索引擎）
+	^-^标签：
+		1).<header>网站头部</header>         头部标签
+			<h1>LOGO</h1>
+		2).<section>网站主体</section>       模块 比div结构型大
+		3).<footer>网站尾部</footer>         尾部标签
+			<footer>
+				<menu>菜单</menu>
+			</footer>
+		4).<nav>导航</nav>                   (不可重复用)
+			<nav>
+	        	<ul>
+	            	<li><a href="#">内容</a></li>
+	                <li><a href="#">内容</a></li>
+	                <li><a href="#">内容</a></li>
+	                <li><a href="#">内容</a></li>
+	            </ul>
+	        </nav>	        
+	        <nav>
+	        	<a href="#">内容</a>
+	            <a href="#">内容</a>
+	            <a href="#">内容</a>
+	            <a href="#">内容</a>
+	            <a href="#">内容</a>
+	        </nav>
+		5).<artical>文章</artical>
+		6).<aside>侧边栏</aside>
+		7).<menu>菜单</menu>
+	^-^功能性标签:(面试)
+		1).<hgroup></hgroup>标题组合
+			<hgroup>
+	        	<h2>大标题</h2>
+	    		<h3>文章标题</h3>
+	    		<h3>文章标题</h3>
+        	</hgroup>
+        2).<figure></figure>资源组合
+        	语义化：
+		        <figure>
+			        <img src="img/1.jpg" 
+			        	title="文字描述" alt="资源描述" />
+			        <figcaption>资源描述</figcaption>
+			    </figure>
+
+	    3).时间标签:
+	    	<time>2016-11-8</time>
+	    4).联想显示列表：(下拉列表)
+	    	<input type="text" list="idName"/>
+	    	<datalist id='idName'>
+	    		<option>111</option>
+	    		<option>222</option>
+	        </datalist>
+	    5).收缩菜单：(类似收缩隐藏)
+	    	<details>
+	    		<summary>标题</summary>
+	    		<p>内容</p>
+	    	</details>
+	    6).对话框：
+	    	<dialog open style="">open:显示对话框;</dialog>
+	    7).地址：
+    		<address>北京昌平区平西王府宏福大厦3层</address>
+    		字体倾斜
+    	8).标记:高亮显示
+    		<mark>文字高亮</mark> strong em
+    		黄底黑字
+    	9).动态加载过程：
+    		<progress></progress>
+			    进度条1：不能修改样式(出了宽高)
+			    <progress max="100" value="50" ></progress>
+				进度条2：不支持背景色修改
+			    <meter max="100" value="90" style="width:300px; height:50px;"></meter>
+			    	max="100"  最大显示值
+			    	value="50" 当前所占值
+	----------------------------------------------------------------
+	^-^视频标签：
+   		<video src="" controls autoplay loop></video>
+	   		src="mp4/1.mp4" 资源路径
+
+			controls 显示控制器
+
+			autoplay 自动播放
+
+			loop  循环播放
+   	^-^音频标签：
+   		<audio src="" controls autoplay loop></audio>
+   	-----------------------------------------------------------------
+	△用js实现兼容样式：兼容IE6/7/8 
+		<script src="js/html5shiv.min.js"></script>
+	----------------------------------------------------------------
+	字体样式：
+		font-face  css样式：字体图标 
+
+	字体图标：
+		http://www.iconfont.cn/plus
+	----------------------------------------------------------------
+	^-^表单：
+		H4标准之内：
+			<input type="button" />
+		    <input type="radio" />
+		    <input type="checkbox" />
+		    <input type="text" />
+		    <input type="submit" />
+		    <input type="password" />
+		    <input type="reset" /> 重置
+		    <input type="image" /> 图片按钮
+		H5表单属性：移动端 功能：
+			1).数字输入框：
+				<input type="number" min="0" max="0" step="2"/>step="2" 增减基数
+		    2).颜色选择器：
+		    	<input type="color" />
+		    3).日期选择器：
+				<input type="date" />
+		    4).日期输入框：
+				<input type="datetime" />
+		    5).email输入框：
+				<input type="email" />
+		    6).选择周时间选择器：
+				<input type="week" />
+		    7).选择月时间选择器：
+				<input type="month" />
+		    8).拖拽条：
+				<input type="range" value="1" max="100" />
+		    9).搜索框：
+				<input type="search" />
+		    10).拨号键盘：
+				<input type="tel" />
+			input样式：input:focus{}焦点样式
+	   				   input:disabled{background:red;} (不能用时的样式);
+	   				   <input type="button" disabled value="按钮" />
+	   		11).网址输入框：
+	   			<input type="url" />
+	================================================================
+	^-^js选择器：
+		ID选择器：
+			document.getElementById('id');
+		class选择器(高级)
+			document.getElementsByClassName('class');
+		tagName选择器
+			document.getElementsByTagName('tagName');
+		name选择器 只能获取表单元素
+			document.getElementsByName('name');
+
+		子级选择器：一组
+			obj.children;
+
+		父级选择器：一个
+			obj.parentNode;
+	^-^H5选择器：可以直接使用css选择器
+
+		选择一个对象：
+		var oDiv=document.querySelector(css选择器);
+
+		选择一组对象：
+		var aDiv=document.querySelectorAll('.box');
+
+		标签 p
+		class .one
+		id    #two
+		嵌套  div p
+		群组  div,p
+		筛选  div.box
+		直接子级选择器 div>p
+		通配符 *
+		毗邻元素选择器 p + p{ color:#f00;}匹配所有紧随E元素之后的同级元素	
+	-------------------------------------------------------------
+	^-^自定义属性：
+		H5 严谨定义自定义属性的方法:加前缀data-
+		data-index
+
+			//设置属性：obj.setAttribute('data-abc','123');
+			//获取属性：obj.getAttribute('data-abc');
+			//删除属性：this.removeAttribute('data-abc')
+		js独有的设置方案：
+			//设置自定义属性
+			oDiv.dataset.abc='666';
+
+			//获取自定义属性
+			alert(oDiv.dataset.abc);
+
+			//删除自定义属性
+			delete oDiv.dataset.abc;
+	-----------------------------------------------------------
+	^-^操作class
+		//添加class
+		this.classList.add('show','hhh'); 不影响之前的class
+
+		//删除class
+		this.classList.remove('a');
+		this.classList.remove('a','b');
+		this.removeAttribute('class')删除整个class;
+
+		//切换class
+		this.classList.toggle('show');
+
+		//是否包含class boolean 
+		this.classList.contains('box2');  true/false
+	-----------------------------------------------------------
+	本地存储：
+		浏览器保存数据的仓库
+
+		cookie 兼容 容量小4K 有过期时间 随服务器发送
+
+		localstorage 兼容一般 容量5M 没有过期时间 不随着服务器发送
+		保存文本框数据
+		  1).
+			//设置本地存储
+				localStorage.a=12;
+
+			//获取
+				localStorage.a
+
+			//删除
+				delete localStorage.a
+
+			//清空本地存储
+				localStorage.clear();
+ 		  2).高大上的用法
+			//设置
+			  localStorage.setItem('a',5);
+			//获取
+		      localStorage.getItem('a');
+		    //删除
+		      localStorage.removeItem('a');
+	--------------------------------------------------------------
+	CSS3.0:	
+	*-*选择器：详见a-css选择器汇总.txt
+		1).属性选择器：      
+		    1).li[index] 有index属性的标签
+		    2).li[index~=a] 包含(index属性的值其中一个是a的标签)
+		    3).li[index^=a] index值的首字母是a的标签首字母
+		    4).li[index$=a] 尾字母
+		    5).li[index|=a] 以a-开头的元素
+		    6).li[index=a] index值必须是a的标签
+		    7).li[index*=a] 包含字母a  只要字符中含有a的标签
+		2).伪类选择器：
+			1. obj:nth-child(1){} 根据下标获取元素
+			2. obj:nth-child(odd){} 奇数个
+			3. obj:nth-child(even){} 偶数个
+			4. obj:nth-child(n){} n的倍数
+			5. obj:nth-child(2n){} 2的倍数
+			6. obj:nth-child(2n-1){} 奇数的倍数
+			7. obj:nth-last-child(1){} 从后往前数
+
+			p:first-child 第一个元素
+			p:last-child 最后一个元素
+
+			p:first-line{ color:red;} 第一行字
+			p:first-letter{ font-size:50px;} 第一个字
+			p::selection{ background:red; color:#ff0;}
+			选中文字的样式 红底黄字；
+			p:empty{};空 把没有内容的p干。。。。
+			p:nth-of-type(n);第n个标签
+	*-*css3样式：
+		1). 圆角： 斜杠前后是XY轴四个方向的值
+			border-radius:10px;
+			border-radius:20px 0;左上 右下
+			border-radius:20px 0 20px;
+			border-radius:20px 0    20px   0;
+			              左上 右上 右下   左下
+			border-radius:20px 0 20px 0/10px 20px 30px 40px;
+			              左上 右上 右下 左下 (X轴半径)/左上 右上 右下 左下 (Y轴半径)
+
+	-------------------------------------------------------------------
+	--------------------------------day2-------------------------------
+
+		2).块阴影:box-shadow:;
+			box-shadow:20px 10px 10px 10px red inset; (6个值)
+				X轴偏移量 Y轴偏移量 模糊值 阴影扩大值 阴影颜色 内阴影;
+			一般写box-shadow:20px      10px      10px   red; (4个值)
+							 X轴偏移量 Y轴偏移量 模糊值 阴影颜色
+			能加多个阴影，一起写
+			box-shadow: , , , ;
+		3).过渡：transition:;
+			transition:1s;    过渡时间为1s即延迟时间;默认ease all 最少写一个值1s
+			transition:1s linear;匀速
+			transition:all 1s ease;  所有样式 1秒 缓冲运动 ;
+			默认all，想让哪个变就写哪个：transition:transform 1s ease;
+			改变多个值，就写多次transition:transform 1s ease,background 1s ease;
+			运动形式：
+				ease(缓冲) ease-in(加速) ease-in-out(先加后减)
+				cubic-bezier(0.7,2,2,2) 自己调
+		4).变形：transform:;
+			旋转：rotate;
+			transform:rotate(360deg);旋转360度;
+		5).文字阴影：
+			text-shadow:10px 10px 10px red;
+			eg:火烧字 & 让字一个一个出现
+		6).文字描边：text-stroke:; (前缀)
+			-webkit-text-stroke:1px red;
+	--------------------------------------------------------------
+	浏览器前缀：
+		-webkit-    chrome/safari苹果浏览器
+		-moz-       firefox
+		-ms-        IE
+		-o-         opera
+	移动端：-webkit-
+		ios、安卓、windows
+
+		safari  chrome webkit
+	----------------------------------------------------------------
+	动画作业自己看
+		高级动画又叫逐帧动画   animate CC 玩动画的
+		animate.css 人家写好的运动样式 直接下载改class 
+	eg:class="animated slidIndown"
+		7).定义动画帧： 
+			@-webkit-keyframes name{
+				0%{}/from{}
+				100%{}/to{}
+			}
+			调用动画帧：
+			animation:name     2s       linear   infinite;
+			          动画帧名 运动时间 运动形式 无限运动
+			原来样式不改，要写出来
+			100%不写会回到原来的位置
+			animation-play-state
+
+			animation-delay:1s;
+			animation-timing-function:Lease;
+			animation-direction:alternate; 交替  和运动次数一起用
+			animation-iteration-count:infinite; 运动次数
+			animation-play-state:paused; 暂停运动
+				div:hover{animation-play-state:paused;
+			animation-fill-mode:forwards;定到终点位置
+				animation:name 2s linear infinite alternate 3s(延时);
+	    8).渐变：(如果加方向有前缀)
+	    	(1)线性渐变：linear-gradient();
+    		    eg:background:linear-gradient(red,blue);
+				           -webkit-linear-gradient(left,red,blue);
+						   -webkit-linear-gradient(30deg,red,blue);
+						   -webkit-linear-gradient(30deg,red 50px,green 100px,blue 100px);
+					       -webkit-linear-gradient(top,red 20%,yellow 20%,yellow 40%,pink 40%,pink 60%,green 60%,green 80%,blue 80%);
+			  循环渐变：-webkit-repeating-linear-gradient();
+				eg:background:-webkit-repeating-linear-gradient(red 0px,red 10px,yellow 10px,yellow 20px);
+	    	(2)径向渐变：radial-gradient(圆心位置x/y,形状circle/ellipse，red，blue);
+	    9).蒙版：mask:;
+	    	eg: mask:url(); 只显示有颜色的地方，图片格式png:支持透明半透明
+			-webkit-mask:url(img/2.png);
+
+			-webkit-mask:linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0));
+
+			补充：颜色模式rgba
+
+			控制蒙版位置：
+				-webkit-mask-position:x y;
+	    10).背景：
+	    	默认背景图修改大小:
+				background-size:100% 100%;
+				background-size:100px 200px;
+
+				background-size:contain; 图片全部显示 不一定占满父级
+				background-size:cover;   图片显示不全 占满父级
+
+			多背景：
+				background:url(img/1.png) no-repeat,url(img/2.png) no-repeat 100px 100px,url(img/3.png) no-repeat 200px 200px;
+
+			背景图起始位置：
+				background-origin:border-box;  边框
+				background-origin:content-box; 内容
+				background-origin:padding-box; padding（默认）
+
+			背景图生效/开切位置：
+				background-clip:padding-box; padding
+				background-clip:content-box; 内容
+				background-clip:border-box;  边框(默认)
+
+			文字背景图：文本开切(背景图在文字下面)
+			-weblit-background-clip:text; 文字 文字要透明color:rgba(0,0,0,0)
+		11).倒影：
+			-webkit-box-reflect:below 10px linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,0.5));
+
+			四个方向：below 向下 above上 left right
+			10px  倒影距离
+			渐变 显示百分比 linear-gradient  rgba(0,0,0,0)
+		12).滤镜：
+  			-webkit-filter:blur(10px); 10px模糊值  (耗性能)
+  		13).缩放：div缩放
+			resize:both; 
+			overflow:auto;  配合使用
+		14).文本排序：
+			direction:rtl; 从右往左
+			direction:ltr; 从左向右
+
+			执行编码格式重设：
+				unicode-bidi:bidi-override;   配合使用
+		15).文本截取：单行文本省略
+	 		text-overflow:ellipsis 文本省略
+	        配合:white-space:nowarp; 文本不换行
+	             overflow:hidden;
+
+	-----------------------------------------------------------------
+	--------------------------day3-----------------------------------
+
+    &-&:变形：transform:;(day2：*-*css3样式 4).变形);  性能高不改变位置
+    	1).旋转:transform:rotate(60deg);
+    		rotateX/Y/Z轴(60deg);
+    		eg:transform:perspective(800px) rotateX(60deg) rotateY(30deg);
+    	2).平移:transform:translate(100px,0px);不影响文档流;
+    		translate3d(x,y,z);性能高  自动开启GPU加速
+    		translateX(x);
+    		translateY(y);
+    		translateZ(z);
+    		eg:transform:perspective(800px) translate3d(x,y,z);
+		3).缩放：transform:scale(2,2); 
+								x轴放大倍数 y轴放大倍数 可以写负值使img反过来(-1,1)
+			scaleX(2);
+			scaleY(2);
+		4).倾斜：transform:skew(90deg);0-90deg;
+			skewX();
+			skewY();
+		5).多个值一起写：
+			transform:skew(30deg) scale(2) translate(100px,100px) rotate(30deg);
+			先写的后执行，但先写rotate时会对后面的translate产生影响;
+		6).旋转圆心/中心点控制：
+			transform-origin:right 0;
+		7).变形3D效果：
+			(1)景深样式：
+				perspective(800px) 800-1200px  增加立体感;
+			(2)将盒子变成3D盒子：(变成3D盒子才会形成3D效果); 网页默认2维
+				transform-style:preserve-3d;
+				transform-style:flat;默认平面(flat)
+				eg:span 飞出 div 
+	&-&运动完毕时  用事件绑定添加
+		事件 transitionend 运动完 用来监听运动状态
+		obj.addEventListener('transitionend',function(){},false);
+	-------------------------------------------------------------
+	-------------------------day4-------------------------------
+	翻面：backgface-visibility:hidden;背面可见度 转到背面消失
+	分块翻转效果
+		transition:linear 1s 2s all;
+
+		2s 延迟执行的时间 
+		分开写：transition:delay;延迟时间 
+				transition:duration;运动时间 
+				transition:property;运动样式 
+				transition:timing-function:ease-in;运动形式
+	3d爆炸效果
+	3d图片环
+		倒影：
+			a):复制一个相同的元素 scale翻转 用蒙版设置透明
+				transform: scale(1,-1);
+			 	-webkit-mask: linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,0.7)) ;
+		 	b):-webkit-box-reflect:below 10px linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,0.5));
+
+移动端开发--------------------------------------------------------------
+--------------------------week2 day1 11-14------------------------------
+移动端开发
+	布局
+		前端 H5开发
+		PC端和移动端区别：屏幕大小/系统平台/操作方式
+	js特效
+		适应屏幕显示，足够的适应能力，不写死宽
+		百分比：根据父级的宽度自适应，边框多出来的时候
+			box-sizing:border-box; 内盒子大小
+			box-sizing:content-box;外盒子大小
+	-----------------------------------------------------------------
+	移动端小页面：
+
+	#_# 移动端开发：文档声明
+		1、<meta name="viewport" 
+			content="width=device-width,initial-scale=1.0,user-scalable=no,miniimum-scale=1.0,maximum-scale=1.0"/>
+
+			name="viewport" 视口(可视区窗口)
+			content 内容
+				width=(number || device-width)将宽度设置成设备宽度 一般可视区宽度在移动端是980
+				initial-scale=1.0; 不缩放页面 页面初始缩放比例1.0
+				user-scalable=(yes || no); 是否允许用户缩放页面（IOS10无效 用事件解决ev.preventDefault();）
+				initial-scale=1.0; 不缩放页面 页面初始缩放比例1.0  配合最小缩放
+				miniimum-scale=1.0; 最小缩放比例 
+				maximum-scale=1.0; 最大缩放比例 华为mate7
+			n = window.devicePixelRatio -> 像素比（不能赋值只能获取）  把一个像素放大N倍
+		2、
+			<!---允许网页以app形式运行(允许添加到主屏幕)--->
+		    <meta name="apple-mobile-web-app-capable" content="yes">
+		    3、
+		    <!---状态栏颜色--->
+		    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		    4、
+		    <!---禁止识别电话号码和邮箱--->
+		    <meta name="format-detection" content="telephone=no,email=no">
+		    如果要打电话发送邮件用a标签
+		    <a href="tel:1875385xxxx">请拨打电话1875385xxxx</a>
+		    <a href="mailto:zym5330@126.com">发送邮件</a>
+
+		    <!--点击页面区域全屏展示--->
+		    <meta content="yes" name="apple-touch-fullscreen"/>
+
+		    <!--应用信息，保留系统历史记录，运动效果-->
+		    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+
+		其他meta:
+			<!-- 强制让360浏览器用chrome内核渲染页面 -->
+			<meta name="renderer" content="webkit">
+			<!-- 尽量用IE最新的模式渲染 -->
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+			<meta name="HandheldFriendly" content="true">
+			<!-- 微软的老式浏览器 -->
+			<meta name="MobileOptimized" content="320">
+			
+		这两个内核的可以强制书屏全屏
+			<!-- QQ强制竖屏 -->
+			<meta name="x5-orientation" content="portrait">
+			<!-- QQ强制全屏 -->
+			<meta name="x5-fullscreen" content="true">
+			<!-- UC强制竖屏 -->
+			<meta name="screen-orientation" content="portrait">
+			<!-- UC强制全屏 -->
+			<meta name="full-screen" content="yes">
+			
+			<!-- UC应用模式 -->
+			<meta name="browsermode" content="application">
+			<!-- QQ应用模式 -->
+			<meta name="x5-page-mode" content="app">
+	------------------------------------------------------
+
+	#_# 开发移动端 测试方式：
+
+		1. 本地浏览器下模拟 F12  
+		2. 电脑和手机处于同一个网段 笔记本 手机 用路由器
+			1.访问本机电脑IP cmd -> ipconfig 查看IP
+		3. 上传到第三方服务器访问 输入网址用手机访问
+			 1.新浪云，github
+	---------------------------------------------------------------
+	#_# 移动端常见问题
+		1、a,input,button点击时会有灰色阴影
+			清除点击阴影
+			a,input,button{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+		2、input,button IOS下清除默认圆角 （样式中写boder-radius:0;无效）
+			input,button{-webkit-appearance:none;boder-radius:0;}两个一起写按钮才是直角
+		3、移动端默认都有的字体
+			body{font-family:Helvetica;}
+		4、禁止文字缩放(一般用户设置/手机自带)
+			body *{-webkit-text-size-adjust:100%;}
+		5、选中文字设置
+			body *{-webkit-user-select:none;}//在事件中修改
+			
+		6、font-boosting  webkit内核下文字大小被浏览器放大(下面字体比上面大很多)
+			解决办法：设置高度 & 设置最大高度
+		7、fiexd 固定定位问题（不兼容）
+			//事件js
+			//html{height:100%;overflow:hidden;}去掉默认的滚动条
+			  body{height:100%;overflow:hidden;}出现body的滚动条
+		8、IOS的body的overflow问题
+			header宽200% 左右能拖动 -> 给header加一个。warp盒子 对于body定位
+			
+		document.addEventListener('touchstart',function(){
+			ev.preventDefault();
+		},false)
+		1/meta IOS下禁止用户缩放无效问题
+		2/ios10下溢出隐藏问题	
+		3/禁止系统默认的滚动条、阻止橡皮筋效果回弹
+		4/禁止长按选中文字、图片、系统默认菜单
+		5/解决点透问题
+		6/也阻止了焦点元素的焦点行为（要正常使用，ev.stopPropagation阻止冒泡就行了）；
+	---------------------------------------------------------------
+	#_# 关于适配：
+
+		1. 流体布局
+			1. 百分比 + float + bootstarp栅格系统
+
+			百分比布局：
+			box-sizing:border-box;
+			calc(100%/3) 计算方式
+				+ - * /  加减左右必须有空格  比如-在css连接符的意思
+				         乘除不用加单位
+		2. viewport适配：
+			用js 设置meta标签
+			(function(){
+				var w = window.screen.width; 当前尺寸
+				var targetW = 320; 目标尺寸
+				var scale = w/targetW; 
+				var meta = document.createElement("meta");
+				meta.name = "viewport";
+				meta.content = "user-scalable=no,initial-scale='+scale+',miniimum-scale='+scale+',maximum-scale=1.0"
+				document.head.appendChild(meta);
+			})()
+		3. 固定宽度布局：相对固定：设置一个宽度范围
+			1. min-width
+			2. max-width
+				div{ max-width:600px; min-width:320px; height:200px; border:1px solid red;}
+	   		手机主流分辨率:320-640 //小辣椒1024 
+		4. rem布局 （相对单位布局）90%用rem
+			字体的font-size:20px;
+				1）em 受自身标签上的字体大小影响，1em相对单位
+			 	2）px绝对单位
+			 	3）rem 相对单位 html{ font-size:20px;}
+	 		       ****html根标签，rem受根标签的字体大小控制的！稳定
+	 		    4）vw 视窗宽度 1024/100 = 1vw = 10.24
+	 		    5）vh 视窗高度 viewport height
+	 		    6）vmax 宽高那个大 就跟随谁变化
+	 		基准点：手机 320 375 414
+	 		设计图是 640px -> 320px 高清 2倍图  即做出的是高清图
+		 			 750px -> 375px
+		 			 480px -> 320px  1.5倍图
+		 			 1024px -> 375px  极少
+	 		给html标签 设置font-size:
+				1;(function(){
+					var html = document.documentElement;
+					var hwidth = html.getBoundingClientRect().width;
+					html.style.fontSize = hwidth/16+'px';
+				})()
+				2;****remjs函数：
+				(function(win,doc){
+					win.addEventListener('resize',change,false);
+					change();
+					function change(){
+						doc.documentElement.style.fontSize=20/320*doc.documentElement.clientWidth+'px';	
+					}	
+				})(window,document);
+				3;;(function(){
+			        var html=document.documentElement;
+			        html.style.fontSize=20*html.clientWidth/320+'px';
+
+			        window.onresize=function(){
+			            html.style.fontSize=20*html.clientWidth/320+'px';
+			        };
+			    })()
+				window.onresize=function(){}//横竖屏
+				20 ？好算 1rem=20px;
+				10        1rem=10px;     但是 chrome -最小字体大小 12px 
+				50   	  1rem=50px;
+				62.5%     1rem=10px;	16*0.625=10 
+		4. 表格布局：
+			父级：
+				display:table;
+			子级：
+				display:table-cell;
+				
+		5. 弹性盒子：新版老版
+			父级：弹性盒子
+				old1、display:-webkit-box; 
+				new1、display:flex;
+			子级：定义盒子的弹性空间
+				old1、-webkit-box-flex:1; 
+					  子元素尺寸=盒子尺寸* 子元素box-flex属性值/所有子元素属性值
+				new1、flex:1;
+					  flex-grow:1;
+			子级：元素具体位置的设置(排序)
+				new1、order:1;数值任意值 数值越小越靠前
+				old1、-webkit-box-ordinal-group:1;数值越小越靠前，最小值默认处理为1;
+			父级：主轴方向设置
+				new1、定义主轴方向(x轴)为水平：
+						flex-direction:row;
+					  定义主轴方向(x轴)为水平，元素排序为反序：
+					  	flex-direction:row-reverse;
+					  定义主轴方向(y轴)为垂直：
+					  	flex-direction:column;/column-reverse
+				old1、定义主轴方向
+						 -webkit-box-orient:vertical; vertical垂直的/horizontal水平的
+					  元素在主轴上排序(控制块的排列顺序方向)：
+					  	 -webkit-box-direction:reverse;反序321
+
+			父级：主轴/侧轴方向富裕空间的管理
+				new1、
+					justify-content:flex-start;左边/元素在主轴开始位置，富裕空间在主轴结束位置
+						/center;中间/
+						/flex-end;右边/元素在主轴结束位置，富裕空间在主轴开始位置
+						/space-around;富裕空间平均分配在每个元素两侧 (前排侧平举)
+						/space-between;富裕空间平均分配在两个元素中间 	
+
+					align-items:center;中间
+						/flex-start左边/元素在侧轴开始位置，富裕空间在侧轴结束位置
+						/flex-end右边
+						/space-between
+						/space-around
+						/baseline根据侧轴方向文字基线对齐
+				old1、
+				     -webkit-box-pack:center;居中/start左/end右/justify两端
+				     -webkit-box-align:center; 子级垂直居中/start左/end右
+			添加border或者padding box-sizing:border-box;
+
+			父级
+				display:flex; 
+				flex-wrap:wrap; 换行
+				align-content: stretch;项目被拉伸以适应容器  
+				align-content:flex-start/flex-end/center多行垂直排列/stretch/space-between/space-around
+			子级
+				new1、flex-grow:1;放大剩余空间
+
+		6. 响应式布局
+	-------------------------------------------------------------
+	-------------------week2 day2 11-15--------------------------
+	@_@ 左右固定中间自适应：
+		1. rem  
+		2. 绝对定位  左右定位   margin
+		3. table     左右设置宽 中间自适应
+		4. box-flex
+		5. 浮动  左右浮动
+	---------------------------------------------------------------
+
+	@_@ 用样式居中一个不固定宽度的块：
+		1). 1table 
+				父级加：display:table;
+				子级加：display:table-cell; text-align:center; 
+						vertical-align:middle;
+
+						文本基线：四线格 第三条线
+							vertical-align:top; 改变参照线位置
+
+				块变->display:inline-block;
+			2<table style="text-align:center;">
+				<tbody>
+			    	<tr>
+			        	<td>
+			            	<div>今天天气晴朗，万里无云，适合放羊</div>
+			            </td>
+			        </tr>
+			    </tbody>
+			</table>
+		2). display:inline-block; text-align:center;
+
+		3). 弹性盒子居中方式：
+			1父级加：-webkit-box-pack:center;  子级水平居中 
+			        -webkit-box-align:center; 子级垂直居中
+			2父级加：justify-content:center;
+					align-items:center;中间
+			
+			垂直平分弹性盒子：使子级在父级垂直排列
+				父级加：-webkit-box-orient:vertical; /horizontal水平的
+		                -webkit-box-flex:1; 
+	----------------------------------------------------------------
+	----------------------------------------------------------------
+	@_@ 媒体查询：
+		响应式布局 不同终端 显示各自状态的页面 (本质样式覆盖，写其他样式下面)
+		  响应式布局：
+			一个项目兼容多个终端(手机 平板 电脑)即：一套代码 可以 做多套平台设备下的项目
+			节省，降低开发成本：一个一套流程
+		@media screen and (max-width:960px){...}
+		@media screen and (max-width:640px) and (min-width:100px){代码}
+
+		/* 超小屏幕（手机，小于 768px） */
+		/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
+
+		/* 小屏幕（平板，大于等于 768px） */
+		@media (min-width: @screen-sm-min) { ... }
+
+		/* 中等屏幕（桌面显示器，大于等于 992px） */
+		@media (min-width: @screen-md-min) { ... }
+
+		/* 大屏幕（大桌面显示器，大于等于 1200px） */
+		@media (min-width: @screen-lg-min) { ... }
+
+	------------------------------------------------------------------
+	----------------------week2 day3 11-16----------------------------
+	!_! 媒体查询：
+		1).响应式布局： 不同终端 显示各自状态的页面 
+			@media screen and (max-width:300px) and (min-width:100px){...};
+
+			手机页面
+				.wrap_phone{ display:block;}
+			pc页面
+				.wrap_pc{ display:block;}
+		2).媒体查询条件：（减轻服务器压力）			
+			<link rel="stylesheet" href="css/common.css" />
+			<link rel="stylesheet" href="css/pad.css" media="(max-width:960px) and (min-width:641px)" />
+			<link rel="stylesheet" href="css/phone.css" media="(max-width:640px)" />
+			<body><div class="wrap"></div></body>
+			/*pad*/.wrap{ width:700px;}
+			/*手机*/.wrap{ width:320px;}
+			或者style标签里面 
+			<style>@import url(01.css) (max-width:767px;) and (min-width:400px;)</style>
+		3).检测手机横竖屏：
+	           @media screen and (orientation: landscape){}排列方向:横屏
+	           @media screen and (orientation: portrait){...} 竖屏
+	    4).区分设备：手机 & PC
+	    	device-width 设备宽度
+			eg：@media screen and (max-device-width:1023px){
+					div:after{ content:'手机';}
+					div{ background:purple;}	
+				}
+				@media screen and (min-device-width:1024px){
+					div:after{ content:'PC';}	
+					div{ background:green;}	
+				}
+			其他条件：
+			    all        所有设备
+			    screen       屏幕设备 @media screen and(){}
+			    print        打印设备
+			    projection   投影设备
+			    tty          电传打字机
+			    aural        听觉设备
+			    braille      盲文设备   
+			    handheld     手持设备
+			    tv           电视设备
+		    	...
+
+	------------------------------------------------------------
+		关于下载库文件
+		 官网、npm 、bower(专门针对web的库文件) 
+		 npm install bower -g 验证环境OK（bower --vision）
+	!_!移动端js 事件 都必须用事件绑定添加！
+
+ 		事件绑定添加 必须事件解绑定:必须是命名函数
+			addEventListener('touchmove',show,false);
+			function show(){alert(1+'移动');}
+			removeEventListener('touchmove',show,false);
+		在事件绑定中 return false 失效!
+			清除默认事件用：ev.preventDefault();
+
+		移动端三大事件
+			touchstart  手指按下obj.addEventListener('touchstart',fn,false);
+			touchmove 手指移动
+			touchend 手指抬起
+
+		移动端事件对象：
+			touches       位于当前屏幕上所有手指的一个列表
+			targetTouches 位于当前dom元素上的手指的一个列表
+			changedTouches涉及当前事件的手指的一个列表
+
+			ev.targetTouches[0].clientX;
+			ev之内 有一个 targetTouches手指对象列表
+						找到第一个手指 targetTouches[0]
+							再去获取它下面的手指坐标：
+								targetTouches[0].clientX;
+								targetTouches[0].clientY;
+
+								targetTouches[0].pageX;
+								targetTouches[0].pageY;
+								页面的距离（不包含滚动条）
+			eg无缝滚动：
+	---------------------------------------------------------
+	新浪云
+		http://www.sinacloud.com/ucenter.html
+
+		控制台：云应用 SAE
+				创建应用
+				免费版 
+					php 标准环境  svn
+					二级域名 自己的名字
+					创建版本
+					仓库地址：
+					https://svn.sinacloud.com/gebilaowang
+
+	svn 代码管理器
+		软件 直接安装就可以了
+		下载：百度下载 关键字 svn客户端
+
+		安装：下一步 一键到底！
+			验证是否成功！ 鼠标右键之内 是否 存在svn
+			如果没有 重启电脑！  
+			如果还没有 重新安装！
+
+		使用：
+			1.新建文件夹 
+			2.在文件夹之内鼠标右键
+			3.选择svn checkout
+			4.将仓库地址复制到svn弹出框中的第一个input中
+			5.输入账号密码 回车
+			6. 将下载好的文件夹没用的页面文件删掉，再把自己的页面复制进去
+			7. 鼠标右键 svn commit 
+			8. 输入账号密码 回车  zym5330@126.com zhao6429
+			9. 访问 网址 http://二级域名.applinzi.com/abc.html
+
+	-------------------------------------------------------------
+	轮播图：
+		拖拽事件
+
+		替代：window.onload
+			document.addEventListener('DOMContentLoaded',function(){
+				alert(1);	
+			},false);
+
+		在touchend的时候：
+			var upX=ev.changedTouches[0].clientX;
+	------------------------------------------------------
+	1. 所有的css3 样式 必须都加上 -webkit-
+
+	2. 能减少dom操作尽力减少dom
+
+	3. 尽量在改变位置的时候 用 3d模式	
+		-webkit-transform:translate3d(-16rem,0,0) 
+		默认开启手机3d加速模式
+ 	------------------------------------------------------------------
+	----------------------week2 day4 11-17----------------------------
+	svn
+	每天早上 update一下 更新
+
+	1. 安装 是否成功 鼠标右键 
+	2. 新建文件夹 在文件夹内部鼠标右键 checkout 知道仓库地址
+				（找人要仓库地址）账号 密码 
+	3. 编辑代码
+	4. 上传代码  鼠标右键 svn commit
+			编写 修改日志
+
+	5. 访问测试地址 和 后台要
+
+	6. 每天 早上 9点开机 进入到项目目录下 鼠标右键 update
+	7. 每天 晚上 6点关机之前 再去commit 提交 
+	8. 保证 在你改这个页面的时候 没有其他程序员在改这个页面！
+
+	---------------------------------------------------------------
+	锁定方向拖拽：
+		控制不同的功能
+			上下拖拽
+			左右拖拽
+	移动端拖拽
+		获取手指id
+			ev.targetTouches[0].identifier;
+
+	坐标 换算任何位置和角度关系
+
+	1. 单点旋转 div
+		var d1=Math.atan2(b,a);
+	===========================================================
+	移动端js库：
+		jqueryMobile.js UI库 太大了 
+
+		zepto.js移动端的jquery   jquery类似
+
+	-----------------------------------------------------------
+	jqueryMobile
+		下载：http://jquerymobile.com/
+
+		它依赖于jquery
+
+		属性调用： 
+			1. data-role="button"
+			2. data-role="header"
+			3. data-role="footer"
+			4. data-position="fixed"
+			5. data-icon="refresh"
+			6. data-role="listview"
+
+			1. data-role="page"
+			2. data-icon="back"
+			3. data-rel="back" 执行返回功能
+			4. data-theme="a/b/c" 网页主题
+
+			页面切换模式：
+				data-transition="slide"
+				data-transition="flow"
+				data-transition="flip"
+
+	-----------------------------------------------------
+	single page application 单页面应用
+
+	将你的项目 显示为一个页面 ，不跳转页面的情况下 切换内容显示
+
+	跳转页面用锚点
+
+	===================================================
+	swiper 插件：
+		官网：http://www.swiper.com.cn/
+		下载：http://www.swiper.com.cn/download/index.html
+		使用：
+			API:http://www.swiper.com.cn/api/index.html
+
+		1. swiper 专门做轮播图的
+			1. 布局定死
+			2. 官网：http://www.swiper.com.cn/
+			3. 3. 写一些自己样式
+			4.     .swiper-container{ width:300px;}
+			5. 4. 调用
+			6.     new Swiper('.swiper-container');
+
+	     new Swiper('.swiper-container',{
+	         spaceBetween: 10  //每个slider之间间距
+         });
+
+
+	左右按钮:
+	    布局：
+	    <div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+	    js：
+	    new Swiper('.swiper-container',{
+	        spaceBetween: 10,
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev'
+	    });
+	小圆点：
+	    布局：
+	        <div class="swiper-pagination"></div>
+	    js:
+	    pagination: '.swiper-pagination',  //生成小圆点
+	    paginationClickable: true //允许点击
+	无缝：
+	    loop: true
+	自动播放：
+	    autoplay:1000,
+	    autoplayDisableOnInteraction:false
+
+	支持滚轮事件：
+	      mousewheelControl: true,
+	支持键盘事件：
+	      keyboardControl: true
+	运动形式：
+	 effect: 'fade' 渐变
+
+	 effect: 'cube', 立方体
+
+	滚动方向：
+	     direction: 'vertical'
+	------------------------------------------------------------------
+	----------------------week2 day5 11-18----------------------------
+
+	zepto.js iscroll hammer git github
+
+	zepto.js 
+	中文：http://www.css88.com/doc/zeptojs_api/
+
+	中文站：http://www.zeptojs.cn/
+
+	下载：http://zeptojs.com/zepto.min.js
+
+	-------------------------------------------------------------------
+	?_? zepto:
+			下拉框
+				toggle
+				toggleClass
+
+			选项卡
+				attr
+				show
+				hide
+				addClass
+				removeClass
+				css()
+
+			拖拽：
+				移动端事件   移动端拖拽中return false 管用
+
+				自己生成的事件
+
+		移动端事件：
+			touch.js 下载
+
+			<script src="js/touch.js"></script>
+			<script src="js/zepto.min.js"></script>
+			<script src="js/touch.js"></script>
+			<script src="js/fx.js"></script>
+
+			'swipe', 滑动
+			'swipeLeft', 左划
+			'swipeRight', 右划
+			'swipeUp', 上划
+			'swipeDown', 下划
+		    'doubleTap', 双击
+		    'tap', 轻点
+		    'singleTap', 单击 300ms
+		    'longTap' 长按 700ms
+
+		交互
+			ajax 
+				url
+				success
+				error
+
+			jsonp
+			    https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=zepto&cb=a
+
+				dataType 声明获取方式
+				jsonp:'cb', 回调函数的名称
+				data:{	//传入的数据
+					wd:'提莫'
+				}
+	---------------------------------------------------------
+	?_? hammer 
+
+			官网：http://hammerjs.github.io/
+
+			API:http://hammerjs.github.io/api/
+
+				swipe
+					var obj=new Hammer(oDiv);
+					//开启上下滑动的权限
+					obj.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
+						
+					obj.on('swipeup',function(){
+						alert(1);	
+					});
+
+			多手势操作权限：
+				pinch:
+					pinchstart
+					pinchmove
+					pinchend
+					pinchcancel
+					pinchin
+					pinchout
+
+				angle 获取角度
+
+				scale 获取缩放比例
+
+			//开启多手势操作权限
+			obj.get('pinch').set({enable:true});
+			
+			obj.on('pinch',function(ev){
+				alert(ev.angle);
+			})
+
+绘图canvas/svg----------------------------------------------------
+-------------------------week3 day1 11-21-------------------------
+
+	用来管理代码的工具
+
+		1）svn 集中式管理，网站域 在局域网内才能访问
+		2）git 分布式管理，各个位置都保存，不在局域网内 也可以访问  速度快	服务器githup 
+	%_% github：  
+		   两种方法：写一些简单的命令
+			1. 
+			2.
+
+			命令：不说话就是成功
+				创建文件：touch a.txt (文件名.后缀)
+				编辑文件：
+						1).找到文件 			vi a.txt  回车 
+						2).按I键进入insert编辑内容     
+						3).退出 				Esc:wq 回车
+				查看文件：cat a.txt
+				删除文件：rm a.txt
+							rm-rf 强制删除非空文件
+				新建文件夹：mkdir bbb (文件夹名称)
+				进入文件夹：cd bbb 
+				删除文件夹：rmdir 文件夹名称
+
+				快捷键Tab： 补全命令  
+				跳出文件夹 cd ..
+				跳转盘符：cd e：
+				清屏：clear
+
+
+		使用GitHub方法：
+		先去准备工作：
+			1. 在github上点击头像 下的settings
+				选择：SSH keys 
+					ssh-keygen -t rsa -C 'github账号'  生成密钥
+
+					找到生成的秘钥
+
+					复制粘贴到 settings key当中
+
+			2. git config -l 查看配置列表
+					添加俩项配置：
+					git config --global user.email “xx@xx.com”
+		        	git config --global user.name “zhao”
+
+		先写git:
+			方法1：
+				1)git init 初始化目录(为了用git方法) 子级的本地目录变成git目录即仓库地址 目录后面有(master) 
+					touch 1.txt
+				2)git add 1.txt
+					git add . 本地的缓存区 添加所有文件
+				3)git commit -m  "提交日志"
+				4)建立仓库地址链接 git remote add origin 链接地址 
+				5)git push -u origin master 提交 
+				  git status 检查有没有放在缓存区
+			方法2：
+				复制仓库地址
+
+				git clone 仓库地址
+
+				进入仓库文件夹 cd
+
+				git add .
+
+				git commit -m '提交日志'
+
+				git push
+
+				输入账号密码
+
+		git checkout --a.txt 当删除文件 输入   还原
+		git pull 更新
+
+		Repository name 必须必须必须！ 
+			这样写： 账号名.github.com
+					 cris-zhibao.github.com
+
+		访问路径：
+			https://cris-zhibao.github.io/
+	-------------------------------------------------
+	%_% 表单：
+		  属性：
+			autofocus 自动获取焦点
+			placeholder
+			autocomplete 输入文字提示
+			autocomplete='off' 提示文字消失
+			required 必填
+			title 错误信息
+			pattern="/^\w&/" 正则
+	------------------------------------------------------------------
+	%_% 
+		序列化：串行化，持久化
+			JSON.stringify(json)   json转字符串（转成标准格式的字符串json）
+
+		反序列化：
+			JSON.parse(str)  字符串转json  json格式必须标准
+		-------------------------------------------------------
+		本地存储：
+			localstorage.a = 
+
+			不同窗口数据同步
+
+			当本地内容存储发生变化的时候：
+			window.onstorage = function(ev){
+				alert(ev.key)；
+				ev.key 改变的storage的名称
+			}
+	-------------------------------------------------------
+	%_%
+	 	文件拖拽 document
+		 	 ondragenter 拖入事件
+		 	 ongragleave 拖出事件
+		 	 ondragover  移入事件
+
+		 	var timer=null;
+			document.ondragover=function(){
+				clearTimeout(timer);
+				oDiv.style.display='block';
+				
+				timer=setTimeout(function(){
+					oDiv.style.display='none';		
+				},300);
+			};
+
+		浏览器的默认行为：要清除
+
+		 	扔文件事件 ondrop 
+
+			//丢弃文件：
+			//必须将ondragover事件清空才可以
+				oDiv.ondragover=function(){return false};
+				oDiv.ondrop=function(ev){
+					var aFail = ev.dataTtansfer.files; 获取数据信息的文件(松开鼠标时不让文件直接在浏览器打开)
+					return false;	
+				};
+
+		文件基本信息：
+				//文件个数
+				//alert(aFile.length);
+				//文件大小
+				//alert(aFile[0].size);
+				//文件名称
+				//alert(aFile[0].name);
+				//文件类型
+				//alert(aFile[0].type);
+				//文件修改日期
+				alert(aFile[0].lastModifiedDate);
+	---------------------------------------------------------------
+	-----------------------week3 day2 11-22-----------------------
+	%_%
+		读取文件：
+			var aFail = ev.dataTtansfer.files;
+			var oFail = ev.dataTtansfer.file[0];
+			创建读取文件的对象：var reader = new FileReader();
+
+		读取方式：
+			
+			//文本方式读取:(基本不用)
+				reader.readAsText(aFile[0],'gb2312'); 图片不行 
+			//以base64读取：
+				reader.readAsDataURL(oFile) 常用
+				存储数据的一种格式  文本 图片 音频等
+
+		读取成功 & 干嘛
+			reader.onload = function(){
+				//reader.result(读取结果/内容)
+
+			}
+		其他事件：
+	  		  reader.onerror 读取错误
+	          reader.onloadend 读完完成
+	          reader.onloadstart 开始读取
+	          reader.onprogress 读取过程中
+	          reader.onabort 中断
+	    	强制中断：
+	     	reader.abort(); 强制中断
+	-----------------------------------------------------------------
+
+	[tv]:视频播放器：video
+		自定义控制器
+		不兼容的浏览器 在标签中写入升级连接
+
+		loop
+		autoplay
+		controls
+		poster="1.jpg"欢迎界面
+
+	    1) <video src="1.mp4" controls="" >
+			浏览器这么low，不升级你好意思用？
+		   </video>
+
+	    2) 兼容写法
+	 	  <video controls="" autoplay="">
+			 <source src="1.mp4" type="">
+			 <source src="1.ogg" type="">
+			 <source src="1.webM" type="">
+		  </video>
+	[tv]:简易播放器 
+		video视频操作：
+			obj.play();//播放
+			oV.pause();//暂停
+			oV.currentTime//播放时间
+			oV.currentTime++;//快进
+			oV.currentTime--;//快退
+			oV.volume+=0.1;//音量+  音量0-1之间
+			oV.volume-=0.1;//音量-
+			if (oV.muted) {//是否静音
+				oV.muted=false;
+			}else{
+				oV.muted=true;
+			}
+			oV.webkitRequestFullScreen();//全屏
+
+			//当视频播放过程中
+			oV.currentTime 播放总时间
+			oV.ontimeupdate = function(){
+				//oV.currentTime/oV.duration
+				meter.value = oV.currentTime/oV.duration*100;
+								播放当前时间/视频时间长
+			}
+			//当文件播放完毕时
+			oA.onended= function(){}
+	---------------------------------------------------------------
+	[oo]:音频播放器：
+		创建音频：
+			var oA = new Audio();
+		oA.src = oggSound.sound49;引js
+
+		oA.onended= function(){}//当文件播放完毕时
+
+	--------------------------------------------------------------
+	拉勾网方向遮罩
+	照片墙
+	音乐播放器，
+	文件拖拽 生成base64数据 显示到页面上
+	---------------------------------------------------------------
+	-----------------------week3 day3 11-23------------------------
+	=_=:绘图：
+	    canvas:画布  用js画
+    	  <canvas>内容</canvas> 内容即兼容，不兼容的时候显示内容
+		  //宽高样式写在标签里面。
+          eg:<canvas width="400" height="400"></canvas>
+	    js
+	    	1//获取画布		
+				var oC = document.querySelector('canvas');
+			2//创建画笔
+				var gd = oC.getContext('2d');
+			3//画笔颜色
+				gd.strokeStyle='red';
+				gd.strokeStyle='rgba(111,111,111,0.8)';
+			4//画笔粗细
+				gd.lineWidth='4';
+			5//填充颜色
+				gd.fillStyle = 'blue';
+			6//移动画笔 x y 坐标  起始位置
+				gd.moveTo(40,40);
+			7//描述路径
+				gd.lineTo(60,60);
+			8//闭合路径
+				gd.closePath();	
+			9//开启新路径
+				gd.beginPath();
+			10//画（填充
+				gd.fill();		
+			11//画（描边
+				gd.stroke();
+
+		图形：
+			13//描边矩形   
+				gd.strokeRect(100,100,200,100)  x,y轴,width,height
+			14//填充矩形   
+				gd.fillRect(100,100,200,100)    x,y轴,width,height
+
+	    canvas运动:
+	    		注意 canvas上运动时 定时器时间要快些 16s   
+	    		性能比dom高 所以做游戏等
+
+    		15//清画布
+    			gd.clearRect(0,0,oC.width,oC.height);
+	    圆弧
+	    	function d2a(n){
+				return Math.PI/180*n;
+			}
+			16//画圆：
+				//gd.arc(x,y,r,start,end,false);//false 是否逆时针
+				eg:
+					gd.arc(100,120,50,d2a(0),d2a(90),false);
+					100 圆的中心点X轴坐标
+					120 圆的中心点Y轴坐标
+					50  圆的半径
+					d2a(0) 起始弧度
+					d2a(90) 结束弧度
+					false 是否逆时针
+		字体设置：	
+			17//描边文本
+				gd.strokeText('圆弧时钟',300,10);   (文本,x,y)
+			18//填充文本
+				gd.fillText(文本,x,y);
+			19//字体大小和字体类型
+				gd.font="30px 宋体"  写字号 字体必须写 	
+		    20//水平居中
+		    	gd.textAlign=center \ left \ right
+		    21//垂直居中
+		    	gd.textBaseline=top \ middle \ bottm
+
+	    测量文字宽度：
+	        22//gd.measureText(str).width 返回一个number 
+    ---------------------------------------------------------------
+	-----------------------week3 day4 11-24------------------------
+	给canvas加事件：
+		变形：在canvas中 变形是累加的
+			gd.rotate(弧度);
+				旋转中心点 默认为 画布左上角;
+				所以在定义旋转中心：必须将你的旋转中心点坐标写到画布左上角！
+			gd.save();保存画布的初始状态  因为变形叠加
+			gd.restore(); 回到画布的初始状态
+	--------------------------------------------------------------
+		端点样式:
+			gd.lineCap='butt';
+	     	gd.lineCap='round';
+	     	gd.lineCap='square';
+	    连接点样式
+			gd.lineJoin = 'round' 圆
+			gd.lineJoin ='bevel';
+		阴影：
+			gd.shadowOffsetX=10;
+			gd.shadowOffsetY=10;
+			gd.shadowBlur=10;
+			gd.shadowColor=10;
+	------------------------------------------------------------------
+		渐变:指画布红到黄渐变
+			创建渐变：
+			  线性渐变：
+				var linear=gd.createLinearGradient(100,100,300,300)
+					起始x起始y 结束x结束y
+			  径向渐变：
+				var redial=gd.createRadialGradient(100,300,50,100,300,400)
+					100 中心点X坐标
+					300 中心点Y坐标
+					50  起始半径
+					400 结束半径
+							
+				linear.addColorStop(0,'red');起始颜色
+				linear.addColorStop(1,'yellow');结束颜色
+				gd.fillStyle=linear; 应用
+	---------------------------------------------------------------------
+		导出图片：
+			var oSrc = oC.toDateURL(image/png);image/jpeg
+			var img = new Image();
+			img.src = oSrc;
+		画图：
+			gd.drawImage(oImg,x,y,w,h); w 图片宽高
+			gd.drawImage(oImg,sx,sy,sw,sh,dx,dy,dw,dh);
+			sx图片截取的起始图片位置 dx图片显示位置
+			1 source原图 
+			2 destination目标图
+		引入图片：
+			var oImg = new Image();
+			oImg.onload = function(){
+				gd.drawImage(oImg,sx,sy,sw,sh,dx,dy,dw,dh);
+			}图片加载完毕再引入图片 
+	---------------------------------------------------------------
+	-----------------------week3 day5 11-25------------------------
+	捕鱼：
+	---------------------------------------------------------------
+	-----------------------week4 day1 11-28------------------------
+	百度地图、多线程、websql、
+	css3高级运动:transition keyframes animation  风车 无缝
+
+	svg/vml 绘图
+
+	移动端：-webkit-
+
+	css3
+		变形：
+			transform:rotate(0deg); 旋转
+				transform:rotateX(10deg); 
+				transform:rotateY(20deg); 
+				transform:rotateZ(30deg); 
+			transform:translate(x,y); 平移
+			transform:translate3d(x,y,z); 3d平移
+			transform:scale(x,y); 缩放比例
+			transform:skew(x,y); 倾斜
+
+
+		过渡：
+			transition:1s; = transition:all 1s ease;
+			transition:1s linear; 匀速
+			transition:transform 1s ease,background 1s ease; 多个值同时修改
+			transition:transform 1s ease 2s; 延迟2s运动
+		分开写：
+			transition-delay:2s;  延迟时间
+			transition-duration:1s; 运动时间
+			transition-property:all; 运动样式
+			transition-timing-function:ease-in; 运动形式
+
+		3D盒子：
+			transform-style:preserve-3d;
+
+		景深：
+			perspective(800px-1200px);
+	------------------------------------------------------------
+	animation
+
+		调用：
+		animation:name 2s ease; 
+
+		/*定义动画帧*/
+		@keyframes name{
+			from{
+				width:100px;	
+			}
+			to{
+				width:300px;		
+			}	
+		}
+
+		@keyframes name{
+			25%{ left:300px; top:0; background:blue}
+			50%{ top:300px; left:300px; background:yellow}
+			75%{ top:300px; left:0; background:pink;}
+		}
+
+-----------------------------------------------------------
+	风车效果：
+	无缝滚动：
+		CSS3无缝滚动
+
+		animation-play-state:paused; 暂停运动
+
+		animation-direction:alternate; 交替运动
+
+		animation-iteration-count:3; 运动次数
+
+		animation-name:run; 运动名称
+
+		animation-duration:1s; 运动时间
+
+		animation-timing-function:ease; 运动形式
+
+		animation-delay:1s; 延迟执行时间
+
+		animation-fill-mode:forwards; 定到终点位置
+
+	-------------------------------------------------------------
+	animate css
+		https://daneden.github.io/animate.css/
+
+
+	=========================================================
+	H5
+	  (_):获取地理位置  navigator.geolocation 
+			返回的是坐标 经纬度
+			地图上标注所在位置！
+
+	   1).navigator.geolocation  if先判断浏览器是否支持：IE9+ chrome firefox
+
+		获取当前位置坐标：
+			navigator.geolocation.getCurrentPosition(fnSucc,fnFail);
+
+			function fnSucc(ev){//成功
+				ev.coords.longitude; 获取经度
+				ev.coords.latitude;  获取纬度
+				ev.coords.accuracy   获取经纬度的精确度 （高于60基本没用的）
+				ev.coords.altitude 海拔高度
+				ev.coords.altitudeAccuracy 海拔高度精确度
+				ev.coords.heading 朝向 
+				ev.coords.speed 速度 
+			}
+
+			function(ev){
+			     失败
+			     ev.code 
+			          0 未知错误
+			          1.用户拒绝
+			          2.获取失败
+			          3.超时
+			    ev.message 错误消息
+			}
+
+		实时获取此时位置：在手机中测试
+		    var timer= navigator.geolocation .watchPosition(fnSucc,fnFail,{
+		          frequency:1000 //每隔多长时间刷新监听一次
+		     });
+
+		    clearWatch(timer)  关闭实时获取
+	-----------------------------------------------------------
+	   2).百度地图：
+
+		API：http://lbsyun.baidu.com/index.php?title=jspopular
+
+		高德 
+		谷歌 
+		搜狗 
+
+		秘钥：SE8Gt6bQNyVHU4gi9YVF9svakrrozL2N 自己电脑
+		引入百度地图：
+			<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SE8Gt6bQNyVHU4gi9YVF9svakrrozL2N"></script>
+
+		调用地图：
+			创建地图:
+				var map=new BMap.Map('allmap');
+			设置一个中心点 缩放
+				var oPoint=new BMap.Point(116.3799755,40.1062);
+			设置中心点及缩放比例
+				map.centerAndZoom(oPoint,18);
+
+	API：
+		http://developer.baidu.com/map/jsdemo.htm#j1_0;
+	添加标注
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);    
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画 
+	添加标注图标：
+		var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
+		var marker2 = new BMap.Marker(point,{icon:myIcon});  // 创建标注
+		map.addOverlay(marker2);
+	添加缩放和拖拽功能
+	添加周边搜索功能
+		var local =  new BMap.LocalSearch(map, {
+            renderOptions: {map: map}
+        });
+	 	local.searchNearby(oT.value,point);
+	-------------------------------------------------------------
+	js原生语言 单线程语言！ 
+
+	提高性能！/响应速度
+	js DOM操作 循环 大量数据操作 
+	斐波那契数列：将复杂的运算和工作量，以多线程形式来编辑，响应速度更高一些！
+多线程-webWorker
+     单线程：(慢)前一个操作没有做完，后一个没法开始 eg：js原声语言就是单线程
+     多线程：(快)可以同时进行多个操作
+                 好处:充分利用cpu资源
+
+     主线程：平时页面加载 渲染 css渲染 jsDom树生成 创建
+     子线程：由webWorker创建生成，运算/操作数据
+     
+     主线程下：
+          创建子线程：var oW=new Worker('a.js');
+          发送数据到子线程：oW.postMessage('abc');  发送数据
+     子线程下：
+          接收数据
+          this.onmessage=function(ev){
+               console.log(ev.data);
+          };
+     主线程 声明子线程 html页面
+	 子线程 执行函数并返回结果 js文件
+
+       2个关于变量与函数的 题目
+     
+       子线程下接收到的对象数据 是复制出的一份
+
+       结束子线程：oW.terminate();
+     
+     注意：
+          a).在子线程里面(以下两个东西不能用)：
+             1. DOM
+             2. BOM
+         b).在子线程里面不能再去创建子线程了
+         c).不能跨域
+         d).主线程和子线程数据不是共享，每次复制一份数据
+
+    * 一般子线程都是做一些复杂运算
+          斐波那契数列
+          function feibo(n){
+	          if(n==1||n==2){
+	          return 1;
+	          }else{
+	          return 
+          		}
+          }
+	---------------------------------------------------------
+	(_):webSql
+			数据库 mysql  安全 (mySql我的数据库)
+
+			保存在浏览器上的数据 webSql 没有安全  容量 5M
+
+			webSql 做一些简单的单击游戏 保存值
+
+			localStorage 本地存储 
+        -------------------------------------------------------
+		流程：
+			1.打开/创建 数据库： 建立数据库连接
+			var db=openDatabase(数据库名称，数据库版本，数据库描述信息，容量申请)
+			数据库版本1.0.0 必须三个数
+
+			2. 开启事务
+			db.transaction(function(tx){
+				tx 事务上下文
+
+				//创建表格(news)
+				tx.executeSql('CREATE table news(title TEXT,href TEXT)');	
+
+				//录入一条数据
+	       		 tx.executeSql('INSERT INTO news VALUES("草莓音乐节被批混乱 资本让音乐节变成春晚","http://www.zhinengshe.com")');
+
+	       		 //输出数据
+	             tx.executeSql('SELECT * FROM news',[],function(tx,result){
+	                 result.rows 一组数据
+	             },function(tx,err){alert(err)}
+			});
+
+		精确查询：
+		   tx.executeSql('SELECT * FROM news WHERE title LIKE ?',["%平% "]
+
+	---------------------------------------------------------------
+	-----------------------week4 day2 11-29------------------------
+	重力感应：
+		obj.addEventListener('webkitAnimationEnd',function(){},false)
+	
+		1).window.DeviceMotionEvent 判断是否支持重力感应if
+     
+    	2).重力感应发生变化：
+	        window.addEventListener('devicemotion',function(ev){
+	            alert('发生变化了');
+	            var lastX = 0;
+				//重力加速度值(有正负)
+	            var acc=ev.accelerationIncludingGravity;
+
+	            //>20就判断为摇晃 Math.abs(acc.x)-lastX>20
+	            alert(acc.x);
+	            alert(acc.y);
+	            alert(acc.z);
+
+	            if(Math.abs(acc.x)-lastX>20 || ){
+	            	lastX = Math.abs(acc.x) ;
+	            }
+	        },false);
+
+	        oDiv.addEventListener('animationend',function(){
+	            oDiv.classList.remove('shake');
+	        },false);
+
+        手机端要加浏览器前缀 -webkit-animation:shake 1s linear 4;
+
+        animationend 标准写法   webkitAnimationEnd
+
+vanvas 画图
+svg 画图
+	矢量图
+	有属性 可以加事件
+	<svg></svg>行内块  用标签画图
+	stroke-dasharray = "5" 虚线 可写多个值 依次控制间隔长度  有色 无色
+
+	创建一个line标签
+	document.createElementNS('http://www.w3.org/2000/svg','line')
+	添加 删除 
+
+	路径：  
+		path
+vml:
+
+		
+		1. transition
+
+2. animation:run 1s ease 2s alternate forwards infinite;
+		
+		alternate 交替运动
+		forward   定在终点
+		infinite  无限循环运动
+
+	animation-name:run;
+	animation-duration:1s;
+	animation-timing-function:ease;
+	animation-iteration-count:infinite;
+	animation-direction:alternate;
+	animation-delay:2s;
+	animation-fill-mode:forwards;
+	animation-play-state:paused; 暂停运动
+
+运动形式的调用：
+	animate.css   animated bounceIn ...
+------------------------------------------------------
+获取地理位置：
+
+navigator.geolocation.getCurrentPosition(function(ev){
+          成功
+     ev.coords.longitude 经度
+     ev.coords.latitude  纬度
+     ev.coords.accuracy 精确度
+          高于60 基本不可用
+     ev.coords.altitude 海拔高度
+     ev.coords.altitudeAccuracy 海拔高度精确度
+     ev.coords.heading 朝向
+     ev.coords.speed 速度
+},function(ev){
+     失败
+     ev.code 
+          0 未知错误 检查api 服务器端 chrome 谷歌API
+          1.用户拒绝 
+          2.获取失败 网络问题 服务器问题 
+          3.超时 长时间没有返回值
+    ev.message
+});
+------------------------------------------------------
+var timer= navigator.geolocation .watchPosition(fnSucc,fnFail,{
+      frequency:1000 //监听频率
+ });
+
+ ---------------------------------------------
+ 百度地图：
+
+ ---------------------------------------------
+多线程
+
+----------------------------------------------
+webSql 5M
+
+localStorage 5M
+
+cookie 
+----------------------------------------------
+     回忆怎么去手机上看自己的页面
+
+     手机访问网址 ： 二维码扫描得到 直接输入网址
+
+     //运动完毕 兼容写法 webkitAnimationEnd
+	 oBox.addEventListener('webkitAnimationEnd',function(){
+		//alert('完了');
+		oBox.classList.remove('move');
+	 },false)
+----------------------------------------------------
+重力感应：
+	 window.DeviceMotionEvent   if判断是否支持
+
+===================================================
+canvas 画图
+	位图，像素为单位 像素级图
+	位图：放大缩小 会失真 ，以像素为单位
+	没有属性，不能加事件
+
+svg 画图
+	矢量图：没有固定大小单位，放大缩小不失真！
+	字体图标 矢量图 
+	有属性，可以加事件！
+
+	svg用标签画图！ 一些svg标签
+
+		用标签来画：
+		线：
+		<line x1="100" y1="100" x2="200" y2="200" stroke="red"></line>
+
+		x1="100" y1="100" x2="200" y2="200"
+
+		stroke="red" 描边
+		stroke-width="10" 线宽
+
+		样式：
+		line{ stroke:green; stroke-width:10px;}
+
+		
+		标签、class、id...
+
+   		样式优先级：
+
+   	属性/继承 < * < div < .class < #id < 行间 < !important
+
+
+    svg加事件比较方便：数据操作图
+
+获取svg标签：
+    	getElementById();
+        getElementsByClassName()
+        getElementsByTagName()
+
+        querySelector()
+        querySelectorAll()
+
+添加事件：
+        a). <input onclick=""
+        b). obj.onclick
+        c). obj.addEventListener()
+
+设置样式：
+	  style/className
+
+获取：
+     getComputedStyle(this,false).xxx
+
+属性：
+    obj.getAttribute();
+    obj.setAttribute();
+-----------------------------------------------------
+变形：
+	transform="rotate(10)" 旋转 默认中心点在画布左上角
+
+	transform="rotate(30,150,100)" 定义旋转中心点位置
+
+		150，100 中心点位置坐标
+
+	translate(0,0) 平移
+
+	transform="scale(2)" 缩放 （影响距离）
+
+样式表示：
+	transform:rotate(50deg);
+	transform-origin:center; 旋转中心点位置
+
+	transform:translate(100px,-50px); 平移
+
+	transform:scale(2); 缩放比例
+
+	transform:skew(10deg); 样式 改变倾斜
+
+矩形：
+	
+	<rect class="box"></rect>
+
+	.box{ width:300px; height:300px; fill:blue; x:200px; y:200px;}
+------------------------------------------------
+圆：
+	<circle cx="100" cy="100" r="50" fill="green" fill-opacity="0.5" stroke="red" stroke-opacity="0.3"></circle>
+
+	样式：
+		circle{  cx:100px; cy:100px; r:50px; fill:green; fill-opacity:0.5; stroke:red; stroke-opacity:0.3;}
+椭圆：
+    <ellipse cx="200" cy="200" rx="100" ry="10"></ellipse>
+
+    样式：
+    	cx:圆的中心点
+    	cy:圆的中心点
+    	rx:圆角半径（X）
+    	ry:圆角半径（Y）
+
+------------------------------------------------
+   svg能用到属性：
+    stroke="red"
+    stroke-width="10"
+    fill="填充色" 填充
+    fill="none"  干掉(默认的黑)填充颜色
+    fill-opacity="" 填充透明度
+    stroke-opacity="" 描边透明度
+
+   css上的样式 和 属性上的样式 值 （单位是否需要写）
+==================================================
+
+stroke-lineCap=""  端点样子
+    butt | round | square
+
+stroke-lineJoin="" 连接样子
+    miter | round | bevel
+
+==================================================
+
+虚线：
+	stroke-dasharray="5" 有色区域和无色区域 都是一样的
+
+	stroke-dasharray="5,10" 有色5px 间隔10px
+
+	stroke-dasharray="5,10,20,30" 依次控制间隔长度
+
+-------------------------------------------------
+css3 
+	transition:1s all ease
+
+-------------------------------------------------
+添加：
+    父级.appendChild(元素);
+    父级.insertBefore(元素,谁)
+删除：
+    父级.removeChild(元素);
+
+------------------------------------------------
+js创建svg标签：
+	1. 需要声明
+		//NS name space 命名空间 
+		var oLine=document.createElementNS('http://www.w3.org/2000/svg','line');
+----------------------------------------------
+路径：
+	<path d="M200 200 L300 100 L400 200 Z" stroke="red" fill="none"></path>
+
+	M -> moveTo
+    L -> lineTo  (省略)
+    Z -> 闭合路径
+----------------------------------------------
+插入文字：
+<text x="402" y="87">百葛桥</text>
+
+---------------------------------------------------
+vml 微软出的 svg H5
+	
+	IE6, 7, IE8不兼容 IE9兼容 svg IE10跟系统 IE11 edge
+
+---------------------------------------------------
+强制变成IE7模式渲染：
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+---------------------------------------------------
+基本使用流程：
+1. html里面添加一个命名空间
+    <html lang="en" xmlns:zns="urn:schemas-microsoft-com:vml">
+2. 添加一个样式
+    zns\:* {behavior: url(#default#VML);}
+3. 画图
+    <zns:line from="100,100" to="300,300"></zns:line>
+
+    strokecolor="red"  描边颜色
+    strokeweight="30"  线宽
+
+关于命名空间：
+     xmlns:zns="urn:schemas-microsoft-com:vml"
+     xmlns:baidu="urn:schemas-microsoft-com:vml"
+
+     xmlns:v
+
+样式：
+   	 v\:* { behavior: url(#default#VML); position:absolute;}	
+
+-------------------------------------------------------
+fillcolor=""  填充颜色 只能加到属性上面
+strokecolor='blue' 描边颜色
+
+------------------------------------------------------
+虚线：
+<v:line from="100,100" to="300,300">
+    <v:stroke dashstyle="dot/dash"/>  
+</v:line>
+
+
+
+线开头结尾样式：
+    <v:stroke endArrow="classic"/> 箭头
+    <v:stroke startArrow="oval"/>  圆
+
+-------------------------------------
+折线：
+    <v:PolyLine Points="0,0 0,100 20,150 200,100"/>
+
+路径：
+	<v:shape path="M200 200 L300 100 L400 200 X" style="width:800px; height:600px"></v:shape>
+
+圆角矩形：
+	<v:roundrect class="box"></v:roundrect>
+
+===================================================
+不兼容：
+	svg 高级浏览器
+
+	vml  IE系列 不兼容IE8 
+
+---------------------------------------------------
+库：
+	raphael 拉斐尔
+
+	http://dmitrybaranovskiy.github.io/raphael/
+
+API：
+	http://dmitrybaranovskiy.github.io/raphael/reference.html
+
+
+	//运动
+	circle.animate({fill: "green", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);
+
+
+echarts：
+
+	http://echarts.baidu.com/
+
+=======================================================
+
+D3
+	官网：https://d3js.org/
+
+
+==============================================
+
+	---------------------------------------------------------------
+	-----------------------week4 day3 11-30------------------------	
+框架 vue
+	
+	mvc 模型 视图 控制器
+
+面向数据   兼容高级
+
+一个功能模块一个控制器 一个div 包起来
+var app = new Vue({
+			el:'#app',//控制器范围
+			data:{
+				message:'Hello';
+			}
+		})
+
+v-if="true" 显示
+v-if=""
+methods:{
+	toHide:function(){}
+}
+
+循环
+arr:[]
+v-for="item in arr"  {{item}}
+
+
+---------------------------------------
+vue
+php
+node
+es6
+grunt/gulp
+------------------------------------------------------
+vue.js
+	mvc类型框架
+		优势：分责任，重用，低耦合，高内聚
+
+	m module    模型（数据）
+	v view      视图 （展示）
+	c controler 控制器 （连接数据和展示）
+
+
+	官网：http://cn.vuejs.org/	
+------------------------------------------------------
+交互，数据双向绑定，依赖注入，不直接操作DOM，性能极高
+
+------------------------------------------------------
+面向数据
+	一切皆数据！
+
+	vue兼容性: IE9+ chrome FF
+
+
+	 v-if="true/false" 显示/隐藏
+
+	 v-for="item in arr" 循环数组
+
+	 {{vue数据}}
+
+	 v-on:keyup.13="add()"
+
+	@keyup.enter=""
+    @keyup.left=""
+    @keyup.right=""
+    @keyup.up=""
+    @keyup.down=""
+    @keyup.delete=""
+    @keyup.ctrl
+    @keyup.alt
+------------------------------------------------------
+methods 控制方法
+
+-----------------------------------------------------
+过滤器：
+	
+新建html
+引vue.1.0.js
+新建a.txt假数据
+写控制器
+script
+
+
+	PHP：必须在服务器环境下
+
+		标识：<?php ?>
+		后端语言相对来说安全性比较高 代码不可查
+
+		<?php
+			echo '输出结果';
+		?>
+
+		声明变量：$name
+			$a=12;
+
+			php + 运算符  拼接用点.  echo $a.'<br/>';
+
+		循环：变量声明不同
+			for($i=0; $i<2 ;$i++){
+				echo $arr[$i]
+			}
+		判断：
+			if(true){
+				echo '单引号';
+			}
+		函数：一样
+
+		数组：
+			$arr=array('apple','banana');
+
+			var_dump($arr)=>打印输出对象
+
+			array_push($arr,'hahah') 添加
+
+			count($arr);获取数组长度
+
+			for($i=0; $i<count($arr) ;$i++){
+				if($i%2){
+					echo '';
+				}else{
+					echo '';
+				}
+			}
+			
+		
+		字符串：$str='';
+			strpos($str,'');//字节位置
+			strpos($str,'')/3;//字位置
+
+		混合模式：
+			<?php 
+				$arr=array('apple','banana');
+				for($i=0; $i<count($arr) ;$i++){
+					if($i%2){
+						echo '';
+					}else{
+						echo '';
+					}
+				}
+			?>
+		注意：
+			echo 输出字符串
+			路径 英文名字
+			每句结尾加分号	
+
+		$a = $_GET['str'];	
+		$a = $_POST['str'];	
+	数据库： mysql
+
+		INT 整数 
+	操作数据库：用PHP访问数据库
+
+	<?php 
+		//解决老旧语法问题
+		error_reporting(E_ALL ^ E_DEPRECATED);
+		//
+		mysql_connect('localhost','zhaoyumei','zhao123');
+		//找到对应的数据库
+		mysql_select_db('2016-12-1');
+		// 定义sql语句
+		$sql = 'SELECT*FROM news';
+		//执行sql语句 得结果
+		$result=mysql_query($sql);
+		//获取一条数据
+		$row = mysql_fetch_row($result);
+		echo var_dump($row);
+	?>
+
+	-----------------------------node js---------------------------
+	-----------------------week4 day5 12-02------------------------	
+node.js  性能高
+	使用 JavaScript 语言去操作后台功能
+
+	官网 nodev6.9.1LTS
+
+	验证是否安装 成功：
+	命令行下 执行 node -v  查看node版本
+	e: 切换盘符
+	cd name 切换目录
+	cd ..退出文件夹
+	cls清屏
+
+	1.js
+
+	ctrl+c 停止访问停止命令
+
+	node 不可以操作dom和bom 不能用alert(1);
+
+	用node搭建一台自己的服务器
+		http服务器
+		http模块
+
+	node本身提供很多模块：系统模块
+	-----------------server.js--------------
+	//引入服务器模块
+	var http=require('http');
+
+	//创建服务器
+	var oHttp = http.createServer(function(req,res){ //只要有人访问就执行
+		console.log('有人来了'+req.url);
+
+		//获取访问路径request 请求 客户端->服务端
+		req.url 
+
+		//返回一个值response 响应 服务器->客户端
+		res.write('我是返回值');
+		//说完了
+		res.end();	
+	})
+
+	//监听服务器端口  (门牌号)
+	oHttp.listen(8081);
+	------------------fs.js------------------------
+	//引入读取文件模块
+	var fs = require('fs');
+	//读取文件fs.readFile(name,fnCb){}
+	fs.readFile('笔记.txt','utf-8',function(err,data){
+		if (err) {
+			console.log('404');
+		}else{
+			console.log('data');
+		}
+
+	})
+	---------------
+数据库：
+	安装mysql模块 
+		在cmd 中 输入
+			npm install mysql
+	
+	//引入mysql模块
+	var mysql=require('mysql');
+
+	//创建与数据库的连接
+	var db=mysql.createConnection({
+		host:'localhost',
+		user:'cris',
+		password:'admin123',
+		database:'2016-12-2'
+	});
+
+	//执行sql
+	db.query('SELECT * FROM news',function(err,data){
+		if(err){
+			console.log('获取失败');	
+		}else{
+			console.log(data);	
+		}
+	});
+
+	---------------------------------------------------------------
+	卸载 npm ininstall <包名>
+	官网下载 
+	npm -v 包管理器   下载node 自带  需要联网
+	======
+	GRUNT
+	======
+	GRUNT javaScript世界的构建工具
+		构建:文件打包 压缩
+		自动化 
+		插件列表：
+			http://www.gruntjs.net/plugins
+
+		1 安装grunt命令:
+			npm install -g grunt-cli gulp
+		2 安装 grunt:
+			npm install grunt
+		3 安装 npm install grunt-contrib-uglify
+
+		必须有两个文件: 
+	 		package.json(配置文件) 和 Gruntfile(配置函数);
+
+	 	新建grunt-1文件
+		 	Gruntfile.js 名字固定
+			 	导入模块  
+			 	module.exports = function(grunt){
+			 		//console.log(grunt);
+			 		//1 引入插件 压缩
+			 		loadNpmTasks('grunt-contrib-uglify');
+			 		//2 定义任务
+					grunt.initConfig({
+						//主任务uglify 子任务 a b
+						 uglify:{
+						 	a:{
+						 		src:'a/index.js',//源文件地址,
+						 		
+						 		dest:'aa/index.js'//生成目标文件地址(不用自己新建)
+						 	}
+						 },
+						// src:'src/css/*.css' src下的所有css
+						cssmin:{
+							a{
+								expand:true,//文件是否分开
+								cwd:'src/css', //来源文件目录
+								src:'*.css',//来源文件名
+								dest:'dest/css',//目标目录
+								ext:'.min.css'//文件后缀名称
+							}
+						}
+					});
+			 	};
+			 	cmd中 安装 npm install grunt-contrib-uglify
+			 	1 执行任务:grunt uglify:a
+			 or 2 注册默认任务:grunt.registerTask('default',['uglify']);
+			 	  执行:grunt
+		配置任务:
+			功能
+			1.压缩js功能! 
+				grunt下 contrib uglify 插件
+				https://www.npmjs.com/package/grunt-contrib-uglify
+				cmd中 安装 npm install grunt-contrib-uglify
+			2.流程:
+				1 引入插件
+					grunt.loadNpmTasks('grunt-contrib-uglify');
+				2 定义任务
+					grunt.initConfig({ //初始化配置
+						uglify(主任务):{
+							a(子任务):{
+							  src:'a/index.js',	//源文件地址
+							  dest:'dest/index.js' //目标文件地址
+							}	
+						}	
+					})
+				3. 注册默认任务
+					grunt.registerTask('default',['uglify','csssmin']);
+					src:'src/css/*.css',  代表css文件夹下的所有css文件
+
+					任务下的配置项：
+						expand:true,//文件是否分开
+						cwd:'src/css', //来源文件目录
+						src:'*.css',//来源文件名
+						dest:'dest/css',//目标目录
+						ext:'.min.css'//文件后缀名称
+
+					执行任务：
+						grunt uglify:a
+							  主任务:子任务
+
+						grunt 回车
+			eg: //导入模块module.exports=function(grunt){	
+					//引入插件 js压缩
+					grunt.loadNpmTasks('grunt-contrib-uglify');
+					//引入css压缩插件
+					grunt.loadNpmTasks('grunt-contrib-cssmin');				
+					//引入html压缩插件
+					grunt.loadNpmTasks('grunt-contrib-htmlmin');				
+					//引入img压缩
+					grunt.loadNpmTasks('grunt-contrib-imagemin');				
+					//引入监听插件
+					grunt.loadNpmTasks('grunt-contrib-watch');				
+					//定义任务
+					grunt.initConfig({
+						uglify:{
+							a:{
+							  src:'src/js/*.js',	//源文件地址
+							  dest:'dest/js/index.min.js' //目标文件地址
+							}	
+						},
+						cssmin:{
+							a:{
+								expand:true,//是否分开
+								cwd:'src/css', //来源文件目录
+								src:'*.css',//来源文件名
+								dest:'dest/css',//目标目录
+								ext:'.min.css'//文件后缀名称
+							}	
+						},
+						htmlmin:{
+							options:{
+								removeComments:true,//删除注释
+								collapseWhitespace:true,//压缩空白区域	
+							},
+							a:{
+								expand:true,
+								cwd:'src/',
+								src:'*.html',
+								dest:'dest/',	
+							}
+						},
+						imagemin:{
+							a:{
+								expand:true,
+								cwd:'src/images/',
+								src:'*',
+								dest:'dest/images/',		
+							}		
+						},
+						watch:{
+							a:{
+								files:['src/js/*.js','src/css/*.css'],
+								tasks:['uglify','cssmin']	
+							}	
+						}
+						
+					})
+					
+					//注册默认任务
+					grunt.registerTask('default',['uglify','htmlmin','cssmin','imagemin','watch']);
+				};
+
+			HTML压缩:
+				找插件:
+				//1 引入插件 压缩
+				loadNpmTasks('grunt-contrib-htmlmin');
+			  必须配置参数 去掉空格 注释
+			    options:{
+			   		removeComments:true;
+					collapseWhitespace:true;
+			    }
+			
+			grunt 插件 带contrib 官方的
+		-------------------------
+		生成package.json
+			只需 npm init  一路回车 不要停
+		----------------------
+		有Gruntfile.js 和package.json时
+
+		npm install 安装所有需要用的插件
+
+		grunt  执行grunt默认任务
+	--------------------------------------------------------------
+	======
+	GULP
+	======
+	GULP：前端自动化构建工具
+		官网：http://www.gulpjs.com.cn/
+		插件库：https://www.npmjs.com/
+
+		1. 压缩js
+			npm install gulp --save-dev
+			npm install gulp -g
+			1. 安装插件
+			npm install --save-dev gulp-uglify 
+			npm install gulp-minify-css;
+			2. 导入模块
+				var gulp=require('gulp');
+			3. 配置函数：
+				//导入模块js压缩
+				var uglify_js=require('gulp-uglify');
+				//配置任务
+				gulp.task('uglify',function(){	
+					gulp.src('src/js/*.js').
+					pipe(uglify_js()).
+					pipe(gulp.dest('dest/js/'));	
+				});
+				//注册默认任务
+				gulp.task('default',['uglify']);
+
+	=================================================
+	npm install gulp gulp-less
+	npm install gulp-less --save-dev
+gulp-uglify	->	对ES6不好
+
+	项目做完:
+		文件合并、代码压缩、代码检查.....
+	http://gulpjs.com/
+
+基于node
+	验证: node -v
+	        npm -v
+
+1. 安装gulp命令环境
+	npm install gulp-cli -g
+
+	验证是否安装好?
+		gulp --version
+2. 准备 gulpfile.js	—— 编写具体任务
+	任务都是以模块(插件)形式存在
+	
+	const gulp = require('gulp'); //gulp本地模块
+	const uglify = require('gulp-uglify'); //压缩js
+
+	gulp.task('uglify:js',function(){
+		gulp.src('js/a.js')  //源文件地址
+		.pipe(uglify()) //做啥？
+		.pipe(gulp.dest('build'))  //输出到哪？
+	});
+3. 安装你需要的任务模块
+	cnpm install gulp gulp-uglify
+4. 运行gulp任务
+	gulp 任务名
+5. 注册一个默认任务
+	gulp
+----------------------------------------
+gulp-rename	重命名
+	可配置
+gulp-concat	合并文件
+----------------------------------------
+工程文件:
+	描述此项目作者、名称、关键词
+	此项目需要用的所有模块(插件)
+pakcage.json
+	
+如何生成工程文件?
+	0. 在当前目录下，按住shift+右键
+	1. npm init
+
+安装模块:
+	npm install <模块名>	直接把模块下载本地
+	npm install <模块名> --save	直接把模块下载到本地，并且把模块信息，写入到package.json文件里面(dependencies)
+	npm install <模块名> --save-dev  直接把模块下载到本地，并且把模块信息，写入到package.json文件里面(devDependencies)	√
+-------------------------------------------------
+到公司以后:
+	1. cnpm install
+	2. gulp
+-------------------------------------------------
+npm start  -> package.json -> scripts
+-------------------------------------------------
+svn——代码版本管理工具
+	集中式管理
+	速度慢
+
+	svn服务器(码云)
+
+	安装svn客户端(小乌龟)——图形操作
+
+	0. checkout
+	1. update
+	2. commit
+-------------------------------------------------
+git——代码版本管理工具
+	分布式管理
+	速度快
+
+
+
+	git:
+		0. 图形操作
+			https://www.sourcetreeapp.com/
+		1. 命令		√
+				安装git客户端:
+			https://git-for-windows.github.io/
+
+			验证是否安装ok?
+				在任意地方 -> 右键 -> git bash
+
+git bash （命令-linux）
+
+ls	列出当前目录下所有内容
+mkdir	创建目录
+rmdir	删除目录
+touch	创建文件
+rm	删文件
+clear	清屏
+cd	切换目录
+cd ..	退回上级
+rm -rf   删除非空目录
+vi  a.txt	->	"i" -> 编辑 -> esc -> :wq
+cat a.txt	查看文件内容
+----------------------------------------
+仓库(文件夹)
+----------------------------------------
+普通目录变成git仓库:	git init
+
+
+git status	查看此时git仓库状态
+
+git add -> git commit
+
+git add .	提交当前目录下所有内容
+-----------------------------------------------
+git log	查看提交日志
+
+git reset --hard commit_id 	版本回滚
+-----------------------------------------------
+分支:
+	查看分支:
+		git branch
+	创建
+		git branch 分支名称
+	切换分支:
+		git checkout 分支名称
+	
+	创建并且切换:  √
+		git checkout  -b 分支名称
+	合并:
+		git merge  分支名称
+	删除:
+		git branch -d xxxxx
+-----------------------------------------------
+github(码云，gitlab):
+	注册
+
+如何让本地和github服务器关联?
+	0. 配置本地
+		查看本地git配置: 
+		git config -l   查看配置
+		git config --global user.email “aaa@aa.com”
+		git config --global user.name “ccc”
+	1. 本地生成一个秘钥(SSH key)
+		ssh-keygen -t rsa -C “xxx@xxx.com”  一路回车
+	2. 拿到秘钥
+		当前C盘，当前用户列表里面找到.ssh文件夹，里面有两个文件：
+id_rsa和id_rsa.pub
+		id_rsa.pub	√	用普通记事本打开
+	3. 把秘钥填写到相应网站上(github)
+		点击头像 -> settings -> SSH and GPG key -> 添加
+---------------------------------------------------
+往github上放东西(远程操作):
+1. 确保github上已经建了一个项目:
+2. git clone 项目地址
+3. 本地正常操作
+	git add .
+	git commit -m "xxxx"
+4. 提交
+	git push
+5. 更新
+	git pull
+---------------------------------------------------
+gitPage: （个人网站）
+1. 在github上创建一个仓库
+	仓库名称:  你的名称.github.com
+2. 点击仓库里面 setttings
+---------------------------------------------------
+现在需要做的:
+一、
+1. 	git config --global user.email "xxxx"
+	git config --global user.name ""
+2. github创建一个仓库
+	复制仓库地址
+
+	a).git clone 复制地址
+
+	b).新增一个文件
+	c). git add 文件名    //  git add .
+	d). git commit -m '此次提交描述信息'
+	e). git push
+		-> username:邮箱
+		-> 密码
+二、发布任意网站
+	settings
+-------------------------------------------------
+gitlab	支持私有仓库
+码云  -> git
+-------------------------------------------------
+bootstrap
+-------------------------------------------------
+开发模式:
+	a). 前端负责切图，写特效	
+		数据主要后台渲染
+	b). 前端负责切图，特效，以及数据交互	√
+		后台提供数据接口
+		前后台分离
+	c). 切图，mvc
+		组件(插件)
+		前端mv*框架 (angular\vue\react)
+
+		后台需要只需要写接口
+	d). 现在很多公司(阿里、美团.....)
+		nodeJs (中间层)
+
+gulp   cmd 小黑板  
+github   右键 git bash here 小黑板
+
+公众号开发
+
+PhoneGap
+	封装APP
+	将页面封装成APP软件
+
+	native APP 传统APP  安卓Java  iOS
+		1速度快，性能高
+		2更新费劲  
+		3开发周期长
+
+  **hybrid APP 混合式开发
+		1借用app壳子，内部H5页面
+		2更新难度小
+		3开发周期一般
+
+	web APP   淘宝 京东
+		1纯页面 ，用户流失快 （记住网址域名，不然over）
+		2更新没难度
+		3开发周期短
+	--------------------------------------------------------------
+
+	下载phoneGap 
+
+	GitHub app thisisatext
+
+<param name="flashvars" value="label=2015%E5%85%A8%E6%96%B0%E4%B8%AD%E6%96%87Club%E9%9D%92%E6%98%A5%E5%8A%B1%E5%BF%97%E6%9A%96%E5%9C%BA%E4%B8%B2%E7%83%A7DJ%E9%98%BF%E6%B7%B1&amp;src=http%3A%2F%2Ffv.ik123.com%2FDj_www.ik123.com%2F2010%2F201507%252Fik123_10281.ik%3Fvsid%3D29de2780efbb4ff030d39351a658a2ca%26name%3Dwww.ik123.com&amp;src2=http%3A%2F%2Fifv.ik123.com%2FDj_www.ik123.com%2F2010%2F201507%252Fik123_10281.ik%3Fvsid%3D29de2780efbb4ff030d39351a658a2ca%26name%3Dwww.ik123.com&amp;next_link=http%3A%2F%2Fwww.ik123.com%2Fmp3-dj%2Fik123_10282.html&amp;xunhuan=1">
+
+87861890
+
+后台给的接口文档  ajax获取后台数据   （异步http请求）
+
+请求数据格式： 后台定的 一般json
+
+引入核心css和js 通过内置的属性和class操作的对应的dom节点
+
+调用模板（二次开发）
+1、注册 登录Adobe账号
+2、创建phonegap目录结构
+	下载desktop APP  安装后-》phonegap
+3、打包
+	new app --》 （open source）
+	把项目放在GitHub——》建项目myselfapp ——》
+	克隆到本地 ——》把myapp里的文件拷贝到myselfapp上传（实际只有www)
+	open source--》填入地址 zhaoyumei。github。io/myselfapp   pull from git
+	——》ready to build
+	打包成功的有安卓  ios不成功（掏钱）
+
+
+
+
+
+
+
+
+复习
+------------------------- 12-07 -----------------------------
+后台 给我接口文档 我通过ajax获取后台数据
+
+ajax？
+	异步的http请求 
+
+请求数据格式：  json 字符串 转义 eval 
+
+---------------------------------------------
+bootstrap
+	引入核心css和js  通过内置的属性和class操作对应的dom节点
+
+	调用模板 二次开发
+---------------------------------------------
+jquery：
+	现在有点low 经常用 我觉得 最核心 最有用的就选择器 H5 选择器可以去代替
+
+---------------------------------------------
+angular/vue
+	你写一个angular，核心思想 操作数据，
+	优点：不用操作dom 提高性能。
+	流行 一切以数据为准 交互难度降低 
+
+	服务
+	指令
+	过滤器
+
+	路由 路径/锚点 单页面应用
+ 	懒加载 
+------------------------------------------
+微信开发：
+	不是特别懂 不懂  特别不懂
+	
+	我知道 后台配合 
+
+------------------------------------------
+学习  查 百度 找群 
+
+------------------------------------------
+面向对象 
+	封装选项卡 
+
+H5
+	移动端布局 rem 
+	canvas 捕鱼 定时器 不停的动 碰撞检测 面向对象思想 
+
+less
+	节省css代码
+
+网站布局
+	
+公司晋升渠道  51cto 
+------------------------------------------
+ES6
+	ECMAScript6
+
+	ECMAScript5.5 js核心解释语法
+
+	1、定义变量：
+		var a=12;作用域：
+			1. 以函数为作用域
+
+		let a=12; 作用域：
+			1. 以{}为作用域     代码块级作用域 
+		
+		alert(a);
+			eg：选项卡变简单
+				for(let i=0;i<aInp.length;i++){
+					aInp[i].onclick=function(){
+						alert(i);	
+					}	
+				}
+
+ 	2、定义常量
+ 		const a=12; 定义常量 不能修改的  具备代码块级作用域 
+
+	3、反单引号:    var str= ``;    字符串模板
+	   现在:    `abc${变量名}ef`
+
+		eg:字符串拼接
+			let num=111;
+			let str=`这是一段文字，然后还有${num}段文字`;
+			alert(str);
+
+	4、解构赋值
+		let [a,b,c]=[12,6,888]; 
+		alert(c); ->888
+
+		let {a,b,c}={b:5,a:12,c:101};json无序
+		alert(a); ->12
+	5、箭头函数 let show=(参数)=>{代码}
+		let show=()=>alert(1);
+		show();
+		let show=()=>1;
+		alert(show());
+
+		var show=(arguments)=>arguments; 
+		alert(show(5,12)); ×箭头函数不能使用arguments
+	
+	6、复制数组
+		var arr=[1,2,3];
+		var arr2=[...arr]/Array.from(arr);两种 不兼容  循环兼容
+		arr.shift();
+		alert(arr2);---[1,2,3]
+		alert(arr);---[2,3]       arr2不影响arr
+
+		转换成真实数组： 用的多
+		function show(...arguments){
+			arguments.push(5);
+	         alert(arguments);
+	    }
+	    show(1,2,3,4);
+
+	    ...可分可合
+	7、面向对象
+-----------------------------------------
+
+map 存数据的一种格式 
+	
+	for of
+
+	循环name,val
+	for(var name of map){
+        console.log(name); // a,apple   b,banana
+    }
+
+    循环name和val
+    for(var [key,value] of map){
+		console.log(value)	 
+	 }
+
+	 for(var name of map.entries()){
+        console.log(name);
+    }
+
+
+
+json 使用for in
+
+-----------------------------------------
+箭头函数：
+	let show=(a)=>a;
+
+	1. this指向window
+	2. arguments被干掉了
+
+----------------------------------------------
+function Person(name,age){    //类、构造函数Person
+        this.name=name;
+        this.age=age;
+}
+Person.prototype.showName=function(){
+        return this.name;
+};
+Person.prototype.showAge=function(){
+        return this.age;
+};
+---------------------------------------------
+class Person{ //类Person
+    constructor(name,age){//构造函数constructor
+            this.name=name;
+            this.age=age;
+    }
+    showName(){
+            return this.name;
+    }
+    showAge(){
+            return this.age;
+    }
+}
+
+继承：
+class Worker extends Person{
+	constructor(...arguments){
+		super(...arguments)    //调用父级构造
+		this.job='代码员'
+	}
+	showJob(){
+		alert(this.job)	
+	}
+}
+--------------------------------------------
+模块化：
+	ES6自带模块化
+
+
+	形式上:
+        a). 函数名字前面有 *
+        b). 函数内部使用 yield语句
+
+
+	function* show(){
+            yield 'Hello';
+            yield 'World';
+            yield 'Es6';
+    }
+    var res=show();
+
+    导出exports default{}
+    引出import 名字 from "模块地址"
+----------------------------------------------
+ES6:
+    ECMAScript6
+
+js:
+    组成部分: ECMA  DOM BOM
+
+    javaScript
+    actionScript
+-------------------------------------------
+什么是ECMA?
+    ECMA是标准， js是实现
+        类似 HTML5是标准，IE10， chrome、FF都是实现
+        换句话说, 将来也有可能其他 xxxScript来实现ECMA
+
+ECMAscript  简写  ECMA 或者 ES
+
+    目前版本：
+        低级浏览器: 主要支持 ES3.1
+        高级浏览器: 正在从ES5 过渡到 ES6
+
+------------------------------------------
+兼容性:
+    目前为止 ES5 ES6 支持情况一般
+
+    nodeJs用的就是chrome内核， 在node中可以使用ES5 ES6很多特性
+
+    ES5和ES6已经逐渐沦为后台语言
+------------------------------------------
+在浏览器里面如何使用？
+    需要用到编译工具
+
+    traceur    ――由Google出的编译器，把ES6语法编译为ES5
+
+    bootstrap    引导程序，跟css里面认识bootstrap不一样
+
+在网页上使用:
+    用法一:    √
+        <script src="traceur.js"></script>
+        <script src="bootstrap.js"></script>
+        <script type="module">
+
+        </script>
+    用法二:
+        直接在线编译――主要用于测试
+        http://babeljs.io/repl/
+        https://google.github.io/traceur-compiler/demo/repl.html
+------------------------------------------------------------------------
+玩ES6时候:
+    先不用任何引入东西，测试，如果失败了，引入traceur
+------------------------------------------------------------------------
+1. 定义变量 ,let     ――已经被浏览器实现了
+    var a=12;
+
+    let――用来定义变量
+
+    let a=12;
+
+    代码块:    {} 包起来的代码， 形成了一个作用域，块级作用域
+        比如: if for while
+
+    特点: 只能在代码块里面使用
+
+    var 只有函数作用域
+
+
+    a). let具备块级作用域
+    b). 不允许重复声明
+        let a=12;
+        let a=5;    //错的
+    总结: 其实let才接近其他语言的变量
+
+
+    用处：
+        封闭空间：
+            (function(){
+                var a=12;
+            })()
+        现在：
+            {
+                let a=12;
+            }
+
+        i问题:
+
+    总结: 块级作用域，其实就是 匿名函数立即调用
+------------------------------------------------------------------------
+const――用来定义 常量
+    一旦赋值，以后再也修改不了了
+
+    const a-=12;
+    a=15    //报错
+
+    注意:  const必须给初始值， 不能重复声明
+        因为以后再也没法赋值了，所以声明的时候一定得有值
+
+    用途: 为了防止意外修改变量
+        比如引入库名，组件名
+------------------------------------------------------------------------
+字符串连接:
+    之前:
+        var str='';
+        var str=""
+
+    反单引号:    var str= ``    字符串模板
+
+    之前:     'abc'+变量名+'ef'
+    现在:    `abc${变量名}ef`
+------------------------------------------------------------------------
+解构赋值:
+    var [a,b,c]=[12,5,101];
+
+    var {a,b,c}={b:5,a:12,c:101};    跟顺序无关
+
+
+    模式匹配：――左侧的样子，需要和右侧一样
+        var [a,[b,c],d]=[12,[1,2],5];
+
+        var [{a,e},[b,c],d]=[{e:'eeee', a:'aaaa'},[1,2],5];
+
+    交互――数据解析:
+        [{title:'', href:'', img:""}]
+
+    解构赋值还可以给默认值:
+        var json={};
+
+        var a=json.a || 12
+
+        语法:
+        var {time=12,id=0}={};
+
+        运动框架:
+        function move(obj,json,options){
+            options=options || {};
+            options.time=options.time || 300;
+        }
+
+        function move(obj,json,{time=300}={}){
+
+        }
+-----------------------------------------------
+复制数组:
+    a). 循环
+    b). Array.from(arr)
+    c). var arr2=[...arr];
+
+    function show(...args){
+            args.push(5);
+            console.log(args);
+    }
+    show(1,2,3,4);
+-----------------------------------------------
+循环：
+    普通for
+    for in
+
+    for of    循环, 可以循环数组，不能循环json
+        真正目的为了循环  map对象
+
+遍历(迭代、循环)整个对象，     表现  类似 for in
+
+    var arr=['apple','banana','orange','pear'];
+
+Map对象:
+    和json相似，也是一种key-value形式
+    Map对象为了和for of循环配合而生的
+
+    var map=new Map();
+
+    设置:
+    map.set(name,value);
+
+    获取：
+    map.get(name)
+
+    删除：
+    map.delete(name)
+
+    遍历map:
+        不能使用for in，没有效果
+
+        for(var name of map){
+            console.log(name); // a,apple   b,banana
+        }
+        for(var [key,value] of map){
+            console.log(key, value); // key value
+        }
+
+        for(var name of map.entries()){
+            console.log(name);
+        }
+
+        for(var [key,value] of map.entries()){
+            console.log(name);
+        }
+
+        for(var key of map.keys()){    //只是循环key
+            console.log(key);
+        }
+
+        for(var val of map.values()){     //只是循环value
+            console.log(val);
+        }
+
+    for.. of也可以循环数组:
+        只循环值:
+            for(var value of arr){}
+        只循环索引:
+            for(var key of arr.keys()){}
+        索引和值都循环：
+            for(var some of arr.entries()){}
+--------------------------------------------------------------
+函数:
+    之前:
+        function show(){
+            alert(1);
+        }
+        show();
+        ----------------------
+        function show(a){
+            return a;
+        }
+        show(12);
+        ----------------------
+        function show(a,b){
+            return a+b;
+        }
+        show(12,5);
+箭头函数：
+    =>
+
+    var show=a=>a;        function show(a){return a};
+
+    var show=(a,b)=>a+b;        function show(a,b){return a+b};
+
+    var show=()=>'welcome';    function show(){return 'welcome'}
+
+    var show=() => {        function show(){
+        alert(1);                alert(1);
+    }                }
+
+    注意：
+        this问题， this指向了window
+        arguments， 不能使用了
+--------------------------------------------------
+对象:
+    对象语法简洁化
+
+    单体模式:
+        json
+        var name='abb';
+        var age=101;
+        var preson={
+                name,
+                age,
+                showName(){
+                       return this.name;
+                },
+                showAge(){
+                        return this.age;
+                }
+        }
+面向对象:
+    之前：
+        人类    工人类
+        function Person(name,age){    //类、构造函数
+                this.name=name;
+                this.age=age;
+        }
+        Person.prototype.showName=function(){
+                return this.name;
+        };
+        Person.prototype.showAge=function(){
+                return this.age;
+        };
+
+    ES6:
+        类    class
+        构造函数    constructor    生成完实例以后，自己就执行的
+
+        class Person{ //类
+            constructor(name,age){
+                    this.name=name;
+                    this.age=age;
+            }
+            showName(){
+                    return this.name;
+            }
+            showAge(){
+                    return this.age;
+            }
+        }
+
+    继承:
+        之前:  子类.prototype=new 父类();
+
+        ES6:
+        class Worker extends Person{
+            constructor(){
+                super()    //调用父级构造
+            }
+                }
+
+    队列类:
+        [1,2,3,4]
+
+        var q=new Queue([1,2,3,4]);
+
+        q.shift();
+
+        q._queue
+
+
+
+
+
+    -----------------------------------
+--------------------------------------------------------
+模块化：――必须引入traceur 和bootstrap， type必须写成 module
+    seajs    requireJs
+
+    ES6自带模块化
+
+    如何定义(导出)模块:
+        const a=12;
+
+        export default a;
+        ---------------------------
+        const a=5;
+        const b=12;
+
+        export default {a,b};
+    如何使用(引用):
+        import modA from './a.js';
+--------------------------------------------------------
+异步: 多个操作可以同时进行
+    ajax
+
+    ajax(url,function(){
+        //1
+    },fnFail);
+    //2
+--------------------------------------------------------
+Promise:――承诺
+
+    就是一个对象，用来传递异步操作的数据(消息)
+
+    pending（等待、处理中）―> Resolve(完成、fullFilled)
+                  ―> Rejected(拒绝、失败)
+使用：
+    var p1=new Promise(function(resolve,reject){
+        //resolve  成功了
+        //reject    失败了
+            });
+
+    var p1=new Promise(function(resolve,reject){
+        if(异步处理成功了){
+            resolve(成功数据)
+        }else{
+            reject(失败原因)
+        }
+            });
+
+    p1.then(成功(resolve),失败(reject))    √
+    --------------------------------------------
+
+    p1.catch――用来捕获错误
+
+    --------------------------------------------
+    Promise.all――全部，用于将多个promise对象，组合，包装成一个全新的promise实例
+        Promise.all([p1,p2,p3...]);
+
+        所有的promise对象，都正确，才走成功
+        否则，只要有一个错误，是失败了
+    --------------------------------------------
+    Promise.race――返回也是一个promise对象
+        最先能执行的promise结果， 哪个最快，用哪个
+    --------------------------------------------
+    Promise.reject()    ――生成错误的一个promise
+
+    --------------------------------------------
+    Promise.resolve()    ――生成一个成功的promise对象
+        语法：
+            Promise.resolve(value)
+            Promise.resolve(promise)
+-------------------------------------------------------
+Generrator――生成器
+    是一个函数
+
+    可以遍历， Generrator就是一个状态机
+
+    语法:
+        function show(){    //普通函数
+
+        }
+
+        function* show(){    //generator函数
+            yield xxx
+        }
+
+    形式上:
+        a). 函数名字前面有 *
+        b). 函数内部使用 yield语句
+
+    function* show(){
+            yield 'Hello';
+            yield 'World';
+            yield 'Es6';
+    }
+    var res=show();
+
+    res.next()    {value:'Hello', done:false}
+    res.next()    {value:'World', done:false}
+    res.next()    {value:'Es6', done:false}
+    res.next()    {value:'undefined', done:true}
+
+    总结： 每次返回一个value和done结果
+        value，每次yield后面值
+        done是一个布尔值，代表是否遍历结束
+
+    yield是否有返回值？
+        yield语句本身没有返回值，或者每次返回undefined
+
+    next可以带参数？
+        给上一个yield值
+
+    for....of循环: 循环generator函数
+
+    generator函数放到对象里面：
+        var json={
+            *show(){
+                yield ‘xx’
+                yield ‘xx’
+            }
+        }
+
+webpack:  基于node（node -v / npm - v）
+	前身：browserify
+	只能转化js
+	webpack作用：模块加载器、打包工具  一切模块化
+
+	顺序：
+		1、安装webpack命令环境
+			npm install webpack -g
+		2、验证：webpack --version
+		3、package.json 工程文件
+		   npm init 回车
+		4、安装本地webpack
+			npm install webpack -D   （--save -dev）
+	第一个例子：
+		index.html  script ——> bumdle.js
+		entry.js 入口文件
+
+		运行webpack entry.js bumdle.js
+	自动解决依赖：
+	 
+
+1.下载node.js 
+安装gulp
+安装gulp命令环境
+	npm install gulp-cli -g
+
+	验证是否安装好?
+		gulp --version
+		写gulpfile.js
+		安装npm install gulp-less 
+		
+下载LESS插件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

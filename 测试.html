@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+	<script src="http://api.map.baidu.com/api?ak=你的AK码&v=2.0&services=false"></script>
+	<script>
+		navigator.geolocation.getCurrentPosition(function (position) {
+ 2         var lat = position.coords.latitude;
+ 3         var lon = position.coords.longitude;
+ 4         var point = new BMap.Point(lon, lat);  // 创建坐标点
+ 5         // 根据坐标得到地址描述
+ 6         var myGeo = new BMap.Geocoder();
+ 7         myGeo.getLocation(point, function (result) {
+ 8             var city = result.addressComponents.city;
+ 9             $('body').html(city);
+10         });
+11     });
+	</script>
+</html>

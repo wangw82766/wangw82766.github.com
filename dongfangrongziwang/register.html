@@ -218,7 +218,7 @@
 		//注册回调
 		function registerCBFun(data) {
 			if(data.code == "10000" || data.message.indexOf('注册') > -1) {
-				window.location = "citychoose.html?" + channel_id + "&advertise_id=10&phone_no=" + phone_no + "&interface_call_operation=check_vertify_code&interface_call_id=" + aaa ;
+				window.location = "citychoose.html?&channel_id="+ channel_id + "&advertise_id=10&phone_no=" + phone_no + "&interface_call_operation=check_vertify_code&interface_call_id=" + aaa ;
 
 			} else {
 				$('.jsdApplyPop').show();
