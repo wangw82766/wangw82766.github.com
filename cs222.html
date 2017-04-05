@@ -2,13 +2,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		
 	</head>
 	<body>
-	</body>
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
-	<script src="http://api.map.baidu.com/api?ak=nECB9yD4rIth70GTOSWG5G50HHytZhAo&v=2.0&services=false"></script>
+		<div style="width: 100px; height: 100px; background: #f00;" id="aaa">
+			
+		</div>
+		<script type="text/javascript" src="base/jquery-1.9.1.min.js" ></script>
+		<script src="http://api.map.baidu.com/api?ak=nECB9yD4rIth70GTOSWG5G50HHytZhAo&v=2.0&services=false"></script>
 	<script>
 		navigator.geolocation.getCurrentPosition(function (position) {
           var lat = position.coords.latitude;
@@ -18,8 +21,10 @@
           var myGeo = new BMap.Geocoder();
           myGeo.getLocation(point, function (result) {
              var city = result.addressComponents.city;
-              $('body').html(city);
+              $('#aaa').html(city);
          });
     });
 	</script>
+	</body>
+	
 </html>
