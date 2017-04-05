@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nECB9yD4rIth70GTOSWG5G50HHytZhAo"></script>
+	<title>IP定位获取当前城市</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	 navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+         var point = new BMap.Point(lon, lat);  // 创建坐标点
+          // 根据坐标得到地址描述
+          var myGeo = new BMap.Geocoder();
+          myGeo.getLocation(point, function (result) {
+              var city = result.addressComponents.city;
+              $('body').html(city);
+         });
+     });
+</script>
