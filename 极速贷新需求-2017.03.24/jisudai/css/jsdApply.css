@@ -1,0 +1,74 @@
+/* base */
+*{ margin: 0; padding: 0;text-shadow: none; box-sizing: content-box;-webkit-box-sizing: content-box;}
+p{margin: 0;}
+body {font-family: "Helvetica Neue","Helvetica,Arial","Microsoft YaHei","微软雅黑","sans-serif"; padding: 0; margin: 0;}
+b, h1, h2, h3, h4,h5,h6, strong { font-weight:normal; }
+i, em { font-style:normal; }
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:middle}
+a { text-decoration: none;color:#000;}
+a img { display: block; border: none; }
+a:hover,a:active{outline:none;text-decoration:none;}
+a:focus{text-decoration:none;outline:none}
+select, textarea, input { outline: none; }
+input { border:none 0; font-family: "微软雅黑";}
+input[type=text]{-webkit-appearance: none;}
+input[type=password]{-webkit-appearance: none;}
+input::-ms-clear {display: none; }
+input::-ms-reveal{display: none;}
+.input:valid + .clear { display: inline; }
+.fl {float: left; }
+.fr {float: right; }
+.clearfix:after { display: block; content:''; clear: both; }
+.clearfix { zoom:1; }
+/*极速贷申请验证*/
+.jsdApply {height: 100%;}
+.jsdApplybgA { background: url(../images/jsd_bg1.png?y=1) no-repeat;background-size: 100% 100% ; width: 100%; height: 4.79rem;}
+.jsdApplybgB { width: 5.8rem;margin:0.3rem auto 0;}
+.jsdApplybgB .jsdApplycon>div { width: 5.8rem; margin: 0 auto;font-size: 0.26rem;}
+.jsdApplybgB .jsdApplycon>div input::input-placeholder {color: #b2b2b2;}
+.jsdApplybgB .jsdApplycon>div input::-webkit-input-placeholder{color: #b2b2b2;}
+.jsdApplybgB .jsdApplycon>div input::-moz-placeholder{color: #b2b2b2;}
+.jsdApplybgB .jsdApplycon>div input::-ms-input-placeholder {color: #b2b2b2;}
+.jsdApplybgB .jsdApplycon .inputA {box-sizing:border-box;overflow: hidden; border: 1px solid #bfbfbf;margin-top: 0.7rem;background: #ffffff; border-radius: 0.4rem;}
+.jsdApplybgB .jsdApplycon .inputA input {color: #b2b2b2; margin-bottom:0;height: 0.8rem; padding: 0.2rem 0.3rem;box-sizing: border-box; width: 100%; display: inline-block;background: inherit;font-size: 0.26rem;}
+.jsdApplybgB .jsdApplycon .inputB {margin-top: 0.4rem; }
+.jsdApplybgB .jsdApplycon .inputB .inputBcon{box-sizing:border-box;overflow: hidden; border: 1px solid #bfbfbf; width: 3.3rem;background: #ffffff; border-radius: 0.4rem;}
+.jsdApplybgB .jsdApplycon .inputB span{box-sizing:border-box; width: 2.4rem;background: #f67f1b; border: 1px solid #f67f1b;height: 0.8rem;line-height: 0.8rem; color: #fff;text-align: center; display: inline-block; border-radius: 0.4rem;}
+.jsdApplybgB .jsdApplycon .inputB span.hover{background: #eeeeee; color: #b2b2b2;border: 1px solid #eeeeee; }
+.jsdApplybgB .jsdApplycon .inputB input {color: #b2b2b2; margin-bottom:0;height: 0.8rem; padding: 0.2rem 0.3rem;box-sizing: border-box; width: 100%; display: inline-block;background: inherit; border: none;font-size: 0.26rem;}
+.jsdApplybgB .jsdApplycon .jsdApplyBtn {height: 0.8rem;text-align: center; margin-top: 0.4rem; background: #f67f1b; border-radius: 0.4rem;}
+.jsdApplybgB .jsdApplycon .jsdApplyBtn a {text-align: center;line-height: 0.8rem; display: block;font-size: 0.28rem; color: #fff;}
+.jsdApplybgC {margin-top: 0.6rem; margin-bottom:0.7rem ; background: url(../images/jsd_bg2.png?y=1) no-repeat;background-size: 100% 100% ; width: 100%; height: 2.23rem;}
+/*极速贷申请弹窗*/
+.jsdApplyPop {position: fixed;top:0;left:0;z-index: 999;background: rgba(0,0,0,0.3); width: 100%; height: 100%; font-size: 0.28rem;}
+.jsdApplyPop .jsdApplyPopconB{position: absolute;top:50%;left:50%; margin-top: -1.215rem; margin-left: -2.4rem; background: #ffffff; width: 4.8rem;height: 2.43rem;border-radius: 0.2rem;overflow: hidden;}
+.jsdApplyPop .jsdApplyPopconB p {border-bottom:1px solid #e6e6e6; text-align: center; height: 1.62rem; line-height: 1.62rem; color: #4c4c4c;}
+.jsdApplyPop .jsdApplyPopconB .popBtn a{background: #e6e6e6; color: #999999; line-height: 0.8rem; text-align: center; display: block; font-size: 0.32rem;}
+/*完善借款信息弹窗*/
+.jsdpiPop {position: fixed;top:0;left:0;z-index: 999;background: rgba(0,0,0,0.3); width: 100%; height: 100%; font-size: 0.28rem;}
+.jsdpiPop {position: fixed;top:0;left:0;z-index: 999;background: rgba(0,0,0,0.3); width: 100%; height: 100%; font-size: 0.28rem;}
+.jsdpiPop .jsdpiPopconB{position: absolute;top:50%;left:50%; margin-top: -1.215rem; margin-left: -2.4rem; background: #ffffff; width: 4.8rem;height: 2.43rem;border-radius: 0.2rem;overflow: hidden;}
+.jsdpiPop .jsdpiPopconB p.pA {vertical-align: middle; margin-top: 0.4rem; line-height:0.46rem;text-align: center; height: 1.62rem; color: #4c4c4c;}
+.jsdpiPop .jsdpiPopconB p.pB {vertical-align: middle; line-height:1.62rem;text-align: center; height: 1.62rem; color: #4c4c4c;}
+.jsdpiPop .jsdpiPopconB p i {margin-right: 0.16rem; vertical-align: middle; display: inline-block;width: 0.46rem; height: 0.46rem; background: url(../images/jsd_popgou.png) no-repeat; background-size: 100% 100%;}
+.jsdpiPop .jsdpiPopconB .popBtn {position: absolute;left: 0; bottom: 0; width: 100%; line-height: 0.8rem;height: 0.8rem;}
+.jsdpiPop .jsdpiPopconB .popBtn a{ background: #e6e6e6; color: #999999;width: 100%; line-height: 0.8rem;height: 0.8rem; text-align: center; display: block; font-size: 0.32rem;}
+/*完善借款信息*/
+.PerfectInfo .mui-table-view-cell span {font-size: 0.26rem;}
+.PerfectInfo .mui-table-view-cell input{margin: 0; font-size: 0.26rem;padding:0;height:auto;background: rgba(0,0,0,0); width: 50%; display: inline-block; border: none; text-align: right;position: absolute;right: 0.38rem;}
+.PerfectInfo .mui-table-view-cell .choose{font-size: 0.26rem;padding:0;height:auto;background: rgba(0,0,0,0); width: 50%; display: inline-block; border: none; text-align: right;position: absolute;right: 34px;color: #999;}
+.PerfectInfo .mui-segmented-control .mui-control-item {font-size: 15px;}
+.PerfectInfo .mui-table-view-cell {padding: 0.3rem 0.36rem;}
+.PerfectInfo .mui-table-view-cell a{margin: -0.3rem -0.36rem;}
+.PerfectInfo.mui-content>.mui-table-view:first-child { margin: 0;}
+.PerfectInfo .mui-btn {padding: 0;line-height: 0.8rem; font-size: 0.3rem; margin: 1rem auto 0.3rem; background: #f67f1b; border: none; width: 80%;height: 0.8rem; border-radius:0.4rem;}
+.PerfectInfo .mui-btn:active{ background: #f67f1b; border: none;color: #fff;}
+.PerfectInfo .mui-table-view-cell:after {left: 0;}
+@media screen and (min-width: 320px) and (max-width: 374px) {
+	.jsdApplybgB {position: initial; width: 5.8rem;margin:0 auto 0.3rem;}
+	.jsdApplybgB .jsdApplycon .inputA { margin-top: 0.3rem;}
+	.jsdApplybgB .jsdApplycon .jsdApplyBtn{ margin-top: 0.4rem;}
+	
+
+}
