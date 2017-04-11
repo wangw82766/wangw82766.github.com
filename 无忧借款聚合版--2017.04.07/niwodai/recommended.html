@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>无忧借款</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/mui.indexedlist.css" rel="stylesheet" />
+		<link href="css/app.css" rel="stylesheet" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/jsdApply.css?c=777" />
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/jsdApply.js"></script>
+		<script>
+			/**
+			 * @description 是否是微信
+			 */
+			function IsWeChatBrower() {
+				var ua = window.navigator.userAgent;
+				if(ua.match(/MicroMessenger/i) == 'micromessenger') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			/**
+			 * @description 是否是ipad
+			 */
+			function IsIPadBrower() {
+				var ua = window.navigator.userAgent;
+				return ua.match(/(iPad).*OS\s([\d_]+)/);
+			}
+			/**
+			 * @description 是否是iphone
+			 */
+			function IsIPhoneBrower() {
+				var ua = window.navigator.userAgent;
+				return !IsIPadBrower() && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+			}
+
+			/**
+			 * @description 是否是android
+			 */
+			function IsAndroidBrower() {
+				var ua = window.navigator.userAgent;
+				return ua.match(/(Android)\s+([\d.]+)/);
+			}
+
+			function nameverification(n) {
+				var e = /^(([\u4e00-\u9fa5]{2,10}))$/;
+				if(e.test(n)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			function IsDefine(value) {
+				if(value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+					return false;
+				} else {
+					value = value + "";
+					value = value.replace(/\s/g, "");
+					if(value == "") {
+						return false;
+					}
+					return true;
+				}
+			}
+
+			//			验证生日
+			function IsBiryhday(num) {
+				//				var reg = /^((\d{2}(([02468][048])|([13579][26]))[\-\/\s]?((((0?[13578] )|(1[02]))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\-\/\s]?((0?[1-9])|([1-2][0-9])))))|(\d{2}(([02468][1235679])|([13579][01345789]))[\-\/\s]?((((0?[13578])|(1[02]))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\-\/\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))$/;
+				var reg = /^[0-9]{4}-(0[0-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+				if(!reg.test(num)) {
+					return false;
+				}
+				return true;
+			}
+			//			验证年龄
+			function IsAge(num) {
+				var reg = /^(1[89]|[2-4][0-9]|5[0-5])$/;
+				if(!reg.test(num)) {
+					return false;
+				}
+				return true;
+			}
+
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+
+			function IsMobile(value) {
+				var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+				if(!myreg.test(value)) {
+					return false;
+				}
+				return true;
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<!--已注册提示框-->
+		<div class="registeredPrompt">
+			<div class="registeredPromptsd"></div>
+			<div class="registeredPromptsdcont">
+				<p>该手机号已注册</p>
+				<a class="closePrompt" href="javascript:void(0);">确认</a>
+			</div>
+		</div>
+
+		<header style="-webkit-box-shadow: 0 7px 10px #e1e1e1 ;" class="mui-bar mui-bar-nav headTitle">
+			<h1 class="mui-title">推荐产品</h1>
+		</header>
+		<div class="mui-content recommendedtips">
+			<img src="images/dui.png" />
+			<p>以下为根据您的条件匹配出的贷款机构，稍后会有专业人员与您联系。
+			</p>
+		</div>
+		<ul class="recommendlistbox">
+			<li id="nwdai" class="recommendlist clearfix">
+				<img class="fl" src="images/niwodai.png" />
+				<div class="fl">
+					<p class="cpname">你我贷</p>
+					<p class="cpbs">不查征信，快至两小时到账</p>
+				</div>
+			</li>
+			<li id="dfrzw" class="recommendlist clearfix">
+				<img class="fl" src="images/dongfang.png" />
+				<div class="fl">
+					<p class="cpname">东方融资网</p>
+					<p class="cpbs">产品多，利率低，额度高，线下网点服务放款快</p>
+				</div>
+			</li>
+		</ul>
+		<div class="recommendbtn">
+			<a href="javascript:void(0);">点击立即领取5000元贷款</a>
+		</div>
+		<div class="xjbkpopup">
+			<div class="xjbkpopup_sd"></div>
+			<ul class="xjbkpopup_inpbox">
+				<li class="xjbkpopup_inpbox_logobox clearfix">
+					<img class="fl xjbkpopup_logo" src="images/xjbk.png" />
+					<span class="popup_close fr"></span>
+				</li>
+				<li class="xjbkpopup_inputAbox">
+					<input class="xjbkpopup_inputA" placeholder="请输入手机号码" type="text" name="" id="" value="" />
+				</li>
+				<li class="xjbkpopup_inputBbox clearfix">
+					<input class="xjbkpopup_inputB fl" placeholder="请输入验证码" type="text" name="" id="" value="" />
+
+					<a class="xjbkpopup_btnA fl" href="javascript:void(0);"><span></span>获取验证码</a>
+				</li>
+				<li class="xjbkpopup_btnBbox">
+					<a class="xjbkpopup_btnB" href="javascript:void(0);">确认</a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script>
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+
+			function IsMobile(value) {
+				var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+				if(!myreg.test(value)) {
+					return false;
+				}
+				return true;
+			}
+			//			
+			var phone_no = QueryString("phone_no");
+			var quota = QueryString("loan_amount");
+
+			$(".xjbkpopup_inputA").val(phone_no);
+			var channel_id = "1";
+			var channel_id = QueryString("channel_id");
+			if(IsDefine(channel_id) == false) {
+				channel_id = "1";
+			}
+			if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
+	        	//window.location = "register.html";
+	        }
+			if(quota >= 0 && quota <= 49999) {
+				$("#nwdai").show();
+			} else if(quota >= 50000 && quota <= 500000) {
+				$("#nwdai").show();
+				$("#dfrzw").show();
+			} else if(quota = 500001 && quota <= 5000000) {
+				$("#dfrzw").show();
+
+			}
+
+			$(".recommendbtn").bind("click", function() {
+				$(".xjbkpopup").show();
+			})
+			$(".popup_close").bind("click", function() {
+				$(".xjbkpopup").hide();
+			})
+			var getVertifyCodeTime = 60;
+			//获取验证码轮询事件对象
+			var getVertifyCodeInterval = null;
+			$(".xjbkpopup_btnA").on("click", function() {
+				var disphone_no = $(".xjbkpopup_inputA").val();
+				if(IsDefine(disphone_no) == false) {
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('请填写手机号码');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+					return false;
+				}
+				//验证手机号
+				if(IsMobile(disphone_no) == false) {
+					//手机号错误
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('手机号错误');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+					return false;
+				}
+
+				if(getVertifyCodeInterval == null) {
+					getVertifyCodeTime = 60;
+					getVertifyCodeInterval = window.setInterval(function() {
+						if(parseInt(getVertifyCodeTime) >= 1) {
+							getVertifyCodeTime--;
+							$(".xjbkpopup_btnA").html(getVertifyCodeTime + "秒");
+
+						} else {
+							window.clearInterval(getVertifyCodeInterval);
+							getVertifyCodeTime = 60;
+							getVertifyCodeInterval = null;
+							$(".xjbkpopup_btnA").html("获取验证码");
+						}
+					}, 1000);
+				} else {
+
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('请在' + getVertifyCodeTime + '秒后再获取');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+
+					return false;
+				}
+				var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=1&phone_no=" + disphone_no + "&jsonp_cb_fun=getRegCodeCbFun";
+				//var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=1&phone_no=" + disphone_no + "&jsonp_cb_fun=getRegCodeCbFun";
+				$.ajax(submit_url, {
+					"method": "GET",
+					"dataType": "jsonp",
+					"success": "getRegCodeCbFun"
+				})
+			})
+
+			function getRegCodeCbFun(data) {
+
+				if(data.code == "10000") {
+//					$('.registeredPrompt').show();
+//					$('.registeredPromptsdcont p').html('验证码已发送');
+//					//用户获取验证码成功
+//					$(".closePrompt").bind("click", function() {
+//						$('.registeredPrompt').hide();
+//					})
+
+				} else if(data.code == "10100") {
+					//用户已注册
+					$(".registeredPrompt").show();
+					$(".registeredPrompt P").html("该手机号已注册,请立即登录")
+					$(".closePrompt").bind("click", function() {
+						//window.location = data.download_url;
+						window.location = "https://h5.xianjincard.com/mobile/index.html?source_tag=H5-jkds#/login";
+					});
+					return false;
+
+				}
+			}
+			$(".xjbkpopup_btnB").bind("click", function() {
+				var disphone_no = $(".xjbkpopup_inputA").val();
+				var vertify_code = $(".xjbkpopup_inputB").val();
+				if(IsDefine(disphone_no) == false) {
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('请输入手机号码');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+					return false;
+				}
+				//验证手机号
+				if(IsMobile(disphone_no) == false) {
+					//手机号错误
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('手机号错误');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+					return false;
+				}
+				if(IsDefine(vertify_code) == false) {
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html('请输入验证码');
+					$(".closePrompt").bind("click", function() {
+						$('.registeredPrompt').hide();
+					})
+					return false;
+				}
+				var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=2&phone_no=" + disphone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
+				//var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=1&phone_no=" + disphone_no + "&jsonp_cb_fun=registerCBFun";
+				$.ajax(submit_url, {
+					"method": "GET",
+					"dataType": "jsonp",
+					"success": "registerCBFun"
+				});
+			})
+
+			function registerCBFun(data) {
+				if(data.code == "10000") {
+					//用户获取验证码成功
+					window.location = "https://h5.xianjincard.com/mobile/index.html#/";
+					return false;
+
+				}else if(data.code == "10100") {
+					$(".registeredPrompt").show();
+					$(".registeredPrompt P").html("该手机号已注册,请立即登录")
+					$(".closePrompt").bind("click", function() {
+						//window.location = data.download_url;
+						window.location = "https://h5.xianjincard.com/mobile/index.html?source_tag=H5-jkds#/login";
+					});
+					return false;
+
+				}   else {
+					$('.registeredPrompt').show();
+					$('.registeredPromptsdcont p').html(data.message);
+				}
+			}
+			$(".closePrompt").bind("click", function() {
+				$('.registeredPrompt').hide();
+			})
+		</script>
+		<script>
+	        //百度统计代码
+	        var _hmt = _hmt || [];
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	</body>
+
+</html>

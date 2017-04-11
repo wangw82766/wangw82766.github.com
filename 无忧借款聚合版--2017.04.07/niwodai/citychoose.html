@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>无忧借款</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/mui.indexedlist.css" rel="stylesheet" />
+		<link href="css/app.css" rel="stylesheet" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/jsdApply.css?c=777" />
+			<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/jsdApply.js"></script>
+		<script>
+			/**
+			 * @description 是否是微信
+			 */
+			function IsWeChatBrower() {
+				var ua = window.navigator.userAgent;
+				if(ua.match(/MicroMessenger/i) == 'micromessenger') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			/**
+			 * @description 是否是ipad
+			 */
+			function IsIPadBrower() {
+				var ua = window.navigator.userAgent;
+				return ua.match(/(iPad).*OS\s([\d_]+)/);
+			}
+			/**
+			 * @description 是否是iphone
+			 */
+			function IsIPhoneBrower() {
+				var ua = window.navigator.userAgent;
+				return !IsIPadBrower() && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+			}
+
+			/**
+			 * @description 是否是android
+			 */
+			function IsAndroidBrower() {
+				var ua = window.navigator.userAgent;
+				return ua.match(/(Android)\s+([\d.]+)/);
+			}
+			function nameverification(n){
+				var e=/^(([\u4e00-\u9fa5]{2,10}))$/;
+				if(e.test(n)){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			function IsDefine(value) {
+				if(value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+					return false;
+				} else {
+					value = value + "";
+					value = value.replace(/\s/g, "");
+					if(value == "") {
+						return false;
+					}
+					return true;
+				}
+			}
+			
+//			验证生日
+			function IsBiryhday(num){
+//				var reg = /^((\d{2}(([02468][048])|([13579][26]))[\-\/\s]?((((0?[13578] )|(1[02]))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\-\/\s]?((0?[1-9])|([1-2][0-9])))))|(\d{2}(([02468][1235679])|([13579][01345789]))[\-\/\s]?((((0?[13578])|(1[02]))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\-\/\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\-\/\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))$/;
+				var reg=/^[0-9]{4}-(0[0-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+				if(!reg.test(num)){
+					return false;
+				}
+				return true;
+			}
+//			验证年龄
+			function IsAge(num){
+				var reg=/^(1[89]|[2-4][0-9]|5[0-5])$/;
+				if(!reg.test(num)){
+					return false;
+				}
+				return true;
+			}
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+
+			function IsMobile(value) {
+				var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+				if(!myreg.test(value)) {
+					return false;
+				}
+				return true;
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<div class="jsdApplyPop jsdpiPopA jsdpiPop" style="display: none;">
+			<div class="jsdApplyPopconB" style="display: block;">
+				<p class="pC" style="display: none;"><i></i>您的申请已提交<br/>稍后专业客服将与您联系</p>
+				<p class="pA pB"></p>
+				<div class="popBtn popBtnA">
+					<a href="javascript:void(0)">确定</a>
+				</div>
+			</div>
+		</div>
+		<div class="jsdApplybgA"></div>
+		<div class="mui-content PerfectInfo">
+			
+			<ul id="mui-table-view">
+				
+				<li class="mui-table-view-cell">
+					<input type="text" placeholder="请输入真实姓名"  id="name"/>
+				</li>
+				<li class="mui-table-view-cell">
+					<input type="text" placeholder="请输入身份证号" name="" id="idcard" value="" />
+				</li>
+				<li class="mui-table-view-cell">
+					<input type="text" placeholder="请输入贷款金额" name="" id="quota" value="" />
+				</li>
+				
+
+				<li class="mui-table-view-cell" id="btn">
+					<a id="city">
+						请选择城市
+						
+					</a>
+				</li>
+				
+				<a class="mui-btn mui-btn-primary mui-btn-block" href="javascript:void(0)" id="btnPerfectInformation">立即申请</a>
+			</ul>
+			
+		</div>
+
+		<div style=" display: none; margin-bottom: 10px; position: absolute; left: 0; top: 0; width: 100%; z-index: 1000;" id="addpopup">
+			<header style="display: block; position: static; background: #267BEB;" class="mui-bar mui-bar-nav headTitle">
+				<a href="javascript:;" id="closeadd" class="mui-icon mui-icon-closeempty icon_del headError"></a>
+				<h1 style="color: #fff;" class="mui-title">选择城市</h1>
+				
+			</header>
+			<div class="mui-content" style="padding-top: 0;">
+				<div id='list' class="mui-indexed-list">
+					<div class="mui-indexed-list-search mui-input-row mui-search" style="margin-top: 0.5rem;">
+						<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索城市">
+						
+					</div>
+					
+					<div style="opacity: 0;" class="mui-indexed-list-bar">
+						<a>热门</a>
+						<a>A</a>
+						<a>B</a>
+						<a>C</a>
+						<a>D</a>
+						<a>E</a>
+						<a>F</a>
+						<a>G</a>
+						<a>H</a>
+						<a>I</a>
+						<a>J</a>
+						<a>K</a>
+						<a>L</a>
+						<a>M</a>
+						<a>N</a>
+						<a>O</a>
+						<a>P</a>
+						<a>Q</a>
+						<a>R</a>
+						<a>S</a>
+						<a>T</a>
+						<a>U</a>
+						<a>V</a>
+						<a>W</a>
+						<a>X</a>
+						<a>Y</a>
+						<a>Z</a>
+					</div>
+					<div class="mui-indexed-list-alert"></div>
+					
+					<div id="citylists" class="mui-indexed-list-inner">
+						<div class="thiswz">当前城市：<span class="thiswz_span"></span></div>
+						<div class="mui-indexed-list-empty-alert">没有数据</div>
+						
+						<ul class="mui-table-view">
+							
+							<div class="mui-indexed-list-innerA">
+								
+								<li data-group="A" class="mui-table-view-divider mui-indexed-list-group">A</li>
+								<li data-id="ABAZANGZUQIANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									阿坝州
+								</li>
+								<li data-id="AKESU" class="mui-table-view-cell mui-indexed-list-item">
+									阿克苏地区
+								</li>
+								<li data-id="ALAERSHI" class="mui-table-view-cell mui-indexed-list-item">
+									阿拉尔
+								</li>
+								<li data-id="ALASHANMENG" class="mui-table-view-cell mui-indexed-list-item">
+									阿拉善盟
+								</li>
+								<li data-id="ALETAIDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									阿勒泰地区
+								</li>
+								<li data-id="ALIDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									阿里地区
+								</li>
+								<li data-id="ANKANG" class="mui-table-view-cell mui-indexed-list-item">
+									安康
+								</li>
+								<li data-id="ANQING" class="mui-table-view-cell mui-indexed-list-item">
+									安庆
+								</li>
+								<li data-id="ANSHUN" class="mui-table-view-cell mui-indexed-list-item">
+									安顺
+								</li>
+								
+								<li data-id="ANYANG" class="mui-table-view-cell mui-indexed-list-item">
+									安阳
+								</li>
+								<li data-id="ANSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									鞍山
+								</li>
+								<li data-id="AOMENTEBIEXINGZHENGQU" class="mui-table-view-cell mui-indexed-list-item">
+									澳门特别行政区
+								</li>
+								<li data-group="B" class="mui-table-view-divider mui-indexed-list-group">B</li>
+								<li data-id="BAYANNAOERSHI" class="mui-table-view-cell mui-indexed-list-item">
+									巴彦淖尔
+								</li>
+								<li data-id="BAYINGUOLENGMENGGUZIZHIZHOU
+" class="mui-table-view-cell mui-indexed-list-item">
+									巴音郭楞蒙古自治州
+</li>
+								<li data-id="BAZHONG" class="mui-table-view-cell mui-indexed-list-item">
+									巴中
+
+								</li>
+								<li data-id="BAICHENG" class="mui-table-view-cell mui-indexed-list-item">
+									白城
+
+								</li>
+								<li data-id="BAISHALIZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									白沙黎族自治县
+								</li>
+								<li data-id="BAISHAN" class="mui-table-view-cell mui-indexed-list-item">
+									白山
+								</li>
+								<li data-id="BAIYIN" class="mui-table-view-cell mui-indexed-list-item">
+									白银
+								</li>
+								<li data-id="BAISESHI" class="mui-table-view-cell mui-indexed-list-item">
+									百色
+								</li>
+								<li data-id="BENGBU" class="mui-table-view-cell mui-indexed-list-item">
+									蚌埠
+								</li>
+								<li data-id="BAOTOU" class="mui-table-view-cell mui-indexed-list-item">
+									包头
+								</li>
+								<li data-id="BAOJI" class="mui-table-view-cell mui-indexed-list-item">
+									宝鸡
+								</li>
+								<li data-id="BAODING" class="mui-table-view-cell mui-indexed-list-item">
+									保定
+								</li>
+								<li data-id="BAOSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									保山
+								</li>
+								<li data-id="BAOTINGLIZUMIAOZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									保亭黎族苗族自治县
+								</li>
+								<li data-id="BEIHAI" class="mui-table-view-cell mui-indexed-list-item">
+									北海
+								</li>
+								<li data-id="BEIJING" class="mui-table-view-cell mui-indexed-list-item">
+									北京
+								</li>
+								<li data-id="BENXI" class="mui-table-view-cell mui-indexed-list-item">
+									本溪
+								</li>
+								<li data-id="BIJIEDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									毕节
+								</li>
+								<li data-id="BINZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									滨州
+								</li>
+								<li data-id="BOZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									亳州
+								</li>
+								<li data-id="BOERTALAMENGGUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									博尔塔拉蒙古自治州
+								</li>
+
+								<li data-group="C" class="mui-table-view-divider mui-indexed-list-group">C</li>
+								<li data-id="CANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									沧州
+								</li>
+								<li data-id="CHANGDUDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									昌都地区
+								</li>
+								<li data-id="CHANGJI" class="mui-table-view-cell mui-indexed-list-item">
+									昌吉回族自治州
+								</li>
+								<li data-id="CHANGJIANGLIZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									昌江黎族自治县
+								</li>
+								<li data-id="CHANGDE" class="mui-table-view-cell mui-indexed-list-item">
+									常德
+								</li>
+								<li data-id="CHANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									常州
+								</li>
+								<li data-id="CHAOHU" class="mui-table-view-cell mui-indexed-list-item">
+									巢湖
+								</li>
+								<li data-id="CHAOYANG" class="mui-table-view-cell mui-indexed-list-item">
+									朝阳
+								</li>
+								<li data-id="CHAOZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									潮州
+								</li>
+								<li data-id="CHENZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									郴州
+								</li>
+								<li data-id="CHENGDU" class="mui-table-view-cell mui-indexed-list-item">
+									成都
+								</li>
+								<li data-id="CHENGDE" class="mui-table-view-cell mui-indexed-list-item">
+									承德
+								</li>
+								<li data-id="CHENGMAIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									澄迈县
+								</li>
+								<li data-id="CHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									池州市
+								</li>
+								<li data-id="CHIFENG" class="mui-table-view-cell mui-indexed-list-item">
+									赤峰
+								</li>
+								<li data-id="CHONGZUO" class="mui-table-view-cell mui-indexed-list-item">
+									崇左
+								</li>
+								<li data-id="CHUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									滁州
+								</li>
+								<li data-id="CHUXIONG" class="mui-table-view-cell mui-indexed-list-item">
+									楚雄州
+								</li>
+								<li data-id="CHONGQING" class="mui-table-view-cell mui-indexed-list-item">
+									重庆
+								</li>
+								<li data-id="CHANGCHUN" class="mui-table-view-cell mui-indexed-list-item">
+									长春
+								</li>
+								<li data-id="CHANGSHA" class="mui-table-view-cell mui-indexed-list-item">
+									长沙
+								</li>
+								<li data-id="CHANGZHI" class="mui-table-view-cell mui-indexed-list-item">
+									长治
+								</li>
+								
+								
+								<li data-group="D" class="mui-table-view-divider mui-indexed-list-group">D</li>
+								
+								<li data-id="DAZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									达州
+								</li>
+								<li data-id="DALI" class="mui-table-view-cell mui-indexed-list-item">
+									大理州
+								</li>
+								<li data-id="DALIAN" class="mui-table-view-cell mui-indexed-list-item">
+									大连
+								</li>
+								<li data-id="DAQING" class="mui-table-view-cell mui-indexed-list-item">
+									大庆
+								</li>
+								<li data-id="DATONG" class="mui-table-view-cell mui-indexed-list-item">
+									大同
+								</li>
+								<li data-id="DAXINGANLINGDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									大兴安岭
+								</li>
+								<li data-id="DANDONG" class="mui-table-view-cell mui-indexed-list-item">
+									丹东
+								</li>
+								<li data-id="DANZHOUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									儋州
+								</li>
+								<li data-id="DEHONGDAIZUJINGPOZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									德宏傣族景颇族自治州
+								</li>
+								<li data-id="DEYANG" class="mui-table-view-cell mui-indexed-list-item">
+									德阳
+								</li>
+								<li data-id="DEZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									德州
+								</li>
+								<li data-id="DIQINGZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									迪庆藏族自治州
+								</li>
+								<li data-id="DINGANXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									定安县
+								</li>
+								<li data-id="DINGXISHI" class="mui-table-view-cell mui-indexed-list-item">
+									定西
+								</li>
+								<li data-id="DONGFANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									东方
+								</li>
+								<li data-id="DONGGUAN" class="mui-table-view-cell mui-indexed-list-item">
+									东莞
+								</li>
+								<li data-id="DONGYING" class="mui-table-view-cell mui-indexed-list-item">
+									东营
+								</li>
+								<li data-group="E" class="mui-table-view-divider mui-indexed-list-group">E</li>
+								<li data-id="EERDUOSI" class="mui-table-view-cell mui-indexed-list-item">
+									鄂尔多斯
+								</li>
+								<li data-id="EZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									鄂州
+								</li>
+								<li data-id="ENSHI" class="mui-table-view-cell mui-indexed-list-item">
+									恩施州
+								</li>
+								<li data-group="F" class="mui-table-view-divider mui-indexed-list-group">F</li>
+								<li data-id="FANGCHENGGANG" class="mui-table-view-cell mui-indexed-list-item">
+									防城港
+								</li>
+								<li data-id="FOSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									佛山
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									福安
+								</li>
+								<li data-id="FUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									福州
+								</li>
+								<li data-id="FUSHUN" class="mui-table-view-cell mui-indexed-list-item">
+									抚顺
+								</li>
+								<li data-id="FUZHOU1" class="mui-table-view-cell mui-indexed-list-item">
+									抚州
+								</li>
+								<li data-id="FUXIN" class="mui-table-view-cell mui-indexed-list-item">
+									阜新
+								</li>
+								<li data-id="FUYANG" class="mui-table-view-cell mui-indexed-list-item">
+									阜阳
+								</li>
+								<li data-group="G" class="mui-table-view-divider mui-indexed-list-group">G</li>
+								<li data-id="GANNANZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									甘南藏族自治州
+								</li>
+								<li data-id="GANZIZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									甘孜州
+								</li>
+								<li data-id="GANZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									赣州
+								</li>
+								<li data-id="GAOXIONGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									高雄
+								</li>
+								<li data-id="GUYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									固原
+								</li>
+								<li data-id="GUANGAN" class="mui-table-view-cell mui-indexed-list-item">
+									广安
+								</li>
+								<li data-id="GUANGYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									广元
+								</li>
+								<li data-id="GUANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									广州
+								</li>
+								<li data-id="GUIGANG" class="mui-table-view-cell mui-indexed-list-item">
+									贵港
+								</li>
+								<li data-id="GUIYANG" class="mui-table-view-cell mui-indexed-list-item">
+									贵阳
+								</li>
+								<li data-id="GUILIN" class="mui-table-view-cell mui-indexed-list-item">
+									桂林
+								</li>
+								<li data-id="GUOLUOZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									果洛藏族自治州
+								</li>
+								<li data-group="H" class="mui-table-view-divider mui-indexed-list-group">H</li>
+								<li data-id="HAERBIN" class="mui-table-view-cell mui-indexed-list-item">
+									哈尔滨
+								</li>
+								<li data-id="HAMI" class="mui-table-view-cell mui-indexed-list-item">
+									哈密地区
+								</li>
+								<li data-id="HAIBEIZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									海北藏族自治州
+								</li>
+								<li data-id="HAIDONGDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									海东
+								</li>
+								<li data-id="HAIKOU" class="mui-table-view-cell mui-indexed-list-item">
+									海口
+								</li>
+								<li data-id="HAINANZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									海南藏族自治州
+								</li>
+								<li data-id="HAIXIMENGGUZUZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									海西蒙古族藏族自治州
+								</li>
+								<li data-id="HANDAN" class="mui-table-view-cell mui-indexed-list-item">
+									邯郸
+								</li>
+								<li data-id="HANZHONG" class="mui-table-view-cell mui-indexed-list-item">
+									汉中
+								</li>
+								<li data-id="HANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									杭州
+								</li>
+								<li data-id="HEFEI" class="mui-table-view-cell mui-indexed-list-item">
+									合肥
+								</li>
+								<li data-id="HETIAN" class="mui-table-view-cell mui-indexed-list-item">
+									和田地区
+								</li>
+								<li data-id="HECHISHI" class="mui-table-view-cell mui-indexed-list-item">
+									河池
+								</li>
+								<li data-id="HEYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									河源
+								</li>
+								<li data-id="HEZE" class="mui-table-view-cell mui-indexed-list-item">
+									菏泽
+								</li>
+								<li data-id="HEZHOUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									贺州
+								</li>
+								<li data-id="HEBI" class="mui-table-view-cell mui-indexed-list-item">
+									鹤壁
+								</li>
+								<li data-id="HEGANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									鹤岗
+								</li>
+								<li data-id="HEIHESHI" class="mui-table-view-cell mui-indexed-list-item">
+									黑河
+								</li>
+								<li data-id="HENGSHUI" class="mui-table-view-cell mui-indexed-list-item">
+									衡水
+								</li>
+								<li data-id="HENGYANG" class="mui-table-view-cell mui-indexed-list-item">
+									衡阳
+								</li>
+								<li data-id="HONGHEHANIZUYIZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									红河哈州
+								</li>
+								<li data-id="HUHEHAOTE" class="mui-table-view-cell mui-indexed-list-item">
+									呼和浩特
+								</li>
+								<li data-id="HULUNBEIERSHI" class="mui-table-view-cell mui-indexed-list-item">
+									呼伦贝尔
+								</li>
+								<li data-id="HULUDAO" class="mui-table-view-cell mui-indexed-list-item">
+									葫芦岛
+								</li>
+								<li data-id="HUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									湖州
+								</li>
+								<li data-id="HUAIHUA" class="mui-table-view-cell mui-indexed-list-item">
+									怀化
+								</li>
+								<li data-id="HUAIAN" class="mui-table-view-cell mui-indexed-list-item">
+									淮安
+								</li>
+								<li data-id="HUAIBEI" class="mui-table-view-cell mui-indexed-list-item">
+									淮北
+								</li>
+								<li data-id="HUAINAN" class="mui-table-view-cell mui-indexed-list-item">
+									淮南
+								</li>
+								<li data-id="HUANGGANG" class="mui-table-view-cell mui-indexed-list-item">
+									黄冈
+								</li>
+								<li data-id="HUANGNANZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									黄南藏族自治州
+								</li>
+								<li data-id="HUANGSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									黄山
+								</li>
+								<li data-id="HUANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									黄石
+								</li>
+								<li data-id="HUIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									惠州
+								</li>
+								
+								<li data-group="J" class="mui-table-view-divider mui-indexed-list-group">J</li>
+								<li data-id="JIXI" class="mui-table-view-cell mui-indexed-list-item">
+									鸡西
+								</li>
+								<li data-id="JILONGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									基隆
+								</li>
+								<li data-id="JIAN" class="mui-table-view-cell mui-indexed-list-item">
+									吉安
+								</li>
+								<li data-id="JILIN" class="mui-table-view-cell mui-indexed-list-item">
+									吉林
+								</li>
+								<li data-id="JINAN" class="mui-table-view-cell mui-indexed-list-item">
+									济南
+								</li>
+								<li data-id="JINING" class="mui-table-view-cell mui-indexed-list-item">
+									济宁
+								</li>
+								<li data-id="JIYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									济源
+								</li>
+								<li data-id="JIAMUSI" class="mui-table-view-cell mui-indexed-list-item">
+									佳木斯
+								</li>
+								<li data-id="JIAXING" class="mui-table-view-cell mui-indexed-list-item">
+									嘉兴
+								</li>
+								<li data-id="JIAYISHI" class="mui-table-view-cell mui-indexed-list-item">
+									嘉义
+								</li>
+								<li data-id="JIAYUGUANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									嘉峪关
+								</li>
+								<li data-id="JIANGMEN" class="mui-table-view-cell mui-indexed-list-item">
+									江门
+								</li>
+								<li data-id="JIAOZUO" class="mui-table-view-cell mui-indexed-list-item">
+									焦作
+								</li>
+								<li data-id="JIEYANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									揭阳
+								</li>
+								<li data-id="JINCHANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									金昌
+								</li>
+								<li data-id="JINHUA" class="mui-table-view-cell mui-indexed-list-item">
+									金华
+								</li>
+								<li data-id="JINZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									锦州
+								</li>
+								<li data-id="JINCHENG" class="mui-table-view-cell mui-indexed-list-item">
+									晋城
+								</li>
+								<li data-id="JINZHONG" class="mui-table-view-cell mui-indexed-list-item">
+									晋中
+								</li>
+								<li data-id="JINGMEN" class="mui-table-view-cell mui-indexed-list-item">
+									荆门
+								</li>
+								<li data-id="JINGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									荆州
+								</li>
+								<li data-id="JINGDEZHEN" class="mui-table-view-cell mui-indexed-list-item">
+									景德镇
+								</li>
+								<li data-id="JIUJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									九江
+								</li>
+								<li data-id="JIUQUAN" class="mui-table-view-cell mui-indexed-list-item">
+									酒泉
+								</li>
+								<li data-group="K" class="mui-table-view-divider mui-indexed-list-group">K</li>
+								<li data-id="KASHI" class="mui-table-view-cell mui-indexed-list-item">
+									喀什地区
+								</li>
+								<li data-id="KAIFENG" class="mui-table-view-cell mui-indexed-list-item">
+									开封市
+								</li>
+								<li data-id="KELAMAYI" class="mui-table-view-cell mui-indexed-list-item">
+									克拉玛依市
+								</li>
+								<li data-id="KEZILESUKEERKEZIZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									克孜勒苏柯尔克孜自治州
+								</li>
+								<li data-id="KUNMING" class="mui-table-view-cell mui-indexed-list-item">
+									昆明市
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									昆山
+								</li>
+								
+								
+								<li data-group="L" class="mui-table-view-divider mui-indexed-list-group">L</li>
+								<li data-id="LASA" class="mui-table-view-cell mui-indexed-list-item">
+									拉萨
+								</li>
+								<li data-id="LAIBIN" class="mui-table-view-cell mui-indexed-list-item">
+									来宾
+								</li>
+								<li data-id="LAIWU" class="mui-table-view-cell mui-indexed-list-item">
+									莱芜
+								</li>
+								<li data-id="LANZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									兰州
+								</li>
+								<li data-id="LANGFANG" class="mui-table-view-cell mui-indexed-list-item">
+									廊坊
+								</li>
+								<li data-id="LEDONGLIZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									乐东黎族自治县
+								</li>
+								<li data-id="LESHAN" class="mui-table-view-cell mui-indexed-list-item">
+									乐山
+								</li>
+								<li data-id="LIJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									丽江
+								</li>
+								<li data-id="LISHUI" class="mui-table-view-cell mui-indexed-list-item">
+									丽水
+								</li>
+								<li data-id="LIANYUNGANG" class="mui-table-view-cell mui-indexed-list-item">
+									连云港
+								</li>
+								<li data-id="LIANGSHANYIZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									凉山彝族自治州
+								</li>
+								<li data-id="LIAOYANG" class="mui-table-view-cell mui-indexed-list-item">
+									辽阳
+								</li>
+								<li data-id="LIAOYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									辽源
+								</li>
+								<li data-id="LIAOCHENG" class="mui-table-view-cell mui-indexed-list-item">
+									聊城
+								</li>
+								<li data-id="LINZHIDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									林芝地区
+								</li>
+								<li data-id="LINCANG" class="mui-table-view-cell mui-indexed-list-item">
+									临沧
+								</li>
+								<li data-id="LINFEN" class="mui-table-view-cell mui-indexed-list-item">
+									临汾
+								</li>
+								<li data-id="LINGAOXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									临高县
+								</li>
+								<li data-id="LINXIA" class="mui-table-view-cell mui-indexed-list-item">
+									临夏回族自治州
+								</li>
+								<li data-id="LINYI" class="mui-table-view-cell mui-indexed-list-item">
+									临沂市
+								</li>
+								<li data-id="LINGSHUILIZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									陵水黎族自治县
+								</li>
+								<li data-id="LIUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									柳州市
+								</li>
+								<li data-id="LIUAN" class="mui-table-view-cell mui-indexed-list-item">
+									六安市
+								</li>
+								<li data-id="LIUPANSHUI" class="mui-table-view-cell mui-indexed-list-item">
+									六盘水
+								</li>
+								<li data-id="LONGYAN" class="mui-table-view-cell mui-indexed-list-item">
+									龙岩
+								</li>
+								<li data-id="LONGNANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									陇南
+								</li>
+								<li data-id="LOUDI" class="mui-table-view-cell mui-indexed-list-item">
+									娄底
+								</li>
+								<li data-id="LUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									泸州
+								</li>
+								<li data-id="LUOYANG" class="mui-table-view-cell mui-indexed-list-item">
+									洛阳
+								</li>
+								<li data-id="LUOHE" class="mui-table-view-cell mui-indexed-list-item">
+									漯河
+								</li>
+								<li data-id="LVLIANG" class="mui-table-view-cell mui-indexed-list-item">
+									吕梁
+								</li>
+								<li data-group="M" class="mui-table-view-divider mui-indexed-list-group">M</li>
+								<li data-id="MAANSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									马鞍山
+								</li>
+								<li data-id="MAOMING" class="mui-table-view-cell mui-indexed-list-item">
+									茂名
+								</li>
+								<li data-id="MEISHAN" class="mui-table-view-cell mui-indexed-list-item">
+									眉山
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									梅河口
+								</li>
+								<li data-id="MEIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									梅州
+								</li>
+								<li data-id="MIANYANG" class="mui-table-view-cell mui-indexed-list-item">
+									绵阳
+								</li>
+								<li data-id="MUDANJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									牡丹江
+								</li>
+								<li data-group="N" class="mui-table-view-divider mui-indexed-list-group">N</li>
+								<li data-id="NAQUDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									那曲地区
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									南安
+								</li>
+								<li data-id="NANCHANG" class="mui-table-view-cell mui-indexed-list-item">
+									南昌
+								</li>
+								<li data-id="NANCHONG" class="mui-table-view-cell mui-indexed-list-item">
+									南充
+								</li>
+								<li data-id="NANJING" class="mui-table-view-cell mui-indexed-list-item">
+									南京
+								</li>
+								<li data-id="NANNING" class="mui-table-view-cell mui-indexed-list-item">
+									南宁
+								</li>
+								<li data-id="NANPING" class="mui-table-view-cell mui-indexed-list-item">
+									南平
+								</li>
+								<li data-id="NANTONG" class="mui-table-view-cell mui-indexed-list-item">
+									南通
+								</li>
+								<li data-id="NANYANG" class="mui-table-view-cell mui-indexed-list-item">
+									南阳
+								</li>
+								<li data-id="NEIJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									内江
+								</li>
+								<li data-id="NINGBO" class="mui-table-view-cell mui-indexed-list-item">
+									宁波
+								</li>
+								<li data-id="NINGDE" class="mui-table-view-cell mui-indexed-list-item">
+									宁德
+								</li>
+								<li data-id="NUJIANGLILIZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									怒江傈傈族自治州
+								</li>
+								
+								<li data-group="P" class="mui-table-view-divider mui-indexed-list-group">P</li>
+								<li data-id="PANZHIHUA" class="mui-table-view-cell mui-indexed-list-item">
+									攀枝花
+								</li>
+								<li data-id="PANJIN" class="mui-table-view-cell mui-indexed-list-item">
+									盘锦
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									邳州
+								</li>
+								<li data-id="PINGDINGSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									平顶山
+								</li>
+								<li data-id="PINGLIANG" class="mui-table-view-cell mui-indexed-list-item">
+									平凉
+								</li>
+								<li data-id="PINGXIANG" class="mui-table-view-cell mui-indexed-list-item">
+									萍乡
+								</li>
+								<li data-id="PUTIAN" class="mui-table-view-cell mui-indexed-list-item">
+									莆田
+								</li>
+								<li data-id="PUYANG" class="mui-table-view-cell mui-indexed-list-item">
+									濮阳
+								</li>
+								<li data-id="PUERSHI" class="mui-table-view-cell mui-indexed-list-item">
+									普洱
+								</li>
+								
+								<li data-group="Q" class="mui-table-view-divider mui-indexed-list-group">Q</li>
+								<li data-id="QITAIHE" class="mui-table-view-cell mui-indexed-list-item">
+									七台河
+								</li>
+								<li data-id="QIQIHAER" class="mui-table-view-cell mui-indexed-list-item">
+									齐齐哈尔
+								</li>
+								<li data-id="QIANJIANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									潜江
+								</li>
+								<li data-id="QIANDONGNANMIAOZUDONGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									黔东南苗族侗族自治州
+								</li>
+								<li data-id="QIANNAN" class="mui-table-view-cell mui-indexed-list-item">
+									黔南布依族苗族自治州
+								</li>
+								<li data-id="QIANXINANBUYIZUMIAOZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									黔西南布依族苗族自治州
+								</li>
+								<li data-id="QINZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									钦州
+								</li>
+								<li data-id="QINHUANGDAO" class="mui-table-view-cell mui-indexed-list-item">
+									秦皇岛
+								</li>
+								<li data-id="QINGDAO" class="mui-table-view-cell mui-indexed-list-item">
+									青岛
+								</li>
+								<li data-id="QINGYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									清远
+								</li>
+								<li data-id="QINGYANG" class="mui-table-view-cell mui-indexed-list-item">
+									庆阳
+								</li>
+								<li data-id="QIONGHAI" class="mui-table-view-cell mui-indexed-list-item">
+									琼海
+								</li>
+	
+								<li data-id="PUERSHI" class="mui-table-view-cell mui-indexed-list-item">
+									琼中黎族苗族自治县
+								</li>
+								<li data-id="QUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									衢州
+								</li>
+								<li data-id="QUJING" class="mui-table-view-cell mui-indexed-list-item">
+									曲靖
+								</li>
+								<li data-id="QUANZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									泉州
+								</li>
+								
+								<li data-group="R" class="mui-table-view-divider mui-indexed-list-group">R</li>
+								<li data-id="RIKAZE" class="mui-table-view-cell mui-indexed-list-item">
+									日喀则地区
+								</li>
+								<li data-id="RIZHAO" class="mui-table-view-cell mui-indexed-list-item">
+									日照市
+								</li>
+								<li data-group="S" class="mui-table-view-divider mui-indexed-list-group">S</li>
+								
+								<li data-id="SANMENXIA" class="mui-table-view-cell mui-indexed-list-item">
+									三门峡
+								</li>
+								<li data-id="SANMING" class="mui-table-view-cell mui-indexed-list-item">
+									三明
+								</li>
+								<li data-id="SANYA" class="mui-table-view-cell mui-indexed-list-item">
+									三亚
+								</li>
+								<li data-id="XIAMEN" class="mui-table-view-cell mui-indexed-list-item">
+									厦门
+								</li>
+								<li data-id="SHANNANDIQU" class="mui-table-view-cell mui-indexed-list-item">
+									山南地区
+								</li>
+								<li data-id="SHANTOU" class="mui-table-view-cell mui-indexed-list-item">
+									汕头
+								</li>
+								<li data-id="SHANWEISHI" class="mui-table-view-cell mui-indexed-list-item">
+									汕尾
+								</li>
+								<li data-id="SHANGLUO" class="mui-table-view-cell mui-indexed-list-item">
+									商洛
+								</li>
+								<li data-id="SHANGQIU" class="mui-table-view-cell mui-indexed-list-item">
+									商丘
+								</li>
+								<li data-id="SHANGHAI" class="mui-table-view-cell mui-indexed-list-item">
+									上海
+								</li>
+								<li data-id="SHANGRAO" class="mui-table-view-cell mui-indexed-list-item">
+									上饶
+								</li>
+								<li data-id="SHAOGUAN" class="mui-table-view-cell mui-indexed-list-item">
+									韶关
+								</li>
+								<li data-id="SHAOYANG" class="mui-table-view-cell mui-indexed-list-item">
+									邵阳
+								</li>
+								<li data-id="SHAOXING" class="mui-table-view-cell mui-indexed-list-item">
+									绍兴
+								</li>
+								<li data-id="SHENZHEN" class="mui-table-view-cell mui-indexed-list-item">
+									深圳
+								</li>
+								<li data-id="SHENNONGJIALINQU" class="mui-table-view-cell mui-indexed-list-item">
+									神农架
+								</li>
+								<li data-id="SHENYANG" class="mui-table-view-cell mui-indexed-list-item">
+									沈阳
+								</li>
+								<li data-id="SHIYAN" class="mui-table-view-cell mui-indexed-list-item">
+									十堰
+								</li>
+								<li data-id="SHIHEZI" class="mui-table-view-cell mui-indexed-list-item">
+									石河子
+								</li>
+								<li data-id="SHIJIAZHUANG" class="mui-table-view-cell mui-indexed-list-item">
+									石家庄
+								</li>
+								<li data-id="SHIZUISHANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									石嘴山
+								</li>
+								<li data-id="SHUANGYASHAN" class="mui-table-view-cell mui-indexed-list-item">
+									双鸭山
+								</li>
+								<li data-id="SHUOZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									朔州
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									思茅
+								</li>
+								<li data-id="SIPING" class="mui-table-view-cell mui-indexed-list-item">
+									四平
+								</li>
+								<li data-id="SONGYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									松原
+								</li>
+								<li data-id="SUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									苏州
+								</li>
+								<li data-id="SUIHUASHI" class="mui-table-view-cell mui-indexed-list-item">
+									绥化
+								</li>
+								<li data-id="SUIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									随州
+								</li>
+								<li data-id="SUINING" class="mui-table-view-cell mui-indexed-list-item">
+									遂宁中
+								</li>
+								<li data-id="SUQIAN" class="mui-table-view-cell mui-indexed-list-item">
+									宿迁
+								</li>
+								<li data-id="SUZHOU1" class="mui-table-view-cell mui-indexed-list-item">
+									宿州
+								</li>
+								
+								
+								<li data-group="T" class="mui-table-view-divider mui-indexed-list-group">T</li>
+								<li data-id="TACHENG" class="mui-table-view-cell mui-indexed-list-item">
+									塔城地区
+								</li>
+								<li data-id="TAIBEISHI" class="mui-table-view-cell mui-indexed-list-item">
+									台北
+								</li>
+								<li data-id="TAINANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									台南
+								</li>
+								<li data-id="TAIZHONGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									台中
+								</li>
+								<li data-id="TAIZHOU1" class="mui-table-view-cell mui-indexed-list-item">
+									台州
+								</li>
+								<li data-id="TAIYUAN" class="mui-table-view-cell mui-indexed-list-item">
+									太原
+								</li>
+								<li data-id="TAIAN" class="mui-table-view-cell mui-indexed-list-item">
+									泰安
+								</li>
+								<li data-id="TAIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									泰州
+								</li>
+								<li data-id="TANGSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									唐山
+								</li>
+								<li data-id="TIANJIN" class="mui-table-view-cell mui-indexed-list-item">
+									天津
+								</li>
+								<li data-id="TIANMEN" class="mui-table-view-cell mui-indexed-list-item">
+									天门
+								</li>
+								<li data-id="TIANSHUI" class="mui-table-view-cell mui-indexed-list-item">
+									天水
+								</li>
+								<li data-id="TIELING" class="mui-table-view-cell mui-indexed-list-item">
+									铁岭
+								</li>
+								<li data-id="TONGHUA" class="mui-table-view-cell mui-indexed-list-item">
+									通化
+								</li>
+								<li data-id="TONGLIAO" class="mui-table-view-cell mui-indexed-list-item">
+									通辽
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									桐城
+								</li>
+								<li data-id="TONGCHUAN" class="mui-table-view-cell mui-indexed-list-item">
+									铜川
+								</li>
+								<li data-id="TONGLING" class="mui-table-view-cell mui-indexed-list-item">
+									铜陵
+								</li>
+								<li data-id="TONGREN" class="mui-table-view-cell mui-indexed-list-item">
+									铜仁
+								</li>
+								<li data-id="TUMUSHUKESHI" class="mui-table-view-cell mui-indexed-list-item">
+									图木舒克
+								</li>
+								<li data-id="TULUFAN" class="mui-table-view-cell mui-indexed-list-item">
+									吐鲁番地区
+								</li>
+								<li data-id="TUNCHANGXIAN" class="mui-table-view-cell mui-indexed-list-item">
+									屯昌县
+								</li>
+								
+								<li data-group="W" class="mui-table-view-divider mui-indexed-list-group">W</li>
+								<li data-id="WANNINGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									万宁
+								</li>
+								<li data-id="WEIHAI" class="mui-table-view-cell mui-indexed-list-item">
+									威海
+								</li>
+								<li data-id="WEIFANG" class="mui-table-view-cell mui-indexed-list-item">
+									潍坊
+								</li>
+								<li data-id="WEINAN" class="mui-table-view-cell mui-indexed-list-item">
+									渭南
+								</li>
+								<li data-id="WENZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									温州
+								</li>
+								<li data-id="WENCHANGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									文昌
+								</li>
+								<li data-id="WENSHANZHUANGZUMIAOZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									文山州
+								</li>
+								<li data-id="WUHAI" class="mui-table-view-cell mui-indexed-list-item">
+									乌海市
+								</li>
+								<li data-id="WULANCHABUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									乌兰察布
+								</li>
+								<li data-id="WULUMUQI" class="mui-table-view-cell mui-indexed-list-item">
+									乌鲁木齐
+								</li>
+								<li data-id="WUXI" class="mui-table-view-cell mui-indexed-list-item">
+									无锡
+								</li>
+								<li data-id="WUHU" class="mui-table-view-cell mui-indexed-list-item">
+									芜湖
+								</li>
+								<li data-id="WUZHONGSHI" class="mui-table-view-cell mui-indexed-list-item">
+									吴忠
+								</li>
+								<li data-id="WUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									梧州
+								</li>
+								<li data-id="WUJIAQUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									五家渠
+								</li>
+								<li data-id="WUZHISHANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									五指山
+								</li>
+								<li data-id="WUHAN" class="mui-table-view-cell mui-indexed-list-item">
+									武汉
+								</li>
+								<li data-id="WUWEI" class="mui-table-view-cell mui-indexed-list-item">
+									武威
+								</li>
+								
+								<li data-group="X" class="mui-table-view-divider mui-indexed-list-group">X</li>
+								<li data-id="XIAN" class="mui-table-view-cell mui-indexed-list-item">
+									西安
+								</li>
+								<li data-id="XINING" class="mui-table-view-cell mui-indexed-list-item">
+									西宁
+								</li>
+								<li data-id="XISHUANGBANNADAIZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									西双版纳傣族自治州
+								</li>
+								<li data-id="XIANTAO" class="mui-table-view-cell mui-indexed-list-item">
+									锡林郭勒
+								</li>
+								<li data-id="WUHAN" class="mui-table-view-cell mui-indexed-list-item">
+									仙桃
+								</li>
+								<li data-id="XIANNING" class="mui-table-view-cell mui-indexed-list-item">
+									咸宁
+								</li>
+								<li data-id="XIANYANG" class="mui-table-view-cell mui-indexed-list-item">
+									咸阳
+								</li>
+								<li data-id="XIANGGANGTEBIEXINGZHENGQU" class="mui-table-view-cell mui-indexed-list-item">
+									香港特别行政区
+								</li>
+								<li data-id="XIANGTAN" class="mui-table-view-cell mui-indexed-list-item">
+									湘潭
+								</li>
+								<li data-id="XIANGXITUJIAZUMIAOZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									湘西土家族苗族自治州
+								</li>
+								<li data-id="XIANGFAN" class="mui-table-view-cell mui-indexed-list-item">
+									襄樊
+								</li>
+								<li data-id="XIAOGANSHI" class="mui-table-view-cell mui-indexed-list-item">
+									孝感
+								</li>
+								<li data-id="XINZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									忻州
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									新泰
+								</li>
+								<li data-id="XINXIANGWEI" class="mui-table-view-cell mui-indexed-list-item">
+									新乡
+								</li>
+								<li data-id="XINYU" class="mui-table-view-cell mui-indexed-list-item">
+									新余
+								</li>
+								<li data-id="XINZHUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									新竹
+								</li>
+								<li data-id="XINYANG" class="mui-table-view-cell mui-indexed-list-item">
+									信阳
+								</li>
+								<li data-id="XINGTAI" class="mui-table-view-cell mui-indexed-list-item">
+									邢台
+								</li>
+								<li data-id="XINGANMENG" class="mui-table-view-cell mui-indexed-list-item">
+									兴安盟
+								</li>
+								<li data-id="XUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									徐州
+								</li>
+								<li data-id="XUCHANG" class="mui-table-view-cell mui-indexed-list-item">
+									许昌
+								</li>
+								<li data-id="XUANCHENG" class="mui-table-view-cell mui-indexed-list-item">
+									宣城
+								</li>
+								
+								<li data-group="Y" class="mui-table-view-divider mui-indexed-list-group">Y</li>
+								<li data-id="YAAN" class="mui-table-view-cell mui-indexed-list-item">
+									雅安
+								</li>
+								<li data-id="YANTAI" class="mui-table-view-cell mui-indexed-list-item">
+									烟台
+								</li>
+								<li data-id="YANANANG" class="mui-table-view-cell mui-indexed-list-item">
+									延安
+								</li>
+								<li data-id="YANBIAN" class="mui-table-view-cell mui-indexed-list-item">
+									延边朝鲜族自治州
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									延吉
+								</li>
+								<li data-id="YANCHENG" class="mui-table-view-cell mui-indexed-list-item">
+									盐城
+								</li>
+								<li data-id="YANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									扬州
+								</li>
+								<li data-id="YANGJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									阳江
+								</li>
+								<li data-id="YANGQUAN" class="mui-table-view-cell mui-indexed-list-item">
+									阳泉
+								</li>
+								<li data-id="YICHUN1" class="mui-table-view-cell mui-indexed-list-item">
+									伊春
+								</li>
+								<li data-id="YILI" class="mui-table-view-cell mui-indexed-list-item">
+									伊犁哈萨克自治州
+								</li>
+								<li data-id="YIBIN" class="mui-table-view-cell mui-indexed-list-item">
+									宜宾
+								</li>
+								<li data-id="YICHANG" class="mui-table-view-cell mui-indexed-list-item">
+									宜昌
+								</li>
+								<li data-id="YICHUN" class="mui-table-view-cell mui-indexed-list-item">
+									宜春
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									义乌
+								</li>
+								<li data-id="YIYANG" class="mui-table-view-cell mui-indexed-list-item">
+									益阳
+								</li>
+								<li data-id="YINCHUAN" class="mui-table-view-cell mui-indexed-list-item">
+									银川
+								</li>
+								<li data-id="YINGTAN" class="mui-table-view-cell mui-indexed-list-item">
+									鹰潭
+								</li>
+								<li data-id="YINGKOU" class="mui-table-view-cell mui-indexed-list-item">
+									营口
+								</li>
+								<li data-id="YONGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									永州
+								</li>
+								<li data-id="YULIN1" class="mui-table-view-cell mui-indexed-list-item">
+									榆林
+								</li>
+								<li data-id="YULIN" class="mui-table-view-cell mui-indexed-list-item">
+									玉林
+								</li>
+								<li data-id="YUSHUZANGZUZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									玉树藏族自治州
+								</li>
+								<li data-id="YUXI" class="mui-table-view-cell mui-indexed-list-item">
+									玉溪
+								</li>
+								<li data-id="YUEYANG" class="mui-table-view-cell mui-indexed-list-item">
+									岳阳
+								</li>
+								<li data-id="YUNFUSHI" class="mui-table-view-cell mui-indexed-list-item">
+									云浮
+								</li>
+								<li data-id="YUNCHENG" class="mui-table-view-cell mui-indexed-list-item">
+									运城
+								</li>
+								<li data-group="Z" class="mui-table-view-divider mui-indexed-list-group">Z</li>
+								<li data-id="ZAOZHUANG" class="mui-table-view-cell mui-indexed-list-item">
+									枣庄
+								</li>
+								<li data-id="ZHANJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									湛江
+								</li>
+								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
+									张家港
+								</li>
+								<li data-id="ZHANGJIAJIE" class="mui-table-view-cell mui-indexed-list-item">
+									张家界
+								</li>
+								<li data-id="ZHANGJIAKOU" class="mui-table-view-cell mui-indexed-list-item">
+									张家口
+								</li>
+								<li data-id="ZHANGYE" class="mui-table-view-cell mui-indexed-list-item">
+									张掖
+								</li>
+								<li data-id="ZHANGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									漳州
+								</li>
+								<li data-id="ZHAOTONG" class="mui-table-view-cell mui-indexed-list-item">
+									昭通
+								</li>
+								<li data-id="ZHAOQING" class="mui-table-view-cell mui-indexed-list-item">
+									肇庆
+								</li>
+								<li data-id="ZHENJIANG" class="mui-table-view-cell mui-indexed-list-item">
+									镇江
+								</li>
+								<li data-id="ZHENGZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									郑州
+								</li>
+								<li data-id="ZHONGSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									中山
+								</li>
+								<li data-id="ZHONGWEISHI" class="mui-table-view-cell mui-indexed-list-item">
+									中卫
+								</li>
+								<li data-id="ZHOUSHAN" class="mui-table-view-cell mui-indexed-list-item">
+									舟山
+								</li>
+								<li data-id="ZHOUKOU" class="mui-table-view-cell mui-indexed-list-item">
+									周口
+								</li>
+								<li data-id="ZHUHAI" class="mui-table-view-cell mui-indexed-list-item">
+									珠海
+								</li>
+								<li data-id="ZHUZHOU" class="mui-table-view-cell mui-indexed-list-item">
+									株洲
+								</li>
+								<li data-id="ZIYANG" class="mui-table-view-cell mui-indexed-list-item">
+									驻马店
+								</li>
+								<li data-id="ZIYANG" class="mui-table-view-cell mui-indexed-list-item">
+									资阳
+								</li>
+								<li data-id="ZIBO" class="mui-table-view-cell mui-indexed-list-item">
+									淄博
+								</li>
+								<li data-id="ZIGONG" class="mui-table-view-cell mui-indexed-list-item">
+									自贡
+								</li>
+								<li data-id="ZUNYI" class="mui-table-view-cell mui-indexed-list-item">
+									遵义
+								</li>
+							</div>
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/mui.indexedlist.js"></script>
+		<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script>
+			mui.init();
+			//职业枚举
+			var occupation_enums = [{ "id": "1", "text": "上班族" }, { "id": "3", "text": "个体户" }, { "id": "6", "text": "企业主" }, { "id": "7", "text": "其他" }];
+			mui.ready(function() {
+				//工作性质
+				mui("body").on("tap", "#chooseOccupation", function() {
+					var popPicker = new mui.PopPicker();
+					popPicker.setData(occupation_enums);
+					popPicker.show(function(item) {
+						$('#occupation').html(item[0]['text']);
+						$('#occupation').attr('data-id', item[0]['id']);
+					});
+				});
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				indicators: false
+			});
+			function IsDefine(value) {
+				if(value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+					return false;
+				} else {
+					value = value + "";
+					value = value.replace(/\s/g, "");
+					if(value == "") {
+						return false;
+					}
+					return true;
+				}
+			}
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+//			验证手机号
+			function IsMobile(value) {
+				var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+				if(!myreg.test(value)) {
+					return false;
+				}
+				return true;
+			}
+			//身份证号码验证
+			function IDCardCheck(num) {
+				num = num.toUpperCase();
+				// 身份证号码为18位，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
+				var len, re;
+				len = num.length;
+				if(len < 18 || len > 18) {
+					return false;
+				}
+				if(len == 18) {
+					re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X|x)$/);
+					var arrSplit = num.match(re);
+					// 检查生日日期是否正确
+					var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+
+					var bGoodDay;
+					bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+					if(!bGoodDay) {
+						return false;
+					} else {
+						// 检验18位身份证的校验码是否正确。
+						var valnum;
+						var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+						var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+						var nTemp = 0,
+							i;
+						for(i = 0; i < 17; i++) {
+							nTemp += num.substr(i, 1) * arrInt[i];
+						}
+						valnum = arrCh[nTemp % 11];
+						if(valnum != num.substr(17, 1)) {
+							return false;
+						}
+						return true;
+					}
+				}
+				return false;
+			}
+//			获取URL传递的手机号
+			var phone_no = QueryString("phone_no");
+//			if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
+//	        	window.location = "register.html";
+//	        }
+			//渠道id  默认为1
+			var channel_id = "1";
+			var channel_id = QueryString("channel_id");
+			var interface_call_ids=QueryString("interface_call_ids");
+			var quota="";
+			if(IsDefine(channel_id) == false) {
+				channel_id = "1";
+			}
+			var interface_call_id=(window.location.search+"").split("interface_call_id=")[1];
+			//完善资料点击
+			$("#btnPerfectInformation").bind("click", function() {
+				var name = $("#name").val();
+				var idcard = $("#idcard").val();
+				quota = $('#quota').val();
+				
+				
+				
+				
+				
+				
+			
+				
+				
+				
+				if(IsDefine(name) == false) {
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入真实姓名');
+					return false;
+				}
+				if(nameverification(name)==false){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入2-10个汉字');
+					return false;
+				}
+				
+							
+				
+				if(IsDefine(idcard) == false) {
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入身份证号');
+					return false;
+				}
+				if(IDCardCheck(idcard) == false) {
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入正确的身份证号');
+					return false;
+				}
+				
+				//截取年月日转换为yyyy-mm-dd 获取身份证年月日
+				var oDate=new Date();
+				var disY=oDate.getFullYear();
+				
+				var birthday=idcard;
+				var Y=birthday.substr(6,4);
+				var M=birthday.substr(10,2);
+				var D=birthday.substr(12,2);
+				var birthdayarr=[Y,M,D]
+				var age=parseInt(disY)-parseInt(Y);
+				birthday=birthdayarr.join('-')
+//				alert(birthday);
+//				alert(age)
+				
+				//判断金额 0-5000000
+				function isInt(num) {
+					var s = /^(\d{1,6}|[1-4]\d{6}|5000000)$/;
+					if(s.test(num)) {
+						return true;
+					}
+					return false;
+				}
+				// 判断月
+				function IsMonth(num) {
+					var r = /^([1-9]|[1-5][0-9]|60)$/;
+					if(r.test(num)) {
+						return true;
+					}
+					return false;
+				}
+				//额度
+				if(IsDefine(quota)==false){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入贷款金额（元）');
+					return false;
+				}
+				if(isInt(quota)==false) {
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('贷款额度支持0-5000000元');
+					return false;
+				}
+				//月
+				if(IsDefine(month)==false){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请输入贷款期限（月）');
+					return false;
+				}
+				if(IsMonth(month) == false) {
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('贷款期限支持1-60个月');
+					return false;
+				}
+				var citycont=$('#city').html();
+				if(citycont=='请选择城市'|| citycont==' '){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('请选择贷款城市');
+					return false;
+				}
+				
+				var is_test = QueryString("is_test");
+				
+				var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id="+ channel_id+"&advertise_id=11&name="+name+"&phone_no="+phone_no+"&idcard="+idcard+"&occupation="+occupation+"&interface_call_operation=register&interface_call_id="+interface_call_id+"&loan_city_name="+cityName+"&loan_amount="+quota+"&loan_term_month="+month+"&age="+age+"&birthday="+birthday+"&interface_call_ids="+interface_call_ids+"&jsonp_cb_fun=perfectInformationCBFun";
+				//var submit_url = "http://docking.y4qq.com/advertise/call?channel_id="+ channel_id+"&advertise_id=12&name="+name+"&phone_no="+phone_no+"&idcard="+idcard+"&occupation="+occupation+"&interface_call_operation=register&interface_call_id="+interface_call_id+"&loan_city_name="+cityName+"&loan_amount="+quota+"&loan_term_month="+month+"&age="+age+"&birthday="+birthday+"&interface_call_ids="+interface_call_ids+"&jsonp_cb_fun=perfectInformationCBFun";
+		        $.ajax(submit_url, {
+		            "method": "GET",
+		            "dataType": "jsonp",
+		            "success": "perfectInformationCBFun"
+		        });
+			});
+			
+			//完善资料回调
+			function perfectInformationCBFun(data) {
+				if(data['code'] == 10000) {
+					window.location = "recommended.html?phone_no="+phone_no+"&loan_amount="+quota+"&channel_id="+ channel_id;
+					return false;
+					
+				} else {
+					$('.jsdpiPopA').show();
+					$('.jsdpiPopA .pA').html(data['message']);
+				}
+			}
+			$('.jsdpiPopA .popBtnA').click(function() {
+				$('.jsdpiPopA').hide();
+			});
+			$('#btn').click(function() {
+				$('#addpopup').css('display', 'block');
+				$('#citylists').css('height', '100%');
+				
+			})
+			var cityName='';
+			$('.mui-indexed-list-item').click(function(){
+				$('#city').html($(this).html());
+				$('#city').attr('data-id',$(this).attr('data-id'));
+				cityName=$('#city').html();
+				$('#addpopup').hide();
+				
+//				alert(cityName)
+			})
+			var city = remote_ip_info['city'];
+			$('#closeadd').click(function() {
+				$('#addpopup').hide();
+			})
+			$('.mui-indexed-list-item').each(function(index,el){
+				if($(this).html().trim()==city.trim()){
+					$(".thiswz").attr('data-id',$(this).attr('data-id'));
+				}
+			})
+			if(city==""){
+				$(".thiswz_span").html("无法获取当前位置");
+			}else{
+				$(".thiswz_span").html(city);
+			}
+			
+   			$(".thiswz").click(function(){
+   				$("#city").html($(".thiswz_span").html());
+   				cityName=$("#city").html();
+   				$('#addpopup').css('display', 'none');
+   				//cityName
+// 				alert(cityName)
+   			})
+		</script>
+		<script>
+	        //百度统计代码
+	        var _hmt = _hmt || [];
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	</body>
+
+</html>
