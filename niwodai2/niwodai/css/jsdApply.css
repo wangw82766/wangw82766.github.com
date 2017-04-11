@@ -310,7 +310,7 @@ html,body{
 .jsdApplybgB .jsdApplycon .inputB span.hover{background: #eeeeee; color: #b2b2b2;border: 1px solid #eeeeee; }
 .jsdApplybgB .jsdApplycon .inputB input { color: #b2b2b2; margin-bottom:0;height: 0.8rem; padding: 0.2rem 0.3rem;box-sizing: border-box; width: calc(100% - 0.7rem); display: inline-block;background: #fff; border: none;font-size: 0.26rem;}
 .jsdApplybgB .jsdApplycon .jsdApplyBtn {height: 0.8rem;text-align: center; background: #FF5033; margin-top: 0.5rem;border-radius: 0.1rem; }
-.jsdApplybgB .jsdApplycon .jsdApplyBtn a {text-align: center;line-height: 0.8rem; display: block;font-size: 0.28rem; color: #fff; margin-bottom: 1rem;}
+.jsdApplybgB .jsdApplycon .jsdApplyBtn a {text-align: center;line-height: 0.8rem; display: block;font-size: 0.28rem; color: #fff;}
 /*.jsdApplybgC {margin: 0.4rem 0; background: url(../images/2.png) no-repeat;background-size: 100% 100% ; width: 100%; height: 1.73rem; margin-top: 0.7rem;}*/
 /*极速贷申请弹窗*/
 .jsdApplyPop {position: fixed;top:0;left:0;z-index: 999;background: rgba(0,0,0,0.3); width: 100%; height: 100%; font-size: 0.28rem;}
