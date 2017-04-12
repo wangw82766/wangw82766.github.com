@@ -8,6 +8,9 @@
 	-webkit-box-sizing: content-box;
 	text-decoration: none;
 	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 }
 
 p {

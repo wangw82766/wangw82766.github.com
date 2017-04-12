@@ -1462,6 +1462,7 @@
 				$('#addpopup').css('display', 'block');
 				$('#citylists').css('height', '100%');
 				$(".wBox").hide();
+				$('body').css('background','#fff')
 				
 			})
 			var cityName='';
@@ -1472,6 +1473,7 @@
 				cityName=$('#city').html();
 				$('#addpopup').hide();
 				$(".wBox").show();
+				$('body').css('background','#ff5033')
 				
 			})
 			var city = remote_ip_info['city'];
@@ -1479,6 +1481,7 @@
 			$('#closeadd').click(function() {
 				$('#addpopup').hide();
 				$(".wBox").show();
+				$('body').css('background','#ff5033')
 			})
 //			$('.mui-indexed-list-item').each(function(index,el){
 //				if($(this).html().trim()==city.trim()){
@@ -1496,6 +1499,7 @@
 	   				$('#addpopup').css('display', 'none');
 	   				$("#city").css('color',"#000");
 	   				$(".wBox").show();
+	   				$("body").css('background','#ff5033');
 	   				//cityName
 	// 				alert(cityName)
 	   			})
