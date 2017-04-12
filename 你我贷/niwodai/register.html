@@ -7,12 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="css/jsdApply.css?c=888" />
+		<link rel="stylesheet" href="css/jsdApply.css?c=777" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/jsdApply.js"></script>
 	</head>
 
 	<body>
+		
 		<!--弹窗-->
 		<div class="jsdApplyPop" style="display: none;">
 			<div class="jsdApplyPopconB" style="display: block;">
@@ -28,12 +29,12 @@
 			<div class="jsdApplybgB">
 				<div class="jsdApplycon">
 					<div class="inputA clearfix">
-						
-						<input class="fl" type="tel" placeholder="请输入手机号" id="phone_no" />
+						<img class="fl" src="images/sj.png"/>
+						<input class="fl" type="tel" placeholder="请输入手机号码" id="phone_no" />
 					</div>
 					<div class="inputB clearfix">
 						<div class="inputBcon fl">
-							
+							<img class="fl" src="images/yzm.png"/>
 							<input class="fl" type="tel" placeholder="请输入验证码" id="vertify_code" name="phone_no" />
 						</div>
 						<!--60秒倒计时-->
@@ -41,10 +42,10 @@
 						<!--重新发送-->
 						<!--<span class="fr">重新发送</span>-->
 						<!--获取验证码-->
-						<span class="fr" id="btnGetVertifyCode">点击获取</span>
+						<span class="fr" id="btnGetVertifyCode">获取验证码</span>
 					</div>
 					<div class="jsdApplyBtn" id="btnRegister">
-						<a href="javascript:void(0);">立即申请</a>
+						<a href="javascript:void(0);">立即注册</a>
 					</div>
 				</div>
 			</div>
@@ -134,11 +135,16 @@
 			//获取手机号
 			
 			phone_no = $("#phone_no").val();
+			if(IsDefine(phone_no)==false){
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请输入手机号');
+				return false;
+			}
 			//验证手机号
 			if(IsMobile(phone_no) == false) {
 				//手机号错误
 				$('.jsdApplyPop').show();
-				$('.jsdApplyPop p').html('手机号错误');
+				$('.jsdApplyPop p').html('请输入正确的手机号');
 				return false;
 			}
 
@@ -161,11 +167,10 @@
 				return false;
 			}
 
-			var vertify_code_message_content = "您的注册验证码为{vertify_code}【东方融资网】";
-			//var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=2&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&jsonp_cb_fun=getVertifyCodeCBFun";
-			//var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=6&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&jsonp_cb_fun=getVertifyCodeCBFun";
-			var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=10&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun"
-
+			var vertify_code_message_content = "您的注册验证码为{vertify_code}【无忧借款】";
+			var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun";
+			//var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&interface_call_ids=" + interface_call_ids + "&jsonp_cb_fun=registerCBFun";
+			//var submit_url = "http://docking.y4qq.com/advertise/call?channel_id=" + channel_id + "&advertise_id=12&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun";
 			$.ajax(submit_url, {
 				"method": "GET",
 				"dataType": "jsonp",
@@ -173,17 +178,18 @@
 			});
 		});
 		//获取验证码回调
-		var aaa = '';
-	
+		var interface_call_id = '';
+		var interface_call_ids='';
 		function getVertifyCodeCBFun(data) {
-			
-			$('.jsdApplyPop').show();
 			if(data.code == "10000") {
-				$('.jsdApplyPop p').html('验证码已发送');
-				aaa = data.interface_call_id;
+				//$('.jsdApplyPop p').html('验证码已发送');
+				interface_call_id = data.interface_call_id;
+				interface_call_ids=data.interface_call_ids;
 			}else if(data.code == "10100") {
+				$('.jsdApplyPop').show();
 				$('.jsdApplyPop p').html(data.message);
 			} else {
+				$('.jsdApplyPop').show();
 				$('.jsdApplyPop p').html(data.message);
 			}
 			return false;
@@ -209,11 +215,15 @@
 			if(IsDefine(vertify_code) == false) {
 				$('.jsdApplyPop').show();
 				$('.jsdApplyPop p').html('请输入验证码');
+				return false;
 			}
-			//var submit_url = "http://docking.y4qq.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=3&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
-			//var submit_url = "http://adv.qingdianwan.com/advertise/channel?channel_id=" + channel_id + "&advertise_id=7&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&jsonp_cb_fun=registerCBFun";
-			var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=10&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + aaa + "&jsonp_cb_fun=registerCBFun";
-
+			if(interface_call_id==''||interface_call_ids==''){
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('验证码错误');
+				return false;
+			}
+			var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&interface_call_ids=" + interface_call_ids + "&jsonp_cb_fun=registerCBFun";
+			//var submit_url = " http://docking.y4qq.com/advertise/call?channel_id=" + channel_id + "&advertise_id=12&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&interface_call_ids=" + interface_call_ids + "&jsonp_cb_fun=registerCBFun";
 			$.ajax(submit_url, {
 				"method": "GET",
 				"dataType": "jsonp",
@@ -224,7 +234,7 @@
 		//注册回调
 		function registerCBFun(data) {
 			if(data.code == "10000" || data.message.indexOf('注册') > -1) {
-				window.location = "citychoose.html?channel_id=" + channel_id + "&advertise_id=10&phone_no=" + phone_no + "&interface_call_operation=check_vertify_code&interface_call_id=" + aaa ;
+				window.location = "citychoose.html?channel_id=" + channel_id + "&advertise_id=1&phone_no=" + phone_no + "&interface_call_operation=check_vertify_code&interface_call_id=" + data.interface_call_id+"&interface_call_ids=" + interface_call_ids  ;
 
 			} else {
 				$('.jsdApplyPop').show();
@@ -236,5 +246,14 @@
 			$(this).parent().parent().hide();
 		});
 	</script>
-
+	<script>
+        //百度统计代码
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </html>

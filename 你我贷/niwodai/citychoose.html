@@ -4,14 +4,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
+		<title>你我贷</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/mui.indexedlist.css" rel="stylesheet" />
 		<link href="css/app.css" rel="stylesheet" />
 		<link href="css/mui.picker.css" rel="stylesheet" />
 		<link href="css/mui.poppicker.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/jsdApply.css?c=888" />
-		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<link rel="stylesheet" href="css/jsdApply.css?c=777" />
+			<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/jsdApply.js"></script>
 		<script>
 			/**
@@ -80,10 +80,10 @@
 //			验证年龄
 			function IsAge(num){
 				var reg=/^(1[89]|[2-4][0-9]|5[0-5])$/;
-				if(!reg.test(num)){
-					return false;
+				if(reg.test(num)){
+					return true;
 				}
-				return true;
+				return false;
 			}
 			function QueryString(val) {
 				var uri = window.location.search;
@@ -105,68 +105,49 @@
 	<body>
 		<div class="jsdApplyPop jsdpiPopA jsdpiPop" style="display: none;">
 			<div class="jsdApplyPopconB" style="display: block;">
-				<p class="pC" style="display: none;"><i></i>您的申请已提交<br/>稍后专业客服将与您联系</p>
+				<p class="pC" style="display: none;">恭喜您注册成功，下载APP立即借款</p>
 				<p class="pA pB"></p>
 				<div class="popBtn popBtnA">
 					<a href="javascript:void(0)">确定</a>
 				</div>
 			</div>
 		</div>
-		<header style="-webkit-box-shadow: 0 7px 10px #e1e1e1 ;" class="mui-bar mui-bar-nav headTitle">
-			<h1 class="mui-title">完善借款信息</h1>
-		</header>
+		<div class="jsdApplybgA"></div>
 		<div class="mui-content PerfectInfo">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<a>
-						<span>姓名</span><input type="text" placeholder="请输入真实姓名" id="name" />
-					</a>
-				</li>
-				
+			
+			<ul id="mui-table-view">
 				
 				<li class="mui-table-view-cell">
-					<a>
-						<span>身份证号</span><input type="text" placeholder="请输入身份证号" id="idcard" />
-					</a>
+					<input type="text" placeholder="请输入真实姓名"  id="name"/>
 				</li>
-				<li class="mui-table-view-cell activeA">
-					<a>
-						<span>贷款金额（元）</span><input type="text" placeholder="请输入贷款金额" id="quota" />
-					</a>
+				<li class="mui-table-view-cell">
+					<input type="text" placeholder="请输入身份证号" name="" id="idcard" value="" />
 				</li>
-				<li class="mui-table-view-cell activeA">
-					<a>
-						<span>贷款期限（月）</span><input type="text" placeholder="请输入贷款期限" id="month" />
-					</a>
+				<li class="mui-table-view-cell">
+					<input type="text" placeholder="请输入贷款金额" name="" id="quota" value="" />
 				</li>
+				
 
 				<li class="mui-table-view-cell" id="btn">
-					<a class="mui-navigate-right" id="chooseWhether_borrowing_records">
-						<span>贷款城市</span>
-						<div id="city" data-id="0" class="choose">请选择城市</div>
-					</a>
+					<a id="city">请选择贷款城市</a>
+					<span></span>
 				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" id="chooseOccupation">
-						<span>您的身份</span>
-						<div id="occupation" data-id="1" class="choose">上班族</div>
-					</a>
-				</li>
-
+				
+				<a class="mui-btn mui-btn-primary mui-btn-block" href="javascript:void(0)" id="btnPerfectInformation">立即申请</a>
 			</ul>
-			<a class="mui-btn mui-btn-primary mui-btn-block" href="javascript:void(0)" id="btnPerfectInformation">立即申请</a>
+			
 		</div>
 
-		<div style=" display: none; margin-bottom: 10px; position: absolute; left: 0; top: 0; width: 100%; z-index: 1000;" id="addpopup">
+		<div style=" display: none; margin-bottom: 10px; position: fixed; left: 0; top: 0; width: 100%; z-index: 1000;" id="addpopup">
 			<header style="display: block; position: static; background: #267BEB;" class="mui-bar mui-bar-nav headTitle">
 				<a href="javascript:;" id="closeadd" class="mui-icon mui-icon-closeempty icon_del headError"></a>
-				<h1 class="mui-title">选择城市</h1>
+				<h1 style="color: #fff;" class="mui-title">选择城市</h1>
 				
 			</header>
-			<div class="mui-content">
+			<div class="mui-content" style="padding-top: 0;">
 				<div id='list' class="mui-indexed-list">
-					<div class="mui-indexed-list-search mui-input-row mui-search">
-						<input id="ssk" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索城市">
+					<div class="mui-indexed-list-search mui-input-row mui-search" style="margin-top: 0.5rem;">
+						<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索城市">
 						
 					</div>
 					
@@ -201,11 +182,11 @@
 					</div>
 					<div class="mui-indexed-list-alert"></div>
 					
-					<div id="h" class="mui-indexed-list-inner">
+					<div id="citylists" class="mui-indexed-list-inner">
 						<div class="thiswz">当前城市：<span class="thiswz_span"></span></div>
 						<div class="mui-indexed-list-empty-alert">没有数据</div>
 						
-						<ul class="mui-table-view">
+						<ul class="mui-table-view" style="margin-bottom: 2.3rem;">
 							
 							<div class="mui-indexed-list-innerA">
 								
@@ -1416,19 +1397,8 @@
 		</script>
 		<script>
 			mui.init();
-			//职业枚举
-			var occupation_enums = [{ "id": "1", "text": "上班族" }, { "id": "3", "text": "个体户" }, { "id": "6", "text": "企业主" }, { "id": "7", "text": "其他" }];
-			mui.ready(function() {
-				//工作性质
-				mui("body").on("tap", "#chooseOccupation", function() {
-					var popPicker = new mui.PopPicker();
-					popPicker.setData(occupation_enums);
-					popPicker.show(function(item) {
-						$('#occupation').html(item[0]['text']);
-						$('#occupation').attr('data-id', item[0]['id']);
-					});
-				});
-			});
+			
+			
 			mui('.mui-scroll-wrapper').scroll({
 				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
 				indicators: false
@@ -1504,6 +1474,8 @@
 			//渠道id  默认为1
 			var channel_id = "1";
 			var channel_id = QueryString("channel_id");
+			var interface_call_ids=QueryString("interface_call_ids");
+			var quota="";
 			if(IsDefine(channel_id) == false) {
 				channel_id = "1";
 			}
@@ -1512,19 +1484,7 @@
 			$("#btnPerfectInformation").bind("click", function() {
 				var name = $("#name").val();
 				var idcard = $("#idcard").val();
-				var quota = $('#quota').val();
-				var month = $('#month').val();
-				var occupation=$('#occupation').html();
-				var education = $("#education").attr('data-id');
-				//var loan_amount = $("#loan_amount").html().replace('元','');
-				var occupation = $("#occupation").attr('data-id');
-				var whether_borrowing_records = $("#whether_borrowing_records").attr('data-id');
-				var borrowing_platform = $("#borrowing_platform").val();
-				var liability_limit = $("#liability_limit").val();
-				
-				
-				
-				
+				quota = $('#quota').val();
 				if(IsDefine(name) == false) {
 					$('.jsdpiPop').show();
 					$('.jsdpiPop .pB').html('请输入真实姓名');
@@ -1550,17 +1510,27 @@
 				}
 				
 				//截取年月日转换为yyyy-mm-dd 获取身份证年月日
+				var oDate=new Date();
+				var disY=oDate.getFullYear();
+				
 				var birthday=idcard;
 				var Y=birthday.substr(6,4);
 				var M=birthday.substr(10,2);
 				var D=birthday.substr(12,2);
 				var birthdayarr=[Y,M,D]
+				var age=parseInt(disY)-parseInt(Y);
 				birthday=birthdayarr.join('-')
-				alert(birthday);
+//				alert(birthday);
+//				alert(age)
+				if(IsAge(age)==false){
+					$('.jsdpiPop').show();
+					$('.jsdpiPop .pB').html('仅支持18-55岁人群');
+					return false;
+				}
 				
-				//判断金额 0-5000000
+				//判断金额 0-500000
 				function isInt(num) {
-					var s = /^(\d{1,6}|[1-4]\d{6}|5000000)$/;
+					var s = /^(\d{1,5}|[1-4]\d{5}|500000)$/;
 					if(s.test(num)) {
 						return true;
 					}
@@ -1582,21 +1552,13 @@
 				}
 				if(isInt(quota)==false) {
 					$('.jsdpiPop').show();
-					$('.jsdpiPop .pB').html('贷款额度支持0-5000000元');
+					$('.jsdpiPop .pB').html('贷款额度支持0-50万');
 					return false;
 				}
 				//月
-				if(IsDefine(month)==false){
-					$('.jsdpiPop').show();
-					$('.jsdpiPop .pB').html('请输入贷款期限（月）');
-					return false;
-				}
-				if(IsMonth(month) == false) {
-					$('.jsdpiPop').show();
-					$('.jsdpiPop .pB').html('贷款期限支持1-60个月');
-					return false;
-				}
+				
 				var citycont=$('#city').html();
+				
 				if(citycont=='请选择贷款城市'|| citycont==' '){
 					$('.jsdpiPop').show();
 					$('.jsdpiPop .pB').html('请选择贷款城市');
@@ -1605,8 +1567,8 @@
 				
 				var is_test = QueryString("is_test");
 				
-				var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id="+ channel_id +"&advertise_id=10&name="+ name +"&phone_no="+phone_no+"&idcard="+ idcard +"&occupation="+ occupation +"&interface_call_operation=register&interface_call_id="+ interface_call_id +"&loan_city_pinyin="+ cspy +"&loan_amount_tenthousand="+ quota +"&loan_term_month="+ month +"&jsonp_cb_fun=perfectInformationCBFun";
-
+				var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id="+ channel_id+"&advertise_id=11&name="+name+"&phone_no="+phone_no+"&idcard="+idcard+"&occupation="+occupation+"&interface_call_operation=register&interface_call_id="+interface_call_id+"&loan_city_name="+cityName+"&loan_amount="+quota+"&loan_term_month="+month+"&age="+age+"&birthday="+birthday+"&interface_call_ids="+interface_call_ids+"&jsonp_cb_fun=perfectInformationCBFun";
+				//var submit_url = "http://docking.y4qq.com/advertise/call?channel_id="+ channel_id+"&advertise_id=12&name="+name+"&phone_no="+phone_no+"&idcard="+idcard+"&occupation="+occupation+"&interface_call_operation=register&interface_call_id="+interface_call_id+"&loan_city_name="+cityName+"&loan_amount="+quota+"&loan_term_month="+month+"&age="+age+"&birthday="+birthday+"&interface_call_ids="+interface_call_ids+"&jsonp_cb_fun=perfectInformationCBFun";
 		        $.ajax(submit_url, {
 		            "method": "GET",
 		            "dataType": "jsonp",
@@ -1617,14 +1579,16 @@
 			//完善资料回调
 			function perfectInformationCBFun(data) {
 				if(data['code'] == 10000) {
+					
 					$('.jsdpiPopA').show();
-					$('.jsdpiPopA .pB').hide();
 					$('.jsdpiPopA .pA').hide();
 					$('.jsdpiPopA .pC').show();
-					$('.jsdpiPopA .popBtnA').click(function() {
-						window.location = "register.html";
-						return false;
-					});
+					$('.popBtnA a').html('下载APP立即借款');
+					$('.popBtnA a').on('click',function(){
+						window.location = "recommended.html?phone_no="+phone_no+"&loan_amount="+quota+"&channel_id="+ channel_id;
+					})
+					return false;
+					
 				} else {
 					$('.jsdpiPopA').show();
 					$('.jsdpiPopA .pA').html(data['message']);
@@ -1635,19 +1599,20 @@
 			});
 			$('#btn').click(function() {
 				$('#addpopup').css('display', 'block');
-				$('#h').css('height', '100%');
+				$('#citylists').css('height', '100%');
 				
 			})
-			var cspy='';
+			var cityName='';
 			$('.mui-indexed-list-item').click(function(){
 				$('#city').html($(this).html());
 				$('#city').attr('data-id',$(this).attr('data-id'));
-				cspy=$('#city').attr('data-id');
+				cityName=$('#city').html();
 				$('#addpopup').hide();
-				$('#ssk').val( '' );
-//				alert(cspy)
+				
+//				alert(cityName)
 			})
 			var city = remote_ip_info['city'];
+//			console.log(city)
 			$('#closeadd').click(function() {
 				$('#addpopup').hide();
 			})
@@ -1656,17 +1621,30 @@
 					$(".thiswz").attr('data-id',$(this).attr('data-id'));
 				}
 			})
-
+			if(city==""){
+				$(".thiswz_span").html("无法获取当前位置");
+			}else{
+				$(".thiswz_span").html(city);
+			}
 			
-			$(".thiswz_span").html(city);
    			$(".thiswz").click(function(){
    				$("#city").html($(".thiswz_span").html());
+   				cityName=$("#city").html();
    				$('#addpopup').css('display', 'none');
-   				$('#city').attr('data-id',$(this).attr('data-id'));
-   				cspy=$("#city").attr('data-id');
-// 				alert(cspy)
+   				//cityName
+// 				alert(cityName)
    			})
 		</script>
+		<script>
+	        //百度统计代码
+	        var _hmt = _hmt || [];
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
 	</body>
 
 </html>
