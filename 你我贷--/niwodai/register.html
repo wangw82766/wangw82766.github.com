@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>你我贷</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/jsdApply.css?c=111" />
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/jsdApply.js"></script>
+	</head>
+
+	<body>
+		
+		<!--弹窗-->
+		<div class="jsdApplyPop" style="display: none;">
+			<div class="jsdApplyPopconB" style="display: block;">
+				<p class="pA pB"></p>
+				<div class="popBtn">
+					<a href="javascript:void(0)">确定</a>
+				</div>
+			</div>
+		</div>
+		<div class="jsdApply">
+			<div class="jsdApplybgA">
+			</div>
+			<div class="jsdApplybgB">
+				<div class="jsdApplycon">
+					<div class="inputA clearfix">
+						<img class="fl" src="images/sj.png"/>
+						<input class="fl" type="tel" placeholder="请输入手机号码" id="phone_no" />
+					</div>
+					<div class="inputB clearfix">
+						<div class="inputBcon fl">
+							<img class="fl" src="images/yzm.png"/>
+							<input class="fl" type="tel" placeholder="请输入验证码" id="vertify_code" name="phone_no" />
+						</div>
+						<!--60秒倒计时-->
+						<!--<span class="fr hover">60秒</span>-->
+						<!--重新发送-->
+						<!--<span class="fr">重新发送</span>-->
+						<!--获取验证码-->
+						<span class="fr" id="btnGetVertifyCode">获取验证码</span>
+					</div>
+					<div class="jsdApplyBtn" id="btnRegister">
+						<a href="javascript:void(0);">立即注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="jsdApplybgC">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function IsDefine(value) {
+			if(value == null || value == "" || value == "undefined" || value == undefined || value == "null" || value == "(null)" || value == 'NULL' || typeof(value) == 'undefined') {
+				return false;
+			} else {
+				value = value + "";
+				value = value.replace(/\s/g, "");
+				if(value == "") {
+					return false;
+				}
+				return true;
+			}
+		}
+
+		function IDCardCheck(num) {
+			num = num.toUpperCase();
+			// 身份证号码为18位，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
+			var len, re;
+			len = num.length;
+			if(len < 18 || len > 18) {
+				return false;
+			}
+			if(len == 18) {
+				re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X|x)$/);
+				var arrSplit = num.match(re);
+
+				// 检查生日日期是否正确
+				var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+
+				var bGoodDay;
+				bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+				if(!bGoodDay) {
+					return false;
+				} else {
+					// 检验18位身份证的校验码是否正确。
+					var valnum;
+					var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+					var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+					var nTemp = 0,
+						i;
+					for(i = 0; i < 17; i++) {
+						nTemp += num.substr(i, 1) * arrInt[i];
+					}
+					valnum = arrCh[nTemp % 11];
+					if(valnum != num.substr(17, 1)) {
+						return false;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+
+		function QueryString(val) {
+			var uri = window.location.search;
+			var re = new RegExp("" + val + "=([^&?]*)", "ig");
+			return((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+		}
+
+		function IsMobile(value) {
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			if(!myreg.test(value)) {
+				return false;
+			}
+			return true;
+		}
+		//渠道id  默认为1
+		var channel_id = "1";
+		var channel_id = QueryString("channel_id");
+		if(IsDefine(channel_id) == false) {
+			channel_id = "1";
+		}
+		//获取验证码等待时长 默认为60秒
+		var getVertifyCodeTime = 60;
+		//获取验证码轮询事件对象
+		var getVertifyCodeInterval = null;
+		var phone_no = "";
+		//获取验证码点击
+		$("#btnGetVertifyCode").bind("click", function(e) {
+			//获取手机号
+			
+			phone_no = $("#phone_no").val();
+			if(IsDefine(phone_no)==false){
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请输入手机号');
+				return false;
+			}
+			//验证手机号
+			if(IsMobile(phone_no) == false) {
+				//手机号错误
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请输入正确的手机号');
+				return false;
+			}
+
+			if(getVertifyCodeInterval == null) {
+				getVertifyCodeTime = 60;
+				getVertifyCodeInterval = window.setInterval(function() {
+					if(parseInt(getVertifyCodeTime) >= 1) {
+						getVertifyCodeTime--;
+						$("#btnGetVertifyCode").html(getVertifyCodeTime + "秒");
+					} else {
+						window.clearInterval(getVertifyCodeInterval);
+						getVertifyCodeTime = 60;
+						getVertifyCodeInterval = null;
+						$("#btnGetVertifyCode").html("获取验证码");
+					}
+				}, 1000);
+			} else {
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请在' + getVertifyCodeTime + '秒后再获取');
+				return false;
+			}
+
+			var vertify_code_message_content = "您的注册验证码为{vertify_code}【你我贷】";
+			//var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun";
+			//var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&interface_call_ids=" + interface_call_ids + "&jsonp_cb_fun=registerCBFun";
+			//var submit_url = "http://docking.y4qq.com/advertise/call?channel_id=" + channel_id + "&advertise_id=12&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun";
+			var submit_url = "http://adv.qingdianwan.com/advertise/call?channel_id=22&advertise_id=12&phone_no=" + phone_no + "&vertify_code_type=2&vertify_code_message_content=" + vertify_code_message_content + "&interface_call_operation=get_vertify_code&jsonp_cb_fun=getVertifyCodeCBFun";
+			$.ajax(submit_url, {
+				"method": "GET",
+				"dataType": "jsonp",
+				"success": "getVertifyCodeCBFun"
+			});
+		});
+		//获取验证码回调
+		var interface_call_id = '';
+		
+		function getVertifyCodeCBFun(data) {
+			if(data.code == "10000") {
+				//$('.jsdApplyPop p').html('验证码已发送');
+				interface_call_id = data.interface_call_id;
+				
+			}else if(data.code == "10100") {
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html(data.message);
+			} else {
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html(data.message);
+			}
+			return false;
+		}
+		
+		//注册点击
+		$("#btnRegister").bind("click", function(e) {
+			
+			phone_no = $("#phone_no").val();
+			var vertify_code = $("#vertify_code").val();
+			//验证手机号
+			if(IsDefine(phone_no)==false){
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请输入手机号');
+				return false;
+			}
+			if(IsMobile(phone_no) == false) {
+				//手机号错误
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('手机号错误');
+				return false;
+			}
+			if(IsDefine(vertify_code) == false) {
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('请输入验证码');
+				return false;
+			}
+			if(interface_call_id==''){
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html('验证码错误');
+				return false;
+			}
+			//var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=" + channel_id + "&advertise_id=11&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&interface_call_ids=" + interface_call_ids + "&jsonp_cb_fun=registerCBFun";
+			var submit_url = " http://adv.qingdianwan.com/advertise/call?channel_id=22&advertise_id=12&phone_no=" + phone_no + "&vertify_code=" + vertify_code + "&interface_call_operation=check_vertify_code&interface_call_id=" + interface_call_id + "&jsonp_cb_fun=registerCBFun";
+			$.ajax(submit_url, {
+				"method": "GET",
+				"dataType": "jsonp",
+				"success": "registerCBFun"
+			});
+		});
+		
+		//注册回调
+		function registerCBFun(data) {
+			if(data.code == "10000" ) {
+				window.location = "citychoose.html?channel_id=22&advertise_id=12&phone_no=" + phone_no + "&interface_call_operation=check_vertify_code&interface_call_id=" + data.interface_call_id ;
+
+			} else {
+				$('.jsdApplyPop').show();
+				$('.jsdApplyPop p').html(data.message);
+			}
+			return false;
+		}
+		$('.popBtn').click(function() {
+			$(this).parent().parent().hide();
+		});
+	</script>
+	<script>
+        //百度统计代码
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7a7f68bf218effe68e76518f0e2c3cb9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</html>
