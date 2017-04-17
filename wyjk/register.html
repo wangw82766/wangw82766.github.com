@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="css/jsdApply.css?c=777" />
+		<link rel="stylesheet" href="css/jsdApply.css?c=99" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/jsdApply.js"></script>
 	</head>
@@ -51,6 +51,7 @@
 			</div>
 			<div class="jsdApplybgC">
 			</div>
+			<p class="corporate">广州市熊猫小额贷款有限公司</p>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -124,6 +125,16 @@
 		var channel_id = QueryString("channel_id");
 		if(IsDefine(channel_id) == false) {
 			channel_id = "1";
+		}
+		if(channel_id=="31" || channel_id=="34" || channel_id=="35"){
+			$(".corporate").show();
+			$('.jsdApplybgA').css('background','url(images/bj2.png?a=1)');
+			$('.jsdApplybgA').css('backgroundSize','100% 100%');
+			
+		}else{
+			$(".corporate").hide();
+			$('.jsdApplybgA').css('background','url(images/bj1.png?a=0)');
+			$('.jsdApplybgA').css('backgroundSize','100% 100%');
 		}
 		//获取验证码等待时长 默认为60秒
 		var getVertifyCodeTime = 60;

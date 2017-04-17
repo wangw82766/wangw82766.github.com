@@ -23,7 +23,7 @@ input::-ms-reveal{display: none;}
 .clearfix { zoom:1; }
 /*极速贷申请验证*/
 .jsdApply {height: 100%;}
-.jsdApplybgA { background: url(../images/1.png) no-repeat;background-size: 100% 100% ; width: 100%; height: 5rem;}
+.jsdApplybgA { background: url(../images/bj1.png?c=333) no-repeat;background-size: 100% 100% ; width: 100%; height: 5rem;}
 .jsdApplybgB { width: 5.87rem;margin:0 auto; margin-top: 0.3rem; padding-top: 0.3rem;}
 .jsdApplybgC {
 	width: 6.19rem;
@@ -33,6 +33,15 @@ input::-ms-reveal{display: none;}
 	background-size: 100% 100%;
 	margin: 0.92rem auto 0.3rem;
 	 
+}
+.corporate{
+	
+    color: #999999;
+    font-size: 0.24rem;
+    text-align: center;
+    line-height: 1rem;
+    display: none;
+
 }
 .jsdApplybgB .jsdApplycon>div { width: 5.87rem; margin: 0 auto;font-size: 0.26rem;}
 .jsdApplybgB .jsdApplycon>div input::input-placeholder {color: #b2b2b2;}

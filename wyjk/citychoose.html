@@ -102,7 +102,7 @@
 
 	</head>
 
-	<body>
+	<body style="overflow: hidden;">
 		<div class="jsdApplyPop jsdpiPopA jsdpiPop" style="display: none;">
 			<div class="jsdApplyPopconB" style="display: block;">
 				<p class="pC" style="display: none;"><i></i>您的申请已提交<br/>稍后专业客服将与您联系</p>
@@ -157,14 +157,14 @@
 			<a class="mui-btn mui-btn-primary mui-btn-block" href="javascript:void(0)" id="btnPerfectInformation">立即申请</a>
 		</div>
 
-		<div style=" display: none; margin-bottom: 10px; position: absolute; left: 0; top: 0; width: 100%; z-index: 1000;" id="addpopup">
+		<div style=" display: none; margin-bottom: 10px; position: fixed; left: 0; top: 0; width: 100%; z-index: 1000;" id="addpopup">
 			<header style="display: block; position: static; background: #267BEB;" class="mui-bar mui-bar-nav headTitle">
 				<a href="javascript:;" id="closeadd" class="mui-icon mui-icon-closeempty icon_del headError"></a>
 				<h1 style="color: #fff;" class="mui-title">选择城市</h1>
 				
 			</header>
 			<div class="mui-content" style="padding-top: 0;">
-				<div id='list' class="mui-indexed-list" style="height:100%;">
+				<div id='list' class="mui-indexed-list">
 					<div class="mui-indexed-list-search mui-input-row mui-search" style="margin-top: 0.5rem;">
 						<input id="ssk" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索城市">
 						
@@ -356,7 +356,7 @@
 									澄迈县
 								</li>
 								<li data-id="CHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
-									池州市
+									池州
 								</li>
 								<li data-id="CHIFENG" class="mui-table-view-cell mui-indexed-list-item">
 									赤峰
@@ -694,16 +694,16 @@
 									喀什地区
 								</li>
 								<li data-id="KAIFENG" class="mui-table-view-cell mui-indexed-list-item">
-									开封市
+									开封
 								</li>
 								<li data-id="KELAMAYI" class="mui-table-view-cell mui-indexed-list-item">
-									克拉玛依市
+									克拉玛依
 								</li>
 								<li data-id="KEZILESUKEERKEZIZIZHIZHOU" class="mui-table-view-cell mui-indexed-list-item">
 									克孜勒苏柯尔克孜自治州
 								</li>
 								<li data-id="KUNMING" class="mui-table-view-cell mui-indexed-list-item">
-									昆明市
+									昆明
 								</li>
 								<li data-id="" class="mui-table-view-cell mui-indexed-list-item">
 									昆山
@@ -769,16 +769,16 @@
 									临夏回族自治州
 								</li>
 								<li data-id="LINYI" class="mui-table-view-cell mui-indexed-list-item">
-									临沂市
+									临沂
 								</li>
 								<li data-id="LINGSHUILIZUZIZHIXIAN" class="mui-table-view-cell mui-indexed-list-item">
 									陵水黎族自治县
 								</li>
 								<li data-id="LIUZHOU" class="mui-table-view-cell mui-indexed-list-item">
-									柳州市
+									柳州
 								</li>
 								<li data-id="LIUAN" class="mui-table-view-cell mui-indexed-list-item">
-									六安市
+									六安
 								</li>
 								<li data-id="LIUPANSHUI" class="mui-table-view-cell mui-indexed-list-item">
 									六盘水
@@ -952,7 +952,7 @@
 									日喀则地区
 								</li>
 								<li data-id="RIZHAO" class="mui-table-view-cell mui-indexed-list-item">
-									日照市
+									日照
 								</li>
 								<li data-group="S" class="mui-table-view-divider mui-indexed-list-group">S</li>
 								
@@ -1145,7 +1145,7 @@
 									文山州
 								</li>
 								<li data-id="WUHAI" class="mui-table-view-cell mui-indexed-list-item">
-									乌海市
+									乌海
 								</li>
 								<li data-id="WULANCHABUSHI" class="mui-table-view-cell mui-indexed-list-item">
 									乌兰察布
@@ -1498,9 +1498,9 @@
 			}
 //			获取URL传递的手机号
 			var phone_no = QueryString("phone_no");
-//			if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
-//	        	window.location = "register.html";
-//	        }
+			if (IsDefine(phone_no) == false || IsMobile(phone_no) == false) {
+	        	window.location = "register.html";
+	        }
 			//渠道id  默认为1
 			var channel_id = "1";
 			var channel_id = QueryString("channel_id");
@@ -1663,15 +1663,16 @@
 				$(".thiswz_span").html("无法获取当前位置");
 			}else{
 				$(".thiswz_span").html(city);
+				$(".thiswz").click(function(){
+	   				$("#city").html($(".thiswz_span").html());
+	   				cspy=$("#city").html();
+	   				$('#addpopup').css('display', 'none');
+	   				//$('#ssk').val( '' );
+	// 				alert(cspy)
+	   			})
 			}
 			
-   			$(".thiswz").click(function(){
-   				$("#city").html($(".thiswz_span").html());
-   				cspy=$("#city").html();
-   				$('#addpopup').css('display', 'none');
-   				//$('#ssk').val( '' );
-// 				alert(cspy)
-   			})
+   			
 		</script>
 		<script>
 	        //百度统计代码
