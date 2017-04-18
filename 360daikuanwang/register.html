@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="css/apply.css?v=ppp" />
+    <link rel="stylesheet" href="css/apply.css?v=999" />
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/apply.js"></script>
     <script type="text/javascript">
@@ -186,17 +186,20 @@
             channel_id = "1";
         }
         if(channel_id == 31){
-        	$('.applybgA').css('background','url(images/bj2.png?n=2)');
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
+        	$('title').html('无忧贷款')
         	$('.applybgA').css('backgroundSize','100% 100%');
-        	$('.applybgB ul li').hide();
-        	$('.ppd').show();
-        	$('.nwd').show();
-        	$('.nwd').css('border','none');
+        	//$('.applybgB ul li').hide();
+        	$('.applybgB').hide();
+        	
+//      	$('.ppd').show();
+//      	$('.nwd').show();
+//      	$('.nwd').css('border','none');
         	$('.ppd a').attr('href','http://adv.qingdianwan.com/pm/paipaidai/register.html?channel_id=31');
         	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=31');
         	$('.applypA').show();
         }else if(channel_id == 34){
-        	$('.applybgA').css('background','url(images/bj2.png?n=2)');
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
         	$('.applybgA').css('backgroundSize','100% 100%');
         	$('.applybgB ul li').hide();
         	$('.ppd').show();
@@ -206,7 +209,7 @@
         	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=34');
         	$('.applypA').show();
         }else if(channel_id == 35){
-        	$('.applybgA').css('background','url(images/bj2.png?n=2)');
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
         	$('.applybgA').css('backgroundSize','100% 100%');
         	$('.applybgB ul li').hide();
         	$('.ppd').show();
@@ -215,7 +218,37 @@
         	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=35');
         	$('.nwd').css('border','none');
         	$('.applypA').show();
-        }else{
+        }else if(channel_id == 30){
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
+        	$('.applybgA').css('backgroundSize','100% 100%');
+        	$('.applybgB ul li').hide();
+        	$('.ppd').show();
+        	$('.nwd').show();
+        	$('.ppd a').attr('href','http://adv.qingdianwan.com/pm/paipaidai/register.html?channel_id=30');
+        	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=30');
+        	$('.nwd').css('border','none');
+        	$('.applypA').show();
+        } else if(channel_id == 38){
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
+        	$('.applybgA').css('backgroundSize','100% 100%');
+        	$('.applybgB ul li').hide();
+        	$('.ppd').show();
+        	$('.nwd').show();
+        	$('.ppd a').attr('href','http://adv.qingdianwan.com/pm/paipaidai/register.html?channel_id=38');
+        	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=38');
+        	$('.nwd').css('border','none');
+        	$('.applypA').show();
+        } else if(channel_id == 39){
+        	$('.applybgA').css('background','url(images/bj2.png?n=5)');
+        	$('.applybgA').css('backgroundSize','100% 100%');
+        	$('.applybgB ul li').hide();
+        	$('.ppd').show();
+        	$('.nwd').show();
+        	$('.ppd a').attr('href','http://adv.qingdianwan.com/pm/paipaidai/register.html?channel_id=39');
+        	$('.nwd a').attr('href','http://adv.qingdianwan.com/pm/niwodai/register.html?channel_id=39');
+        	$('.nwd').css('border','none');
+        	$('.applypA').show();
+        } else{
         	$('.applybgA').css('background','url(images/bj1.png?n=1)');
         	$('.applybgA').css('backgroundSize','100% 100%');
         	$('.applybgB ul li').show();
