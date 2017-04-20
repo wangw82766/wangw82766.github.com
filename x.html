@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" value="" id="t1" />
+		<input type="button" value="anniu" id="btn" />
+		<script type="text/javascript" src="base/jquery-1.9.1.min.js" ></script>
+		<script>
+			$(function(){
+				function isInt(num) {
+					var s = /^([1-9]{1}\d{3}|[1-4]\d{4}|50000)$/;
+					if(s.test(num)) {
+						return true;
+					}
+					return false;
+				}
+				$('#btn').click(function(){
+					var n=$('#t1').val();
+					if(isInt(n)==false){
+						alert('none');
+					}else{
+						alert('yes');
+					}
+				})
+			})
+			
+		</script>
+	</body>
+</html>
