@@ -1475,21 +1475,21 @@
 //					$(".thiswz").attr('data-id',$(this).attr('data-id'));
 //				}
 //			})
-//			if(city==""){
-//				$(".thiswz_span").html("无法获取当前位置");
-//			}else{
-//				$(".thiswz_span").html(city);
-//				$(".thiswz").click(function(){
-//	   				$("#city").html($(".thiswz_span").html());
-//	   				
-//	   				cityName=$("#city").html();
-//	   				$('#addpopup').css('display', 'none');
-//	   				$("#city").css('color',"#000");
-//	   				$('.popupBox').show();
-//					$('body').css('background','#ff5033');
-//
-//	   			})
-//			}
+			if(city==""){
+				$(".thiswz_span").html("无法获取当前位置");
+			}else{
+				$(".thiswz_span").html(city);
+				$(".thiswz").click(function(){
+	   				$("#city").html($(".thiswz_span").html());
+	   				
+	   				cityName=$("#city").html();
+	   				$('#addpopup').css('display', 'none');
+	   				$("#city").css('color',"#000");
+	   				$('.popupBox').show();
+					$('body').css('background','#ff5033');
+
+	   			})
+			}
 			(function($) {
 				var result = $('#demo2')[0];
 				var btns = $('.btnA');
