@@ -1,0 +1,86 @@
+body { margin: 0 auto; color: #262626; font: 12px "SimSun"; padding: 0; }
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, button, textarea, p, th, td, br { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, input, select, textarea { font-size: 100%; }
+ul, ol { list-style: none; }
+img { border: none; }
+a { color: #393939; text-decoration: none; cursor: pointer; }
+a:hover { color: #d51f35; cursor: pointer; }
+.clear {diplay: block!important; float: none!important; clear: both; overflow: hidden; width: auto!important; height: 0!important; margin: 0 auto!important; padding: 0!important; font-size: 0; line-height: 0; height: 0 }
+.clearfix:after {display: block;content: '';clear: both;}
+.clearfix {zoom: 1;}
+.fl {float: left;}
+.fr {float: left;}
+.banner {position: relative;  background: #cc1111 url("../images/banner2.jpg") center top no-repeat; width: 100%; min-width: 1100px; height: 520px; overflow: hidden; }
+.banner .ren { position: absolute;left: 10px; bottom:0px; width: 279px; height: 466px; background: url(../images/ren.png) no-repeat;}
+.banner>.pA {background: #d7011b;padding: 0 20px; position: absolute;left: 410px; top:150px; font-size: 56px;font-style: italic; color: #fff;}
+.banner>.pB {position: absolute;left: 410px; top:260px; font-size: 80px;font-style: italic; color: #fedf49;font-weight: bold;}
+.banner>.pC {background: #01085a;padding: 0 20px; position: absolute;left: 400px; top:380px; font-size: 36px;font-style: italic; color: #fff;}
+.banner>.pC i {color: #fffe7e;}
+.banner-box { margin: 0 auto; width: 1100px; height: 520px; position: relative; overflow: hidden; }
+.weibj {position: relative; background: url("../images/weibj2.png") no-repeat; float: right; height: 422px; margin-top: 18px;margin-right:50px; width: 256px; }
+.weibj p{width: 100%; text-align: center; font-size: 20px; position: absolute; top: 70px; left: 0px;}
+.weixin {float: right; height: 185px; margin-right: 32px; margin-top: 115px; width: 185px; }
+.weixintitle { float: right; width: 100%; margin-top: 70px; color: #fff; text-align: center; font-size: 24px; }
+.banner-text { width: 960px; background: #fcf5d8; overflow: hidden; z-index: 100; margin: 0 auto; margin-top: 12px; border-radius: 50px; font-size: 16px; line-height: 26px; padding: 12px 18px;}
+.mod1 { margin: 0 auto; width: 1100px;}
+.mod1 .icon01 { background: url("../images/icon01.png") no-repeat center top; margin: 30px auto 30px; height: 65px; overflow: hidden; font-weight: normal; }
+.icon-title { background: url("../images/icon02.png") no-repeat center top; font-size: 48px; text-align: center; color: #4d4c4c; height: 66px; margin: 0 auto 40px; overflow: hidden; }
+.mod1 .pic1 {width: 1000px; height: 295px; position: relative; margin: 0 auto; overflow: hidden; /*border:dashed 1px #666 */}
+.mod1 .pic-btn { background: url("../images/pic-btn.png") no-repeat; width: 178px; height: 48px; position: absolute; top: 173px; left: 170px; }
+.mod2 { margin: 80px auto; width: 1100px; }
+.mod2 .pic2-l { width: 460px; float: left; }
+.mod2 .pic2-r { width: 460px; float: right; }
+.mod2-box { background: #f9faff; overflow: hidden; padding: 20px; }
+.line_comment { line-height: 30px; }
+.line_comment h2 { overflow: hidden; width: 75%; margin: 0; padding: 8px 10px; color: #FFFFFF; font-size: 20px; font-weight: normal; background-color: #D92723; text-align: center; }
+.line_comment_box { padding: 0 30px 0 0; margin: 20px auto 10px; font-size: 20px; line-height: 36px; }
+.red { color: #f20100; }
+.underline { text-decoration: underline; }
+.pic2-a { background: url("../images/picb.gif")/*picb.gif*/ no-repeat; width: 430px; height: 260px; }
+.pic2-b { background: url("../images/pica.gif")/*pica.gif*/ no-repeat; width: 430px; height: 260px; }
+.pic2-c { display: block; margin: 50px auto }
+.mod3 { width: 1000px; margin: 0 auto;}
+.mod3 img{ width: 100%; }
+.month_title { height: 89px; color: #fff; font-size: 26px; text-align: center; background-image: url("../images/title.jpg")/*title.jpg*/; background-repeat: no-repeat; background-position: left top; font-weight: 700; line-height: 89px; margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; }
+.month table { font-size: 18px; border-collapse: collapse; text-align: center; width: 1000px; color: #000; margin: 0 auto; }
+.month table th { background: #fa3551; color: #fff; font-size: 22px; font-weight: 700; padding: 0.52rem 0; }
+.month table td { background: #ffffff; padding: 0.45rem 0; border: 1px solid #ccc; }
+.weixin { float: right; height: 185px; margin-right: 32px; margin-top: 115px; width: 185px; }
+.weixin .weixintitle { float: right; width: 100%; margin-top: 75px; color: #fff; text-align: center; font-size: 30px; }
+.w1000 { margin: auto; width: 1000px; }
+.main1 { width: 1000px; height: 341px; background-image: url("../images/main1bj.jpg")/*main1bj.jpg*/; margin-top: 30px; margin-right: auto; margin-bottom: 0; margin-left: auto; }
+.note { width: 100%; min-width:1100px; margin: 0 auto ; background: #232328; overflow: hidden; text-align: center; color: #e1e1e1; padding: 15px 0; font-size: 16px;}
+.note strong { font-size: 16pxs; margin-bottom: 10px }
+.note1 { margin-top: 15px; margin-bottom: 15px }
+.note1, .note2 { color: #b7b7b7; font-size: 14px }
+.note2 { background: #1d1d1e; border-radius: 15px; padding: 5px 8px }
+.weixin_foot { width: 100%; min-width:1100px; height: 270px; background: #f7f9ff; border-top-width: 1px; border-top-style: solid; border-top-color: #f2f2f2; padding-top: 35px;}
+.weixin_left { width: 50%; float: left;position: relative; }
+.weixin_left p{padding: 0 10px; font-size: 24px; position: absolute;left: 0px; bottom: 50px; height: 50px; background: #fff; line-height: 50px;}
+.weixin_right { width: 50%; float: right; background-image: url("../images/weixinna.jpg")/*weixinna.jpg*/; background-repeat: no-repeat; background-position: left top; height: 243px; }
+.weixinb { width: 213px; height: 215px; float: right;  padding-top: 15px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; }
+.weixinna { width: 446px; height: 243px; float: right }
+.foot_t { float: left; color: #fff; margin-top: 128px; width: 100%; text-align: center; font-size: 34px; }
+.dialog { position: fixed; left: 0; top: 0; z-index: 100; width: 100%; height: 100%; background: url("../images/dialogBg.png")/*dialogBg.png*/; display: none; }
+.dialog_q { position: absolute; left: 50%; top: 50%; margin-left: -396px; margin-top: -329px; width: 792px; height: 658px; background: url("../images/dialog.png")/*dialog.png*/ no-repeat; }
+.dialog_q .code03 { position: absolute; left: 224px; top: 305px; display: block; width: 315px; height: 315px; }
+.dialog_q i { position: absolute; right: 0; top: 0; display: block; width: 42px; height: 42px; cursor: pointer; }
+.dialog_q i img { display: block; width: 100%; height: 100%; }
+/*�̶���*/
+.right_p { position: absolute; bottom: 0; right: 0; border: solid 1px #999999 }
+.two { width: 100%; text-align: center; position: relative }
+.min { width: 1100px; margin: 0 auto; text-align: center; position: relative }
+.guding { width: 190px; height: 270px; background: #de3335; position: fixed; bottom: 0; right: 0; padding: 5px 0; z-index: 10 }
+.saoma { color: white; font-size: 16px; }
+.niugu { color: #FCFF1B; font-size: 24px; padding: 5px 0 }
+.yellow { color: #Fcff1b }
+.erweimaImg { width: 181px; height: 181px; }
+.three { width: 100%; margin: 0 auto; text-align: center; padding: 20px 0; background: #F3F3F3 }
+.wordp { font-size: 16px; color: #333; padding: 4px 0; line-height: 1.5em; }
+.ys { color: #000; }
+.admod { width: 1100px; margin: 30px auto; }
+.admod h2 {  width: 1000px;margin: 0 auto; background: #d92723; color: #FFF; font-size: 24px; text-align: center; padding: 10px 0; }
+.admod table { font-size: 22px; border-collapse: collapse; text-align: center; width: 1000px; color: #000; margin: 0 auto; }
+.admod table th { background: #443b3b; color: #fff; font-size: 24px; font-weight: normal; padding: 0.52rem 0; }
+.admod table td { background: #ffffff; padding: 0.45rem 0; border: 1px solid #ccc; }
+

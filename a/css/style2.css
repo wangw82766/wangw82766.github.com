@@ -1,0 +1,177 @@
+* {margin: 0; padding: 0; font-family: "SimSun"}
+li {list-style: none;}
+a,img {border: none;}
+a:active {outline: none;}
+table{ border-collapse:collapse} 
+.fl {float: left;}
+.fr {float: right;}
+.clear {clear: both;}
+body {background: #f3f3f3; padding: 6px 0 90px;}
+.content {width: 1000px; margin: auto; background: #ffffff;}
+.head {color: #ff0000; font-size: 24px; line-height: 36px; padding: 18px 0; margin: 0 17px; border-bottom: 2px solid #f2f2f2;}
+.hdinfo {margin: 0 17px; overflow: hidden; color: #9c9b9b; font-size: 15px; line-height: 42px; } 
+.hdinfo div {float: left; font-family: "Microsoft YaHei"}
+.hdinfo .mid {color: #6785aa; font-size: 16px; margin: 0 20px;}
+.contbox {margin: 0 17px; color: #333333; font-size: 16px; line-height: 28px;}
+.contbox img {display: block; margin: 24px auto;width: 50%;}
+.contbox p {text-indent: 2em; margin: 4px 0;}
+.contbox p span {font-weight: bold;color:#ff0000}
+.contbox .color_red {color: #ff0000; font-weight: normal;}
+.contbox .code {text-align: center; font-size: 16px; line-height: 28px; margin: 40px auto;}
+.contbox .code img {width: 200px; height: 200px; margin: 15px auto;}
+
+.pinbox { font-size: 16px; line-height: 42px; overflow: hidden;}
+.pinbox .pinhd {height:42px; padding: 0 20px;}
+.pinbox .left {background: url("../images/img_icon1.png")/*tpa=http://gm.gfdcml.com/zmm01/public/static/index/images/img_icon1.png*/ left center no-repeat; padding-left: 20px; border-bottom: 1px solid #3567b1; float: left;}
+.pinbox .right {float: right; color: #333333; font-size: 12px; padding: 14px 0;}
+.pinbox .right ul {overflow: hidden;}
+.pinbox .right li {float: left; font-size: 12px; background: url("../images/img_icon3.png")/*tpa=http://gm.gfdcml.com/zmm01/public/static/index/images/img_icon3.png*/ left center no-repeat; padding:0 10px 0 20px; height: 14px; line-height: 14px; }
+.pinbox .right li.first {background-image: url("../images/img_icon2.png")/*tpa=http://gm.gfdcml.com/zmm01/public/static/index/images/img_icon2.png*/; border-right: 1px solid #333333; margin-right: 12px;}
+
+.pincont {padding: 11px 20px 21px; border-top: 1px solid #e9e9e9;}
+.pincont .pinchd {height: 24px; line-height: 24px; }
+.pincont .pinchd ul {overflow: hidden;}
+.pincont .pinchd ul li{float: left; }
+.pincont .pinchd ul li img {display: block;}
+.pincont .pinchd ul li.t1 {font-size: 14px; color: #3567b1; padding: 0 8px;}
+.pincont .pinchd ul li.t2 {font-size: 13px; color: #FFFFFF; background: url("../images/img_icon4.png")/*tpa=http://gm.gfdcml.com/zmm01/public/static/index/images/img_icon4.png*/ center no-repeat; width: 30px; text-align: center;}
+.pincont .pintxt {color: #333333; font-size: 16px; line-height: 28px; margin: 12px 0;}
+.pincont .pindate {color: #9c9b9b; font-size: 13px; line-height: 28px;}
+
+.footer {background: #111111; text-align: center; font-size: 13px; color: #b9b9b9; line-height: 28px; padding: 10px 0;}
+
+.fixbox {position: fixed; width: 1000px; background: #FFFFFF; height: 90px; bottom: 0; left: 50%; margin-left: -500px; box-shadow: 0 0 5px #999;}
+.fixbox .code {display: block; width: 120px; height: 120px; float: left; position: absolute; left: 130px; bottom: 3px;}
+.fixbox .txt {float: left; margin-left: 278px; text-align: center;}
+.fixbox .txt .tit {color: #ff0000; font-size: 24px; padding: 25px 0 12px;}
+.fixbox .txt .tit span {background: #fff100;}
+
+
+
+.list_item_wrapper {
+    display: block;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eaebec;
+    margin: 0 10px;
+    padding: 4px 0;
+}
+.list_item_top {
+    font-size: 12px;
+    line-height: 15px;
+    color: #a9aeb3;
+    position: relative;
+    margin: 8px 0;
+}
+.list_item_top_avatar {
+    float: left;
+    margin-right: 10px;
+    line-height: 0;
+}
+
+.list_item_top_name {
+    display: block;
+    line-height: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 50px;
+}
+.list_item_top .user_name {
+    font-size: 14px;
+}
+
+.list_item_top_name .level {
+    margin: 0 3px;
+}
+.level {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: 16px;
+    text-align: center;
+    font-size: 10px;
+    color: #fff;
+    vertical-align: middle;
+}
+.list_item_floor_num, .list_item_time {
+    display: inline-block;
+    margin-right: 8px;
+    color: #c5c9cd;
+}
+.list_item_more_operation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+}
+
+.list_item_more_operation_btn {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-position: 0 -1144px;
+}
+.icon_btn {
+    text-indent: -999em;
+    text-align: center;
+    white-space: nowrap;
+    line-height: inherit;
+}
+.list_item_operation {
+    visibility: hidden;
+    position: absolute;
+    top: -4px;
+    right: 46px;
+    padding: 6px;
+    background: #292e47;
+    border-radius: 4px;
+    -webkit-transform-origin: 100% 50%;
+    -ms-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+}
+.global_icon_after::after, .level {
+    background-image: url("../images/new_sglobal_icon_89f6b7d.png")/*tpa=http://gm.gfdcml.com/zmm01/public/static/index/images/new_sglobal_icon_89f6b7d.png*/;
+    background-repeat: no-repeat;
+    -webkit-background-size: 70px auto;
+    background-size: 70px auto;
+}
+.level_4, .level_5, .level_6, .level_7, .level_8, .level_9 {
+    background-position: 0 -155px;
+}
+.level_1, .level_2, .level_3 {
+    background-position: 0 -127px;
+}
+.fmain {
+    text-align: left;
+    line-height: 160%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.level_10, .level_11, .level_12, .level_13, .level_14, .level_15 {
+    background-position: 0 -183px;
+}
+.list_item_top .user_name {
+    font-size: 14px;
+}
+a {
+    color: #3361a7;
+    text-decoration: none;
+}
+.user_name.red_name {
+    color: #e53917;
+    padding-left: 21px;
+    background-position: left 0;
+    background-size: 16px auto;
+    background-repeat: no-repeat;
+}
+.list_item_top_name {
+    display: block;
+    line-height: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 50px;
+}
