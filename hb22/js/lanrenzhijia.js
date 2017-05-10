@@ -25,8 +25,8 @@ $(document).ready(function(){
 
 		canvas2.addEventListener('touchstart',function(event){
 			drawable=true;
-			origin.x=event.clientX-canvas_offset.x;
-        	origin.y=event.clientY-canvas_offset.y;
+			origin.x=event.targetTouches[0].pageX-canvas_offset.x;
+        	origin.y=event.targetTouches[0].pageY-canvas_offset.y;
 		},false);
 		canvas2.addEventListener('touchend',function(event){
 			canvas_backup=context.getImageData(0, 0, canvas.width, canvas.height);
@@ -35,8 +35,8 @@ $(document).ready(function(){
 			if((type==1||type==3||type==4)&&drawable==true){
 				drawable=false;
 				context2.clearRect(0,0,canvas_size.x,canvas_size.y);
-				end.x=event.clientX-canvas_offset.x;
-	        	end.y=event.clientY-canvas_offset.y;
+				end.x=event.targetTouches[0].pageX-canvas_offset.x;
+	        	end.y=event.targetTouches[0].pageY-canvas_offset.y;
 				draw(context);
 			}else
 				drawable=false;
@@ -45,14 +45,14 @@ $(document).ready(function(){
        	document.addEventListener("touchmove",function(event){
             if(drawable==false)return;
             if(type==0){
-            	end.x=event.clientX-canvas_offset.x;
-            	end.y=event.clientY-canvas_offset.y;
+            	end.x=event.targetTouches[0].pageX-canvas_offset.x;
+            	end.y=event.targetTouches[0].pageY-canvas_offset.y;
 	    		draw(context);
 	    		origin.x=end.x;
 	    		origin.y=end.y;
             }else if(type==1||type==3||type==4||type==5){
-            	end.x=event.clientX-canvas_offset.x;
-            	end.y=event.clientY-canvas_offset.y;
+            	end.x=event.targetTouches[0].pageX-canvas_offset.x;
+            	end.y=event.targetTouches[0].pageY-canvas_offset.y;
             	if(type==5){
             		fill_canvas('#ffffff',end.x-10,end.y-10,20,20);
 	    			return;
@@ -62,10 +62,10 @@ $(document).ready(function(){
 	    		draw(context2);
             }
             else if(type==2){
-            	end.x=event.clientX-canvas_offset.x;
-            	end.y=event.clientY-canvas_offset.y;
+            	end.x=event.targetTouches[0].pageX-canvas_offset.x;
+            	end.y=event.targetTouches[0].pageY-canvas_offset.y;
 	    		draw(context);
-            }
+            }console.log(end.x)
         },false);
 
 		var img = new Image();
@@ -76,7 +76,7 @@ $(document).ready(function(){
 			context3.drawImage(this, 0, 0,this.width,this.height);
 			canvas_color_data = context3.getImageData(0, 0, canvas_color.width, canvas_color.height);
 			canvas_color.addEventListener("touchstart",function(event){
-				var idx = ((event.clientX-canvas_color.offsetLeft-1) + (event.clientY-canvas_color.offsetTop-1) * canvas_color_data.width) * 4;
+				var idx = ((event.targetTouches[0].pageX-canvas_color.offsetLeft-1) + (event.targetTouches[0].pageY-canvas_color.offsetTop-1) * canvas_color_data.width) * 4;
                 var r = canvas_color_data.data[idx + 0];
                 var g = canvas_color_data.data[idx + 1];
                 var b = canvas_color_data.data[idx + 2];
@@ -87,10 +87,10 @@ $(document).ready(function(){
 			canvas_color.addEventListener("touchmove",function(event){
 				if(color_changeable==false)
 					return;
-				var x=event.clientX-canvas_color.offsetLeft-1;
+				var x=event.targetTouches[0].pageX-canvas_color.offsetLeft-1;
 				if(x>=canvas_color_data.width||x<0)
 					return;
-				var y=event.clientY-canvas_color.offsetTop-1;
+				var y=event.targetTouches[0].pageY-canvas_color.offsetTop-1;
 				if(y>=canvas_color_data.height||y<0)
 					return;
 				var idx = (x + y * canvas_color_data.width) * 4;
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			var thumb=$("#size_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
-			thumb.css("left",event.clientX-mainLeft-thumb.width()/2+"px");
+			thumb.css("left",event.targetTouches[0].pageX-mainLeft-thumb.width()/2+"px");
 			$("#size_span").html(Math.ceil($(thumb).position().left/main_w*5)+1);
 			change_attr(-1,$("#size_span").html(),-1);
 			document.addEventListener("touchmove",size_bar_move);
@@ -135,7 +135,7 @@ $(document).ready(function(){
 			var thumb=$("#r_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
-			thumb.css("left",event.clientX-mainLeft-thumb.width()/2+"px");
+			thumb.css("left",event.targetTouches[0].pageY-mainLeft-thumb.width()/2+"px");
 			document.addEventListener("touchmove",{c:"r"},channel_bar_move);
 			document.addEventListener("touchend",function unbind(event){
 				canvas_rgb.r=0.5+$(thumb).position().left/main_w;
@@ -149,7 +149,7 @@ $(document).ready(function(){
 			var thumb=$("#g_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
-			thumb.css("left",event.clientX-mainLeft-thumb.width()/2+"px");
+			thumb.css("left",event.targetTouches[0].pageX-mainLeft-thumb.width()/2+"px");
 			document.addEventListener("touchmove",{c:"g"},channel_bar_move);
 			document.addEventListener("mouseup",function unbind(event){
 				canvas_rgb.g=0.5+$(thumb).position().left/main_w;
@@ -163,7 +163,7 @@ $(document).ready(function(){
 			var thumb=$("#b_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
-			thumb.css("left",event.clientX-mainLeft-thumb.width()/2+"px");
+			thumb.css("left",event.targetTouches[0].pageX-mainLeft-thumb.width()/2+"px");
 			document.addEventListener("touchmove",{c:"b"},channel_bar_move);
 			document.addEventListener("touchend",function unbind(event){
 				canvas_rgb.b=0.5+$(thumb).position().left/main_w;
