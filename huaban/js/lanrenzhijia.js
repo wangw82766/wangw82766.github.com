@@ -23,7 +23,7 @@ $(document).ready(function(){
 		context2.lineWidth = 1;
 		canvas_rgb={r:1,g:1,b:1};
 
-		$(canvas2).bind('mousedown',function(event){
+		$(canvas2).bind('touchstart',function(event){
 			drawable=true;
 			origin.x=event.clientX-canvas_offset.x;
         	origin.y=event.clientY-canvas_offset.y;
