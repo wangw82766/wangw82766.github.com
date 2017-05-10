@@ -27,10 +27,10 @@ $(document).ready(function(){
 			drawable=true;
 			origin.x=event.clientX-canvas_offset.x;
         	origin.y=event.clientY-canvas_offset.y;
-		});
+		},false);
 		canvas2.addEventListener('touchend',function(event){
 			canvas_backup=context.getImageData(0, 0, canvas.width, canvas.height);
-		});
+		},false);
 		document.addEventListener('touchend',function(event){
 			if((type==1||type==3||type==4)&&drawable==true){
 				drawable=false;
@@ -41,7 +41,7 @@ $(document).ready(function(){
 			}else
 				drawable=false;
 			color_changeable=false;
-		});
+		},false);
        	document.addEventListener("touchmove",function(event){
             if(drawable==false)return;
             if(type==0){
@@ -66,7 +66,7 @@ $(document).ready(function(){
             	end.y=event.clientY-canvas_offset.y;
 	    		draw(context);
             }
-        });
+        },false);
 
 		var img = new Image();
 		img.src="img/color.bmp";
@@ -75,7 +75,7 @@ $(document).ready(function(){
 			context3=canvas_color.getContext('2d');
 			context3.drawImage(this, 0, 0,this.width,this.height);
 			canvas_color_data = context3.getImageData(0, 0, canvas_color.width, canvas_color.height);
-			canvas_color.addEventListener("mousedown",function(event){
+			canvas_color.addEventListener("touchstart",function(event){
 				var idx = ((event.clientX-canvas_color.offsetLeft-1) + (event.clientY-canvas_color.offsetTop-1) * canvas_color_data.width) * 4;
                 var r = canvas_color_data.data[idx + 0];
                 var g = canvas_color_data.data[idx + 1];
@@ -83,7 +83,7 @@ $(document).ready(function(){
                 $("#color_span").css("background-color","rgb("+r+","+g+","+b+")");
                 change_attr(-1,-1,"rgb("+r+","+g+","+b+")");
                 color_changeable=true;
-			});
+			},false);
 			canvas_color.addEventListener("touchmove",function(event){
 				if(color_changeable==false)
 					return;
@@ -99,7 +99,7 @@ $(document).ready(function(){
                 var b = canvas_color_data.data[idx + 2];
                 $("#color_span").css("background-color","rgb("+r+","+g+","+b+")");
                 change_attr(-1,-1,"rgb("+r+","+g+","+b+")");
-			});
+			},false);
 		});
 
 		$("#close_window").bind("click",function(){
@@ -157,7 +157,7 @@ $(document).ready(function(){
 				document.removeEventListener("touchmove",channel_bar_move);
 				document.removeEventListener("touchend",unbind);
 			});
-		});
+		},false);
 		b_channel_bar= document.getElementById("b_channel_bar") ;
 		b_channel_bar.addEventListener("touchstart",function(event){
 			var thumb=$("#b_channel_thumb");
@@ -171,7 +171,7 @@ $(document).ready(function(){
 				document.removeEventListener("touchmove",channel_bar_move);
 				document.removeEventListener("touchend",unbind);
 			});
-		});
+		},false);
 
 	});
 
