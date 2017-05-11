@@ -1,7 +1,13 @@
 // 代码整理：懒人之家 lanrenzhijia.com
 $(document).ready(function(){
+		
+		
+		
+		$('#canvas').attr('width',$("body").width());
+		$('#canvas2').attr('width',$("body").width());
 		document.ondragstart=function(){return false;}//ie禁止拖拽
 		document.onselectstart=function(){return false;}//ie禁止选定
+	
 
 		canvas_size={x:$("#canvas").width(),y:$("#canvas").height()};
 		canvas_offset={x:$("#canvas")[0].offsetLeft,y:$("#canvas")[0].offsetTop};
@@ -24,6 +30,7 @@ $(document).ready(function(){
 		canvas_rgb={r:1,g:1,b:1};
 
 		canvas2.addEventListener('touchstart',function(event){
+			
 			drawable=true;
 			origin.x=event.touches[0].pageX-canvas_offset.x;
         	origin.y=event.touches[0].pageY-canvas_offset.y;
@@ -35,8 +42,10 @@ $(document).ready(function(){
 			if((type==1||type==3||type==4)&&drawable==true){
 				drawable=false;
 				context2.clearRect(0,0,canvas_size.x,canvas_size.y);
-				end.x=event.touches[0].pageX-canvas_offset.x;
-	        	end.y=event.touches[0].pageY-canvas_offset.y;
+				//console.log(event);
+				end.x=event.changedTouches[0].pageX-canvas_offset.x;
+	        	end.y=event.changedTouches[0].pageY-canvas_offset.y;
+	        	
 				draw(context);
 			}else
 				drawable=false;
@@ -76,10 +85,12 @@ $(document).ready(function(){
 			context3.drawImage(this, 0, 0,this.width,this.height);
 			canvas_color_data = context3.getImageData(0, 0, canvas_color.width, canvas_color.height);
 			canvas_color.addEventListener("touchstart",function(event){
-				var idx = ((event.touches[0].pageX-canvas_color.offsetLeft-1) + (event.touches[0].pageY-canvas_color.offsetTop-1) * canvas_color_data.width) * 4;
-                var r = canvas_color_data.data[idx + 0];
+				var idx = parseInt(((event.touches[0].pageX-canvas_color.offsetLeft-1) + (event.touches[0].pageY-canvas_color.offsetTop-1) * canvas_color_data.width) * 4);
+             
+               	var r = canvas_color_data.data[idx + 0];
                 var g = canvas_color_data.data[idx + 1];
                 var b = canvas_color_data.data[idx + 2];
+               
                 $("#color_span").css("background-color","rgb("+r+","+g+","+b+")");
                 change_attr(-1,-1,"rgb("+r+","+g+","+b+")");
                 color_changeable=true;
@@ -130,45 +141,81 @@ $(document).ready(function(){
 		},false);
 	
 		var rchannelbar=document.getElementById("r_channel_bar");
-		
+		function channel_bar_move_r(e){
+			var thumb=$("#r_channel_thumb");
+			var main_w=$("#r_channel_bar").width();
+			var mainLeft=$("#r_channel_bar").offset().left;
+			if(e.changedTouches[0].pageX-mainLeft<0)
+				thumb.css("left",-thumb.width()/2+"px");
+			else if(e.changedTouches[0].pageX-mainLeft>main_w)
+				thumb.css("left",main_w-thumb.width()/2+"px");
+			else
+				thumb.css("left",e.changedTouches[0].pageX-mainLeft-thumb.width()/2+"px");
+		}
 		rchannelbar.addEventListener("touchstart",function(event){
 			var thumb=$("#r_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
-			thumb.css("left",event.touches[0].pageY-mainLeft-thumb.width()/2+"px");
-			document.addEventListener("touchmove",{c:"r"},channel_bar_move);
+			thumb.css("left",event.touches[0].pageX-mainLeft-thumb.width()/2+"px");
+			document.addEventListener("touchmove",channel_bar_move_r,false);
 			document.addEventListener("touchend",function unbind(event){
 				canvas_rgb.r=0.5+$(thumb).position().left/main_w;
 				change_channel();
-				document.removeEventListener("touchmove",channel_bar_move);
+				document.removeEventListener("touchmove",channel_bar_move_r);
 				document.removeEventListener("touchend",unbind);
-			});
+			},false);
 		},false);
 		var g_channel_bar=document.getElementById("g_channel_bar");
+		
+		function channel_bar_move_g(e){
+			var thumb=$("#g_channel_thumb");
+			var main_w=$("#g_channel_bar").width();
+			var mainLeft=$("#g_channel_bar").offset().left;
+			if(e.changedTouches[0].pageX-mainLeft<0)
+				thumb.css("left",-thumb.width()/2+"px");
+			else if(e.changedTouches[0].pageX-mainLeft>main_w)
+				thumb.css("left",main_w-thumb.width()/2+"px");
+			else
+				thumb.css("left",e.changedTouches[0].pageX-mainLeft-thumb.width()/2+"px");
+		}
+		
 		g_channel_bar.addEventListener("touchstart",function(event){
 			var thumb=$("#g_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
 			thumb.css("left",event.touches[0].pageX-mainLeft-thumb.width()/2+"px");
-			document.addEventListener("touchmove",{c:"g"},channel_bar_move);
+			document.addEventListener("touchmove",channel_bar_move_g,false);
 			document.addEventListener("mouseup",function unbind(event){
 				canvas_rgb.g=0.5+$(thumb).position().left/main_w;
 				change_channel();
-				document.removeEventListener("touchmove",channel_bar_move);
+				document.removeEventListener("touchmove",channel_bar_move_g);
 				document.removeEventListener("touchend",unbind);
 			});
-		},false);
+		});
+		
+		function channel_bar_move_b(e){
+			var thumb=$("#b_channel_thumb");
+			var main_w=$("#b_channel_bar").width();
+			var mainLeft=$("#b_channel_bar").offset().left;
+			if(e.changedTouches[0].pageX-mainLeft<0)
+				thumb.css("left",-thumb.width()/2+"px");
+			else if(e.changedTouches[0].pageX-mainLeft>main_w)
+				thumb.css("left",main_w-thumb.width()/2+"px");
+			else
+				thumb.css("left",e.changedTouches[0].pageX-mainLeft-thumb.width()/2+"px");
+		}
+		
 		b_channel_bar= document.getElementById("b_channel_bar") ;
 		b_channel_bar.addEventListener("touchstart",function(event){
 			var thumb=$("#b_channel_thumb");
 			var main_w=$(this).width();
 			var mainLeft=$(this).offset().left;
 			thumb.css("left",event.touches[0].pageX-mainLeft-thumb.width()/2+"px");
-			document.addEventListener("touchmove",{c:"b"},channel_bar_move);
+			document.addEventListener("touchmove",channel_bar_move_b,false);
 			document.addEventListener("touchend",function unbind(event){
 				canvas_rgb.b=0.5+$(thumb).position().left/main_w;
 				change_channel();
-				document.removeEventListener("touchmove",channel_bar_move);
+				document.removeEventListener("touchmove",channel_bar_move_b);
 				document.removeEventListener("touchend",unbind);
 			});
 		},false);
@@ -179,28 +226,28 @@ $(document).ready(function(){
 		var thumb=$("#size_thumb");
 		var main_w=$("#size_bar").width();
 		var mainLeft=$("#size_bar").offset().left;
-		if(e.clientX-mainLeft<0)
+		if(e.touches[0].pageX-mainLeft<0)
 			thumb.css("left",-thumb.width()/2+"px");
-		else if(e.clientX-mainLeft>main_w)
+		else if(e.touches[0].pageX-mainLeft>main_w)
 			thumb.css("left",main_w-thumb.width()/2+"px");
 		else
-			thumb.css("left",e.clientX-mainLeft-thumb.width()/2+"px");
+			thumb.css("left",e.touches[0].pageX-mainLeft-thumb.width()/2+"px");
 		$("#size_span").html(Math.ceil($(thumb).position().left/main_w*5)+1);
 		change_attr(-1,$("#size_span").html(),-1);
 	}
 
-	function channel_bar_move(e){
-		var c=e.data.c;
-		var thumb=$("#"+c+"_channel_thumb");
-		var main_w=$("#"+c+"_channel_bar").width();
-		var mainLeft=$("#"+c+"_channel_bar").offset().left;
-		if(e.clientX-mainLeft<0)
-			thumb.css("left",-thumb.width()/2+"px");
-		else if(e.clientX-mainLeft>main_w)
-			thumb.css("left",main_w-thumb.width()/2+"px");
-		else
-			thumb.css("left",e.clientX-mainLeft-thumb.width()/2+"px");
-	}
+//	function channel_bar_move(e){
+//		
+//		var thumb=$("#"+c+"_channel_thumb");
+//		var main_w=$("#"+c+"_channel_bar").width();
+//		var mainLeft=$("#"+c+"_channel_bar").offset().left;
+//		if(e.changedTouches[0].pageX-mainLeft<0)
+//			thumb.css("left",-thumb.width()/2+"px");
+//		else if(e.changedTouches[0].pageX-mainLeft>main_w)
+//			thumb.css("left",main_w-thumb.width()/2+"px");
+//		else
+//			thumb.css("left",e.changedTouches[0].pageX-mainLeft-thumb.width()/2+"px");
+//	}
 	
 	function draw(context){
 		if(type==0||type==1||type==2){
@@ -312,7 +359,7 @@ $(document).ready(function(){
 		img.src=url;
 		$(img).bind("load",function(){
 			fill_canvas('#ffffff',0,0,canvas_size.x,canvas_size.y);
-			context.drawImage(this, -100, -100,this.width,this.height);
+			context.drawImage(this, -100, -100,$('#canvas2').width()+100,$('#canvas2').height()+100);
 			canvas_backup=context.getImageData(0, 0, canvas.width, canvas.height);
 		});
 	}

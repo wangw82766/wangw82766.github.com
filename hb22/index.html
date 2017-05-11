@@ -46,7 +46,8 @@ input::-ms-reveal{display: none;}
 				border: 0px;
 				display: block;
 				float: left;
-				margin-left: 6px;
+				margin-left: 0.3rem;
+				margin-top: 0.3rem;
 				background-repeat: no-repeat;
 				background-size: 100% 100%;
 			}
@@ -61,23 +62,24 @@ input::-ms-reveal{display: none;}
 				transform: scale(0.9);
 			}
 			#canvas{
-				width: 100%;
-				box-sizing: border-box;
+				
 			}
 			#canvas2{
-				width: 100%;
-				box-sizing: border-box;
+				
 			}
 		</style>
-
 		<script type="text/javascript" src="js/jquery.js"></script>
+		
+		
 		<script type="text/javascript" src="js/lanrenzhijia.js"></script>
+		
+		
 	</head>
 
 	<body style="width: 100%;">
 
-		<canvas id="canvas" width="320" height="250" style="border:1px solid #999;position:absolute;top:250px;left:0;"></canvas>
-		<canvas id="canvas2" width="320" height="250" style="border:1px solid #999;position:absolute;top:250px;left:0;"></canvas>
+		<canvas id="canvas" width="375" height="250" style="position:absolute;top:300px;left:0;"></canvas>
+		<canvas id="canvas2" width="375"  height="250" style="position:absolute;top:300px;left:0;"></canvas>
 		<span class="btn" onClick="$('#forbiden_back').fadeIn(300)" style="background-image: url(img/open_url.png)"></span>
 		<span class="btn" onClick="change_attr(0,-1,-1)" style="background-image: url(img/pencil.png)"></span>
 		<span class="btn" onClick="change_attr(1,-1,-1)" style="background-image: url(img/straight.png)"></span>
@@ -88,29 +90,29 @@ input::-ms-reveal{display: none;}
 		<span class="btn" onClick="change_attr(5,-1,-1)" style="background-image: url(img/eraser.png)"></span>
 		<span class="btn" onClick="fill_canvas('#ffffff',0,0,canvas_size.x,canvas_size.y)" style="background-image: url(img/clear.png)"></span>
 
-		<div id="size_bar" style="width: 100px;height: 5px;background-color:#999; float: left;margin: 12px;position: relative;">
+		<div id="size_bar" style="width: 2rem;height: 0.1rem;background-color:#999; float: left;margin: 0.24rem; margin-top:0.5rem;position: relative;">
 			<span id="size_thumb" class="btn" onClick="" style="background-color:#666;;width: 15px; border-top-left-radius:8px; border-top-right-radius:8px; border-bottom-left-radius:8px;
 		border-bottom-right-radius:8px;height: 15px;margin:0px; margin-top:-5px;position: absolute;left: 0px;"></span>
 		</div>
-		<span id="size_span" style=" font-size: 0.14rem; text-align: center; line-height: 0.3rem; border: 1px solid #999;width:0.3rem;height:0.3rem;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">1</span>
+		<span id="size_span" style=" font-size: 12px; text-align: center; line-height: 0.3rem; border: 1px solid #999;width:0.3rem;height:0.3rem;margin-top:0.4rem;margin-left: 0.5rem;display: block;float: left;margin-left: 20px">1</span>
 		
-		<span id="color_span" style="border: 1px solid #999;background-color:#00aeef;width:15px;height: 15px;margin-top:7px;display: block;float: left;margin-left: 10px"></span>
-		<canvas id="canvas_color" width="198" height="15" style="border:1px solid #999;margin-top:7px;margin-left:0.1rem;float:left;"></canvas>
+		<span id="color_span" style="border: 1px solid #999;background-color:#00aeef;width:15px;height: 15px;margin-top:0.4rem;display: block;float: left;margin-left: 10px"></span>
+		<canvas id="canvas_color" width="198" height="15" style="border:1px solid #999;margin-top:0.5rem;margin-left:0.1rem;float:left;"></canvas>
 
-		<div style="position: absolute;left:0;top:150px; font-size: 0.3rem;">
-			<span id="r_channel_span" style="border: 1px solid #999;width:15px;height: 15px;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">r</span>
+		<div style="position: absolute;left:0;top:3.5rem; font-size: 0.3rem;">
+			<span id="r_channel_span" style="border: 1px solid #999;width:0.3rem;height: 0.3rem; text-align: center; line-height: 0.3rem; margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">r</span>
 			<div id="r_channel_bar" style="width: 100px;height: 5px;background-color:#999; float: left;margin: 12px;position: relative;">
 				<span id="r_channel_thumb" class="btn" onClick="" style="background-color:#666;;width: 15px; border-top-left-radius:8px; border-top-right-radius:8px; border-bottom-left-radius:8px;
 			border-bottom-right-radius:8px;height: 15px;margin:0px; margin-top:-5px;position: absolute;left: 45%;"></span>
 			</div>
 			<div style="clear: both;"></div>
-			<span id="g_channel_span" style="border: 1px solid #999;width:15px;height: 15px;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">g</span>
+			<span id="g_channel_span" style="border: 1px solid #999;width:0.3rem;height: 0.3rem; text-align: center; line-height: 0.3rem;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">g</span>
 			<div id="g_channel_bar" style="width: 100px;height: 5px;background-color:#999; float: left;margin: 12px;position: relative;">
 				<span id="g_channel_thumb" class="btn" onClick="" style="background-color:#666;;width: 15px; border-top-left-radius:8px; border-top-right-radius:8px; border-bottom-left-radius:8px;
 			border-bottom-right-radius:8px;height: 15px;margin:0px; margin-top:-5px;position: absolute;left: 45%;"></span>
 			</div>
 			<div style="clear: both;"></div>
-			<span id="b_channel_span" style="border: 1px solid #999;width:15px;height: 15px;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">b</span>
+			<span id="b_channel_span" style="border: 1px solid #999;width:0.3rem;height: 0.3rem; text-align: center; line-height: 0.3rem;margin-top:7px;margin-left: 50px;display: block;float: left;margin-left: 20px">b</span>
 			<div id="b_channel_bar" style="width: 100px;height: 5px;background-color:#999; float: left;margin: 12px;position: relative;">
 				<span id="b_channel_thumb" class="btn" onClick="" style="background-color:#666;;width: 15px; border-top-left-radius:8px; border-top-right-radius:8px; border-bottom-left-radius:8px;
 			border-bottom-right-radius:8px;height: 15px;margin:0px; margin-top:-5px;position: absolute;left: 45%;"></span>
@@ -124,6 +126,7 @@ input::-ms-reveal{display: none;}
 			</div>
 		</div>
 		<script>
+
 			window.addEventListener('DOMContentLoaded', function() {
 				var shuping = 'onorientationchange' in window ? 'orientationchange' : 'resize';
 				var timer = null;
@@ -139,6 +142,7 @@ input::-ms-reveal{display: none;}
 				}, false);
 			}, false);
 		</script>
+
 	</body>
 
 </html>
