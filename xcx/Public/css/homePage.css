@@ -1,0 +1,229 @@
+
+.ui-content{padding-top: 0.9rem;}
+.productlistBox .listTitle{width: 100%; height:0.8rem; line-height: 0.8rem;background: #f5f5f5;padding: 0 0.2rem; box-sizing: border-box; border-top: 1px solid #e5e5e5;border-bottom: 1px solid #e5e5e5;}
+.productlistBox .listTitle img{width:0.3rem; height:0.3rem;display: inline-block;vertical-align: middle; margin-right: 0.2rem}
+.productlistBox .listTitle spam{font-size: 0.35rem}
+.productlistBox .listTitle .btn{float: right;height: 0.80rem;line-height: 0.85rem;font-size: 0.28rem;}
+.product{width: 100%; background: #fff}
+.product .productLi{width:25%; padding:0.20rem 0; box-sizing: border-box;background: #fff;}
+.product .productLi img{width: 0.80rem; height: 0.80rem ;text-align: center; display: block;margin:0 auto;border-radius: 50%; border: 1px solid #f5f5f5}
+.product .productLi .name{font-size: 0.28rem; color: #333;line-height: 0.32rem;  text-align: center;overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; max-width: 80%; margin: 0 auto;margin-top: 0.05rem;}
+.product .productLi .number{font-size: 0.24rem; color: #c3c3c3; line-height: 0.32rem; margin-top: 0.05rem; text-align: center}
+
+
+.classificationUl{ padding: 0.10rem 10%;}
+.classificationUl a{display: inline-block; font-size: 0.28rem; line-height: 0.60rem; width: 43%; text-align: center;border: 0.01rem solid #808080; color: #808080; margin-bottom: 0.20rem;border-radius: 0.10rem;}
+.classificationUl a:nth-child(even){margin-left: 10%}
+.title{font-size: 0.30rem;font-weight: bold; height: 0.80rem; line-height: 0.80rem;margin-left:0.20rem;padding-left: 0.10rem; text-align: center; color: #808080;margin:0 0.20rem; color: #333;}
+
+
+.m_search {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 94%;
+    padding: 0px 3%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    background: #4b84db;
+}
+.m_searchcon {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.28rem;
+    box-sizing: border-box;
+    display: table;
+    width: 79.5%;
+    height: 0.56rem;
+    border-radius: 0.08rem;
+    background: #fff;
+    border: 1px solid #999;
+}
+.m_searchcon .special .a {
+    height: 0.28rem;
+    cursor: pointer;
+    color: #4c4c4c;
+    display: block;
+    position: relative;
+    text-align: center;
+}
+.m_searchcon .special {
+    box-sizing: border-box;
+    float: left;
+    width: 0.80rem;
+    line-height: 0.26rem;
+    height: 0.28rem;
+    margin: 0.14rem 0;
+    border-right: 1px solid #e5e5e5;
+}
+.m_searchcon .cn {
+    margin: 0 0.1rem 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.28rem;
+    height: 0.18rem;
+    background: url(https://apim.xcxicloud.com/img/iconflag1.png) no-repeat;
+    background-size: 0.64rem 0.20rem;
+    background-position: 0 0;
+}
+.m_searchcon .special .icon_btm {
+    display: block;
+    width: 0.16rem;
+    height: 0.06rem;
+    background: url(https://apim.xcxicloud.com/img/hotSearchKeywordCorn.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.14rem;
+    right: 0.06rem;
+}
+
+.m_searchcon .ui-input-text input.ui-input-text {
+    font-size: 0.28rem;
+    color: #333;
+    text-shadow: none;
+    box-shadow: none;
+    border: none;
+    margin: 0px;
+    padding: 0.04rem 0.20rem;
+    height: 0.48rem;
+    min-height: 0rem;
+}
+#m_search_kw {
+    line-height: initial;
+}
+.m_searchcon .ui-btn {
+    margin: 0 0 0 0;
+    vertical-align: middle;
+    display: table-cell;
+    width: 0.80rem;
+    height: 0.56rem;
+    border-radius: 0px 0.08rem 0.08rem 0px;
+    background: #fff url(https://apim.xcxicloud.com/img/hotSearchKeywordSearchOpA.png) no-repeat center;
+    background-size: 0.34rem;
+    right: 0;
+    top: 0;
+    z-index: 200;
+}
+.m_search>.ui-btn {
+    margin: 0;
+    margin-top: -0.28rem;
+    color: #333;
+    font-size: 0.28rem;
+    border-radius: 0.08rem;
+    width: 14%;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    background: #fff;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    right: 3%;
+    border: 1px solid #999;
+    text-align: center;
+}
+.m_searchcon .us {
+    margin: 0 0.10rem 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.28rem;
+    height: 0.18rem;
+    background: url(https://apim.xcxicloud.com/img/iconflag1.png) no-repeat;
+    background-size: 0.62rem 0.20rem;
+    background-position: 102% 0;
+}
+.m_searchcon .ui-input-text {
+    font-size: 0.28rem;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    float: left;
+    display: table-cell;
+    height: 0.56rem;
+    line-height: 0.56rem;
+}
+.c-state1{
+  transform: rotate(0deg) scale(1) translate(75%,0%); 
+  -webkit-transform: rotate(0deg) scale(1) translate(75%,0%); 
+}
+
+element.style {
+}
+.productlistBox .listTitle .btn {
+    float: right;
+    height: 0.80rem;
+    line-height: 0.85rem;
+    font-size: 0.28rem;
+}
+.fr {
+    float: right;
+}
+.fr {
+    float: right;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+* {
+    transition-property: all;
+    -ms-transition-property: all;
+    -moz-transition-property: all;
+    -webkit-transition-property: all;
+    -o-transition-property: all;
+}
+.productlistBox .listTitle {
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    background: #f5f5f5;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+    font-family: "Helvetica Neue","Helvetica,Arial","Microsoft YaHei","微软雅黑","sans-serif";
+}
+
+
+
+.productPopUp{position: fixed; width: 100%;height: 100%; background: rgba(0,0,0,0.8);z-index: 999}
+.productPopUp .productPopUpCt{position: absolute; bottom: 0;left: 0;width: 100%;height: auto;background: #fff; padding: 0.30rem 0 0.60rem;}
+.productPopUp .productPopUpCt .qrCodeImgA{width: 2rem; height: 2rem;display: block;margin: 0 auto 0.25rem;}
+.productPopUp .productPopUpCt .text{text-align: center; font-size: 0.28rem; line-height: 0.32rem;margin-bottom: 0.2rem;}
+.productPopUp .productPopUpCt .seeBtn{width: 2.5rem;height: 0.60rem; line-height: 0.60rem;background:#4b84db; color: #fff;text-align: center;font-size: 0.24rem; margin: 0 auto;border-radius: 0.04rem;}
+

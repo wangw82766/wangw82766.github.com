@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<title>小程帮</title>
+		<meta name="robots" content="" />
+		<meta name="author" content="" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="searchtitle" content="" />
+		<link rel="stylesheet" href="Public/css/jquery.mobile-1.3.1.min.css">
+		<link type="text/css" rel="stylesheet" href="Public/css/mkuaiaso.css">
+		<script src="Public/js/jquery-1.7.2.min.js"></script>
+		<script src="Public/js/jquery.mobile-1.3.1.js"></script>
+		<link rel="stylesheet" type="text/css" href="Public/css/base.css?n=1" />
+		<link href="Public/css/detailsPage.css?n=6" type="text/css" rel="stylesheet" />
+		<!--<script src="Public/js/jquery-1.11.0.min.js"></script>-->
+		<!--[if lt IE 9]><script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+		<!--<script type="text/javascript" src="Public/js/map.js"></script>-->
+		<style>
+			.imgBoxPopUp{position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; display: none;}
+			.imgBoxPopUp img{width: 100%; position: absolute; z-index: 220; left: 0; top: 50%;}
+			.imgBoxPopUp i{position: absolute;  top: 50%; width: 1rem; z-index: 222; background: rgba(0,0,0,0.8); height: 1rem; margin-top: -0.5rem; font-size:0.8rem; color: #fff; text-align: center; line-height: 1rem;}
+			.imgBoxPopUp i.leftBtn{left: 0.1rem;}
+			.imgBoxPopUp i.rightBtn{right:0.1rem;}
+			.imgBoxPopUp b{width: 0.6rem; height: 0.6rem;background: url(Public/images/btn_sideA.png)70% no-repeat; display: none; border-radius: 50%; border: 2px solid #fff; position: absolute; right: 0.4rem; top: 0.4rem;}
+		</style>
+	</head>
+
+	<body>
+		<div class="loading">
+			<img src="Public/images/loding.gif"/>
+			<p>加载中...</p>
+		</div>
+		<div class="tipsPopUp"><p></p></div>
+	  	<div class="productPopUp" style='bottom:0px;'>
+			<div class="productPopUpCt">
+			  	<img class="qrCodeImgA" src=""  mode="widthFix"/ >
+			  	<div class="text">长按小程序码</div>
+			  	<div class="text">点击识别二维码即可</div>
+			</div>
+	  	</div>
+		<div class="imgBoxPopUp">
+			<i class="leftBtn">←</i>
+			<i class="rightBtn">→</i>
+			<b></b>
+			<img src=""/>
+		</div>
+		<div data-role="page" id="page1" style="padding-bottom:1.2rem ;">
+			
+			<div data-role="content">
+				 <div class="topCt">
+				    <img id="icon" src="https://xcxmanager.oss-cn-zhangjiakou.aliyuncs.com/24346b2756ddc83cd55b7e2fc74738a6.png"/>
+				    <div id="name"></div>
+				    <div id="fenLei"></div>
+				  </div>
+			</div>
+			<div class="detailsBox">
+			    <div class="title">小程序信息</div>
+			    <div class="detailsCt clearfix">
+			      	<div id="productType"></div>
+			      	<div id="sourcex"></div>
+			      	<!-- <view>所属地区：全国小程序</view> -->
+			      	<div id="auth" class='textA'>作者：中移互联网有限公司</div>
+			      	<div id="releaseTime" class='textA'></div>
+			      	<div id="claim" class='textA'></div>
+		    	</div> 
+		  	</div>
+		  	
+		  	<div class="detailsBoxB">
+			    <div class="title">小程序截图</div>
+			    <div style="position: relative; height: 3.78rem;">
+			     	<div id="wrapperA">
+				     	<ul class="imageUl clearfix" id="scrollerA">
+				     		
+				     	</ul>
+				     </div>
+			    </div>
+			     
+			</div>
+			 <div class="detailsBox">
+			    <div class="title">小程序简介</div>
+			    <div class="detailsCt clearfix" id="detailsCt">
+			     	
+			    </div> 
+			  </div>
+			   <div class="btmBtn">
+				    <div class="btn" id="btn">体验小程序</div>
+				    <div class="fabulousBox"><div class="fabulousBtn"></div><i>888</i></div>
+			    </div>
+		</div>
+		<!-- js -->
+		<script type="text/javascript">
+			setTimeout(function() {}, 1000)
+			$(window).resize(function() {
+				$('.onmap').css('width', $('body').width() + 'px')
+			})
+		</script>
+
+
+		<!--<script src="Public/js/iscroll.min.js"></script>-->
+		<script src="Public/js/base.js"></script>
+		<!--<script src="Public/js/mkuaiAso.js"></script>-->
+		<script>
+			
+			
+		
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+			var timer=null;
+			var id=QueryString('id')
+			var imgArr=[]
+			var html='';
+			var numA=0
+//			获取 是否点赞
+			$.ajax({
+				url:"http://apim.xcxicloud.com/api/getUserStar?callback=getUserStar",	 
+				type:"get",
+				data:{
+					'id':id,
+					'userId': '1'
+				},
+				cache:true,
+				dataType:"jsonp",
+				jsonp:"callback",
+				jsonpCallback:"getUserStar",
+				success:"getUserStar",
+				error:function(){
+					alert("发生异常");
+				}
+			});
+			function getUserStar(data){
+				if(data.message!="未点赞"){
+					$('.fabulousBox').addClass('active')
+				}
+			}
+			
+			$.ajax({
+				url:"http://apim.xcxicloud.com/api/getXcxDetail?callback=getMessage",	 
+				type:"get",
+				data:{
+					'id':id
+				},
+				cache:true,
+				dataType:"jsonp",
+				jsonp:"callback",
+				jsonpCallback:"getMessage",
+				success:"getMessage",
+				error:function(){
+					alert("发生异常");
+				}
+			});
+			var text=""
+			function formatTime(date) {
+			  console.log(date);
+			  var date = new Date(date*1000);
+			  var year =  date.getFullYear();
+			  var month = date.getMonth() + 1;
+			  var day = date.getDate();
+			  var hour = date.getHours();
+			  var minute = date.getMinutes();
+			  var second = date.getSeconds();
+			  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+			}
+			function formatNumber(n) {
+			  n = n.toString();
+			  return n[1] ? n : '0' + n
+			}
+	        function getMessage(data){
+	        	console.log(data.data)
+	        	$('#detailsCt').append(data.data.detail.replace(/&lt;/gim, '<').replace(/&gt;/gim, '>').replace(/&quot/gim, '"'));
+	        	$('#detailsCt').find('a').attr('href','javascript:void(0);')
+	        	$('#name').html(data.data.name);
+				$("#icon").attr("src",data.data.icon);
+				$("#fenLei").html("小程序类别："+data.data.fenLei);
+				$("#productType").html("平台："+data.data.productType);
+				$("#sourcex").html("来源："+data.data.sourcex);
+				$("#auth").html("作者："+data.data.auth);
+				var time=formatTime(data.data.releaseTime);
+				$("#releaseTime").html("发布时间："+time);
+				$("#claim").html("查看要求："+data.data.claim);
+				$('.productPopUp .qrCodeImgA').attr('src',data.data.xcxCodeImg);
+				$('.fabulousBox').find('i').html(data.data.startCount)
+				numA=data.data.startCount;
+				if (data.data.imgUrl != null) {
+		          if (data.data.imgUrl.substring(0, 1) == 'h') {
+		            imgArr.push(data.data.imgUrl);
+		          }
+		        }
+		        if (data.data.imgUrl1 != null) {
+		          if (data.data.imgUrl1.substring(0, 1) == 'h') {
+		            imgArr.push(data.data.imgUrl1);
+		          }
+		        }
+		        if (data.data.imgUrl2 != null) {
+		          if (data.data.imgUrl2.substring(0, 1) == 'h') {
+		            imgArr.push(data.data.imgUrl2);
+		          }
+		        }
+		
+		        if (data.data.imgUrl3 != null) {
+		          if (data.data.imgUrl3.substring(0, 1) == 'h') {
+		            imgArr.push(data.data.imgUrl3);
+		          }
+		        }
+		        if (data.data.imgUrl4 != null) {
+		          if (data.data.imgUrl4.substring(0, 1) == 'h') {
+		            imgArr.push(data.data.imgUrl4);
+		          }
+		        }
+		        for(var i=0;i<imgArr.length;i++){
+		        	html+='<li class="imageLi fl"><img src="'+imgArr[i]+'"/></li>';
+		        }
+		        setTimeout(function(){
+					var heightA=$('.imageLi').outerWidth(true)*$('.imageLi').length
+	//				alert($('.imageLi').outerWidth(true)*$('.imageLi').length)
+					$('.imageUl').css('width',heightA);
+				},100)
+		        $('.imageUl').append(html);
+				console.log(imgArr)
+				var num=0;
+				$('.imageLi').on('click',function(){
+					$('.imgBoxPopUp').show();
+					num=$(this).index();
+					$('.imgBoxPopUp img').attr('src',imgArr[num]);
+					$('.imgBoxPopUp img').css('margin-top','-'+$('.imgBoxPopUp img').height()/2+'px')
+				})
+				$('.imgBoxPopUp i.leftBtn').on('click',function(event){
+					
+					num--;
+					if(num<0){
+						num=0;
+						return false;
+					}
+					$('.imgBoxPopUp img').attr('src',imgArr[num]);
+					$('.imgBoxPopUp img').css('margin-top','-'+$('.imgBoxPopUp img').height()/2+'px')
+					event.stopPropagation();
+				})
+				$('.imgBoxPopUp i.rightBtn').on('click',function(event){
+					num++;
+					if(num>imgArr.length-1){
+						num=imgArr.length-1;
+						return false;
+					}
+					$('.imgBoxPopUp img').attr('src',imgArr[num]);
+					$('.imgBoxPopUp img').css('margin-top','-'+$('.imgBoxPopUp img').height()/2+'px')
+					event.stopPropagation();
+				})
+				$('.imgBoxPopUp b').on('click',function(){
+					$('.imgBoxPopUp').hide();
+				})
+				$('.imgBoxPopUp').on('click',function(){
+					$('.imgBoxPopUp').hide();
+				})
+				setTimeout(function(){
+					$('.loading').hide();
+				},1000)
+				
+//				来源：聊会
+	        }
+	        $('#btn').on('click',function(){
+	        	$('.productPopUp').show();
+	        })
+	        $('.productPopUp').on('click',function(){
+	        	$('.productPopUp').hide();
+	        })
+	        $('.productPopUp .qrCodeImgA').on('click',function(ev){
+	        	ev.stopPropagation();
+	        })
+	        
+			$('.fabulousBox').on('click',function(){
+				clearTimeout(timer)
+				$('.tipsPopUp').show().find('p').html('每个应用只能点赞一次')
+				timer=setTimeout(function(){
+					$('.tipsPopUp').hide()
+				},2000)
+				if($(this).hasClass('active')){
+					return false;
+				}
+				
+				$.ajax({
+					url:"http://apim.xcxicloud.com/api/addUserStar?callback=addUserStar",	 
+					type:"get",
+					data:{
+						'id':id,
+						'userId':'1'
+					},
+					cache:true,
+					dataType:"jsonp",
+					jsonp:"callback",
+					jsonpCallback:"addUserStar",
+					success:"addUserStar",
+					error:function(){
+						alert("点赞失败");
+					}
+				});
+				
+			})
+			function addUserStar(data){
+				console.log(data)
+				if(data.code == '10000'){
+					$('.tipsPopUp').show().find('p').html('点赞成功')
+					setTimeout(function(){
+						$('.tipsPopUp').hide()
+					},2000)
+					numA=parseInt(numA)+1
+					$('.fabulousBox').find('i').html(numA);
+					$('.fabulousBox').addClass('active')
+				}
+			}
+		</script>
+		<!-- js over -->
+	</body>
+
+</html>

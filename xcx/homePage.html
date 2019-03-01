@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<title>小程帮</title>
+		<meta name="robots" content="" />
+		<meta name="author" content="" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="searchtitle" content="" />
+		<link rel="stylesheet" href="Public/css/jquery.mobile-1.3.1.min.css">
+		<link type="text/css" rel="stylesheet" href="Public/css/mkuaiaso.css">
+		<script src="Public/js/jquery-1.7.2.min.js"></script>
+		<script src="Public/js/jquery.mobile-1.3.1.js"></script>
+		<link rel="stylesheet" type="text/css" href="Public/css/base.css?n=1" />
+		<link href="Public/css/homePage.css?n=6" type="text/css" rel="stylesheet" />
+		<!--<script src="Public/js/jquery-1.11.0.min.js"></script>-->
+		<!--[if lt IE 9]><script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+		<!--<script type="text/javascript" src="Public/js/map.js"></script>-->
+	</head>
+
+	<body>
+		<div class="loading">
+			<img src="Public/images/loding.gif"/>
+			<p>加载中...</p>
+		</div>
+		<div class="tipsPopUp"><p>请输入小程序名称/关键词</p></div>
+		<div class="productPopUp" style="display: none;">
+		  <div class="productPopUpCt" style='0'>
+			<img class="qrCodeImgA" src="https://xcxmanager.oss-cn-zhangjiakou.aliyuncs.com/c418aa47dc0b665c0f03df68fa586d8d.png" />
+			<div class="text">长按小程序码</div>
+			<div class="text">点击识别二维码即可</div>
+			<div class="seeBtn">查看详情</div>
+		  </div>
+		</div>
+		<div data-role="page" id="page1">
+			<div data-role="header" id="header">
+				<a data-role="button" href="#defaultpanel" class="ui-btn-left"></a>
+				<a id="inputShow"></a>
+				<h1><img src="https://apim.xcxicloud.com/img/myLogo.png">小程帮</h1>
+				
+				<div class="m_search" id="inputBox" style="display:none">
+				  <div class="m_searchcon clearfix">
+					<div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-a">
+					  <input type="text" name="keyword" id="m_search_kw" placeholder="小程序名称/关键词" value="" class="ui-input-text ui-body-a" value=''/>
+
+					</div>
+					<div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" data-disabled="false" class="ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all" aria-disabled="false" id="subBtn"></div>
+				  </div>
+				  <div id="inputHide" class="ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all">
+					取消
+				  </div>
+				</div>
+				
+			</div>
+			<div data-role="content">
+				<div class="productlistBox">
+					<!-- 列表开始循环 -->
+					<!--<div class="listTitle">
+						<img class="" src="https://xcxmanager.oss-cn-zhangjiakou.aliyuncs.com/2c5ab0dad7525b542d8d520bbb4b8c1c.png" />
+						<span class="">游戏</span>
+						<a href="#" class="fr btn" data-id="" data-title="" bindtap="">更多...</a>
+					</div>
+					<div class="product clearfix">
+						<a href="#" class="fl productLi" data-productId=''>
+							<img src="https://xcxmanager.oss-cn-zhangjiakou.aliyuncs.com/6ab7e6120fe41cfb0b8aec36e4e29097.jpg" />
+							<div class="name">欢乐斗地主</div>
+							 <view class="number">热度：{{item.startCount}}</view> 
+						</a>
+					</div>-->
+					<!-- 列表结束循环 -->
+				</div>
+				<div class="bottomNoData">没有更多数据了~</div>
+
+
+
+			</div>
+			
+			<!-- 侧滑栏 -->
+			<div data-role="panel" id="defaultpanel" data-theme="b" data-dom-cache="true" id="theSideBar" style="">
+				<div class="panel-content">
+					<div class="menu" id="wrapperA" style="    position: absolute;z-index: 1;top: 0;bottom: 0px;left: 0px;width: 100%; overflow: hidden;">
+
+						<div id="scrollerA">
+							<div class="title">分类</div>
+							<div class="classificationUl">
+							  <!--<a data-id="1" href="classification.html?id=9">游戏</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- js -->
+		<script type="text/javascript">
+			setTimeout(function() {}, 1000)
+			$(window).resize(function() {
+				$('.onmap').css('width', $('body').width() + 'px')
+			})
+		</script>
+
+
+		<script src="Public/js/iscroll.min.js"></script>
+		<script src="Public/js/base.js"></script>
+		<script src="Public/js/mkuaiAso.js"></script>
+		<script>
+			var keyword='';
+			var bOk=true;
+			$('a').attr("target","_self")
+			var html='';
+			var htmlB='';
+			var pageIndex=1;
+			addData(pageIndex);
+			$(window).scrollTop('0');
+			setTimeout(function(){
+				$(window).on('scroll',function(){
+	        // scroll at bottom
+			        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+			        	if(bOk==false){
+//			        		alert(bOk)
+			        		return false;
+			        	}
+//			        	alert(bOk)
+			        	$('.bottomNoData').show().html('加载中...')
+			            // load data
+			            pageIndex+=1
+//			            alert(pageIndex)
+			            addData(pageIndex)
+			           
+//			            alert(12)
+			        }
+			    });
+			},100)
+			$.ajax({
+				url:"http://apim.xcxicloud.com/api/getProductCategories?callback=getType",	 
+				type:"get",
+				data:{
+					'productType':'1',
+					
+				},
+				cache:true,
+				dataType:"jsonp",
+				jsonp:"callback",
+				jsonpCallback:"getType",
+				success:"getType",
+				error:function(){
+//						alert("发生异常");
+				}
+			});
+			function getType(data){
+				console.log(data)
+				for(var i=0;i<data.data.length;i++){
+					htmlB+='<a data-id="1" target="_self" href="classification.html?id='+data.data[i].id+'">'+data.data[i].name+'</a>';
+				}
+				$('.classificationUl').append(htmlB)
+			}
+			
+			function addData(num){
+				
+				$.ajax({
+					url:"http://apim.xcxicloud.com/api/getFistXcxList?callback=getMessage",	 
+					type:"get",
+					data:{
+						'productType':'1',
+						'pageIndex':num,
+						'pageSize':'10'
+					},
+					cache:true,
+					dataType:"jsonp",
+					jsonp:"callback",
+					jsonpCallback:"getMessage",
+					success:"getMessage",
+					error:function(){
+//						alert("发生异常");
+					}
+				});
+				
+		        
+			}
+			function getMessage(data){
+					bOk = false;
+					html='';
+//					console.log(data)
+					if(data.data==''||data.data.length<=0){
+//						alert(123)
+						$('.bottomNoData').show().html('没有更多数据了~')
+						return false;
+					}
+					for(var i=0;i<data.data.length;i++){
+						console.log(data.data[i].categorie.name)
+						html+='<div class="listTitle">'+
+									'<img class="" src="'+data.data[i].categorie.icon+'" />'+
+									'<span class="">'+data.data[i].categorie.name+'</span>'+
+									'<a href="classification.html?id='+data.data[i].categorie.id+'" target="_self" class="fr btn" data-id="'+data.data[i].categorie.id+'" data-title="">更多...</a>'+
+								'</div>'+
+								'<div class="product clearfix">';
+									for(var j=0;j<data.data[i].productlist.length;j++){
+										html+='<a href="javascript:void(0);" class="fl productLi" data-xcxCodeImg="'+data.data[i].productlist[j].xcxCodeImg+'" data-productId="'+data.data[i].productlist[j].id+'">'+
+											'<img src="'+data.data[i].productlist[j].icon+'" />'+
+											'<div class="name">'+data.data[i].productlist[j].name+'</div>'+
+		//									'<!-- <view class="number">热度：{{item.startCount}}</view> -->'+
+										'</a>';
+									}
+									
+								html+='</div>';
+					}
+					
+					$('.productlistBox').append(html)
+					 $('.bottomNoData').hide();
+					 setTimeout(function(){
+					 	 $('.loading').hide();
+					 },1000)
+					
+					 bOk = true
+					$('.productLi').on('click',function(){
+						$('.productPopUpCt .qrCodeImgA').attr('src',$(this).attr('data-xcxCodeImg'))
+						$('.productPopUpCt .seeBtn').attr('data-url',"detailsPage.html?id="+$(this).attr('data-productid'))
+						$('.productPopUp').show()
+					})
+		        }
+			
+			$('#inputHide').on('click',function(){
+				$('#inputBox').hide()
+				$('#m_search_kw').val('');
+			})
+			$('#inputShow').on('click',function(){
+				$('#inputBox').show()
+
+			})
+			var timer=null;
+			$("#subBtn").on('click',function(){
+				keyword=$('#m_search_kw').val().trim();
+				$('#m_search_kw').val('')
+				clearTimeout(timer)
+				if(keyword==''){
+					$('.tipsPopUp').show().find('p').html('请输入小程序名称或关键词');
+					timer=setTimeout(function(){
+						$('.tipsPopUp').hide();
+					},2000)
+					return false;
+				}
+				window.location=encodeURI("searchResult.html?keyword="+keyword);
+			})
+			$('.productPopUp').on('click',function(){
+				$('.productPopUp').hide()
+			})
+			$('.seeBtn').on('click',function(){
+				window.location=$(this).attr('data-url')
+				event.stopPropagation();
+			})
+		</script>
+		<!-- js over -->
+	</body>
+
+</html>

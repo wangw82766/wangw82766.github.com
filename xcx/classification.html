@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<title>小程帮</title>
+		<meta name="robots" content="" />
+		<meta name="author" content="" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="searchtitle" content="" />
+		<link rel="stylesheet" href="Public/css/jquery.mobile-1.3.1.min.css">
+		<link type="text/css" rel="stylesheet" href="Public/css/mkuaiaso.css">
+		<script src="Public/js/jquery-1.7.2.min.js"></script>
+		<script src="Public/js/jquery.mobile-1.3.1.js"></script>
+		<link rel="stylesheet" type="text/css" href="Public/css/base.css?n=1" />
+		<link href="Public/css/classification.css?n=6" type="text/css" rel="stylesheet" />
+		<!--<script src="Public/js/jquery-1.11.0.min.js"></script>-->
+		<!--[if lt IE 9]><script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+		<!--<script type="text/javascript" src="Public/js/map.js"></script>-->
+	</head>
+
+	<body>
+		<div class="loading">
+			<img src="Public/images/loding.gif"/>
+			<p>加载中...</p>
+		</div>
+		<div data-role="page" id="page1">
+			
+			<div data-role="content">
+				<div class="listUl">
+					<!-- 循环开始 -->
+					<!--<div class="listLi clearfix" data-id="12">
+						<a href="#" class="clearfix">
+							<img class="fl" src="https://xcxmanager.oss-cn-zhangjiakou.aliyuncs.com/bd0e111bd0a9968a732b17982783a499.jpg" />
+							<div class="fl">
+								<div class="test name overflowHidden">aaa</div>
+								<div class="test number"><span>热度：123</span><span class="author overflowHidden">作者：123</span> </div>
+							</div>
+		
+						</a>
+		
+					</div>-->
+		
+					<!-- 循环结束 -->
+				</div>
+				<div class="bottomNoData">没有更多数据了~</div>
+			</div>
+		</div>
+		<!-- js -->
+		<script type="text/javascript">
+			setTimeout(function() {}, 1000)
+			$(window).resize(function() {
+				$('.onmap').css('width', $('body').width() + 'px')
+			})
+		</script>
+
+
+		<!--<script src="Public/js/iscroll.min.js"></script>-->
+		<script src="Public/js/base.js"></script>
+		<!--<script src="Public/js/mkuaiAso.js"></script>-->
+		<script>
+			function QueryString(val) {
+				var uri = window.location.search;
+				var re = new RegExp("" + val + "=([^&?]*)", "ig");
+				return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+			}
+			var bOk=true;
+			var html='';
+			var pageIndex=1;
+			var type=QueryString('id');
+			
+			sendAjax(pageIndex,type)
+			
+			setTimeout(function(){
+				$(window).on('scroll',function(){
+        // scroll at bottom
+		        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+		        	if(bOk==false){
+//			        		alert(bOk)
+		        		return false;
+		        	}
+		        	$('.bottomNoData').show().html('加载中...');
+		            // load data
+		            pageIndex++
+		            sendAjax(pageIndex,type)
+		        }
+		   });
+			},1000)
+			
+
+
+			
+			function sendAjax(pageIndex,type){
+				$.ajax({
+					url:"http://apim.xcxicloud.com/api/getXcxListForType?callback=getMessage",	 
+					type:"get",
+					data:{
+						'productType': '1',
+				        'type': type,
+				        'pageIndex': pageIndex,
+				        'pageSize':'20'
+					},
+					cache:true,
+					dataType:"jsonp",
+					jsonp:"callback",
+					jsonpCallback:"getMessage",
+					success:"getMessage",
+					error:function(){
+						alert("发生异常");
+					}
+				});
+			}
+			
+	
+	        function getMessage(data){
+	        	bOk = false;
+	        	html='';
+				console.log(data)
+				if(data.data.length<=0||data.data==''){
+					$('.bottomNoData').show().html('没有更多数据了~');
+					return false;
+				}
+				for(var i=0;i<data.data.length;i++){
+					html+='<div class="listLi clearfix">'+
+							'<a href="detailsPage.html?id='+data.data[i].id+'" target="_self" class="clearfix">'+
+								'<img class="fl" src="'+data.data[i].icon+'" />'+
+								'<div class="fl">'+
+									'<div class="test name overflowHidden">'+data.data[i].name+'</div>'+
+									'<div class="test number"><span>热度：'+data.data[i].startCount+'</span><span class="author overflowHidden">作者：'+data.data[i].name+'</span> </div>'+
+								'</div>'+
+			
+							'</a>'+
+						'</div>';
+				}
+				$('.listUl').append(html);
+				$('.bottomNoData').hide();
+				bOk = true;
+				setTimeout(function(){
+					$('.loading').hide();
+				},1000)
+				
+	        }
+		</script>
+		<!-- js over -->
+	</body>
+
+</html>

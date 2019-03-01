@@ -1,0 +1,7 @@
+.listUl .listLi {background: #fff;border-top: 1px solid #e5e5e5;}
+.listUl .listLi a{display: block;width: 100%;height: 100%;padding: 0.20rem;	padding-left: 0.30rem; box-sizing: border-box;	}
+.listUl .listLi img{width: 1rem; height: 1rem; margin-right: 0.20rem;border-radius: 50%}
+.listUl .listLi .test{height: 0.50rem;line-height: 0.50rem;}
+.listUl .listLi .name{font-size: 0.28rem; color: #333;}
+.listUl .listLi .number{font-size: 0.26rem; color: #c3c3c3;}
+.listUl .listLi .number .author{max-width: 3rem;display: inline-block;line-height: 0.50rem; height: 0.50rem; vertical-align: top;margin-left: 0.20rem;}

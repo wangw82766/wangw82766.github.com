@@ -1,0 +1,109 @@
+.topCt{width: 100%;height: 3.12rem;background: url(https://apim.xcxicloud.com/img/incomeBG.png) no-repeat; background-size: 100% 100%; padding-top: 0.60rem; box-sizing: border-box;}
+.topCt img{width: 1.20rem; height: 1.20rem; display: block;margin: 0rem auto 0.20rem;border-radius: 50%; border: 0.05rem solid #fff;}
+.topCt div{line-height: 0.40rem; font-size: 0.24rem; color: #fff; text-align: center}
+.detailsBox{padding: 0.40rem;background: #fff;margin: 0.20rem 0;}
+.detailsBoxB{padding: 0.40rem;background: #fff;}
+.title{font-size: 0.28rem;height: 0.28rem; line-height: 0.28rem; border-left: 0.06rem solid #4b84db;padding-left: 0.10rem;}
+.detailsBox .detailsCt{margin-top: 0.20rem}
+.detailsBox .detailsCt div{float:left; width: 50%;font-size: 0.26rem; line-height: 0.40rem; padding: 0; margin: 0;list-style: none;vertical-align: top;    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;}
+.detailsBox .detailsCt div.textA{width: 100%;}
+.imageUl {
+	padding:0.20rem;
+	min-width:100%;
+	padding-bottom: 0;
+
+}
+.imageUl .imageLi {
+width:2.02rem;
+height:3.90rem;
+margin-right:0.1rem;
+
+}
+.imageUl .imageLi img{width: 100%; height: 100%;}
+#wrapperA {
+    position: absolute;
+    z-index: 1;
+    top: 0rem;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    overflow: auto;
+    height: 4.29rem;
+}
+#scrollerA {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+.ulA {
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left:0;
+
+    height:100vh;
+
+
+    list-style-type: none;
+    overflow: hidden;
+
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+
+}
+
+.liA {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    float: left;
+    width: 100vw;
+    height: 100%;
+    color: #000;
+    text-align: center;
+
+}
+
+#blackcover{ height: 100vh; width: 100vw; position: absolute; background-color: #2B2B2B; z-index: 1; color: #FFF; display: block; }
+
+.btmBtn{width: 100%;height: 1.20rem; background: #fff;position: fixed; left:0;bottom: 0 ;line-height: 1.20rem; border-top: 1px solid #e5e5e5;z-index: 20;}
+.btmBtn .btn{width: 3.70rem; height: 1.20rem; background: #4b84db; text-align: center; line-height: 1.20rem; font-size: 0.30rem; display: inline-block; vertical-align: middle; margin-left: 0rem;color: #fff;vertical-align: top;}
+.btmBtn .fabulousBox{display: inline-block;font-size: 0.36rem;float: right;margin-right: 1.20rem;line-height: 1.30rem; }
+.fabulousBtn{width: 0.40rem;height: 0.40rem; display: inline-block; background: url(https://apim.xcxicloud.com/img/zanNo.png) no-repeat; background-size: 100% 100%;margin-right: 0.10rem; }
+.fabulousBox.active {color: #f00;}
+.fabulousBox.active .fabulousBtn{background: url(https://apim.xcxicloud.com/img/zanOk.png) no-repeat; background-size: 100% 100%;}
+
+.productPopUp{position: fixed; width: 100%;height: 100%; background: rgba(0,0,0,0.8); z-index: 99999;display: none;}
+.productPopUp .productPopUpCt{position: absolute; bottom: 0;left: 0;width: 100%;height: auto;background: #fff; padding: 0.30rem 0 0.60rem;}
+.productPopUp .productPopUpCt .qrCodeImgA{width: 2rem; height: 2rem;display: block;margin: 0 auto 0.25rem;}
+.productPopUp .productPopUpCt .text{text-align: center; font-size: 0.28rem; line-height: 0.32rem;margin-bottom: 0.20rem;}
+.productPopUp .productPopUpCt .seeBtn{width: 2.5rem;height: 0.60rem; line-height: 0.60rem;background:#4b84db; color: #fff;text-align: center;font-size: 0.24rem; margin: 0 auto;border-radius: 0.04rem;}

@@ -1,0 +1,64 @@
+
+@font-face {
+	font-family: 'DIN Condensed Bold';
+	src: url('../font/DIN Condensed Bold.eot');
+	src: url('../font/DIN Condensed Bold.eot?#iefix') format('embedded-opentype');
+	src:url('../font/DIN Condensed Bold.woff') format('woff'), url('../font/DIN Condensed Bold.ttf') format('truetype'), url('../font/DIN Condensed Bold.svg#DIN Condensed Bold') format('svg'),local('DIN Condensed Bold');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'FujitsuSansBold';
+	src: url('../font/FujitsuSansBold.eot');
+	src: url('../font/FujitsuSansBold.eot?#iefix') format('embedded-opentype');
+	src:url('../font/FujitsuSansBold.woff') format('woff'), url('../font/FujitsuSansBold.ttf') format('truetype'), url('../font/FujitsuSansBold.svg#FujitsuSansBold') format('svg'),local('FujitsuSansBold');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MyriadPro-Bold_0';
+	src: url('../font/MyriadPro-Bold_0.eot');
+	src: url('../font/MyriadPro-Bold_0.eot?#iefix') format('embedded-opentype');
+	src:url('../font/MyriadPro-Bold_0.woff') format('woff'), url('../font/MyriadPro-Bold_0.ttf') format('truetype'), url('../font/MyriadPro-Bold_0.svg#MyriadPro-Bold_0') format('svg'),local('MyriadPro-Bold_0'),local('Myriad Pro');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MyriadPro-BoldCond_0';
+	src: url('../font/MyriadPro-BoldCond_0.eot');
+	src: url('../font/MyriadPro-BoldCond_0.eot?#iefix') format('embedded-opentype');
+	src:url('../font/MyriadPro-BoldCond_0.woff') format('woff'), url('../font/MyriadPro-BoldCond_0.ttf') format('truetype'), url('../font/MyriadPro-BoldCond_0.svg#MyriadPro-BoldCond_0') format('svg'),local('MyriadPro-BoldCond_0'),local('Myriad Pro');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MyriadPro-Cond_0';
+	src: url('../font/MyriadPro-Cond_0.eot');
+	src: url('../font/MyriadPro-Cond_0.eot?#iefix') format('embedded-opentype');
+	src:url('../font/MyriadPro-Cond_0.woff') format('woff'), url('../font/MyriadPro-Cond_0.ttf') format('truetype'), url('../font/MyriadPro-Cond_0.svg#MyriadPro-Cond_0') format('svg'),local('MyriadPro-Cond_0'),local('Myriad Pro');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MyriadPro-LightCond';
+	src: url('../font/MyriadPro-LightCond.eot');
+	src: url('../font/MyriadPro-LightCond.eot?#iefix') format('embedded-opentype');
+	src:url('../font/MyriadPro-LightCond.woff') format('woff'), url('../font/MyriadPro-LightCond.ttf') format('truetype'), url('../font/MyriadPro-LightCond.svg#MyriadPro-LightCond') format('svg'),local('MyriadPro-LightCond'),local('Myriad Pro');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MyriadPro-Regular_0';
+	src: url('../font/MyriadPro-Regular_0.eot');
+	src: url('../font/MyriadPro-Regular_0.eot?#iefix') format('embedded-opentype');
+	src:url('../font/MyriadPro-Regular_0.woff') format('woff'), url('../font/MyriadPro-Regular_0.ttf') format('truetype'), url('../font/MyriadPro-Regular_0.svg#MyriadPro-Regular_0') format('svg'),local('MyriadPro-Regular_0'),local('Myriad Pro');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+ font-family: 'NotoSansHans-Light';
+ src: local('Noto Sans S Chinese Light'),
+ 	local('Microsoft YaHei'),
+	local('微软雅黑');	  
+}
+
