@@ -31,7 +31,7 @@
 			
 		</div>
 	</body>
-	
+	<script src="js/clipboardB.min.js"></script>
 	<script>
 		
 		$('.popUpBtn').on('click',function(){
@@ -63,35 +63,50 @@
 				html+='<li class="list"><p>'+
 							// arr[i]+':'+$('#sentence').val()+
 							'<input type="text" value="'+arr[i]+':'+$('#sentence').val()+'" id="textAreas'+i+'"/>'+
-							'<div id="copy'+i+'" class="copy" data-id="'+i+'">复制</div>'+
+							'<div id="copy'+i+'" class="copy" data-id="'+i+'" data-clipboard-textA="'+arr[i]+':'+$('#sentence').val()+'" data-clipboard-text="'+arr[i]+':'+$('#sentence').val()+'" id="textAreas'+i+'">复制</div>'+
 						'</p></li>';
 			}
 			$('#ul').show();
 			$('#btnB').show();
 			$('#ul').append(html);
 			$('#name,#sentence').val('');
-			$(".copy").on("click",function(){
+			
+			
+	        var clipboard = new Clipboard('.copy');
+	        clipboard.on('success', function (e) {
+//	           alert("复制链接成功");
+				$('.popUp .popUpText').html('复制成功')
+				$('.popUp').show();
 				
-				var n=$(this).attr('data-id')
-			  //获取input对象
-			  var obj = document.getElementById("textAreas"+n);
-			  console.log(obj)
-			  //选择当前对象
-			  obj.select(); 
-			  try{
-				//进行复制到剪切板
-				if(document.execCommand("Copy","false",null)){
-				  //如果复制成功
-				  alert("复制成功！");  
-				}else{
-				  //如果复制失败
-				  alert("复制失败！");
-				}
-			  }catch(err){
-				//如果报错
-				alert("复制错误！")
-			  }
-			})
+				
+	        });
+	        clipboard.on('error', function (e) {
+	        	$('.popUp .popUpText').html('复制成功')
+				$('.popUp').show();
+//	            alert("复制失败");
+	        });
+//			$(".copy").on("click",function(){
+//				
+//				var n=$(this).attr('data-id')
+//			  //获取input对象
+//			  var obj = document.getElementById("textAreas"+n);
+//			  console.log(obj)
+//			  //选择当前对象
+//			  obj.select(); 
+//			  try{
+//				//进行复制到剪切板
+//				if(document.execCommand("Copy","false",null)){
+//				  //如果复制成功
+//				  alert("复制成功！");  
+//				}else{
+//				  //如果复制失败
+//				  alert("复制失败！");
+//				}
+//			  }catch(err){
+//				//如果报错
+//				alert("复制错误！")
+//			  }
+//			})
 			
 		})
 		function randomNum(minNum,maxNum){ 
