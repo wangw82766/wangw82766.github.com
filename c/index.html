@@ -64,6 +64,7 @@
 							// arr[i]+':'+$('#sentence').val()+
 							'<input type="text" value="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'"/>'+
 							'<div id="copy'+i+'" class="copy" data-id="'+i+'" data-clipboard-textA="'+arr[i]+'，'+$('#sentence').val()+'" data-clipboard-text="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'">复制</div>'+
+							'<div class="copyA">删除</div>'+
 						'</p></li>';
 			}
 			$('#ul').show();
@@ -107,6 +108,13 @@
 //				alert("复制错误！")
 //			  }
 //			})
+			$('.copyA').on('click',function(){
+				$(this).parent().remove();
+				if($('#ul li').length<='0'){
+					$('#ul').hide();
+					$('#btnB').hide();
+				}
+			})
 			
 		})
 		function randomNum(minNum,maxNum){ 

@@ -21,7 +21,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */ color: #fff; }
 .popUpCt{position: absolute; left: 50%; top: 50%; width: 350px; height: 170px; background: #fff; margin-left: -175px; margin-top: -85px; border-radius: 5px;}
 .popUpText{font-size: 16px; text-align: center; line-height: 30px; padding-top: 40px;}
 .popUpBtn{width: 150px; height: 50px; margin: 0 auto; background: #18bbb2; text-align: center; line-height: 50px; cursor: pointer; border-radius: 4px; color: #fff; font-size: 16px; margin-top: 20px;}
-.copy{    margin: 20px auto;
+.copy,.copyA{    margin: 20px auto;
     width: 200px;
     height: 50px;
     background: rgba(24,187,178,0.5);
@@ -32,3 +32,4 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */ color: #fff; }
     line-height: 50px;
     border: 1px solid #e5e5e5;
     border-radius: 5px;}
+    

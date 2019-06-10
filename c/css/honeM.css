@@ -32,7 +32,7 @@ ul p input {
     word-wrap: break-word;
     word-break: break-all;
 }
-.copy{    margin: 0.4rem auto;
+.copy,.copyA{    margin: 0.4rem auto;
     width: 4rem;
     height: 1rem;
     background: rgba(24,187,178,0.5);
