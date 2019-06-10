@@ -62,8 +62,8 @@
 			for( var i=0;i<arr.length;i++){
 				html+='<li class="list"><p>'+
 							// arr[i]+':'+$('#sentence').val()+
-							'<input type="text" value="'+arr[i]+':'+$('#sentence').val()+'" id="textAreas'+i+'"/>'+
-							'<div id="copy'+i+'" class="copy" data-id="'+i+'" data-clipboard-textA="'+arr[i]+':'+$('#sentence').val()+'" data-clipboard-text="'+arr[i]+':'+$('#sentence').val()+'" id="textAreas'+i+'">复制</div>'+
+							'<input type="text" value="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'"/>'+
+							'<div id="copy'+i+'" class="copy" data-id="'+i+'" data-clipboard-textA="'+arr[i]+'，'+$('#sentence').val()+'" data-clipboard-text="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'">复制</div>'+
 						'</p></li>';
 			}
 			$('#ul').show();
