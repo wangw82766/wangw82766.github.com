@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link media="all and (max-width:768px) and (min-width:0px)" href="css/honeM.css?n=6" rel="stylesheet" />
+		<link media="all and (min-width:768px)" href="css/hone.css?n=4" rel="stylesheet" />
+		<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="popUp">
+			<div class="popUpCt">
+				<p class="popUpText">啊啊啊</p>
+				<div class="popUpBtn">好的</div>
+			</div>
+		</div>
+		<div class="box">
+			<a href="../images/cy1.jpg" download="logo.png">下载图片</a>
+			<div id="hf" class="btn">一键换肤</div>
+			<textarea id="name" placeholder="请输入姓名,多个姓名请用空格隔开(单个空格,输入格式错误,后果自负☺)" value=""></textarea><textarea id="sentence" placeholder="请输入祝福语句" value="新年快乐"></textarea>
+			<div id="btnA" class="btn">一键生成</div>
+			<ul id="ul">
+			</ul>
+			<div id="btnB" class="btn">一键清空</div>
+		</div>
+		<div>
+			
+		</div>
+	</body>
+	<script src="js/clipboardB.min.js"></script>
+	<script>
+		
+		$('.popUpBtn').on('click',function(){
+			$('.popUp').hide();
+		})
+		$('#ul').hide();
+		var str =new String()
+		var arr =new Array()
+		var html='';
+		$('#btnA').on('click',function(){
+			
+			html=''
+			if($('#name').val()==''||$('#name').val()==null){
+				$('.popUp').show();
+				$('.popUpText').html('请输入客户姓名');
+				// alert('请输入客户姓名')
+				return false;
+			}
+			if($('#sentence').val()==''||$('#sentence').val()==null){
+				$('.popUp').show();
+				$('.popUpText').html('请输入祝福语句');
+				// alert('')
+				return false;
+			}
+			 str=$('#name').val();
+			 arr=str.split(" ")
+			 console.log (arr)
+			for( var i=0;i<arr.length;i++){
+				html+='<li class="list"><p>'+
+							// arr[i]+':'+$('#sentence').val()+
+							'<input type="text" value="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'"/>'+
+							'<div id="copy'+i+'" class="copy" data-id="'+i+'" data-clipboard-textA="'+arr[i]+'，'+$('#sentence').val()+'" data-clipboard-text="'+arr[i]+'，'+$('#sentence').val()+'" id="textAreas'+i+'">复制</div>'+
+							'<div class="copyA">删除</div>'+
+						'</p></li>';
+			}
+			$('#ul').show();
+			$('#btnB').show();
+			$('#ul').append(html);
+			$('#name,#sentence').val('');
+			
+			
+	        var clipboard = new Clipboard('.copy');
+	        clipboard.on('success', function (e) {
+//	           alert("复制链接成功");
+				$('.popUp .popUpText').html('复制成功')
+				$('.popUp').show();
+				
+				
+	        });
+	        clipboard.on('error', function (e) {
+	        	$('.popUp .popUpText').html('复制成功')
+				$('.popUp').show();
+//	            alert("复制失败");
+	        });
+//			$(".copy").on("click",function(){
+//				
+//				var n=$(this).attr('data-id')
+//			  //获取input对象
+//			  var obj = document.getElementById("textAreas"+n);
+//			  console.log(obj)
+//			  //选择当前对象
+//			  obj.select(); 
+//			  try{
+//				//进行复制到剪切板
+//				if(document.execCommand("Copy","false",null)){
+//				  //如果复制成功
+//				  alert("复制成功！");  
+//				}else{
+//				  //如果复制失败
+//				  alert("复制失败！");
+//				}
+//			  }catch(err){
+//				//如果报错
+//				alert("复制错误！")
+//			  }
+//			})
+			$('.copyA').on('click',function(){
+				$(this).parent().remove();
+				if($('#ul li').length<='0'){
+					$('#ul').hide();
+					$('#btnB').hide();
+				}
+			})
+			
+		})
+		function randomNum(minNum,maxNum){ 
+			switch(arguments.length){ 
+				case 1: 
+					return parseInt(Math.random()*minNum+1,10); 
+				break; 
+				case 2: 
+					return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+				break; 
+					default: 
+						return 0; 
+					break; 
+			} 
+		} 
+		$('#btnB').on('click',function(){
+			$('#ul').html('');
+			$('#ul').hide();
+			$('#btnB').hide();
+		});
+		var num=1;
+		$('#hf').on('click',function(){
+			num+=1;
+			if(num>=10){
+				num=1;	
+			}
+			if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){
+				$('body').css('background','url(img/m'+num+'.jpg) no-repeat');
+				$('body').css('background-size','100% 100%');
+			}else{
+				$('body').css('background','url(img/'+num+'.jpg) no-repeat');
+				$('body').css('background-size','100% 100%');
+			}
+			// alert(num)
+			
+		})
+	</script>
+</html>
