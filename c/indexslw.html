@@ -96,7 +96,10 @@
 		}
 		$('ul').append(html)
 		$('ul li').on('click',function(){
-			if($(this).prev().hasClass('active')){
+			if($(this).hasClass('active')){
+				return false;
+			}
+			if($(this).prev().hasClass('active') || $(this).index() == 0){
 				$(this).addClass('active')
 				setCookie('num',$(this).index()+1,365)
 			}else{
