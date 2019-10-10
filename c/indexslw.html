@@ -96,7 +96,14 @@
 		}
 		$('ul').append(html)
 		$('ul li').on('click',function(){
-			setCookie('num',$(this).index()+1,365)
+			if($(this).prev().hasClass('active')){
+				$(this).addClass('active')
+				setCookie('num',$(this).index()+1,365)
+			}else{
+				alert('请按顺序完成计划')
+			}
+			
+			
 		})
 	</script>
 </html>
