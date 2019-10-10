@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<!--<link media="all and (max-width:768px) and (min-width:0px)" href="css/honeM.css?n=6" rel="stylesheet" />-->
+		<!--<link media="all and (min-width:768px)" href="css/hone.css?n=4" rel="stylesheet" />-->
+		<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js"></script>
+		
+		<style>
+			tbody td{width: 10%; height: 71px; text-align: center;}
+			ul{width: 710px; height: auto; border-left:1px solid #999 ;border-top:1px solid #999 ;}
+			ul li{width: 10%; height:71px; position: relative; border-bottom:1px solid #999;  border-right:1px solid #999; float: left; box-sizing: border-box; text-align: center; line-height: 71px;}
+			ul li i{position: absolute; left: 0; top: 0; width: 71px; height: 71px; background: url(img/dui1.png) no-repeat; background-size: 100% 100%; display: none;}
+			ul li.active i{display: block;}
+			body{overflow: auto;}
+			.title{width: 100%; height: 50px; text-align: center; line-height: 50px;}
+			
+		</style>
+	</head>
+	<body>
+		<div class="bodyBox" style="margin: 0;padding: 0;text-shadow: none;box-sizing: content-box;-webkit-box-sizing: content-box;width: 100%;height: 100%; background: #e4ebf3;padding-top: 50px;">
+			<div class="box" style="  margin: 0;padding: 0;text-shadow: none;box-sizing: content-box;-webkit-box-sizing: content-box;  width: 716px;margin: 0 auto 30px;background: #fff;padding: 30px;">
+				<div class="contentA" style="margin: 0;padding: 0;text-shadow: none;box-sizing: content-box;-webkit-box-sizing: content-box;">
+					<!--<table border="" cellspacing="" cellpadding="" style="  margin: 0;padding: 0;text-shadow: none;box-sizing: content-box;-webkit-box-sizing: content-box;  border: none;border-collapse: collapse; border-spacing: 0;width: 718px;margin-bottom: 20px;">
+						
+						<tbody style="">
+							<tr>
+								<td style=""><p style="">1</p></td>
+								<td style=""><p style="">2</p></td>
+								<td style=""><p style="">3</p></td>
+								<td style=""><p style="">4</p></td>
+								<td style=""><p style="">5</p></td>
+								<td style=""><p style="">6</p></td>
+								<td style=""><p style="">7</p></td>
+								<td style=""><p style="">8</p></td>
+								<td style=""><p style="">9</p></td>
+								<td style=""><p style="">10</p></td>
+							</tr>
+							
+						</tbody>
+					</table>-->
+					<div class="title">365天存钱计划表</div>
+					<ul class="clearfix">
+						<!--<li></li>-->
+					</ul>
+				</div>
+				
+				
+			</div>
+		</div>
+	</body>
+	<script src="js/clipboardB.min.js"></script>
+	<script>
+//		/设置cookie
+    function setCookie(name,value,d){
+        var dateo=new Date(),//获取当前时间对象
+            day=dateo.getDate();//获取当前的日期-1值
+        dateo.setDate(day+d);//修改当前值为d天后
+        document.cookie=name+"="+encodeURI(value)+"; expires="+dateo.toGMTString();//设置cookie,expires为过期日期，设置的格式应该是"name=value; expires=过期日期"
+    }
+    
+    //获取cookie
+    function getCookie(name){
+        var cookiestr=document.cookie,//获取cookie,格式应该为"name=value; name0=value0"
+            cookiearr0=cookiestr.split("; "),//以"; "来分构字符串成数组 ["name=value","name0=value0"]
+            cookiearr1=[];
+        for(var i=0;i<cookiearr0.length;i++){
+            cookiearr1=cookiearr0[i].split("=");//以"="分构字符串为数组,["name","value"]
+            if(cookiearr1[0]==name){//如果找到相同名称的cookie,返回它的值
+                return decodeURI(cookiearr1[1]);
+            }
+        }
+        return "";//如果没有找到相同名的cookir,返回空
+    }
+	var aaa=getCookie('num')
+	console.log(aaa)
+    //删除cookie
+    function removeCookie(name){
+        setCookie(name,"",-1);//把过期时间设为昨天，即删除了当前cookie
+    }
+		var num=1;
+		var html=''
+		for(var i=1;i<=365;i++){
+			if(i<=aaa){
+				html+='<li class="active">'+i+'<i></i></li>';
+			}else{
+				html+='<li>'+i+'<i></i></li>';
+			}
+			
+		}
+		$('ul').append(html)
+		$('ul li').on('click',function(){
+			setCookie('num',$(this).index()+1,365)
+		})
+	</script>
+</html>
